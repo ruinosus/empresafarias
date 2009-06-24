@@ -1,0 +1,5 @@
+C:\Users\Ruinosus\Desktop\EmpresaFarias\ClassesBasicas\bin\Debug\ClassesBasicas.dll
+C:\Users\Ruinosus\Desktop\EmpresaFarias\ClassesBasicas\bin\Debug\ClassesBasicas.pdb
+C:\Users\Ruinosus\Desktop\EmpresaFarias\ClassesBasicas\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Ruinosus\Desktop\EmpresaFarias\ClassesBasicas\obj\Debug\ClassesBasicas.dll
+C:\Users\Ruinosus\Desktop\EmpresaFarias\ClassesBasicas\obj\Debug\ClassesBasicas.pdb
