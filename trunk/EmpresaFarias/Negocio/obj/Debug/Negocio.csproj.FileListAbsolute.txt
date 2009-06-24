@@ -1,0 +1,5 @@
+C:\Users\Ruinosus\Desktop\EmpresaFarias\Negocio\bin\Debug\Negocio.dll
+C:\Users\Ruinosus\Desktop\EmpresaFarias\Negocio\bin\Debug\Negocio.pdb
+C:\Users\Ruinosus\Desktop\EmpresaFarias\Negocio\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Ruinosus\Desktop\EmpresaFarias\Negocio\obj\Debug\Negocio.dll
+C:\Users\Ruinosus\Desktop\EmpresaFarias\Negocio\obj\Debug\Negocio.pdb
