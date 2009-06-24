@@ -6,23 +6,23 @@ using System.Text;
 namespace ClassesBasicas
 {
     /// <summary>
-    /// Classe que representa os Historicos de Mudanças de um Dependente.
+    /// Classe que representa os Historicos de Mudanças de um Titular.
     /// </summary>
-    public class HistoricoDependente : Dependente
+    public class HistoricoTitular : Titular
     {
-        private Dependente depentende;
+        private Titular titular;
         /// <summary>
-        /// Propriedade relacionada ao Dependente monitorado pelo Historico de Mudanças.
+        /// Propriedade relacionada ao Titular monitorado pelo Historico de Mudanças.
         /// </summary>
-        public Dependente Depentende
+        public Titular Titular
         {
-            get { return depentende; }
-            set { depentende = value; }
+            get { return titular; }
+            set { titular = value; }
         }
 
          private Usuario usuario;
         /// <summary>
-         /// Propriedade relacionada ao Usuario que efetuou a mudança do Historico do Dependente.
+         /// Propriedade relacionada ao Usuario que efetuou a mudança do Historico do Titular.
         /// </summary>
         public Usuario Usuario
         {
@@ -32,7 +32,7 @@ namespace ClassesBasicas
 
         private DateTime dataAlteracao;
         /// <summary>
-        /// Propriedade relacionada a Data de Alteração do Historico do Dependente.
+        /// Propriedade relacionada a Data de Alteração do Historico do Titular.
         /// </summary>
         public DateTime DataAlteracao
         {
@@ -42,7 +42,7 @@ namespace ClassesBasicas
 
         private string descricao;
         /// <summary>
-        /// Propriedade relacionada a Descrição do que foi modificado do Historico do Dependente.
+        /// Propriedade relacionada a Descrição do que foi modificado do Historico do Titular.
         /// </summary>
         public string Descricao
         {
@@ -50,11 +50,11 @@ namespace ClassesBasicas
             set { descricao = value; }
         }
         /// <summary>
-        /// Construtor padrão do Historico do Dependente, Inicializando o Dependente e o Usuario.
+        /// Construtor padrão do Historico do Dependente, Inicializando o Titular e o Usuario.
         /// </summary>
-        public HistoricoDependente()
+        public HistoricoTitular()
         {
-            this.depentende = new Dependente();
+            this.titular = new Titular();
             this.usuario = new Usuario();
         }
     }
