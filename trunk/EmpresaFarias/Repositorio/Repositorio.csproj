@@ -46,6 +46,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="implementacoes\RepositorioContrato.cs" />
+    <Compile Include="implementacoes\RepositorioParcela.cs" />
+    <Compile Include="implementacoes\RepositorioPlano.cs" />
+    <Compile Include="interfaces\IRepositorioContrato.cs" />
+    <Compile Include="interfaces\IRepositorioParcela.cs" />
+    <Compile Include="interfaces\IRepositorioPlano.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UtilDB.cs" />
   </ItemGroup>
@@ -53,6 +59,12 @@
     <None Include="Banco\addCidades.sql" />
     <None Include="Banco\addEstados.sql" />
     <None Include="Banco\Script.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ClassesBasicas\ClassesBasicas.csproj">
+      <Project>{69975CA3-E90A-4977-9282-A04D97C7A01F}</Project>
+      <Name>ClassesBasicas</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
