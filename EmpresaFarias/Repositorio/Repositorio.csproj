@@ -47,9 +47,11 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="implementacoes\RepositorioContrato.cs" />
+    <Compile Include="implementacoes\RepositorioDependente.cs" />
     <Compile Include="implementacoes\RepositorioParcela.cs" />
     <Compile Include="implementacoes\RepositorioPlano.cs" />
     <Compile Include="interfaces\IRepositorioContrato.cs" />
+    <Compile Include="interfaces\IRepositorioDependente.cs" />
     <Compile Include="interfaces\IRepositorioParcela.cs" />
     <Compile Include="interfaces\IRepositorioPlano.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

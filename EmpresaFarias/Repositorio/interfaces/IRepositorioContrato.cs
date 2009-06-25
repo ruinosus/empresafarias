@@ -43,7 +43,7 @@ namespace Repositorio.interfaces
         /// Metodo responsavel por consultar os Contratos de um Titular.
         /// </summary>
         /// <param name="titular">Titular a ser utilizado como pesquisa.</param>
-        /// <returns>retorna uma Lista com todas as Parcelas encontradas do Contrato informado.</returns>
+        /// <returns>retorna uma Lista com todas os Contratos encontrados do Titular informado.</returns>
         List<Contrato> Consultar(Titular titular);
     }
 }

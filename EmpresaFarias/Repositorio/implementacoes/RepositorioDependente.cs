@@ -10,28 +10,28 @@ using Excecoes;
 namespace Repositorio.implementacoes
 {
     /// <summary>
-    /// Classe responsavel por implementar a IRepositorioContrato.
+    /// Classe responsavel por implementar a IRepositorioDependente.
     /// </summary>
-    public class RepositorioContrato : IRepositorioContrato
+    public class RepositorioDependente : IRepositorioDependente
     {
-        #region Sql Tabela Contrato
+        #region Sql Tabela Dependente
 
-        private static String QUERY_INSERT = "INSERT INTO Contrato (Id,DataInicio,Status,TitularId,PlanoId) VALUES (@Id,@DataInicio,@Status,@TitularId,@PlanoId)";
-        private static String QUERY_UPDATE = "UPDATE Contrato SET DataInicio = @DataInicio,Status = @Status,TitularId = @TitularId,PlanoId=@PlanoId WHERE Id = @Id";
-        private static String QUERY_DELETE = "DELETE FROM Contrato WHERE Id = @Id";
-        private static String QUERY_SELECT_ID = "SELECT Id,DataInicio,Status,TitularId,PlanoId FROM Contrato WHERE Id = @Id";
-        private static String QUERY_SELECT_TITULAR_ID = "SELECT Id,DataInicio,Status,TitularId,PlanoId FROM Contrato WHERE TitularId = @TitularId";
-        private static String QUERY_SELECT_ALL = "SELECT Id,DataInicio,Status,TitularId,PlanoId FROM Contrato";
+        private static String QUERY_INSERT = "INSERT INTO Dependente (Nome,Religiao,DataNascimento,TitularId,Parentesco,PercentualCobertura,Status) VALUES (@Nome,@Religiao,@DataNascimento,@TitularId,@Parentesco,@PercentualCobertura,@Status)";
+        private static String QUERY_UPDATE = "UPDATE Dependente SET Nome = @Nome,Religiao = @Religiao,DataNascimento = @DataNascimento,TitularId = @TitularId,Parentesco = @Parentesco,PercentualCobertura = @PercentualCobertura,Status = @Status WHERE Id = @Id";
+        private static String QUERY_DELETE = "DELETE FROM Dependente WHERE Id = @Id";
+        private static String QUERY_SELECT_ID = "SELECT Id,Nome,Religiao,DataNascimento,TitularId,Parentesco,PercentualCobertura,Status FROM Dependente WHERE Id = @Id";
+        private static String QUERY_SELECT_TITULAR_ID = "SELECT Id,Nome,Religiao,DataNascimento,TitularId,Parentesco,PercentualCobertura,Status FROM Dependente WHERE TitularId = @TitularId";
+        private static String QUERY_SELECT_ALL = "SELECT Id,Nome,Religiao,DataNascimento,TitularId,Parentesco,PercentualCobertura,Status FROM Dependente";
 
         #endregion
 
-        #region Membros de IRepositorioContrato
+        #region Membros de IRepositorioDependente
         /// <summary>
-        /// Metodo responsavel por inserir um Contrato.
+        /// Metodo responsavel por inserir um Dependente.
         /// </summary>
-        /// <param name="contrato">Objeto do tipo Contrato a ser inserido</param>
-        /// <param name="TitularId">Id do Titular do Contrato.</param>
-        public void Inserir(Contrato contrato, int TitularId)
+        /// <param name="dependente">Objeto do tipo Dependente a ser inserido</param>
+        /// <param name="TitularId">Id do Titular do Dependente.</param>
+        public void Inserir(Dependente dependente, int TitularId)
         {
             UtilBD banco = new UtilBD();
             SqlConnection conexao = banco.ObterConexao();
@@ -39,10 +39,12 @@ namespace Repositorio.implementacoes
             try
             {
                 SqlCommand comando = new SqlCommand(QUERY_INSERT, conexao);
-                comando.Parameters.AddWithValue("@Id", contrato.Id);
-                comando.Parameters.AddWithValue("@DataInicio", contrato.DataInicio);
-                comando.Parameters.AddWithValue("@PlanoId", contrato.Plano.Id);
-                comando.Parameters.AddWithValue("@Status", contrato.Status);
+                comando.Parameters.AddWithValue("@DataNascimento", dependente.DataNascimento);
+                comando.Parameters.AddWithValue("@Nome", dependente.Nome);
+                comando.Parameters.AddWithValue("@Parentesco", dependente.Parentesco);
+                comando.Parameters.AddWithValue("@Religiao", dependente.Religiao);
+                comando.Parameters.AddWithValue("@Status", dependente.Status);
+                comando.Parameters.AddWithValue("@PercentualCobertura", dependente.PercentualCobertura);
                 comando.Parameters.AddWithValue("@TitularId", TitularId);
                 conexao.Open();
                 int regitrosAfetados = comando.ExecuteNonQuery();
@@ -54,14 +56,14 @@ namespace Repositorio.implementacoes
             finally
             {
                 banco.FecharConexao(conexao);
-            }
+            }  
         }
         /// <summary>
-        /// Metodo responsavel por alterar um Contrato.
+        /// Metodo responsavel por alterar um Dependente.
         /// </summary>
-        /// <param name="contrato">Objeto do tipo Contrato a ser alterado</param>
-        /// <param name="TitularId">Id do Titular do Contrato.</param>
-        public void Alterar(Contrato contrato, int TitularId)
+        /// <param name="dependente">Objeto do tipo Dependente a ser alterado</param>
+        /// <param name="TitularId">Id do Titular do Dependente.</param>
+        public void Alterar(Dependente dependente, int TitularId)
         {
             UtilBD banco = new UtilBD();
             SqlConnection conexao = banco.ObterConexao();
@@ -69,11 +71,14 @@ namespace Repositorio.implementacoes
             try
             {
                 SqlCommand comando = new SqlCommand(QUERY_UPDATE, conexao);
-                comando.Parameters.AddWithValue("@Id", contrato.Id);
-                comando.Parameters.AddWithValue("@DataInicio", contrato.DataInicio);
-                comando.Parameters.AddWithValue("@PlanoId", contrato.Plano.Id);
-                comando.Parameters.AddWithValue("@Status", contrato.Status);
+                comando.Parameters.AddWithValue("@DataNascimento", dependente.DataNascimento);
+                comando.Parameters.AddWithValue("@Nome", dependente.Nome);
+                comando.Parameters.AddWithValue("@Parentesco", dependente.Parentesco);
+                comando.Parameters.AddWithValue("@Religiao", dependente.Religiao);
+                comando.Parameters.AddWithValue("@Status", dependente.Status);
+                comando.Parameters.AddWithValue("@PercentualCobertura", dependente.PercentualCobertura);
                 comando.Parameters.AddWithValue("@TitularId", TitularId);
+                comando.Parameters.AddWithValue("@Id", dependente.Id);
                 conexao.Open();
                 int regitrosAfetados = comando.ExecuteNonQuery();
             }
@@ -84,12 +89,12 @@ namespace Repositorio.implementacoes
             finally
             {
                 banco.FecharConexao(conexao);
-            }
+            }  
         }
         /// <summary>
-        /// Metodo responsavel por remover um Contrato.
+        /// Metodo responsavel por remover um Dependente.
         /// </summary>
-        /// <param name="id">Id do Contrato a ser removido.</param>
+        /// <param name="id">Id do Dependente a ser removido.</param>
         public void Remover(int id)
         {
             UtilBD banco = new UtilBD();
@@ -112,15 +117,15 @@ namespace Repositorio.implementacoes
             } 
         }
         /// <summary>
-        /// Metodo responsavel por consultar um Contrato.
+        /// Metodo responsavel por consultar um Dependente.
         /// </summary>
         /// <param name="id">Id a ser consultado.</param>
-        /// <returns>retorna um Contrato com o Id informado.</returns>
-        public Contrato Consultar(int id)
+        /// <returns>retorna um Dependente com o Id informado.</returns>
+        public Dependente Consultar(int id)
         {
             UtilBD banco = new UtilBD();
             SqlConnection conexao = banco.ObterConexao();
-            Contrato contrato = null;
+            Dependente dependente = null;
             try
             {
                 SqlCommand comando = new SqlCommand(QUERY_SELECT_ID, conexao);
@@ -132,7 +137,7 @@ namespace Repositorio.implementacoes
                 resultado.Read();
                 if (resultado.HasRows)
                 {
-                    contrato = this.CriarContrato(resultado);
+                    dependente = this.CriarDependente(resultado);
                 }
 
                 resultado.Close();
@@ -147,17 +152,17 @@ namespace Repositorio.implementacoes
                 banco.FecharConexao(conexao);
             }
 
-            return contrato;
+            return dependente;
         }
         /// <summary>
-        /// Metodo responsavel por consultar todos os Contratos cadastrados.
+        /// Metodo responsavel por consultar todos os Dependentes cadastrados.
         /// </summary>
-        /// <returns>retorna uma Lista com todos os Contratos cadastrados.</returns>
-        public List<Contrato> Consultar()
+        /// <returns>retorna uma Lista com todos os Dependentes cadastrados.</returns>
+        public List<Dependente> Consultar()
         {
             UtilBD banco = new UtilBD();
             SqlConnection conexao = banco.ObterConexao();
-            List<Contrato> contratos = new List<Contrato>();
+            List<Dependente> dependentes = new List<Dependente>();
             try
             {
                 SqlCommand comando = new SqlCommand(QUERY_SELECT_ALL, conexao);
@@ -170,7 +175,7 @@ namespace Repositorio.implementacoes
                 {
                     while (resultado.Read())
                     {
-                        contratos.Add(this.CriarContrato(resultado));
+                        dependentes.Add(this.CriarDependente(resultado));
                     }
                 }
                 resultado.Close();
@@ -185,18 +190,18 @@ namespace Repositorio.implementacoes
                 banco.FecharConexao(conexao);
             }
 
-            return contratos;
+            return dependentes;
         }
         /// <summary>
-        /// Metodo responsavel por consultar os Contratos de um Titular.
+        /// Metodo responsavel por consultar os Dependentes de um Titular.
         /// </summary>
         /// <param name="titular">Titular a ser utilizado como pesquisa.</param>
-        /// <returns>retorna uma Lista com todas os Contratos encontrados do Titular informado.</returns>
-        public List<Contrato> Consultar(Titular titular)
+        /// <returns>retorna uma Lista com todos os Dependentes encontrados do Titular informado.</returns>
+        public List<Dependente> Consultar(Titular titular)
         {
             UtilBD banco = new UtilBD();
             SqlConnection conexao = banco.ObterConexao();
-            List<Contrato> contratos = new List<Contrato>();
+            List<Dependente> dependentes = new List<Dependente>();
             try
             {
                 SqlCommand comando = new SqlCommand(QUERY_SELECT_TITULAR_ID, conexao);
@@ -210,7 +215,7 @@ namespace Repositorio.implementacoes
                 {
                     while (resultado.Read())
                     {
-                        contratos.Add(this.CriarContrato(resultado));
+                        dependentes.Add(this.CriarDependente(resultado));
                     }
                 }
                 resultado.Close();
@@ -225,37 +230,50 @@ namespace Repositorio.implementacoes
                 banco.FecharConexao(conexao);
             }
 
-            return contratos;
+            return dependentes;
         }
 
         #endregion
 
         /// <summary>
-        /// Metodo para montar um Contrato recebendo um SqlDataReader como parametro.
+        /// Metodo para montar um Dependente recebendo um SqlDataReader como parametro.
         /// </summary>
         /// <param name="resultado">SqlDataReader</param>
         /// <returns>Retorna uma Parcela</returns>
-        private Contrato CriarContrato(SqlDataReader resultado)
+        private Dependente CriarDependente(SqlDataReader resultado)
         {
-            Contrato contrato = new Contrato();
+            Dependente dependente = new Dependente();
 
             if (resultado["Id"] != DBNull.Value)
             {
-                contrato.Id = Convert.ToInt32(resultado["Id"]);
+                dependente.Id = Convert.ToInt32(resultado["Id"]);
             }
-            if (resultado["DataInicio"] != DBNull.Value)
+            if (resultado["DataNascimento"] != DBNull.Value)
             {
-                contrato.DataInicio = Convert.ToDateTime(resultado["DataInicio"]);
+                dependente.DataNascimento = Convert.ToDateTime(resultado["DataNascimento"]);
             }
-            if (resultado["PlanoId"] != DBNull.Value)
+            if (resultado["Nome"] != DBNull.Value)
             {
-                contrato.Plano.Id = Convert.ToInt32(resultado["PlanoId"]);
+                dependente.Nome = Convert.ToString(resultado["Nome"]);
             }
             if (resultado["Status"] != DBNull.Value)
             {
-                contrato.Status = Convert.ToString(resultado["Status"]);
-            }           
-            return contrato;
+                dependente.Status = Convert.ToString(resultado["Status"]);
+            }
+            if (resultado["Parentesco"] != DBNull.Value)
+            {
+                dependente.Parentesco = Convert.ToString(resultado["Parentesco"]);
+            }
+            if (resultado["PercentualCobertura"] != DBNull.Value)
+            {
+                dependente.PercentualCobertura = Convert.ToInt32(resultado["PercentualCobertura"]);
+            }
+            if (resultado["Religiao"] != DBNull.Value)
+            {
+                dependente.Religiao = Convert.ToString(resultado["Religiao"]);
+            }
+
+            return dependente;
         }
     }
 }
