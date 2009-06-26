@@ -239,7 +239,7 @@ namespace Repositorio.implementacoes
         /// Metodo para montar um Dependente recebendo um SqlDataReader como parametro.
         /// </summary>
         /// <param name="resultado">SqlDataReader</param>
-        /// <returns>Retorna uma Parcela</returns>
+        /// <returns>Retorna um Dependente</returns>
         private Dependente CriarDependente(SqlDataReader resultado)
         {
             Dependente dependente = new Dependente();

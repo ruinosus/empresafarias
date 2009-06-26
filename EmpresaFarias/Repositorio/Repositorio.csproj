@@ -50,10 +50,12 @@
     <Compile Include="implementacoes\RepositorioDependente.cs" />
     <Compile Include="implementacoes\RepositorioParcela.cs" />
     <Compile Include="implementacoes\RepositorioPlano.cs" />
+    <Compile Include="implementacoes\RepositorioTitular.cs" />
     <Compile Include="interfaces\IRepositorioContrato.cs" />
     <Compile Include="interfaces\IRepositorioDependente.cs" />
     <Compile Include="interfaces\IRepositorioParcela.cs" />
     <Compile Include="interfaces\IRepositorioPlano.cs" />
+    <Compile Include="interfaces\IRepositorioTitular.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UtilDB.cs" />
   </ItemGroup>
