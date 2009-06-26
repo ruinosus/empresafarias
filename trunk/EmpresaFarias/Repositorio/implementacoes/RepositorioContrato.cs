@@ -234,7 +234,7 @@ namespace Repositorio.implementacoes
         /// Metodo para montar um Contrato recebendo um SqlDataReader como parametro.
         /// </summary>
         /// <param name="resultado">SqlDataReader</param>
-        /// <returns>Retorna uma Parcela</returns>
+        /// <returns>Retorna um Contrato</returns>
         private Contrato CriarContrato(SqlDataReader resultado)
         {
             Contrato contrato = new Contrato();

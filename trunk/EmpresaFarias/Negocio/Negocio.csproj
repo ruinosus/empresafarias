@@ -45,10 +45,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="controladores\ControladorContrato.cs" />
+    <Compile Include="controladores\ControladorDependente.cs" />
+    <Compile Include="controladores\ControladorParcela.cs" />
+    <Compile Include="controladores\ControladorPlano.cs" />
+    <Compile Include="controladores\ControladorTitular.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="controladores\" />
+    <ProjectReference Include="..\ClassesBasicas\ClassesBasicas.csproj">
+      <Project>{69975CA3-E90A-4977-9282-A04D97C7A01F}</Project>
+      <Name>ClassesBasicas</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Repositorio\Repositorio.csproj">
+      <Project>{ABE37572-E7B2-4DF3-942F-09734F754DF8}</Project>
+      <Name>Repositorio</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

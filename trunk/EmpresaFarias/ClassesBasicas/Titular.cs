@@ -29,6 +29,16 @@ namespace ClassesBasicas
             set { nome = value; }
         }
 
+        private DateTime dataNascimento;
+        /// <summary>
+        /// Propriedade relacionada a Data de Nascimento do Titular.
+        /// </summary>
+        public DateTime DataNascimento
+        {
+            get { return dataNascimento; }
+            set { dataNascimento = value; }
+        }
+
         private char sexo;
         /// <summary>
         /// Propriedade relacionada ao Sexo do Titular.
