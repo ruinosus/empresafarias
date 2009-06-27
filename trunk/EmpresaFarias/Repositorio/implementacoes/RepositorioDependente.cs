@@ -43,7 +43,7 @@ namespace Repositorio.implementacoes
                 comando.Parameters.AddWithValue("@Nome", dependente.Nome);
                 comando.Parameters.AddWithValue("@Parentesco", dependente.Parentesco);
                 comando.Parameters.AddWithValue("@Religiao", dependente.Religiao);
-                comando.Parameters.AddWithValue("@Status", dependente.Status);
+                comando.Parameters.AddWithValue("@Status", (int)dependente.Status);
                 comando.Parameters.AddWithValue("@PercentualCobertura", dependente.PercentualCobertura);
                 comando.Parameters.AddWithValue("@TitularId", TitularId);
                 conexao.Open();
@@ -75,7 +75,7 @@ namespace Repositorio.implementacoes
                 comando.Parameters.AddWithValue("@Nome", dependente.Nome);
                 comando.Parameters.AddWithValue("@Parentesco", dependente.Parentesco);
                 comando.Parameters.AddWithValue("@Religiao", dependente.Religiao);
-                comando.Parameters.AddWithValue("@Status", dependente.Status);
+                comando.Parameters.AddWithValue("@Status", (int)dependente.Status);
                 comando.Parameters.AddWithValue("@PercentualCobertura", dependente.PercentualCobertura);
                 comando.Parameters.AddWithValue("@TitularId", TitularId);
                 comando.Parameters.AddWithValue("@Id", dependente.Id);
@@ -258,7 +258,7 @@ namespace Repositorio.implementacoes
             }
             if (resultado["Status"] != DBNull.Value)
             {
-                dependente.Status = Convert.ToString(resultado["Status"]);
+                dependente.Status =(StatusDependente)Convert.ToInt32(resultado["Status"]);
             }
             if (resultado["Parentesco"] != DBNull.Value)
             {

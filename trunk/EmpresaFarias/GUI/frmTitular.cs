@@ -6,44 +6,129 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using ClassesBasicas;
+using Negocio;
 
 namespace GUI
 {
     public partial class frmTitular : Form
     {
+        Fachada fachada = Fachada.ObterInstancia();
         public frmTitular()
         {
             InitializeComponent();
+            AjustarEstadoEndereco();
+            AjustarEstadoNaturalidade();
+            AjustarPlano();
         }
 
-        private void tabTitular_Click(object sender, EventArgs e)
+        private void AjustarEstadoEndereco()
         {
 
+            try
+            {
+                cmbEstado.DataSource = fachada.ControladorCidadeEstado.Consultar();
+                cmbEstado.DisplayMember = "Sigla";
+                cmbEstado.ValueMember = "Id";
+            }
+            catch (ExcecaoNegocio en)
+            {
+                //lblMensagem.Text = en.Message;
+            }
+
+            catch (Exception ex)
+            {
+                //lblMensagem.Text = ex.Message;
+            }
+        }        
+
+        private void AjustarCidadeEndereco()
+        {
+            try
+            {
+                Estado estado = (Estado)cmbEstado.SelectedItem;
+                cmbCidade.DataSource = fachada.ControladorCidadeEstado.Consultar(estado);
+                cmbCidade.DisplayMember = "Nome";
+                cmbCidade.ValueMember = "Id";
+            }
+            catch (ExcecaoNegocio en)
+            {
+                //lblMensagem.Text = en.Message;
+            }
+
+            catch (Exception ex)
+            {
+                //lblMensagem.Text = ex.Message;
+            }
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
+        private void AjustarEstadoNaturalidade()
         {
 
+            try
+            {
+                cmbEstadoNaturalidade.DataSource = fachada.ControladorCidadeEstado.Consultar();
+                cmbEstadoNaturalidade.DisplayMember = "Sigla";
+                cmbEstadoNaturalidade.ValueMember = "Id";
+            }
+            catch (ExcecaoNegocio en)
+            {
+                //lblMensagem.Text = en.Message;
+            }
+
+            catch (Exception ex)
+            {
+                //lblMensagem.Text = ex.Message;
+            }
         }
 
-        private void label17_Click(object sender, EventArgs e)
+        private void AjustarCidadeNaturalidade()
         {
+            try
+            {
+                Estado estado = (Estado)cmbEstadoNaturalidade.SelectedItem;
+                cmbCidadeNaturalidade.DataSource = fachada.ControladorCidadeEstado.Consultar(estado);
+                cmbCidadeNaturalidade.DisplayMember = "Nome";
+                cmbCidadeNaturalidade.ValueMember = "Id";
+            }
+            catch (ExcecaoNegocio en)
+            {
+                //lblMensagem.Text = en.Message;
+            }
 
+            catch (Exception ex)
+            {
+                //lblMensagem.Text = ex.Message;
+            }
         }
 
-        private void label16_Click(object sender, EventArgs e)
+        private void AjustarPlano()
         {
+            try
+            {
+                cmbPlano.DataSource = fachada.ControladorPlano.Consultar();
+                cmbPlano.DisplayMember = "Nome";
+                cmbPlano.ValueMember = "Id";
+            }
+            catch (ExcecaoNegocio en)
+            {
+                //lblMensagem.Text = en.Message;
+            }
 
+            catch (Exception ex)
+            {
+                //lblMensagem.Text = ex.Message;
+            }
         }
 
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        private void cmbEstado_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            AjustarCidadeEndereco();
         }
 
-        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+        private void cmbEstadoNaturalidade_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            AjustarCidadeNaturalidade();
         }
     }
 }

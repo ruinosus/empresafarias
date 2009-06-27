@@ -51,7 +51,7 @@ namespace Repositorio.implementacoes
                 comando.Parameters.AddWithValue("@DataVencimento", parcela.DataVencimento);
                 comando.Parameters.AddWithValue("@Valor", parcela.Valor);
                 comando.Parameters.AddWithValue("@NumeroParcela", parcela.NumeroParcela);
-                comando.Parameters.AddWithValue("@Status", parcela.Status);
+                comando.Parameters.AddWithValue("@Status",(int) parcela.Status);
                 comando.Parameters.AddWithValue("@ContratoId", ContratoId);
                 conexao.Open();
                 int regitrosAfetados = comando.ExecuteNonQuery();
@@ -82,7 +82,7 @@ namespace Repositorio.implementacoes
                 comando.Parameters.AddWithValue("@DataVencimento", parcela.DataVencimento);
                 comando.Parameters.AddWithValue("@Valor", parcela.Valor);
                 comando.Parameters.AddWithValue("@NumeroParcela", parcela.NumeroParcela);
-                comando.Parameters.AddWithValue("@Status", parcela.Status);
+                comando.Parameters.AddWithValue("@Status", (int)parcela.Status);
                 comando.Parameters.AddWithValue("@ContratoId", parcela.Id);
                 comando.Parameters.AddWithValue("@Id", ContratoId);
                 conexao.Open();
@@ -271,7 +271,7 @@ namespace Repositorio.implementacoes
             }
             if (resultado["Status"] != DBNull.Value)
             {
-                parcela.Status = Convert.ToString(resultado["Status"]);
+                parcela.Status = (StatusParcela)Convert.ToInt32(resultado["Status"]);
             }
             return parcela;
         }
