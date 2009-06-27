@@ -30,11 +30,16 @@
         {
             this.tbcTitular = new System.Windows.Forms.TabControl();
             this.tabTitular = new System.Windows.Forms.TabPage();
+            this.gpbContato = new System.Windows.Forms.GroupBox();
+            this.mskTelefoneCelular = new System.Windows.Forms.MaskedTextBox();
+            this.lblTelefoneCelular = new System.Windows.Forms.Label();
+            this.mskTelefoneResidencial = new System.Windows.Forms.MaskedTextBox();
+            this.lblTelefoneResidencial = new System.Windows.Forms.Label();
             this.btnExcluir = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.gpbContrato = new System.Windows.Forms.GroupBox();
-            this.dtpTerminoContrato = new System.Windows.Forms.DateTimePicker();
-            this.lblTerminoContrato = new System.Windows.Forms.Label();
+            this.cmbPlano = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.lblInicioContrato = new System.Windows.Forms.Label();
             this.dtpInicioContrato = new System.Windows.Forms.DateTimePicker();
             this.lblNumeroContrato = new System.Windows.Forms.Label();
@@ -44,7 +49,7 @@
             this.btnNovo = new System.Windows.Forms.Button();
             this.gpbDocumentos = new System.Windows.Forms.GroupBox();
             this.dtpExpedicao = new System.Windows.Forms.DateTimePicker();
-            this.cmbNaturalidade = new System.Windows.Forms.ComboBox();
+            this.cmbCidadeNaturalidade = new System.Windows.Forms.ComboBox();
             this.lblExpedicao = new System.Windows.Forms.Label();
             this.txtCpf = new System.Windows.Forms.TextBox();
             this.lblNaturalidade = new System.Windows.Forms.Label();
@@ -76,14 +81,15 @@
             this.txtNome = new System.Windows.Forms.TextBox();
             this.lblNome = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.btnBuscarContrato = new System.Windows.Forms.Button();
-            this.txtBuscarContrato = new System.Windows.Forms.TextBox();
-            this.gpbContato = new System.Windows.Forms.GroupBox();
-            this.lblTelefoneResidencial = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.label10 = new System.Windows.Forms.Label();
+            this.gpbDependentesCadastrados = new System.Windows.Forms.GroupBox();
+            this.dgvDependentesCadastrados = new System.Windows.Forms.DataGridView();
+            this.btnExcluirDependente = new System.Windows.Forms.Button();
+            this.btnCancelarDependente = new System.Windows.Forms.Button();
+            this.btnSalvarDependente = new System.Windows.Forms.Button();
+            this.btnAlterarDependente = new System.Windows.Forms.Button();
+            this.btnAdicionarDependente = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cmbReligiao = new System.Windows.Forms.ComboBox();
             this.cmbPercentualCobertura = new System.Windows.Forms.ComboBox();
             this.lblPercentualCobertura = new System.Windows.Forms.Label();
             this.cmbParentesco = new System.Windows.Forms.ComboBox();
@@ -93,50 +99,42 @@
             this.dtpNascimentoDependente = new System.Windows.Forms.DateTimePicker();
             this.txtNomeDependente = new System.Windows.Forms.TextBox();
             this.lblNomeDependente = new System.Windows.Forms.Label();
-            this.cmbReligiao = new System.Windows.Forms.ComboBox();
-            this.btnExcluirDependente = new System.Windows.Forms.Button();
-            this.btnCancelarDependente = new System.Windows.Forms.Button();
-            this.btnSalvarDependente = new System.Windows.Forms.Button();
-            this.btnAlterarDependente = new System.Windows.Forms.Button();
-            this.btnAdicionarDependente = new System.Windows.Forms.Button();
-            this.gpbDependentesCadastrados = new System.Windows.Forms.GroupBox();
-            this.dgvDependentesCadastrados = new System.Windows.Forms.DataGridView();
-            this.mskTelefoneResidencial = new System.Windows.Forms.MaskedTextBox();
-            this.lblTelefoneCelular = new System.Windows.Forms.Label();
-            this.mskTelefoneCelular = new System.Windows.Forms.MaskedTextBox();
-            this.mskTelefoneComercial = new System.Windows.Forms.MaskedTextBox();
-            this.lblTelefoneComercial = new System.Windows.Forms.Label();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.label5 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.btnBuscarContrato = new System.Windows.Forms.Button();
+            this.txtBuscarContrato = new System.Windows.Forms.TextBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.dataGridView3 = new System.Windows.Forms.DataGridView();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
+            this.cmbEstadoNaturalidade = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.tbcTitular.SuspendLayout();
             this.tabTitular.SuspendLayout();
+            this.gpbContato.SuspendLayout();
             this.gpbContrato.SuspendLayout();
             this.gpbDocumentos.SuspendLayout();
             this.gpbEndereco.SuspendLayout();
             this.gpbEstadoCivil.SuspendLayout();
             this.gpbSexo.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.gpbContato.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.gpbDependentesCadastrados.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDependentesCadastrados)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // tbcTitular
@@ -172,7 +170,53 @@
             this.tabTitular.TabIndex = 0;
             this.tabTitular.Text = "Titular";
             this.tabTitular.UseVisualStyleBackColor = true;
-            this.tabTitular.Click += new System.EventHandler(this.tabTitular_Click);
+            // 
+            // gpbContato
+            // 
+            this.gpbContato.Controls.Add(this.mskTelefoneCelular);
+            this.gpbContato.Controls.Add(this.lblTelefoneCelular);
+            this.gpbContato.Controls.Add(this.mskTelefoneResidencial);
+            this.gpbContato.Controls.Add(this.lblTelefoneResidencial);
+            this.gpbContato.Location = new System.Drawing.Point(10, 417);
+            this.gpbContato.Name = "gpbContato";
+            this.gpbContato.Size = new System.Drawing.Size(492, 63);
+            this.gpbContato.TabIndex = 31;
+            this.gpbContato.TabStop = false;
+            this.gpbContato.Text = "Contato";
+            // 
+            // mskTelefoneCelular
+            // 
+            this.mskTelefoneCelular.Location = new System.Drawing.Point(351, 22);
+            this.mskTelefoneCelular.Mask = "(999) 0000-0000";
+            this.mskTelefoneCelular.Name = "mskTelefoneCelular";
+            this.mskTelefoneCelular.Size = new System.Drawing.Size(136, 20);
+            this.mskTelefoneCelular.TabIndex = 31;
+            // 
+            // lblTelefoneCelular
+            // 
+            this.lblTelefoneCelular.AutoSize = true;
+            this.lblTelefoneCelular.Location = new System.Drawing.Point(259, 25);
+            this.lblTelefoneCelular.Name = "lblTelefoneCelular";
+            this.lblTelefoneCelular.Size = new System.Drawing.Size(84, 13);
+            this.lblTelefoneCelular.TabIndex = 30;
+            this.lblTelefoneCelular.Text = "Telefone Celular";
+            // 
+            // mskTelefoneResidencial
+            // 
+            this.mskTelefoneResidencial.Location = new System.Drawing.Point(116, 22);
+            this.mskTelefoneResidencial.Mask = "(999) 0000-0000";
+            this.mskTelefoneResidencial.Name = "mskTelefoneResidencial";
+            this.mskTelefoneResidencial.Size = new System.Drawing.Size(136, 20);
+            this.mskTelefoneResidencial.TabIndex = 29;
+            // 
+            // lblTelefoneResidencial
+            // 
+            this.lblTelefoneResidencial.AutoSize = true;
+            this.lblTelefoneResidencial.Location = new System.Drawing.Point(8, 25);
+            this.lblTelefoneResidencial.Name = "lblTelefoneResidencial";
+            this.lblTelefoneResidencial.Size = new System.Drawing.Size(107, 13);
+            this.lblTelefoneResidencial.TabIndex = 7;
+            this.lblTelefoneResidencial.Text = "Telefone Residencial";
             // 
             // btnExcluir
             // 
@@ -194,10 +238,8 @@
             // 
             // gpbContrato
             // 
-            this.gpbContrato.Controls.Add(this.comboBox3);
+            this.gpbContrato.Controls.Add(this.cmbPlano);
             this.gpbContrato.Controls.Add(this.label10);
-            this.gpbContrato.Controls.Add(this.dtpTerminoContrato);
-            this.gpbContrato.Controls.Add(this.lblTerminoContrato);
             this.gpbContrato.Controls.Add(this.lblInicioContrato);
             this.gpbContrato.Controls.Add(this.dtpInicioContrato);
             this.gpbContrato.Controls.Add(this.lblNumeroContrato);
@@ -209,24 +251,23 @@
             this.gpbContrato.TabStop = false;
             this.gpbContrato.Text = "Contrato";
             // 
-            // dtpTerminoContrato
+            // cmbPlano
             // 
-            this.dtpTerminoContrato.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpTerminoContrato.Location = new System.Drawing.Point(314, 46);
-            this.dtpTerminoContrato.Name = "dtpTerminoContrato";
-            this.dtpTerminoContrato.Size = new System.Drawing.Size(133, 20);
-            this.dtpTerminoContrato.TabIndex = 24;
-            this.dtpTerminoContrato.ValueChanged += new System.EventHandler(this.dateTimePicker2_ValueChanged);
+            this.cmbPlano.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPlano.FormattingEnabled = true;
+            this.cmbPlano.Location = new System.Drawing.Point(356, 17);
+            this.cmbPlano.Name = "cmbPlano";
+            this.cmbPlano.Size = new System.Drawing.Size(130, 21);
+            this.cmbPlano.TabIndex = 28;
             // 
-            // lblTerminoContrato
+            // label10
             // 
-            this.lblTerminoContrato.AutoSize = true;
-            this.lblTerminoContrato.Location = new System.Drawing.Point(222, 49);
-            this.lblTerminoContrato.Name = "lblTerminoContrato";
-            this.lblTerminoContrato.Size = new System.Drawing.Size(86, 13);
-            this.lblTerminoContrato.TabIndex = 23;
-            this.lblTerminoContrato.Text = "Data de Término";
-            this.lblTerminoContrato.Click += new System.EventHandler(this.label17_Click);
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(320, 20);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(34, 13);
+            this.label10.TabIndex = 27;
+            this.label10.Text = "Plano";
             // 
             // lblInicioContrato
             // 
@@ -236,7 +277,6 @@
             this.lblInicioContrato.Size = new System.Drawing.Size(75, 13);
             this.lblInicioContrato.TabIndex = 21;
             this.lblInicioContrato.Text = "Data de Início";
-            this.lblInicioContrato.Click += new System.EventHandler(this.label16_Click);
             // 
             // dtpInicioContrato
             // 
@@ -245,7 +285,6 @@
             this.dtpInicioContrato.Name = "dtpInicioContrato";
             this.dtpInicioContrato.Size = new System.Drawing.Size(133, 20);
             this.dtpInicioContrato.TabIndex = 20;
-            this.dtpInicioContrato.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // lblNumeroContrato
             // 
@@ -292,8 +331,10 @@
             // 
             // gpbDocumentos
             // 
+            this.gpbDocumentos.Controls.Add(this.cmbEstadoNaturalidade);
+            this.gpbDocumentos.Controls.Add(this.label1);
             this.gpbDocumentos.Controls.Add(this.dtpExpedicao);
-            this.gpbDocumentos.Controls.Add(this.cmbNaturalidade);
+            this.gpbDocumentos.Controls.Add(this.cmbCidadeNaturalidade);
             this.gpbDocumentos.Controls.Add(this.lblExpedicao);
             this.gpbDocumentos.Controls.Add(this.txtCpf);
             this.gpbDocumentos.Controls.Add(this.lblNaturalidade);
@@ -304,7 +345,7 @@
             this.gpbDocumentos.Controls.Add(this.txtIdentidade);
             this.gpbDocumentos.Location = new System.Drawing.Point(10, 311);
             this.gpbDocumentos.Name = "gpbDocumentos";
-            this.gpbDocumentos.Size = new System.Drawing.Size(492, 83);
+            this.gpbDocumentos.Size = new System.Drawing.Size(492, 100);
             this.gpbDocumentos.TabIndex = 17;
             this.gpbDocumentos.TabStop = false;
             this.gpbDocumentos.Text = "Documentos";
@@ -317,13 +358,14 @@
             this.dtpExpedicao.Size = new System.Drawing.Size(79, 20);
             this.dtpExpedicao.TabIndex = 30;
             // 
-            // cmbNaturalidade
+            // cmbCidadeNaturalidade
             // 
-            this.cmbNaturalidade.FormattingEnabled = true;
-            this.cmbNaturalidade.Location = new System.Drawing.Point(300, 47);
-            this.cmbNaturalidade.Name = "cmbNaturalidade";
-            this.cmbNaturalidade.Size = new System.Drawing.Size(187, 21);
-            this.cmbNaturalidade.TabIndex = 29;
+            this.cmbCidadeNaturalidade.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbCidadeNaturalidade.FormattingEnabled = true;
+            this.cmbCidadeNaturalidade.Location = new System.Drawing.Point(300, 71);
+            this.cmbCidadeNaturalidade.Name = "cmbCidadeNaturalidade";
+            this.cmbCidadeNaturalidade.Size = new System.Drawing.Size(187, 21);
+            this.cmbCidadeNaturalidade.TabIndex = 29;
             // 
             // lblExpedicao
             // 
@@ -344,7 +386,7 @@
             // lblNaturalidade
             // 
             this.lblNaturalidade.AutoSize = true;
-            this.lblNaturalidade.Location = new System.Drawing.Point(233, 51);
+            this.lblNaturalidade.Location = new System.Drawing.Point(233, 75);
             this.lblNaturalidade.Name = "lblNaturalidade";
             this.lblNaturalidade.Size = new System.Drawing.Size(67, 13);
             this.lblNaturalidade.TabIndex = 18;
@@ -424,6 +466,7 @@
             // 
             // cmbCidade
             // 
+            this.cmbCidade.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCidade.FormattingEnabled = true;
             this.cmbCidade.Location = new System.Drawing.Point(299, 99);
             this.cmbCidade.Name = "cmbCidade";
@@ -432,11 +475,13 @@
             // 
             // cmbEstado
             // 
+            this.cmbEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbEstado.FormattingEnabled = true;
             this.cmbEstado.Location = new System.Drawing.Point(299, 72);
             this.cmbEstado.Name = "cmbEstado";
             this.cmbEstado.Size = new System.Drawing.Size(187, 21);
             this.cmbEstado.TabIndex = 26;
+            this.cmbEstado.SelectedIndexChanged += new System.EventHandler(this.cmbEstado_SelectedIndexChanged);
             // 
             // lblCidade
             // 
@@ -541,6 +586,7 @@
             // 
             // cmbEstadoCivil
             // 
+            this.cmbEstadoCivil.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbEstadoCivil.FormattingEnabled = true;
             this.cmbEstadoCivil.Location = new System.Drawing.Point(10, 16);
             this.cmbEstadoCivil.Name = "cmbEstadoCivil";
@@ -557,7 +603,6 @@
             this.gpbSexo.TabIndex = 15;
             this.gpbSexo.TabStop = false;
             this.gpbSexo.Text = "Sexo";
-            this.gpbSexo.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // rdbFeminino
             // 
@@ -614,76 +659,68 @@
             this.tabPage2.Text = "Dependentes";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // tabPage1
+            // gpbDependentesCadastrados
             // 
-            this.tabPage1.Controls.Add(this.button6);
-            this.tabPage1.Controls.Add(this.button7);
-            this.tabPage1.Controls.Add(this.groupBox4);
-            this.tabPage1.Controls.Add(this.groupBox1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(666, 487);
-            this.tabPage1.TabIndex = 2;
-            this.tabPage1.Text = "Pagamentos";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.gpbDependentesCadastrados.Controls.Add(this.dgvDependentesCadastrados);
+            this.gpbDependentesCadastrados.Location = new System.Drawing.Point(6, 192);
+            this.gpbDependentesCadastrados.Name = "gpbDependentesCadastrados";
+            this.gpbDependentesCadastrados.Size = new System.Drawing.Size(505, 277);
+            this.gpbDependentesCadastrados.TabIndex = 37;
+            this.gpbDependentesCadastrados.TabStop = false;
+            this.gpbDependentesCadastrados.Text = "Dependentes Cadastrados";
             // 
-            // btnBuscarContrato
+            // dgvDependentesCadastrados
             // 
-            this.btnBuscarContrato.Location = new System.Drawing.Point(356, 14);
-            this.btnBuscarContrato.Name = "btnBuscarContrato";
-            this.btnBuscarContrato.Size = new System.Drawing.Size(137, 26);
-            this.btnBuscarContrato.TabIndex = 23;
-            this.btnBuscarContrato.Text = "Buscar Contrato";
-            this.btnBuscarContrato.UseVisualStyleBackColor = true;
+            this.dgvDependentesCadastrados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDependentesCadastrados.Location = new System.Drawing.Point(7, 19);
+            this.dgvDependentesCadastrados.Name = "dgvDependentesCadastrados";
+            this.dgvDependentesCadastrados.Size = new System.Drawing.Size(490, 249);
+            this.dgvDependentesCadastrados.TabIndex = 44;
             // 
-            // txtBuscarContrato
+            // btnExcluirDependente
             // 
-            this.txtBuscarContrato.Location = new System.Drawing.Point(509, 17);
-            this.txtBuscarContrato.Name = "txtBuscarContrato";
-            this.txtBuscarContrato.Size = new System.Drawing.Size(162, 20);
-            this.txtBuscarContrato.TabIndex = 26;
+            this.btnExcluirDependente.Location = new System.Drawing.Point(524, 333);
+            this.btnExcluirDependente.Name = "btnExcluirDependente";
+            this.btnExcluirDependente.Size = new System.Drawing.Size(137, 68);
+            this.btnExcluirDependente.TabIndex = 36;
+            this.btnExcluirDependente.Text = "Excluir Dependente";
+            this.btnExcluirDependente.UseVisualStyleBackColor = true;
             // 
-            // gpbContato
+            // btnCancelarDependente
             // 
-            this.gpbContato.Controls.Add(this.mskTelefoneComercial);
-            this.gpbContato.Controls.Add(this.lblTelefoneComercial);
-            this.gpbContato.Controls.Add(this.mskTelefoneCelular);
-            this.gpbContato.Controls.Add(this.lblTelefoneCelular);
-            this.gpbContato.Controls.Add(this.mskTelefoneResidencial);
-            this.gpbContato.Controls.Add(this.lblTelefoneResidencial);
-            this.gpbContato.Location = new System.Drawing.Point(10, 397);
-            this.gpbContato.Name = "gpbContato";
-            this.gpbContato.Size = new System.Drawing.Size(492, 83);
-            this.gpbContato.TabIndex = 31;
-            this.gpbContato.TabStop = false;
-            this.gpbContato.Text = "Contato";
+            this.btnCancelarDependente.Location = new System.Drawing.Point(524, 252);
+            this.btnCancelarDependente.Name = "btnCancelarDependente";
+            this.btnCancelarDependente.Size = new System.Drawing.Size(137, 68);
+            this.btnCancelarDependente.TabIndex = 35;
+            this.btnCancelarDependente.Text = "Cancelar";
+            this.btnCancelarDependente.UseVisualStyleBackColor = true;
             // 
-            // lblTelefoneResidencial
+            // btnSalvarDependente
             // 
-            this.lblTelefoneResidencial.AutoSize = true;
-            this.lblTelefoneResidencial.Location = new System.Drawing.Point(8, 25);
-            this.lblTelefoneResidencial.Name = "lblTelefoneResidencial";
-            this.lblTelefoneResidencial.Size = new System.Drawing.Size(107, 13);
-            this.lblTelefoneResidencial.TabIndex = 7;
-            this.lblTelefoneResidencial.Text = "Telefone Residencial";
+            this.btnSalvarDependente.Location = new System.Drawing.Point(524, 171);
+            this.btnSalvarDependente.Name = "btnSalvarDependente";
+            this.btnSalvarDependente.Size = new System.Drawing.Size(137, 68);
+            this.btnSalvarDependente.TabIndex = 34;
+            this.btnSalvarDependente.Text = "Salvar Alterações";
+            this.btnSalvarDependente.UseVisualStyleBackColor = true;
             // 
-            // comboBox3
+            // btnAlterarDependente
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(356, 17);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(130, 21);
-            this.comboBox3.TabIndex = 28;
+            this.btnAlterarDependente.Location = new System.Drawing.Point(525, 90);
+            this.btnAlterarDependente.Name = "btnAlterarDependente";
+            this.btnAlterarDependente.Size = new System.Drawing.Size(137, 68);
+            this.btnAlterarDependente.TabIndex = 33;
+            this.btnAlterarDependente.Text = "Alterar Dados";
+            this.btnAlterarDependente.UseVisualStyleBackColor = true;
             // 
-            // label10
+            // btnAdicionarDependente
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(320, 20);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(34, 13);
-            this.label10.TabIndex = 27;
-            this.label10.Text = "Plano";
+            this.btnAdicionarDependente.Location = new System.Drawing.Point(524, 9);
+            this.btnAdicionarDependente.Name = "btnAdicionarDependente";
+            this.btnAdicionarDependente.Size = new System.Drawing.Size(137, 68);
+            this.btnAdicionarDependente.TabIndex = 32;
+            this.btnAdicionarDependente.Text = "Adicionar Dependente";
+            this.btnAdicionarDependente.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
@@ -704,8 +741,18 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Dados do Dependente";
             // 
+            // cmbReligiao
+            // 
+            this.cmbReligiao.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbReligiao.FormattingEnabled = true;
+            this.cmbReligiao.Location = new System.Drawing.Point(323, 55);
+            this.cmbReligiao.Name = "cmbReligiao";
+            this.cmbReligiao.Size = new System.Drawing.Size(171, 21);
+            this.cmbReligiao.TabIndex = 41;
+            // 
             // cmbPercentualCobertura
             // 
+            this.cmbPercentualCobertura.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbPercentualCobertura.FormattingEnabled = true;
             this.cmbPercentualCobertura.Location = new System.Drawing.Point(373, 84);
             this.cmbPercentualCobertura.Name = "cmbPercentualCobertura";
@@ -723,6 +770,7 @@
             // 
             // cmbParentesco
             // 
+            this.cmbParentesco.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbParentesco.FormattingEnabled = true;
             this.cmbParentesco.Location = new System.Drawing.Point(88, 84);
             this.cmbParentesco.Name = "cmbParentesco";
@@ -780,118 +828,55 @@
             this.lblNomeDependente.TabIndex = 31;
             this.lblNomeDependente.Text = "Nome";
             // 
-            // cmbReligiao
+            // tabPage1
             // 
-            this.cmbReligiao.FormattingEnabled = true;
-            this.cmbReligiao.Location = new System.Drawing.Point(323, 55);
-            this.cmbReligiao.Name = "cmbReligiao";
-            this.cmbReligiao.Size = new System.Drawing.Size(171, 21);
-            this.cmbReligiao.TabIndex = 41;
+            this.tabPage1.Controls.Add(this.button6);
+            this.tabPage1.Controls.Add(this.button7);
+            this.tabPage1.Controls.Add(this.groupBox4);
+            this.tabPage1.Controls.Add(this.groupBox1);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(666, 487);
+            this.tabPage1.TabIndex = 2;
+            this.tabPage1.Text = "Pagamentos";
+            this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // btnExcluirDependente
+            // button6
             // 
-            this.btnExcluirDependente.Location = new System.Drawing.Point(524, 333);
-            this.btnExcluirDependente.Name = "btnExcluirDependente";
-            this.btnExcluirDependente.Size = new System.Drawing.Size(137, 68);
-            this.btnExcluirDependente.TabIndex = 36;
-            this.btnExcluirDependente.Text = "Excluir Dependente";
-            this.btnExcluirDependente.UseVisualStyleBackColor = true;
+            this.button6.Location = new System.Drawing.Point(529, 102);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(137, 68);
+            this.button6.TabIndex = 32;
+            this.button6.Text = "Alterar Dados";
+            this.button6.UseVisualStyleBackColor = true;
             // 
-            // btnCancelarDependente
+            // button7
             // 
-            this.btnCancelarDependente.Location = new System.Drawing.Point(524, 252);
-            this.btnCancelarDependente.Name = "btnCancelarDependente";
-            this.btnCancelarDependente.Size = new System.Drawing.Size(137, 68);
-            this.btnCancelarDependente.TabIndex = 35;
-            this.btnCancelarDependente.Text = "Cancelar";
-            this.btnCancelarDependente.UseVisualStyleBackColor = true;
+            this.button7.Location = new System.Drawing.Point(528, 21);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(137, 68);
+            this.button7.TabIndex = 31;
+            this.button7.Text = "Efetuar Pagamento";
+            this.button7.UseVisualStyleBackColor = true;
             // 
-            // btnSalvarDependente
+            // groupBox4
             // 
-            this.btnSalvarDependente.Location = new System.Drawing.Point(524, 171);
-            this.btnSalvarDependente.Name = "btnSalvarDependente";
-            this.btnSalvarDependente.Size = new System.Drawing.Size(137, 68);
-            this.btnSalvarDependente.TabIndex = 34;
-            this.btnSalvarDependente.Text = "Salvar Alterações";
-            this.btnSalvarDependente.UseVisualStyleBackColor = true;
+            this.groupBox4.Controls.Add(this.dataGridView3);
+            this.groupBox4.Location = new System.Drawing.Point(6, 162);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(510, 319);
+            this.groupBox4.TabIndex = 30;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Pagamentos Efetuados";
             // 
-            // btnAlterarDependente
+            // dataGridView3
             // 
-            this.btnAlterarDependente.Location = new System.Drawing.Point(525, 90);
-            this.btnAlterarDependente.Name = "btnAlterarDependente";
-            this.btnAlterarDependente.Size = new System.Drawing.Size(137, 68);
-            this.btnAlterarDependente.TabIndex = 33;
-            this.btnAlterarDependente.Text = "Alterar Dados";
-            this.btnAlterarDependente.UseVisualStyleBackColor = true;
-            // 
-            // btnAdicionarDependente
-            // 
-            this.btnAdicionarDependente.Location = new System.Drawing.Point(524, 9);
-            this.btnAdicionarDependente.Name = "btnAdicionarDependente";
-            this.btnAdicionarDependente.Size = new System.Drawing.Size(137, 68);
-            this.btnAdicionarDependente.TabIndex = 32;
-            this.btnAdicionarDependente.Text = "Adicionar Dependente";
-            this.btnAdicionarDependente.UseVisualStyleBackColor = true;
-            // 
-            // gpbDependentesCadastrados
-            // 
-            this.gpbDependentesCadastrados.Controls.Add(this.dgvDependentesCadastrados);
-            this.gpbDependentesCadastrados.Location = new System.Drawing.Point(6, 192);
-            this.gpbDependentesCadastrados.Name = "gpbDependentesCadastrados";
-            this.gpbDependentesCadastrados.Size = new System.Drawing.Size(505, 277);
-            this.gpbDependentesCadastrados.TabIndex = 37;
-            this.gpbDependentesCadastrados.TabStop = false;
-            this.gpbDependentesCadastrados.Text = "Dependentes Cadastrados";
-            // 
-            // dgvDependentesCadastrados
-            // 
-            this.dgvDependentesCadastrados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDependentesCadastrados.Location = new System.Drawing.Point(7, 19);
-            this.dgvDependentesCadastrados.Name = "dgvDependentesCadastrados";
-            this.dgvDependentesCadastrados.Size = new System.Drawing.Size(490, 249);
-            this.dgvDependentesCadastrados.TabIndex = 44;
-            // 
-            // mskTelefoneResidencial
-            // 
-            this.mskTelefoneResidencial.Location = new System.Drawing.Point(116, 22);
-            this.mskTelefoneResidencial.Mask = "(999) 0000-0000";
-            this.mskTelefoneResidencial.Name = "mskTelefoneResidencial";
-            this.mskTelefoneResidencial.Size = new System.Drawing.Size(136, 20);
-            this.mskTelefoneResidencial.TabIndex = 29;
-            // 
-            // lblTelefoneCelular
-            // 
-            this.lblTelefoneCelular.AutoSize = true;
-            this.lblTelefoneCelular.Location = new System.Drawing.Point(31, 55);
-            this.lblTelefoneCelular.Name = "lblTelefoneCelular";
-            this.lblTelefoneCelular.Size = new System.Drawing.Size(84, 13);
-            this.lblTelefoneCelular.TabIndex = 30;
-            this.lblTelefoneCelular.Text = "Telefone Celular";
-            // 
-            // mskTelefoneCelular
-            // 
-            this.mskTelefoneCelular.Location = new System.Drawing.Point(116, 52);
-            this.mskTelefoneCelular.Mask = "(999) 0000-0000";
-            this.mskTelefoneCelular.Name = "mskTelefoneCelular";
-            this.mskTelefoneCelular.Size = new System.Drawing.Size(136, 20);
-            this.mskTelefoneCelular.TabIndex = 31;
-            // 
-            // mskTelefoneComercial
-            // 
-            this.mskTelefoneComercial.Location = new System.Drawing.Point(364, 22);
-            this.mskTelefoneComercial.Mask = "(999) 0000-0000";
-            this.mskTelefoneComercial.Name = "mskTelefoneComercial";
-            this.mskTelefoneComercial.Size = new System.Drawing.Size(105, 20);
-            this.mskTelefoneComercial.TabIndex = 33;
-            // 
-            // lblTelefoneComercial
-            // 
-            this.lblTelefoneComercial.AutoSize = true;
-            this.lblTelefoneComercial.Location = new System.Drawing.Point(266, 25);
-            this.lblTelefoneComercial.Name = "lblTelefoneComercial";
-            this.lblTelefoneComercial.Size = new System.Drawing.Size(98, 13);
-            this.lblTelefoneComercial.TabIndex = 32;
-            this.lblTelefoneComercial.Text = "Telefone Comercial";
+            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Location = new System.Drawing.Point(10, 60);
+            this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.Size = new System.Drawing.Size(482, 253);
+            this.dataGridView3.TabIndex = 36;
             // 
             // groupBox1
             // 
@@ -910,8 +895,25 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Pagamentos";
             // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(328, 29);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(164, 20);
+            this.textBox2.TabIndex = 36;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(282, 32);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(31, 13);
+            this.label5.TabIndex = 35;
+            this.label5.Text = "Valor";
+            // 
             // comboBox1
             // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(69, 29);
             this.comboBox1.Name = "comboBox1";
@@ -961,21 +963,21 @@
             this.dateTimePicker1.Size = new System.Drawing.Size(133, 20);
             this.dateTimePicker1.TabIndex = 29;
             // 
-            // label5
+            // btnBuscarContrato
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(282, 32);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(31, 13);
-            this.label5.TabIndex = 35;
-            this.label5.Text = "Valor";
+            this.btnBuscarContrato.Location = new System.Drawing.Point(356, 14);
+            this.btnBuscarContrato.Name = "btnBuscarContrato";
+            this.btnBuscarContrato.Size = new System.Drawing.Size(137, 26);
+            this.btnBuscarContrato.TabIndex = 23;
+            this.btnBuscarContrato.Text = "Buscar Contrato";
+            this.btnBuscarContrato.UseVisualStyleBackColor = true;
             // 
-            // textBox2
+            // txtBuscarContrato
             // 
-            this.textBox2.Location = new System.Drawing.Point(328, 29);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(164, 20);
-            this.textBox2.TabIndex = 36;
+            this.txtBuscarContrato.Location = new System.Drawing.Point(509, 17);
+            this.txtBuscarContrato.Name = "txtBuscarContrato";
+            this.txtBuscarContrato.Size = new System.Drawing.Size(162, 20);
+            this.txtBuscarContrato.TabIndex = 26;
             // 
             // dataGridView2
             // 
@@ -985,41 +987,24 @@
             this.dataGridView2.Size = new System.Drawing.Size(490, 249);
             this.dataGridView2.TabIndex = 44;
             // 
-            // groupBox4
+            // cmbEstadoNaturalidade
             // 
-            this.groupBox4.Controls.Add(this.dataGridView3);
-            this.groupBox4.Location = new System.Drawing.Point(6, 162);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(510, 319);
-            this.groupBox4.TabIndex = 30;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Pagamentos Efetuados";
+            this.cmbEstadoNaturalidade.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbEstadoNaturalidade.FormattingEnabled = true;
+            this.cmbEstadoNaturalidade.Location = new System.Drawing.Point(299, 47);
+            this.cmbEstadoNaturalidade.Name = "cmbEstadoNaturalidade";
+            this.cmbEstadoNaturalidade.Size = new System.Drawing.Size(187, 21);
+            this.cmbEstadoNaturalidade.TabIndex = 32;
+            this.cmbEstadoNaturalidade.SelectedIndexChanged += new System.EventHandler(this.cmbEstadoNaturalidade_SelectedIndexChanged);
             // 
-            // dataGridView3
+            // label1
             // 
-            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Location = new System.Drawing.Point(10, 60);
-            this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.Size = new System.Drawing.Size(482, 253);
-            this.dataGridView3.TabIndex = 36;
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(529, 102);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(137, 68);
-            this.button6.TabIndex = 32;
-            this.button6.Text = "Alterar Dados";
-            this.button6.UseVisualStyleBackColor = true;
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(528, 21);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(137, 68);
-            this.button7.TabIndex = 31;
-            this.button7.Text = "Efetuar Pagamento";
-            this.button7.UseVisualStyleBackColor = true;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(253, 51);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(40, 13);
+            this.label1.TabIndex = 31;
+            this.label1.Text = "Estado";
             // 
             // frmTitular
             // 
@@ -1035,6 +1020,8 @@
             this.tbcTitular.ResumeLayout(false);
             this.tabTitular.ResumeLayout(false);
             this.tabTitular.PerformLayout();
+            this.gpbContato.ResumeLayout(false);
+            this.gpbContato.PerformLayout();
             this.gpbContrato.ResumeLayout(false);
             this.gpbContrato.PerformLayout();
             this.gpbDocumentos.ResumeLayout(false);
@@ -1045,18 +1032,16 @@
             this.gpbSexo.ResumeLayout(false);
             this.gpbSexo.PerformLayout();
             this.tabPage2.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.gpbContato.ResumeLayout(false);
-            this.gpbContato.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.gpbDependentesCadastrados.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDependentesCadastrados)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.tabPage1.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            this.groupBox4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1101,14 +1086,12 @@
         private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.Button btnAlterar;
         private System.Windows.Forms.Button btnNovo;
-        private System.Windows.Forms.ComboBox cmbNaturalidade;
+        private System.Windows.Forms.ComboBox cmbCidadeNaturalidade;
         private System.Windows.Forms.GroupBox gpbContrato;
         private System.Windows.Forms.DateTimePicker dtpInicioContrato;
         private System.Windows.Forms.Label lblNumeroContrato;
         private System.Windows.Forms.TextBox txtNumeroContrato;
-        private System.Windows.Forms.Label lblTerminoContrato;
         private System.Windows.Forms.Label lblInicioContrato;
-        private System.Windows.Forms.DateTimePicker dtpTerminoContrato;
         private System.Windows.Forms.DateTimePicker dtpExpedicao;
         private System.Windows.Forms.MaskedTextBox mskCep;
         private System.Windows.Forms.Button btnExcluir;
@@ -1117,7 +1100,7 @@
         private System.Windows.Forms.TextBox txtBuscarContrato;
         private System.Windows.Forms.GroupBox gpbContato;
         private System.Windows.Forms.Label lblTelefoneResidencial;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox cmbPlano;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ComboBox cmbPercentualCobertura;
@@ -1137,8 +1120,6 @@
         private System.Windows.Forms.ComboBox cmbReligiao;
         private System.Windows.Forms.GroupBox gpbDependentesCadastrados;
         private System.Windows.Forms.DataGridView dgvDependentesCadastrados;
-        private System.Windows.Forms.MaskedTextBox mskTelefoneComercial;
-        private System.Windows.Forms.Label lblTelefoneComercial;
         private System.Windows.Forms.MaskedTextBox mskTelefoneCelular;
         private System.Windows.Forms.Label lblTelefoneCelular;
         private System.Windows.Forms.MaskedTextBox mskTelefoneResidencial;
@@ -1156,5 +1137,7 @@
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.DataGridView dataGridView3;
+        private System.Windows.Forms.ComboBox cmbEstadoNaturalidade;
+        private System.Windows.Forms.Label label1;
     }
 }

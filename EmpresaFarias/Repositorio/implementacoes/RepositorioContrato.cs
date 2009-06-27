@@ -42,7 +42,7 @@ namespace Repositorio.implementacoes
                 comando.Parameters.AddWithValue("@Id", contrato.Id);
                 comando.Parameters.AddWithValue("@DataInicio", contrato.DataInicio);
                 comando.Parameters.AddWithValue("@PlanoId", contrato.Plano.Id);
-                comando.Parameters.AddWithValue("@Status", contrato.Status);
+                comando.Parameters.AddWithValue("@Status", (int)contrato.Status);
                 comando.Parameters.AddWithValue("@TitularId", TitularId);
                 conexao.Open();
                 int regitrosAfetados = comando.ExecuteNonQuery();
@@ -72,7 +72,7 @@ namespace Repositorio.implementacoes
                 comando.Parameters.AddWithValue("@Id", contrato.Id);
                 comando.Parameters.AddWithValue("@DataInicio", contrato.DataInicio);
                 comando.Parameters.AddWithValue("@PlanoId", contrato.Plano.Id);
-                comando.Parameters.AddWithValue("@Status", contrato.Status);
+                comando.Parameters.AddWithValue("@Status", (int)contrato.Status);
                 comando.Parameters.AddWithValue("@TitularId", TitularId);
                 conexao.Open();
                 int regitrosAfetados = comando.ExecuteNonQuery();
@@ -253,7 +253,7 @@ namespace Repositorio.implementacoes
             }
             if (resultado["Status"] != DBNull.Value)
             {
-                contrato.Status = Convert.ToString(resultado["Status"]);
+                contrato.Status = (StatusContrato)Convert.ToInt32(resultado["Status"]);
             }           
             return contrato;
         }

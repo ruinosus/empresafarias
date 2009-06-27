@@ -52,7 +52,7 @@ namespace Repositorio.implementacoes
                 comando.Parameters.AddWithValue("@DataExpedicao", titular.Rg.DataExpedicao);
                 comando.Parameters.AddWithValue("@OrgaoExpeditor", titular.Rg.OrgaoExpeditor);
                 comando.Parameters.AddWithValue("@Sexo", titular.Sexo);
-                comando.Parameters.AddWithValue("@Status", titular.Status);
+                comando.Parameters.AddWithValue("@Status", (int)titular.Status);
                 comando.Parameters.AddWithValue("@TelefoneCelular", titular.TelefoneCelular);
                 comando.Parameters.AddWithValue("@TelefoneResidencial", titular.TelefoneResidencial);
                 conexao.Open();
@@ -95,7 +95,7 @@ namespace Repositorio.implementacoes
                 comando.Parameters.AddWithValue("@DataExpedicao", titular.Rg.DataExpedicao);
                 comando.Parameters.AddWithValue("@OrgaoExpeditor", titular.Rg.OrgaoExpeditor);
                 comando.Parameters.AddWithValue("@Sexo", titular.Sexo);
-                comando.Parameters.AddWithValue("@Status", titular.Status);
+                comando.Parameters.AddWithValue("@Status", (int)titular.Status);
                 comando.Parameters.AddWithValue("@TelefoneCelular", titular.TelefoneCelular);
                 comando.Parameters.AddWithValue("@TelefoneResidencial", titular.TelefoneResidencial);
                 conexao.Open();
@@ -241,7 +241,7 @@ namespace Repositorio.implementacoes
             }
             if (resultado["Status"] != DBNull.Value)
             {
-                titular.Status = Convert.ToString(resultado["Status"]);
+                titular.Status = (StatusTitular)Convert.ToInt32(resultado["Status"]);
             }
             if (resultado["Cpf"] != DBNull.Value)
             {

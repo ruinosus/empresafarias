@@ -6,6 +6,17 @@ using System.Text;
 namespace ClassesBasicas
 {
     /// <summary>
+    /// Enum que representa os Status referente a um Titular
+    /// </summary>
+    public enum StatusTitular
+    {
+        Ativo = 1,
+        InativoFaltaPagamento,
+        InativoObito,
+        InativoCancelamentoContrato,
+        InativoExlusao
+    }
+    /// <summary>
     /// Classe que representa um Titular.
     /// </summary>
     public class Titular
@@ -118,12 +129,13 @@ namespace ClassesBasicas
             get { return rg; }
             set { rg = value; }
         }
+        
 
-        private string status;
+        private StatusTitular status;
         /// <summary>
         /// Propriedade relacionada ao Status do Titular.
         /// </summary>
-        public string Status
+        public StatusTitular Status
         {
             get { return status; }
             set { status = value; }

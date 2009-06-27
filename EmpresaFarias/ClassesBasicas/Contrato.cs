@@ -6,6 +6,17 @@ using System.Text;
 namespace ClassesBasicas
 {
     /// <summary>
+    /// Enum que representa os Status referente a um Contrato.
+    /// </summary>
+    public enum StatusContrato
+    {
+        Ativo = 1,
+        InativoFaltaPagamento,
+        InativoObito,
+        InativoCancelamentoContrato,
+        InativoExlusao
+    }
+    /// <summary>
     /// Classe que representa um Contrato que um Titular poderá ter.
     /// </summary>
     public class Contrato
@@ -30,11 +41,11 @@ namespace ClassesBasicas
             set { dataInicio = value; }
         }
 
-        private string status;
+        private StatusContrato status;
         /// <summary>
         /// Propriedade relacionada ao Status do Contrato.
         /// </summary>
-        public string Status
+        public StatusContrato Status
         {
             get { return status; }
             set { status = value; }
@@ -64,7 +75,7 @@ namespace ClassesBasicas
         public Contrato()
         {
             this.plano = new Plano();
-            this.parcelas = new List<Parcela>();
+            this.parcelas = new List<Parcela>();           
         }
     }
 }
