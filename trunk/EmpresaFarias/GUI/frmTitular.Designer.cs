@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tbcTitular = new System.Windows.Forms.TabControl();
             this.tabTitular = new System.Windows.Forms.TabPage();
             this.gpbContato = new System.Windows.Forms.GroupBox();
@@ -48,6 +49,8 @@
             this.btnAlterar = new System.Windows.Forms.Button();
             this.btnNovo = new System.Windows.Forms.Button();
             this.gpbDocumentos = new System.Windows.Forms.GroupBox();
+            this.cmbEstadoNaturalidade = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.dtpExpedicao = new System.Windows.Forms.DateTimePicker();
             this.cmbCidadeNaturalidade = new System.Windows.Forms.ComboBox();
             this.lblExpedicao = new System.Windows.Forms.Label();
@@ -91,6 +94,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.cmbReligiao = new System.Windows.Forms.ComboBox();
             this.cmbPercentualCobertura = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.lblPercentualCobertura = new System.Windows.Forms.Label();
             this.cmbParentesco = new System.Windows.Forms.ComboBox();
             this.lblParentesco = new System.Windows.Forms.Label();
@@ -116,8 +120,15 @@
             this.btnBuscarContrato = new System.Windows.Forms.Button();
             this.txtBuscarContrato = new System.Windows.Forms.TextBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.cmbEstadoNaturalidade = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.tlMensagem = new System.Windows.Forms.ToolTip(this.components);
+            this.stInformacaoGeral = new System.Windows.Forms.StatusStrip();
+            this.lbInformacaoGeral = new System.Windows.Forms.ToolStripStatusLabel();
+            this.stInformacaoDependente = new System.Windows.Forms.StatusStrip();
+            this.lblInformacaoDependente = new System.Windows.Forms.ToolStripStatusLabel();
+            this.stInformacaoParcela = new System.Windows.Forms.StatusStrip();
+            this.lbInformacaoParcela = new System.Windows.Forms.ToolStripStatusLabel();
+            this.stInformacaoTitular = new System.Windows.Forms.StatusStrip();
+            this.lbInformacaoTitular = new System.Windows.Forms.ToolStripStatusLabel();
             this.tbcTitular.SuspendLayout();
             this.tabTitular.SuspendLayout();
             this.gpbContato.SuspendLayout();
@@ -135,6 +146,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.stInformacaoGeral.SuspendLayout();
+            this.stInformacaoDependente.SuspendLayout();
+            this.stInformacaoParcela.SuspendLayout();
+            this.stInformacaoTitular.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbcTitular
@@ -142,7 +157,7 @@
             this.tbcTitular.Controls.Add(this.tabTitular);
             this.tbcTitular.Controls.Add(this.tabPage2);
             this.tbcTitular.Controls.Add(this.tabPage1);
-            this.tbcTitular.Location = new System.Drawing.Point(2, 21);
+            this.tbcTitular.Location = new System.Drawing.Point(-3, 17);
             this.tbcTitular.Name = "tbcTitular";
             this.tbcTitular.SelectedIndex = 0;
             this.tbcTitular.Size = new System.Drawing.Size(674, 513);
@@ -150,6 +165,7 @@
             // 
             // tabTitular
             // 
+            this.tabTitular.Controls.Add(this.stInformacaoTitular);
             this.tabTitular.Controls.Add(this.gpbContato);
             this.tabTitular.Controls.Add(this.btnExcluir);
             this.tabTitular.Controls.Add(this.btnCancelar);
@@ -349,6 +365,25 @@
             this.gpbDocumentos.TabIndex = 17;
             this.gpbDocumentos.TabStop = false;
             this.gpbDocumentos.Text = "Documentos";
+            // 
+            // cmbEstadoNaturalidade
+            // 
+            this.cmbEstadoNaturalidade.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbEstadoNaturalidade.FormattingEnabled = true;
+            this.cmbEstadoNaturalidade.Location = new System.Drawing.Point(299, 47);
+            this.cmbEstadoNaturalidade.Name = "cmbEstadoNaturalidade";
+            this.cmbEstadoNaturalidade.Size = new System.Drawing.Size(187, 21);
+            this.cmbEstadoNaturalidade.TabIndex = 32;
+            this.cmbEstadoNaturalidade.SelectedIndexChanged += new System.EventHandler(this.cmbEstadoNaturalidade_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(253, 51);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(40, 13);
+            this.label1.TabIndex = 31;
+            this.label1.Text = "Estado";
             // 
             // dtpExpedicao
             // 
@@ -588,6 +623,11 @@
             // 
             this.cmbEstadoCivil.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbEstadoCivil.FormattingEnabled = true;
+            this.cmbEstadoCivil.Items.AddRange(new object[] {
+            "Solteiro(a)",
+            "Casado(a)",
+            "Viúvo(a)",
+            "Divorciado(a)"});
             this.cmbEstadoCivil.Location = new System.Drawing.Point(10, 16);
             this.cmbEstadoCivil.Name = "cmbEstadoCivil";
             this.cmbEstadoCivil.Size = new System.Drawing.Size(154, 21);
@@ -644,6 +684,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.stInformacaoDependente);
             this.tabPage2.Controls.Add(this.gpbDependentesCadastrados);
             this.tabPage2.Controls.Add(this.btnExcluirDependente);
             this.tabPage2.Controls.Add(this.btnCancelarDependente);
@@ -726,6 +767,7 @@
             // 
             this.groupBox2.Controls.Add(this.cmbReligiao);
             this.groupBox2.Controls.Add(this.cmbPercentualCobertura);
+            this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.lblPercentualCobertura);
             this.groupBox2.Controls.Add(this.cmbParentesco);
             this.groupBox2.Controls.Add(this.lblParentesco);
@@ -745,6 +787,11 @@
             // 
             this.cmbReligiao.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbReligiao.FormattingEnabled = true;
+            this.cmbReligiao.Items.AddRange(new object[] {
+            "Ateu",
+            "Cristão/Católico",
+            "Cristão/Protestante",
+            "Cristão/Outro"});
             this.cmbReligiao.Location = new System.Drawing.Point(323, 55);
             this.cmbReligiao.Name = "cmbReligiao";
             this.cmbReligiao.Size = new System.Drawing.Size(171, 21);
@@ -754,10 +801,22 @@
             // 
             this.cmbPercentualCobertura.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbPercentualCobertura.FormattingEnabled = true;
+            this.cmbPercentualCobertura.Items.AddRange(new object[] {
+            "50",
+            "100"});
             this.cmbPercentualCobertura.Location = new System.Drawing.Point(373, 84);
             this.cmbPercentualCobertura.Name = "cmbPercentualCobertura";
-            this.cmbPercentualCobertura.Size = new System.Drawing.Size(121, 21);
+            this.cmbPercentualCobertura.Size = new System.Drawing.Size(82, 21);
             this.cmbPercentualCobertura.TabIndex = 40;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(461, 89);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(15, 13);
+            this.label6.TabIndex = 39;
+            this.label6.Text = "%";
             // 
             // lblPercentualCobertura
             // 
@@ -772,10 +831,22 @@
             // 
             this.cmbParentesco.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbParentesco.FormattingEnabled = true;
+            this.cmbParentesco.Items.AddRange(new object[] {
+            "Afilhado(a)",
+            "Esposo(a)",
+            "Filho(a)",
+            "Irmão(ã)",
+            "Mãe",
+            "Pai",
+            "Sobrinho(a)",
+            "Sogro(a)",
+            "Tio(a)"});
             this.cmbParentesco.Location = new System.Drawing.Point(88, 84);
             this.cmbParentesco.Name = "cmbParentesco";
             this.cmbParentesco.Size = new System.Drawing.Size(148, 21);
+            this.cmbParentesco.Sorted = true;
             this.cmbParentesco.TabIndex = 38;
+            this.cmbParentesco.SelectedIndexChanged += new System.EventHandler(this.cmbParentesco_SelectedIndexChanged);
             // 
             // lblParentesco
             // 
@@ -830,6 +901,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.stInformacaoParcela);
             this.tabPage1.Controls.Add(this.button6);
             this.tabPage1.Controls.Add(this.button7);
             this.tabPage1.Controls.Add(this.groupBox4);
@@ -987,30 +1059,75 @@
             this.dataGridView2.Size = new System.Drawing.Size(490, 249);
             this.dataGridView2.TabIndex = 44;
             // 
-            // cmbEstadoNaturalidade
+            // stInformacaoGeral
             // 
-            this.cmbEstadoNaturalidade.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbEstadoNaturalidade.FormattingEnabled = true;
-            this.cmbEstadoNaturalidade.Location = new System.Drawing.Point(299, 47);
-            this.cmbEstadoNaturalidade.Name = "cmbEstadoNaturalidade";
-            this.cmbEstadoNaturalidade.Size = new System.Drawing.Size(187, 21);
-            this.cmbEstadoNaturalidade.TabIndex = 32;
-            this.cmbEstadoNaturalidade.SelectedIndexChanged += new System.EventHandler(this.cmbEstadoNaturalidade_SelectedIndexChanged);
+            this.stInformacaoGeral.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lbInformacaoGeral});
+            this.stInformacaoGeral.Location = new System.Drawing.Point(0, 532);
+            this.stInformacaoGeral.Name = "stInformacaoGeral";
+            this.stInformacaoGeral.Size = new System.Drawing.Size(672, 22);
+            this.stInformacaoGeral.TabIndex = 139;
             // 
-            // label1
+            // lbInformacaoGeral
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(253, 51);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(40, 13);
-            this.label1.TabIndex = 31;
-            this.label1.Text = "Estado";
+            this.lbInformacaoGeral.Name = "lbInformacaoGeral";
+            this.lbInformacaoGeral.Size = new System.Drawing.Size(68, 17);
+            this.lbInformacaoGeral.Text = "informação";
+            // 
+            // stInformacaoDependente
+            // 
+            this.stInformacaoDependente.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lblInformacaoDependente});
+            this.stInformacaoDependente.Location = new System.Drawing.Point(3, 462);
+            this.stInformacaoDependente.Name = "stInformacaoDependente";
+            this.stInformacaoDependente.Size = new System.Drawing.Size(660, 22);
+            this.stInformacaoDependente.TabIndex = 38;
+            this.stInformacaoDependente.Text = "statusStrip1";
+            // 
+            // lblInformacaoDependente
+            // 
+            this.lblInformacaoDependente.Name = "lblInformacaoDependente";
+            this.lblInformacaoDependente.Size = new System.Drawing.Size(68, 17);
+            this.lblInformacaoDependente.Text = "informação";
+            // 
+            // stInformacaoParcela
+            // 
+            this.stInformacaoParcela.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lbInformacaoParcela});
+            this.stInformacaoParcela.Location = new System.Drawing.Point(3, 462);
+            this.stInformacaoParcela.Name = "stInformacaoParcela";
+            this.stInformacaoParcela.Size = new System.Drawing.Size(660, 22);
+            this.stInformacaoParcela.TabIndex = 33;
+            this.stInformacaoParcela.Text = "statusStrip1";
+            // 
+            // lbInformacaoParcela
+            // 
+            this.lbInformacaoParcela.Name = "lbInformacaoParcela";
+            this.lbInformacaoParcela.Size = new System.Drawing.Size(68, 17);
+            this.lbInformacaoParcela.Text = "informação";
+            // 
+            // stInformacaoTitular
+            // 
+            this.stInformacaoTitular.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lbInformacaoTitular});
+            this.stInformacaoTitular.Location = new System.Drawing.Point(3, 462);
+            this.stInformacaoTitular.Name = "stInformacaoTitular";
+            this.stInformacaoTitular.Size = new System.Drawing.Size(660, 22);
+            this.stInformacaoTitular.TabIndex = 32;
+            this.stInformacaoTitular.Text = "statusStrip1";
+            // 
+            // lbInformacaoTitular
+            // 
+            this.lbInformacaoTitular.Name = "lbInformacaoTitular";
+            this.lbInformacaoTitular.Size = new System.Drawing.Size(68, 17);
+            this.lbInformacaoTitular.Text = "informação";
             // 
             // frmTitular
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(679, 536);
+            this.ClientSize = new System.Drawing.Size(672, 554);
+            this.Controls.Add(this.stInformacaoGeral);
             this.Controls.Add(this.txtBuscarContrato);
             this.Controls.Add(this.btnBuscarContrato);
             this.Controls.Add(this.tbcTitular);
@@ -1032,16 +1149,26 @@
             this.gpbSexo.ResumeLayout(false);
             this.gpbSexo.PerformLayout();
             this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.gpbDependentesCadastrados.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDependentesCadastrados)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            this.stInformacaoGeral.ResumeLayout(false);
+            this.stInformacaoGeral.PerformLayout();
+            this.stInformacaoDependente.ResumeLayout(false);
+            this.stInformacaoDependente.PerformLayout();
+            this.stInformacaoParcela.ResumeLayout(false);
+            this.stInformacaoParcela.PerformLayout();
+            this.stInformacaoTitular.ResumeLayout(false);
+            this.stInformacaoTitular.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1139,5 +1266,15 @@
         private System.Windows.Forms.DataGridView dataGridView3;
         private System.Windows.Forms.ComboBox cmbEstadoNaturalidade;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ToolTip tlMensagem;
+        private System.Windows.Forms.StatusStrip stInformacaoGeral;
+        private System.Windows.Forms.ToolStripStatusLabel lbInformacaoGeral;
+        private System.Windows.Forms.StatusStrip stInformacaoDependente;
+        private System.Windows.Forms.ToolStripStatusLabel lblInformacaoDependente;
+        private System.Windows.Forms.StatusStrip stInformacaoParcela;
+        private System.Windows.Forms.ToolStripStatusLabel lbInformacaoParcela;
+        private System.Windows.Forms.StatusStrip stInformacaoTitular;
+        private System.Windows.Forms.ToolStripStatusLabel lbInformacaoTitular;
     }
 }

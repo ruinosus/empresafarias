@@ -14,6 +14,7 @@ namespace GUI
     public partial class frmTitular : Form
     {
         Fachada fachada = Fachada.ObterInstancia();
+
         public frmTitular()
         {
             InitializeComponent();
@@ -33,12 +34,14 @@ namespace GUI
             }
             catch (ExcecaoNegocio en)
             {
-                //lblMensagem.Text = en.Message;
+                tlMensagem.ToolTipTitle = "Erro";
+                tlMensagem.Show(en.Message, cmbEstado);
             }
 
             catch (Exception ex)
             {
-                //lblMensagem.Text = ex.Message;
+                tlMensagem.ToolTipTitle = "Erro";
+                tlMensagem.Show(ex.Message, cmbEstado);
             }
         }        
 
@@ -53,12 +56,14 @@ namespace GUI
             }
             catch (ExcecaoNegocio en)
             {
-                //lblMensagem.Text = en.Message;
+                tlMensagem.ToolTipTitle = "Erro";
+                tlMensagem.Show(en.Message, cmbCidade);
             }
 
             catch (Exception ex)
             {
-                //lblMensagem.Text = ex.Message;
+                tlMensagem.ToolTipTitle = "Erro";
+                tlMensagem.Show(ex.Message, cmbCidade);
             }
         }
 
@@ -73,12 +78,14 @@ namespace GUI
             }
             catch (ExcecaoNegocio en)
             {
-                //lblMensagem.Text = en.Message;
+                tlMensagem.ToolTipTitle = "Erro";
+                tlMensagem.Show(en.Message, cmbEstadoNaturalidade);
             }
 
             catch (Exception ex)
             {
-                //lblMensagem.Text = ex.Message;
+                tlMensagem.ToolTipTitle = "Erro";
+                tlMensagem.Show(ex.Message, cmbEstadoNaturalidade);
             }
         }
 
@@ -93,12 +100,14 @@ namespace GUI
             }
             catch (ExcecaoNegocio en)
             {
-                //lblMensagem.Text = en.Message;
+                tlMensagem.ToolTipTitle = "Erro";
+                tlMensagem.Show(en.Message, cmbCidadeNaturalidade);
             }
 
             catch (Exception ex)
             {
-                //lblMensagem.Text = ex.Message;
+                tlMensagem.ToolTipTitle = "Erro";
+                tlMensagem.Show(ex.Message, cmbCidadeNaturalidade);
             }
         }
 
@@ -112,12 +121,14 @@ namespace GUI
             }
             catch (ExcecaoNegocio en)
             {
-                //lblMensagem.Text = en.Message;
+                tlMensagem.ToolTipTitle = "Erro";
+                tlMensagem.Show(en.Message, cmbPlano);
             }
 
             catch (Exception ex)
             {
-                //lblMensagem.Text = ex.Message;
+                tlMensagem.ToolTipTitle = "Erro";
+                tlMensagem.Show(ex.Message, cmbPlano);
             }
         }
 
@@ -129,6 +140,40 @@ namespace GUI
         private void cmbEstadoNaturalidade_SelectedIndexChanged(object sender, EventArgs e)
         {
             AjustarCidadeNaturalidade();
+        }
+
+        private void cmbParentesco_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (cmbParentesco.SelectedIndex)
+            {
+                case 0:
+                    {
+                        cmbPercentualCobertura.SelectedIndex = 0;
+                        break;
+                    }
+
+                case 3:
+                    {
+                        cmbPercentualCobertura.SelectedIndex = 0;
+                        break;
+                    }
+                case 6:
+                    {
+                        cmbPercentualCobertura.SelectedIndex = 0;
+                        break;
+                    }
+                case 8:
+                    {
+                        cmbPercentualCobertura.SelectedIndex = 0;
+                        break;
+                    }
+
+                default:
+                    {
+                        cmbPercentualCobertura.SelectedIndex = 1;
+                        break;
+                    }
+            }
         }
     }
 }
