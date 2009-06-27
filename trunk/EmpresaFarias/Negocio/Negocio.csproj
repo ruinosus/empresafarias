@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="controladores\ControladorCidadeEstado.cs" />
     <Compile Include="controladores\ControladorContrato.cs" />
     <Compile Include="controladores\ControladorDependente.cs" />
     <Compile Include="controladores\ControladorParcela.cs" />

@@ -46,11 +46,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="implementacoes\RepositorioCidadeEstado.cs" />
     <Compile Include="implementacoes\RepositorioContrato.cs" />
     <Compile Include="implementacoes\RepositorioDependente.cs" />
     <Compile Include="implementacoes\RepositorioParcela.cs" />
     <Compile Include="implementacoes\RepositorioPlano.cs" />
     <Compile Include="implementacoes\RepositorioTitular.cs" />
+    <Compile Include="interfaces\IRepositorioCidadeEstado.cs" />
     <Compile Include="interfaces\IRepositorioContrato.cs" />
     <Compile Include="interfaces\IRepositorioDependente.cs" />
     <Compile Include="interfaces\IRepositorioParcela.cs" />
