@@ -23,16 +23,19 @@ namespace Repositorio.implementacoes
         private static String QUERY_SELECT_ID = "SELECT Id,DataPagamento,DataVencimento,Valor,NumeroParcela,Status,ContratoId FROM Parcela WHERE Id = @Id";
         private static String QUERY_SELECT_CONTRATO_ID = "SELECT Id,DataPagamento,DataVencimento,Valor,NumeroParcela,Status,ContratoId FROM Parcela WHERE ContratoId = @ContratoId";
         private static String QUERY_SELECT_ALL = "SELECT Id,DataPagamento,DataVencimento,Valor,NumeroParcela,Status,ContratoId FROM Parcela";
+        private static String QUERY_MAX_ID = "SELECT MAX(Id) Id FROM Parcela";
 
         #endregion
 
         #region Membros de IRepositorioParcela
+
         /// <summary>
         /// Metodo responsavel por inserir uma Parcela.
         /// </summary>
         /// <param name="parcela">Objeto do tipo Parcela a ser inserido</param>
         /// <param name="ContratoId">Id do Contrato da Parcela.</param>
-        public void Inserir(Parcela parcela, int ContratoId)
+        /// <returns>retorna o Parcela inserido.</returns>
+        public Parcela Inserir(Parcela parcela, int ContratoId)
         {
             UtilBD banco = new UtilBD();
             SqlConnection conexao = banco.ObterConexao();
@@ -55,6 +58,7 @@ namespace Repositorio.implementacoes
                 comando.Parameters.AddWithValue("@ContratoId", ContratoId);
                 conexao.Open();
                 int regitrosAfetados = comando.ExecuteNonQuery();
+                parcela.Id = this.ObterMaximoId();
             }
             catch (SqlException e)
             {
@@ -64,7 +68,9 @@ namespace Repositorio.implementacoes
             {
                 banco.FecharConexao(conexao);
             }
+            return parcela;
         }
+
         /// <summary>
         /// Metodo responsavel por alterar uma Parcela.
         /// </summary>
@@ -97,6 +103,7 @@ namespace Repositorio.implementacoes
                 banco.FecharConexao(conexao);
             }
         }
+
         /// <summary>
         /// Metodo responsavel por remover uma Parcela.
         /// </summary>
@@ -122,6 +129,7 @@ namespace Repositorio.implementacoes
                 banco.FecharConexao(conexao);
             } 
         }
+
         /// <summary>
         /// Metodo responsavel por consultar uma Parcela.
         /// </summary>
@@ -160,6 +168,7 @@ namespace Repositorio.implementacoes
 
             return parcela;
         }
+
         /// <summary>
         /// Metodo responsavel por consultar todas as Parcelas cadastradas.
         /// </summary>
@@ -198,6 +207,7 @@ namespace Repositorio.implementacoes
 
             return parcelas;
         }
+
         /// <summary>
         /// Metodo responsavel por consultar as Parcelas de um Contrato.
         /// </summary>
@@ -236,6 +246,45 @@ namespace Repositorio.implementacoes
             }
 
             return parcelas;
+        }
+
+        /// <summary>
+        /// Devolve o numero do maior Id inserido;
+        /// </summary>
+        /// <returns>valor do maior id</returns>
+        private int ObterMaximoId()
+        {
+            UtilBD banco = new UtilBD();
+            SqlConnection conexao = banco.ObterConexao();
+            int id = 0;
+            try
+            {
+                SqlCommand comando = new SqlCommand(QUERY_MAX_ID, conexao);
+                SqlDataReader resultado;
+                conexao.Open();
+
+                resultado = comando.ExecuteReader();
+                resultado.Read();
+                if (resultado.HasRows)
+                {
+                    if (resultado["Id"] != DBNull.Value)
+                    {
+                        id = Convert.ToInt32(resultado["Id"]);
+                    }
+                }
+                resultado.Close();
+            }
+
+            catch (SqlException e)
+            {
+                throw new ErroBanco(e.Message);
+            }
+            finally
+            {
+                banco.FecharConexao(conexao);
+            }
+
+            return id;
         }
 
         #endregion

@@ -16,7 +16,8 @@ namespace Repositorio.interfaces
         /// </summary>
         /// <param name="dependente">Objeto do tipo Dependente a ser inserido</param>
         /// <param name="TitularId">Id do Titular do Dependente.</param>
-        void Inserir(Dependente dependente, int TitularId);
+        /// <returns>retorna o Dependente inserido.</returns>
+        Dependente Inserir(Dependente dependente, int TitularId);
         /// <summary>
         /// Metodo responsavel por alterar um Dependente.
         /// </summary>

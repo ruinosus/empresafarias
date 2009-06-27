@@ -15,7 +15,8 @@ namespace Repositorio.interfaces
         /// Metodo responsavel por inserir um Titular.
         /// </summary>
         /// <param name="titular">Objeto do tipo Titular a ser inserido</param>
-        void Inserir(Titular titular);
+        /// <returns>retorna o Titular inserido.</returns>
+        Titular Inserir(Titular titular);
         /// <summary>
         /// Metodo responsavel por alterar um Titular.
         /// </summary>
