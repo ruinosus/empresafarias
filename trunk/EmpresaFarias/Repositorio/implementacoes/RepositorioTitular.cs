@@ -21,15 +21,18 @@ namespace Repositorio.implementacoes
         private static String QUERY_DELETE = "DELETE FROM Titular WHERE Id = @Id";
         private static String QUERY_SELECT_ID = "SELECT Id,Nome,DataNascimento,Sexo,EstadoCivil,Cpf,Logradouro,Numero,Complemento,Bairro,Cep,CidadeEnderecoId,CidadeNaturalidadeId,TelefoneResidencial,TelefoneCelular,Rg,DataExpedicao,OrgaoExpeditor,Status FROM Titular WHERE Id = @Id";
         private static String QUERY_SELECT_ALL = "SELECT Id,Nome,DataNascimento,Sexo,EstadoCivil,Cpf,Logradouro,Numero,Complemento,Bairro,Cep,CidadeEnderecoId,CidadeNaturalidadeId,TelefoneResidencial,TelefoneCelular,Rg,DataExpedicao,OrgaoExpeditor,Status FROM Titular";
+        private static String QUERY_MAX_ID = "SELECT MAX(Id) Id FROM Titular";
 
         #endregion
 
         #region Membros de IRepositorioTitular
+
         /// <summary>
         /// Metodo responsavel por inserir um Titular.
         /// </summary>
         /// <param name="titular">Objeto do tipo Titular a ser inserido</param>
-        public void Inserir(Titular titular)
+        /// <returns>retorna o Titular inserido.</returns>
+        public Titular Inserir(Titular titular)
         {
             UtilBD banco = new UtilBD();
             SqlConnection conexao = banco.ObterConexao();
@@ -57,6 +60,7 @@ namespace Repositorio.implementacoes
                 comando.Parameters.AddWithValue("@TelefoneResidencial", titular.TelefoneResidencial);
                 conexao.Open();
                 int regitrosAfetados = comando.ExecuteNonQuery();
+                titular.Id = this.ObterMaximoId();
             }
             catch (SqlException e)
             {
@@ -66,7 +70,9 @@ namespace Repositorio.implementacoes
             {
                 banco.FecharConexao(conexao);
             }
+            return titular;
         }
+
         /// <summary>
         /// Metodo responsavel por alterar um Titular.
         /// </summary>
@@ -110,6 +116,7 @@ namespace Repositorio.implementacoes
                 banco.FecharConexao(conexao);
             }
         }
+
         /// <summary>
         /// Metodo responsavel por remover um Titular.
         /// </summary>
@@ -135,6 +142,7 @@ namespace Repositorio.implementacoes
                 banco.FecharConexao(conexao);
             } 
         }
+
         /// <summary>
         /// Metodo responsavel por consultar um Titular.
         /// </summary>
@@ -173,6 +181,7 @@ namespace Repositorio.implementacoes
 
             return titular;
         }
+
         /// <summary>
         /// Metodo responsavel por consultar todos os Titulares cadastrados.
         /// </summary>
@@ -210,6 +219,45 @@ namespace Repositorio.implementacoes
             }
 
             return titulares;
+        }
+
+        /// <summary>
+        /// Devolve o numero do maior Id inserido;
+        /// </summary>
+        /// <returns>valor do maior id</returns>
+        private int ObterMaximoId()
+        {
+            UtilBD banco = new UtilBD();
+            SqlConnection conexao = banco.ObterConexao();
+            int id = 0;
+            try
+            {
+                SqlCommand comando = new SqlCommand(QUERY_MAX_ID, conexao);
+                SqlDataReader resultado;
+                conexao.Open();
+
+                resultado = comando.ExecuteReader();
+                resultado.Read();
+                if (resultado.HasRows)
+                {
+                    if (resultado["Id"] != DBNull.Value)
+                    {
+                        id = Convert.ToInt32(resultado["Id"]);
+                    }
+                }
+                resultado.Close();
+            }
+
+            catch (SqlException e)
+            {
+                throw new ErroBanco(e.Message);
+            }
+            finally
+            {
+                banco.FecharConexao(conexao);
+            }
+
+            return id;
         }
 
         #endregion

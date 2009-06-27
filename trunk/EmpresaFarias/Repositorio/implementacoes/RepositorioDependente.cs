@@ -22,6 +22,7 @@ namespace Repositorio.implementacoes
         private static String QUERY_SELECT_ID = "SELECT Id,Nome,Religiao,DataNascimento,TitularId,Parentesco,PercentualCobertura,Status FROM Dependente WHERE Id = @Id";
         private static String QUERY_SELECT_TITULAR_ID = "SELECT Id,Nome,Religiao,DataNascimento,TitularId,Parentesco,PercentualCobertura,Status FROM Dependente WHERE TitularId = @TitularId";
         private static String QUERY_SELECT_ALL = "SELECT Id,Nome,Religiao,DataNascimento,TitularId,Parentesco,PercentualCobertura,Status FROM Dependente";
+        private static String QUERY_MAX_ID = "SELECT MAX(Id) Id FROM Dependente";
 
         #endregion
 
@@ -31,7 +32,8 @@ namespace Repositorio.implementacoes
         /// </summary>
         /// <param name="dependente">Objeto do tipo Dependente a ser inserido</param>
         /// <param name="TitularId">Id do Titular do Dependente.</param>
-        public void Inserir(Dependente dependente, int TitularId)
+        /// <returns>retorna o Dependente inserido.</returns>
+        public Dependente Inserir(Dependente dependente, int TitularId)
         {
             UtilBD banco = new UtilBD();
             SqlConnection conexao = banco.ObterConexao();
@@ -48,6 +50,7 @@ namespace Repositorio.implementacoes
                 comando.Parameters.AddWithValue("@TitularId", TitularId);
                 conexao.Open();
                 int regitrosAfetados = comando.ExecuteNonQuery();
+                dependente.Id = this.ObterMaximoId();
             }
             catch (SqlException e)
             {
@@ -56,8 +59,10 @@ namespace Repositorio.implementacoes
             finally
             {
                 banco.FecharConexao(conexao);
-            }  
+            }
+            return dependente;
         }
+
         /// <summary>
         /// Metodo responsavel por alterar um Dependente.
         /// </summary>
@@ -91,6 +96,7 @@ namespace Repositorio.implementacoes
                 banco.FecharConexao(conexao);
             }  
         }
+
         /// <summary>
         /// Metodo responsavel por remover um Dependente.
         /// </summary>
@@ -116,6 +122,7 @@ namespace Repositorio.implementacoes
                 banco.FecharConexao(conexao);
             } 
         }
+
         /// <summary>
         /// Metodo responsavel por consultar um Dependente.
         /// </summary>
@@ -154,6 +161,7 @@ namespace Repositorio.implementacoes
 
             return dependente;
         }
+
         /// <summary>
         /// Metodo responsavel por consultar todos os Dependentes cadastrados.
         /// </summary>
@@ -192,6 +200,7 @@ namespace Repositorio.implementacoes
 
             return dependentes;
         }
+
         /// <summary>
         /// Metodo responsavel por consultar os Dependentes de um Titular.
         /// </summary>
@@ -231,6 +240,45 @@ namespace Repositorio.implementacoes
             }
 
             return dependentes;
+        }
+
+        /// <summary>
+        /// Devolve o numero do maior Id inserido;
+        /// </summary>
+        /// <returns>valor do maior id</returns>
+        private int ObterMaximoId()
+        {
+            UtilBD banco = new UtilBD();
+            SqlConnection conexao = banco.ObterConexao();
+            int id = 0;
+            try
+            {
+                SqlCommand comando = new SqlCommand(QUERY_MAX_ID, conexao);
+                SqlDataReader resultado;
+                conexao.Open();
+
+                resultado = comando.ExecuteReader();
+                resultado.Read();
+                if (resultado.HasRows)
+                {
+                    if (resultado["Id"] != DBNull.Value)
+                    {
+                        id = Convert.ToInt32(resultado["Id"]);
+                    }
+                }
+                resultado.Close();
+            }
+
+            catch (SqlException e)
+            {
+                throw new ErroBanco(e.Message);
+            }
+            finally
+            {
+                banco.FecharConexao(conexao);
+            }
+
+            return id;
         }
 
         #endregion

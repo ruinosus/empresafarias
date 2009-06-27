@@ -40,11 +40,12 @@ namespace Negocio.controladores
         /// </summary>
         /// <param name="titular">Objeto do tipo Titular a ser inserido</param>
         /// <exception cref="ExecaoNegocio">Lançara a ExecaoNegocio caso o objeto seja nulo.</exception>
-        public void Inserir(Titular titular)
+        /// <returns>retorna o Titular inserido.</returns>
+        public Titular Inserir(Titular titular)
         {
             if (titular == null)
                 throw new ExcecaoNegocio("Valor Inválido.");
-            this.repTitular.Inserir(titular);
+            return this.repTitular.Inserir(titular);
         }
         /// <summary>
         /// Metodo responsavel por alterar um Titular.

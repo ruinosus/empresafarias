@@ -16,7 +16,8 @@ namespace Repositorio.interfaces
         /// </summary>
         /// <param name="parcela">Objeto do tipo Parcela a ser inserido</param>
         /// <param name="ContratoId">Id do Contrato da Parcela.</param>
-        void Inserir(Parcela parcela, int ContratoId);
+        /// <returns>retorna o Parcela inserido.</returns>
+        Parcela Inserir(Parcela parcela, int ContratoId);
         /// <summary>
         /// Metodo responsavel por alterar uma Parcela.
         /// </summary>

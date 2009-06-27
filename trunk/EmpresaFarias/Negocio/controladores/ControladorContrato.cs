@@ -36,11 +36,16 @@ namespace Negocio.controladores
         /// <param name="contrato">Objeto do tipo Contrato a ser inserido</param>
         /// <param name="TitularId">Id do Titular do Contrato.</param>
         /// <exception cref="ExecaoNegocio">Lançara a ExecaoNegocio caso o objeto seja nulo.</exception>
-        public void Inserir(Contrato contrato, int TitularId)
+        /// <returns>retorna o Contrato inserido.</returns>  
+        public Contrato Inserir(Contrato contrato, int TitularId)
         {
             if (contrato == null)
                 throw new ExcecaoNegocio("Valor Inválido.");
-            this.repContrato.Inserir(contrato, TitularId);
+
+            if(this.Consultar(contrato.Id)!=null)
+                throw new ExcecaoNegocio("Número de Contrato já Informado.");
+
+             return  this.repContrato.Inserir(contrato, TitularId);
         }
         /// <summary>
         /// Metodo responsavel por alterar um Contrato.

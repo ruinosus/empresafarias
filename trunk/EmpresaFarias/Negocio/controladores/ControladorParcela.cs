@@ -28,11 +28,12 @@ namespace Negocio.controladores
         /// <param name="parcela">Objeto do tipo Parcela a ser inserido</param>
         /// <param name="ContratoId">Id do Contrato da Parcela.</param>
         /// <exception cref="ExecaoNegocio">Lançara a ExecaoNegocio caso o objeto seja nulo.</exception>
-        public void Inserir(Parcela parcela, int ContratoId)
+        /// <returns>retorna o Parcela inserido.</returns>
+        public Parcela Inserir(Parcela parcela, int ContratoId)
         {
             if (parcela == null)
                 throw new ExcecaoNegocio("Valor Inválido.");
-            this.repParcela.Inserir(parcela,ContratoId);
+            return this.repParcela.Inserir(parcela,ContratoId);
         }
         /// <summary>
         /// Metodo responsavel por alterar uma Parcela.

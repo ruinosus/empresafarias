@@ -16,7 +16,8 @@ namespace Repositorio.interfaces
         /// </summary>
         /// <param name="contrato">Objeto do tipo Contrato a ser inserido</param>
         /// <param name="TitularId">Id do Titular do Contrato.</param>
-        void Inserir(Contrato contrato, int TitularId);
+        /// <returns>retorna o Contrato inserido.</returns>
+        Contrato Inserir(Contrato contrato, int TitularId);
         /// <summary>
         /// Metodo responsavel por alterar um Contrato.
         /// </summary>

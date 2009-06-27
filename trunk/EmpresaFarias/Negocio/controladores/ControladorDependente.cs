@@ -28,11 +28,12 @@ namespace Negocio.controladores
         /// <param name="dependente">Objeto do tipo Dependente a ser inserido</param>
         /// <param name="TitularId">Id do Titular do Dependente.</param>
         /// <exception cref="ExecaoNegocio">Lançara a ExecaoNegocio caso o objeto seja nulo.</exception>
-        public void Inserir(Dependente dependente, int TitularId)
+        /// <returns>retorna o Dependente inserido.</returns>  
+        public Dependente Inserir(Dependente dependente, int TitularId)
         {
             if (dependente == null)
                 throw new ExcecaoNegocio("Valor Inválido.");
-            this.repDependente.Inserir(dependente, TitularId);
+            return this.repDependente.Inserir(dependente, TitularId);
         }
         /// <summary>
         /// Metodo responsavel por alterar um Dependente.

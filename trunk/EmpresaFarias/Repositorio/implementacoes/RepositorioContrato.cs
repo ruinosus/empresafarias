@@ -22,16 +22,18 @@ namespace Repositorio.implementacoes
         private static String QUERY_SELECT_ID = "SELECT Id,DataInicio,Status,TitularId,PlanoId FROM Contrato WHERE Id = @Id";
         private static String QUERY_SELECT_TITULAR_ID = "SELECT Id,DataInicio,Status,TitularId,PlanoId FROM Contrato WHERE TitularId = @TitularId";
         private static String QUERY_SELECT_ALL = "SELECT Id,DataInicio,Status,TitularId,PlanoId FROM Contrato";
-
+        private static String QUERY_MAX_ID = "SELECT MAX(Id) Id FROM  Contrato";
         #endregion
 
         #region Membros de IRepositorioContrato
+
         /// <summary>
         /// Metodo responsavel por inserir um Contrato.
         /// </summary>
         /// <param name="contrato">Objeto do tipo Contrato a ser inserido</param>
         /// <param name="TitularId">Id do Titular do Contrato.</param>
-        public void Inserir(Contrato contrato, int TitularId)
+        /// <returns>retorna o Contrato inserido.</returns>        
+        public Contrato Inserir(Contrato contrato, int TitularId)
         {
             UtilBD banco = new UtilBD();
             SqlConnection conexao = banco.ObterConexao();
@@ -46,6 +48,7 @@ namespace Repositorio.implementacoes
                 comando.Parameters.AddWithValue("@TitularId", TitularId);
                 conexao.Open();
                 int regitrosAfetados = comando.ExecuteNonQuery();
+                //contrato.Id = this.ObterMaximoId();
             }
             catch (SqlException e)
             {
@@ -55,7 +58,9 @@ namespace Repositorio.implementacoes
             {
                 banco.FecharConexao(conexao);
             }
+            return contrato;
         }
+
         /// <summary>
         /// Metodo responsavel por alterar um Contrato.
         /// </summary>
@@ -86,6 +91,7 @@ namespace Repositorio.implementacoes
                 banco.FecharConexao(conexao);
             }
         }
+
         /// <summary>
         /// Metodo responsavel por remover um Contrato.
         /// </summary>
@@ -111,6 +117,7 @@ namespace Repositorio.implementacoes
                 banco.FecharConexao(conexao);
             } 
         }
+
         /// <summary>
         /// Metodo responsavel por consultar um Contrato.
         /// </summary>
@@ -149,6 +156,7 @@ namespace Repositorio.implementacoes
 
             return contrato;
         }
+
         /// <summary>
         /// Metodo responsavel por consultar todos os Contratos cadastrados.
         /// </summary>
@@ -187,6 +195,7 @@ namespace Repositorio.implementacoes
 
             return contratos;
         }
+
         /// <summary>
         /// Metodo responsavel por consultar os Contratos de um Titular.
         /// </summary>
@@ -226,6 +235,45 @@ namespace Repositorio.implementacoes
             }
 
             return contratos;
+        }
+
+        /// <summary>
+        /// Devolve o numero do maior Id inserido;
+        /// </summary>
+        /// <returns>valor do maior id</returns>
+        private int ObterMaximoId()
+        {
+            UtilBD banco = new UtilBD();
+            SqlConnection conexao = banco.ObterConexao();
+            int id = 0;
+            try
+            {
+                SqlCommand comando = new SqlCommand(QUERY_MAX_ID, conexao);
+                SqlDataReader resultado;
+                conexao.Open();
+
+                resultado = comando.ExecuteReader();
+                resultado.Read();
+                if (resultado.HasRows)
+                {
+                    if (resultado["Id"] != DBNull.Value)
+                    {
+                        id = Convert.ToInt32(resultado["Id"]);
+                    }
+                }
+                resultado.Close();
+            }
+
+            catch (SqlException e)
+            {
+                throw new ErroBanco(e.Message);
+            }
+            finally
+            {
+                banco.FecharConexao(conexao);
+            }
+
+            return id;
         }
 
         #endregion
