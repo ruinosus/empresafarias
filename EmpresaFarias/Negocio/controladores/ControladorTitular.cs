@@ -14,7 +14,9 @@ namespace Negocio.controladores
     {
         private ControladorDependente contDependente;
         private ControladorContrato contContrato;
+        private ControladorCidadeEstado contCidadeEstado;
         private IRepositorioTitular repTitular;
+        
 
         /// <summary>
         /// Construtor da Classe ControladorTitular
@@ -22,12 +24,15 @@ namespace Negocio.controladores
         /// <param name="repTitular">Recebe um objeto que implemente IRepositorioTitular.</param>
         /// <param name="contContrato">>Recebe um objeto do tipo ControladorContrato.</param>
         /// <param name="contDependente">>Recebe um objeto do tipo ControladorDependente.</param>
+        /// <param name="contCidadeEstado">>Recebe um objeto do tipo ControladorCidadeEstado.</param>
         public ControladorTitular(IRepositorioTitular repTitular,
                                   ControladorContrato contContrato,
-                                  ControladorDependente contDependente) 
+                                  ControladorDependente contDependente,
+                                  ControladorCidadeEstado contCidadeEstado) 
         {
             this.contContrato = contContrato;
             this.contDependente = contDependente;
+            this.contCidadeEstado = contCidadeEstado;
             this.repTitular = repTitular;
         }
         /// <summary>
@@ -103,6 +108,8 @@ namespace Negocio.controladores
         {
             titular.Dependentes = this.contDependente.Consultar(titular);
             titular.Contratos = this.contContrato.Consultar(titular);
+            titular.CidadeNaturalidade = this.contCidadeEstado.Consultar(titular.CidadeNaturalidade.Id);
+            titular.Endereco.Cidade = this.contCidadeEstado.Consultar(titular.Endereco.Cidade.Id);
             return titular;
         }
     }
