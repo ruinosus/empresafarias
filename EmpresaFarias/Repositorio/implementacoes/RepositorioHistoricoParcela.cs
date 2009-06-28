@@ -54,6 +54,10 @@ namespace Repositorio.implementacoes
                 comando.Parameters.AddWithValue("@NumeroParcela", historicoParcela.NumeroParcela);
                 comando.Parameters.AddWithValue("@Status", (int)historicoParcela.Status);
                 comando.Parameters.AddWithValue("@ContratoId", ContratoId);
+                comando.Parameters.AddWithValue("@ParcelaId", historicoParcela.Parcela.Id);
+                comando.Parameters.AddWithValue("@DataAlteracao", historicoParcela.DataAlteracao);
+                comando.Parameters.AddWithValue("@UsuarioId", historicoParcela.Usuario.Id);
+                comando.Parameters.AddWithValue("@Descricao", historicoParcela.Descricao);
                 conexao.Open();
                 int regitrosAfetados = comando.ExecuteNonQuery();
                 historicoParcela.Id = this.ObterMaximoId();

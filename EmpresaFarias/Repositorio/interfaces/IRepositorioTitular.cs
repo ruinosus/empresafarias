@@ -20,7 +20,7 @@ namespace Repositorio.interfaces
         /// <summary>
         /// Metodo responsavel por alterar um Titular.
         /// </summary>
-        /// <param name="dependente">Objeto do tipo Titular a ser alterado</param>
+        /// <param name="titular">Objeto do tipo Titular a ser alterado</param>
         void Alterar(Titular titular);
         /// <summary>
         /// Metodo responsavel por remover um Titular.

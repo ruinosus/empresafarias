@@ -48,17 +48,27 @@
     <Compile Include="implementacoes\RepositorioCidadeEstado.cs" />
     <Compile Include="implementacoes\RepositorioContrato.cs" />
     <Compile Include="implementacoes\RepositorioDependente.cs" />
+    <Compile Include="implementacoes\RepositorioHistoricoContrato.cs" />
+    <Compile Include="implementacoes\RepositorioHistoricoDependente.cs" />
     <Compile Include="implementacoes\RepositorioHistoricoParcela.cs" />
+    <Compile Include="implementacoes\RepositorioHistoricoTitular.cs" />
     <Compile Include="implementacoes\RepositorioParcela.cs" />
+    <Compile Include="implementacoes\RepositorioPerfil.cs" />
     <Compile Include="implementacoes\RepositorioPlano.cs" />
     <Compile Include="implementacoes\RepositorioTitular.cs" />
+    <Compile Include="implementacoes\RepositorioUsuario.cs" />
     <Compile Include="interfaces\IRepositorioCidadeEstado.cs" />
     <Compile Include="interfaces\IRepositorioContrato.cs" />
     <Compile Include="interfaces\IRepositorioDependente.cs" />
+    <Compile Include="interfaces\IRepositorioHistoricoContrato.cs" />
+    <Compile Include="interfaces\IRepositorioHistoricoDependente.cs" />
     <Compile Include="interfaces\IRepositorioHistoricoParcela.cs" />
+    <Compile Include="interfaces\IRepositorioHistoricoTitular.cs" />
     <Compile Include="interfaces\IRepositorioParcela.cs" />
+    <Compile Include="interfaces\IRepositorioPerfil.cs" />
     <Compile Include="interfaces\IRepositorioPlano.cs" />
     <Compile Include="interfaces\IRepositorioTitular.cs" />
+    <Compile Include="interfaces\IRepositorioUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UtilDB.cs" />
   </ItemGroup>

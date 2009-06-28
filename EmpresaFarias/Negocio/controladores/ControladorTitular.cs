@@ -101,7 +101,7 @@ namespace Negocio.controladores
             return titulares;
         }
         /// <summary>
-        /// Metodo responsavel por montar um Titular juntamente com sues Dependentes e seus Contratos.
+        /// Metodo responsavel por montar um Titular juntamente com seus Dependentes e seus Contratos.
         /// </summary>
         /// <param name="titular">Titular a ser montado.</param>
         /// <returns>Titular contendo todos os seus Dependentes e seus Contratos.</returns>
