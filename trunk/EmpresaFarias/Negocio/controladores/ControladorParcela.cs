@@ -13,13 +13,17 @@ namespace Negocio.controladores
     public class ControladorParcela
     {
         private IRepositorioParcela repParcela;
+        private IRepositorioHistoricoParcela repHistoricoParcela;
         /// <summary>
         /// Construtor da Classe ControladorParcela
         /// </summary>
         /// <param name="repParcela">Recebe um objeto que implemente IRepositorioParcela.</param>
-        public ControladorParcela(IRepositorioParcela repParcela) 
+        /// <param name="repHistoricoParcela">Recebe um objeto que implemente IRepositorioHistoricoParcela.</param>
+        public ControladorParcela(IRepositorioParcela repParcela,
+                                  IRepositorioHistoricoParcela repHistoricoParcela) 
         {
-            this.repParcela = repParcela;	
+            this.repParcela = repParcela;
+            this.repHistoricoParcela = repHistoricoParcela;
         }
 
         /// <summary>
@@ -33,7 +37,11 @@ namespace Negocio.controladores
         {
             if (parcela == null)
                 throw new ExcecaoNegocio("Valor Inválido.");
-            return this.repParcela.Inserir(parcela,ContratoId);
+            Parcela p = this.repParcela.Inserir(parcela,ContratoId);
+
+            //this.InserirHistorico(p, ContratoId);
+
+            return p;
         }
         /// <summary>
         /// Metodo responsavel por alterar uma Parcela.
@@ -90,5 +98,53 @@ namespace Negocio.controladores
         {
             return this.repParcela.Consultar(contrato);
         }
+
+        /// <summary>
+        /// Metodo responsavel por inserir um Historico da Parcela.
+        /// </summary>
+        /// <param name="historicoParcela">Objeto do tipo HistoricoParcela a ser inserido</param>
+        /// <param name="ContratoId">Id do Contrato do Historico da Parcela.</param>
+        /// <returns>retorna o HistoricoParcela inserido.</returns>
+        private HistoricoParcela InserirHistorico(HistoricoParcela historicoParcela, int ContratoId)
+        {
+            return this.repHistoricoParcela.Inserir(historicoParcela, ContratoId);
+        }
+
+        /// <summary>
+        /// Metodo responsavel por consultar uma Parcela.
+        /// </summary>
+        /// <param name="id">Id a ser consultado.</param>
+        /// <returns>retorna um HistoricoParcela com o Id informado.</returns>
+        public HistoricoParcela ConsultarHistorico(int id)
+        {
+            return this.MontarHistoricoParcela(this.repHistoricoParcela.Consultar(id));
+        }
+
+        /// <summary>
+        /// Metodo responsavel por consultar todas as Parcelas cadastradas.
+        /// </summary>
+        /// <returns>retorna uma Lista com todos os HistoricosParcelas cadastradas.</returns>
+        public List<HistoricoParcela> ConsultarHistorico()
+        {
+            List<HistoricoParcela> historicos = this.repHistoricoParcela.Consultar();
+
+            for (int i = 0; i < historicos.Count; i++)
+            {
+                historicos[i] = this.MontarHistoricoParcela(historicos[i]);
+            }
+
+            return historicos;
+        }
+
+        /// <summary>
+        /// Metodo responsavel por montar um HistoricoParcela.
+        /// </summary>
+        /// <param name="historicoTitular">HistoricoParcela a ser montado.</param>
+        /// <returns>HistoricoParcela.</returns>
+        private HistoricoParcela MontarHistoricoParcela(HistoricoParcela historicoParcela)
+        {
+            historicoParcela.Parcela = this.Consultar(historicoParcela.Parcela.Id);
+            return historicoParcela;
+        } 
     }
 }

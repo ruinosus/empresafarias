@@ -7,7 +7,7 @@ using ClassesBasicas;
 namespace Repositorio.interfaces
 {
     /// <summary>
-    /// Interface que representa os metodos de acesso a dados das Cidades e dos Estados.
+    /// Interface que representa os metodos de acesso ao Historico das Parcelas.
     /// </summary>
     public interface IRepositorioHistoricoParcela
     {

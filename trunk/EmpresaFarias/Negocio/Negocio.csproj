@@ -51,6 +51,7 @@
     <Compile Include="controladores\ControladorParcela.cs" />
     <Compile Include="controladores\ControladorPlano.cs" />
     <Compile Include="controladores\ControladorTitular.cs" />
+    <Compile Include="controladores\ControladorUsuario.cs" />
     <Compile Include="Fachada.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
