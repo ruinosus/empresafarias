@@ -20,7 +20,8 @@ namespace Repositorio.implementacoes
         private static String QUERY_SELECT_ID = "SELECT Id,Nome,Religiao,DataNascimento,TitularId,Parentesco,PercentualCobertura,Status,DependenteId,DataAlteracao,UsuarioId,Descricao FROM HistoricoDependente WHERE Id = @Id";
         private static String QUERY_SELECT_ALL = "SELECT Id,Nome,Religiao,DataNascimento,TitularId,Parentesco,PercentualCobertura,Status,DependenteId,DataAlteracao,UsuarioId,Descricao FROM HistoricoDependente";
         private static String QUERY_MAX_ID = "SELECT MAX(Id) Id FROM HistoricoDependente";
-
+        private static String QUERY_SELECT_DEPENDENTE = "SELECT Id,Nome,Religiao,DataNascimento,TitularId,Parentesco,PercentualCobertura,Status,DependenteId,DataAlteracao,UsuarioId,Descricao FROM HistoricoDependente WHERE DependenteId=@DependenteId";
+        
         #endregion
 
         #region Membros de IRepositorioHistoricoDependente
@@ -39,12 +40,12 @@ namespace Repositorio.implementacoes
             try
             {
                 SqlCommand comando = new SqlCommand(QUERY_INSERT, conexao);
-                comando.Parameters.AddWithValue("@DataNascimento", historicoDependente.DataNascimento);
-                comando.Parameters.AddWithValue("@Nome", historicoDependente.Nome);
-                comando.Parameters.AddWithValue("@Parentesco", historicoDependente.Parentesco);
-                comando.Parameters.AddWithValue("@Religiao", historicoDependente.Religiao);
-                comando.Parameters.AddWithValue("@Status", (int)historicoDependente.Status);
-                comando.Parameters.AddWithValue("@PercentualCobertura", historicoDependente.PercentualCobertura);
+                comando.Parameters.AddWithValue("@DataNascimento", historicoDependente.DependenteHistorico.DataNascimento);
+                comando.Parameters.AddWithValue("@Nome", historicoDependente.DependenteHistorico.Nome);
+                comando.Parameters.AddWithValue("@Parentesco", historicoDependente.DependenteHistorico.Parentesco);
+                comando.Parameters.AddWithValue("@Religiao", historicoDependente.DependenteHistorico.Religiao);
+                comando.Parameters.AddWithValue("@Status", (int)historicoDependente.DependenteHistorico.Status);
+                comando.Parameters.AddWithValue("@PercentualCobertura", historicoDependente.DependenteHistorico.PercentualCobertura);
                 comando.Parameters.AddWithValue("@TitularId", TitularId);
                 comando.Parameters.AddWithValue("@DependenteId", historicoDependente.Dependente.Id);
                 comando.Parameters.AddWithValue("@DataAlteracao", historicoDependente.DataAlteracao);
@@ -52,7 +53,7 @@ namespace Repositorio.implementacoes
                 comando.Parameters.AddWithValue("@Descricao", historicoDependente.Descricao);
                 conexao.Open();
                 int regitrosAfetados = comando.ExecuteNonQuery();
-                historicoDependente.Id = this.ObterMaximoId();
+                historicoDependente.DependenteHistorico.Id = this.ObterMaximoId();
             }
             catch (SqlException e)
             {
@@ -182,6 +183,47 @@ namespace Repositorio.implementacoes
             return id;
         }
 
+        /// <summary>
+        /// Metodo responsavel por consultar uma lista contendo todos os HistoricosDependente do Dependente Informado.
+        /// </summary>
+        /// <param name="dependente">Objeto do tipo Dependente a ser pesquisado.</param>
+        /// <returns>retorna uma lista contendo todos os HistoricosDependente do Dependente Informado.</returns>
+        public List<HistoricoDependente> Consultar(Dependente dependente)
+        {
+            UtilBD banco = new UtilBD();
+            SqlConnection conexao = banco.ObterConexao();
+            List<HistoricoDependente> historicos = new List<HistoricoDependente>();
+            try
+            {
+                SqlCommand comando = new SqlCommand(QUERY_SELECT_DEPENDENTE, conexao);
+                comando.Parameters.AddWithValue("@DependenteId",dependente.Id);
+                SqlDataReader resultado;
+                conexao.Open();
+
+                resultado = comando.ExecuteReader();
+
+                if (resultado.HasRows)
+                {
+                    while (resultado.Read())
+                    {
+                        historicos.Add(this.CriarHistoricoDependente(resultado));
+                    }
+                }
+                resultado.Close();
+            }
+
+            catch (SqlException e)
+            {
+                throw new ErroBanco(e.Message);
+            }
+            finally
+            {
+                banco.FecharConexao(conexao);
+            }
+
+            return historicos;
+        }
+
         #endregion
 
         /// <summary>
@@ -195,31 +237,31 @@ namespace Repositorio.implementacoes
 
             if (resultado["Id"] != DBNull.Value)
             {
-                historicoDependente.Id = Convert.ToInt32(resultado["Id"]);
+                historicoDependente.DependenteHistorico.Id = Convert.ToInt32(resultado["Id"]);
             }
             if (resultado["DataNascimento"] != DBNull.Value)
             {
-                historicoDependente.DataNascimento = Convert.ToDateTime(resultado["DataNascimento"]);
+                historicoDependente.DependenteHistorico.DataNascimento = Convert.ToDateTime(resultado["DataNascimento"]);
             }
             if (resultado["Nome"] != DBNull.Value)
             {
-                historicoDependente.Nome = Convert.ToString(resultado["Nome"]);
+                historicoDependente.DependenteHistorico.Nome = Convert.ToString(resultado["Nome"]);
             }
             if (resultado["Status"] != DBNull.Value)
             {
-                historicoDependente.Status = (StatusDependente)Convert.ToInt32(resultado["Status"]);
+                historicoDependente.DependenteHistorico.Status = (StatusDependente)Convert.ToInt32(resultado["Status"]);
             }
             if (resultado["Parentesco"] != DBNull.Value)
             {
-                historicoDependente.Parentesco = Convert.ToString(resultado["Parentesco"]);
+                historicoDependente.DependenteHistorico.Parentesco = Convert.ToString(resultado["Parentesco"]);
             }
             if (resultado["PercentualCobertura"] != DBNull.Value)
             {
-                historicoDependente.PercentualCobertura = Convert.ToInt32(resultado["PercentualCobertura"]);
+                historicoDependente.DependenteHistorico.PercentualCobertura = Convert.ToInt32(resultado["PercentualCobertura"]);
             }
             if (resultado["Religiao"] != DBNull.Value)
             {
-                historicoDependente.Religiao = Convert.ToString(resultado["Religiao"]);
+                historicoDependente.DependenteHistorico.Religiao = Convert.ToString(resultado["Religiao"]);
             }
 
             if (resultado["DependenteId"] != DBNull.Value)

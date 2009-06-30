@@ -20,6 +20,8 @@ namespace Repositorio.implementacoes
         private static String QUERY_SELECT_ID = "SELECT Id,DataInicio,Status,TitularId,PlanoId,ContratoId,DataAlteracao,UsuarioId,Descricao FROM HistoricoContrato WHERE Id = @Id";
         private static String QUERY_SELECT_ALL = "SELECT Id,DataInicio,Status,TitularId,PlanoId,ContratoId,DataAlteracao,UsuarioId,Descricao FROM HistoricoContrato";
         private static String QUERY_MAX_ID = "SELECT MAX(Id) Id FROM  HistoricoContrato";
+        private static String QUERY_SELECT_CONTRATO = "SELECT Id,DataInicio,Status,TitularId,PlanoId,ContratoId,DataAlteracao,UsuarioId,Descricao FROM HistoricoContrato WHERE ContratoId=@ContratoId";
+        
 
         #endregion
 
@@ -39,9 +41,9 @@ namespace Repositorio.implementacoes
             try
             {
                 SqlCommand comando = new SqlCommand(QUERY_INSERT, conexao);
-                comando.Parameters.AddWithValue("@DataInicio", historicoContrato.DataInicio);
-                comando.Parameters.AddWithValue("@PlanoId", historicoContrato.Plano.Id);
-                comando.Parameters.AddWithValue("@Status", (int)historicoContrato.Status);
+                comando.Parameters.AddWithValue("@DataInicio", historicoContrato.ContratoHistorico.DataInicio);
+                comando.Parameters.AddWithValue("@PlanoId", historicoContrato.ContratoHistorico.Plano.Id);
+                comando.Parameters.AddWithValue("@Status", (int)historicoContrato.ContratoHistorico.Status);
                 comando.Parameters.AddWithValue("@TitularId", TitularId);
                 comando.Parameters.AddWithValue("@ContratoId", historicoContrato.Contrato.Id);
                 comando.Parameters.AddWithValue("@DataAlteracao", historicoContrato.DataAlteracao);
@@ -49,7 +51,7 @@ namespace Repositorio.implementacoes
                 comando.Parameters.AddWithValue("@Descricao", historicoContrato.Descricao);
                 conexao.Open();
                 int regitrosAfetados = comando.ExecuteNonQuery();
-                historicoContrato.Id = this.ObterMaximoId();
+                historicoContrato.ContratoHistorico.Id = this.ObterMaximoId();
             }
             catch (SqlException e)
             {
@@ -141,6 +143,47 @@ namespace Repositorio.implementacoes
         }
 
         /// <summary>
+        /// Metodo responsavel por consultar uma lista contendo todos os HistoricosContrato do Contrato Informado.
+        /// </summary>
+        /// <param name="contrato">Objeto do tipo Contrato a ser pesquisado.</param>
+        /// <returns>retorna uma lista contendo todos os HistoricosContrato do Contrato Informado.</returns>
+        public List<HistoricoContrato> Consultar(Contrato contrato)
+        {
+            UtilBD banco = new UtilBD();
+            SqlConnection conexao = banco.ObterConexao();
+            List<HistoricoContrato> historicos = new List<HistoricoContrato>();
+            try
+            {
+                SqlCommand comando = new SqlCommand(QUERY_SELECT_CONTRATO, conexao);
+                comando.Parameters.AddWithValue("@ContratoId",contrato.Id);
+                SqlDataReader resultado;
+                conexao.Open();
+
+                resultado = comando.ExecuteReader();
+
+                if (resultado.HasRows)
+                {
+                    while (resultado.Read())
+                    {
+                        historicos.Add(this.CriarHistoricoContrato(resultado));
+                    }
+                }
+                resultado.Close();
+            }
+
+            catch (SqlException e)
+            {
+                throw new ErroBanco(e.Message);
+            }
+            finally
+            {
+                banco.FecharConexao(conexao);
+            }
+
+            return historicos;
+        }
+
+        /// <summary>
         /// Devolve o numero do maior Id inserido;
         /// </summary>
         /// <returns>valor do maior id</returns>
@@ -192,19 +235,19 @@ namespace Repositorio.implementacoes
 
             if (resultado["Id"] != DBNull.Value)
             {
-                historicoContrato.Id = Convert.ToInt32(resultado["Id"]);
+                historicoContrato.ContratoHistorico.Id = Convert.ToInt32(resultado["Id"]);
             }
             if (resultado["DataInicio"] != DBNull.Value)
             {
-                historicoContrato.DataInicio = Convert.ToDateTime(resultado["DataInicio"]);
+                historicoContrato.ContratoHistorico.DataInicio = Convert.ToDateTime(resultado["DataInicio"]);
             }
             if (resultado["PlanoId"] != DBNull.Value)
             {
-                historicoContrato.Plano.Id = Convert.ToInt32(resultado["PlanoId"]);
+                historicoContrato.ContratoHistorico.Plano.Id = Convert.ToInt32(resultado["PlanoId"]);
             }
             if (resultado["Status"] != DBNull.Value)
             {
-                historicoContrato.Status = (StatusContrato)Convert.ToInt32(resultado["Status"]);
+                historicoContrato.ContratoHistorico.Status = (StatusContrato)Convert.ToInt32(resultado["Status"]);
             }
 
             if (resultado["ContratoId"] != DBNull.Value)

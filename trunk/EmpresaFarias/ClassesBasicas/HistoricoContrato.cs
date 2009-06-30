@@ -8,7 +8,7 @@ namespace ClassesBasicas
     /// <summary>
     /// Classe que representa os Historicos de Mudanças de um Contrato.
     /// </summary>
-    public class HistoricoContrato : Contrato
+    public class HistoricoContrato 
     {
         private Contrato contrato;
         /// <summary>
@@ -18,6 +18,16 @@ namespace ClassesBasicas
         {
             get { return contrato; }
             set { contrato = value; }
+        }
+
+        private Contrato contratoHistorico;
+        /// <summary>
+        /// Propriedade relacionada ao ContratoHistorico.
+        /// </summary>
+        public Contrato ContratoHistorico
+        {
+            get { return ContratoHistorico; }
+            set { ContratoHistorico = value; }
         }
 
          private Usuario usuario;
@@ -55,6 +65,7 @@ namespace ClassesBasicas
         public HistoricoContrato()
         {
             this.contrato = new Contrato();
+            this.contratoHistorico = new Contrato();
             this.usuario = new Usuario();
         }
     }

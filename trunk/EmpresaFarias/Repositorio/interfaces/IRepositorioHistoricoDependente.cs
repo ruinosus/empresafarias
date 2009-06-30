@@ -31,5 +31,12 @@ namespace Repositorio.interfaces
         /// </summary>
         /// <returns>retorna uma Lista com todos os HistoricosDependente cadastrados.</returns>
         List<HistoricoDependente> Consultar();
+
+        /// <summary>
+        /// Metodo responsavel por consultar uma lista contendo todos os HistoricosDependente do Dependente Informado.
+        /// </summary>
+        /// <param name="dependente">Objeto do tipo Dependente a ser pesquisado.</param>
+        /// <returns>retorna uma lista contendo todos os HistoricosDependente do Dependente Informado.</returns>
+        List<HistoricoDependente> Consultar(Dependente dependente);
     }
 }

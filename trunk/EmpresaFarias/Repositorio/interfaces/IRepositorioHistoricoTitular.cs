@@ -30,5 +30,12 @@ namespace Repositorio.interfaces
         /// </summary>
         /// <returns>retorna uma Lista com todos os HistoricosTitular cadastrados.</returns>
         List<HistoricoTitular> Consultar();
+
+        /// <summary>
+        /// Metodo responsavel por consultar uma lista contendo todos os HistoricosParcela do Titular Informado.
+        /// </summary>
+        /// <param name="titular">Objeto do tipo Titular a ser pesquisado.</param>
+        /// <returns>retorna uma lista contendo todos os HistoricosDependente da Titular Informada.</returns>
+        List<HistoricoTitular> Consultar(Titular titular);
     }
 }

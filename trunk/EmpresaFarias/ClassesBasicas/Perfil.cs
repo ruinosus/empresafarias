@@ -40,5 +40,12 @@ namespace ClassesBasicas
             set { tags = value; }
         }
 
+        /// <summary>
+        /// Construtor padrão do Perfil que inicializa as Tags.
+        /// </summary>
+        public Perfil()
+        {
+            this.tags = new List<int>();
+        }
     }
 }
