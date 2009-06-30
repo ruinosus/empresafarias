@@ -14,6 +14,7 @@ namespace Negocio
     public class Fachada
     {
         private static Fachada instancia;
+
         /// <summary>
         /// Construtor padrão da Fachada, inicializando os Construtores.
         /// </summary>
@@ -21,6 +22,7 @@ namespace Negocio
         {
             InitControladores();
         }
+
         /// <summary>
         /// Metodo estatico responsavel por obter uma Instancia do Objeto Fachada
         /// Implementando o metodo Singleton.
@@ -36,6 +38,7 @@ namespace Negocio
         }
 
         private ControladorPlano controladorPlano;
+
         /// <summary>
         ///  Propriedade apenas de retorno do Controlador de Plano.
         /// </summary>
@@ -45,6 +48,7 @@ namespace Negocio
         }
 
         private ControladorCidadeEstado controladorCidadeEstado;
+
         /// <summary>
         ///  Propriedade apenas de retorno do Controlador de Cidade e Estado.
         /// </summary>
@@ -54,6 +58,7 @@ namespace Negocio
         }
 
         private ControladorContrato controladorContrato;
+
         /// <summary>
         ///  Propriedade apenas de retorno do Controlador de Contrato.
         /// </summary>
@@ -63,6 +68,7 @@ namespace Negocio
         }
 
         private ControladorDependente controladorDependente;
+
         /// <summary>
         ///  Propriedade apenas de retorno do Controlador de Dependente.
         /// </summary>
@@ -72,6 +78,7 @@ namespace Negocio
         }
 
         private ControladorParcela controladorParcela;
+
         /// <summary>
         ///  Propriedade apenas de retorno do Controlador de Parcela.
         /// </summary>
@@ -81,6 +88,7 @@ namespace Negocio
         }
 
         private ControladorTitular controladorTitular;
+
         /// <summary>
         ///  Propriedade apenas de retorno do Controlador de Titular.
         /// </summary>
@@ -89,11 +97,25 @@ namespace Negocio
             get { return controladorTitular; }
         }
 
+        private ControladorUsuario controladorUsuario;
+
+        /// <summary>
+        ///  Propriedade apenas de retorno do Controlador de Usuario.
+        /// </summary>
+        public ControladorUsuario ControladorUsuario
+        {
+            get { return controladorUsuario; }
+        }
+
         /// <summary>
         /// Metodo para inicializar os Construtores.
         /// </summary>
         private void InitControladores()
         {
+            //Controlador de Usuario
+            IRepositorioPerfil repPerfil = new RepositorioPerfil();
+            IRepositorioUsuario repUsuario = new RepositorioUsuario();
+            this.controladorUsuario = new ControladorUsuario(repUsuario, repPerfil);
             //Controlador Cidade e Estado
             IRepositorioCidadeEstado repCidadeEstado = new RepositorioCidadeEstado();
             this.controladorCidadeEstado = new ControladorCidadeEstado(repCidadeEstado);
@@ -103,16 +125,19 @@ namespace Negocio
             //Controlador Parcela
             IRepositorioHistoricoParcela repHistoricoParcela = new RepositorioHistoricoParcela();
             IRepositorioParcela repParcela = new RepositorioParcela();
-            //this.controladorParcela = new ControladorParcela(repParcela,repHistoricoParcela);
+            this.controladorParcela = new ControladorParcela(repParcela, repHistoricoParcela,controladorUsuario);
             //Controlador Contrato
             IRepositorioContrato repContrato = new RepositorioContrato();
-            this.controladorContrato = new ControladorContrato(repContrato, controladorParcela, controladorPlano);
+            IRepositorioHistoricoContrato repHistoricoContrato = new RepositorioHistoricoContrato();
+            this.controladorContrato = new ControladorContrato(repContrato, controladorParcela, controladorPlano, repHistoricoContrato,controladorUsuario);
             //Controlador Dependente
             IRepositorioDependente repDependente = new RepositorioDependente();
-            this.controladorDependente = new ControladorDependente(repDependente);
+            IRepositorioHistoricoDependente repHistoricoDependente = new RepositorioHistoricoDependente();
+            this.controladorDependente = new ControladorDependente(repDependente, repHistoricoDependente,controladorUsuario);
             //Controlador Titular
             IRepositorioTitular repTitular = new RepositorioTitular();
-            this.controladorTitular = new ControladorTitular(repTitular, this.controladorContrato, this.controladorDependente, this.controladorCidadeEstado);
+            IRepositorioHistoricoTitular repHistoricoTitular = new RepositorioHistoricoTitular();
+            this.controladorTitular = new ControladorTitular(repTitular, this.controladorContrato, this.controladorDependente, this.controladorCidadeEstado,repHistoricoTitular,controladorUsuario);
         }
     }
 }

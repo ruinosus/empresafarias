@@ -12,7 +12,7 @@ namespace Repositorio.implementacoes
     /// <summary>
     /// Classe responsavel por implementar a IRepositorioUsuario.
     /// </summary>
-    class RepositorioUsuario : IRepositorioUsuario
+    public class RepositorioUsuario : IRepositorioUsuario
     {
         #region Sql Tabela Usuario
 

@@ -111,13 +111,14 @@ namespace ClassesBasicas
                     if (menu.Items[i].Tag != null)
                     {
                         int tag = Convert.ToInt32(menu.Items[i].Tag);
-                        //ToolStripItem tsm = menu.GetNextItem(menu.Items[i], ArrowDirection.Down);
                                               
                         if (this.VerificarTag(tag))
                         {
                             menu.Items[i].Visible = true;
                             menu.Items[i].Enabled = true;
-                            HabilitarMenu((ToolStripMenuItem)menu.Items[i]);
+                            List<ToolStripMenuItem> l = new List<ToolStripMenuItem>();
+                            l.Add((ToolStripMenuItem)menu.Items[i]);
+                            HabilitarMenu(l);
                         }
                         else
                         {
@@ -151,33 +152,47 @@ namespace ClassesBasicas
             return false;
         }
 
-        private void HabilitarMenu(ToolStripMenuItem menuItem)
+        /// <summary>
+        /// Metodo responsavel por Habilitar um item de um Menu de acordo com o Perfil do Usuario.
+        /// </summary>
+        /// <param name="menuItem">Lista contendo os itens a serem verificados.</param>
+        private void HabilitarMenu(List<ToolStripMenuItem> menuItem)
         {
+            List<ToolStripMenuItem> l = new List<ToolStripMenuItem>();
 
-            ToolStripMenuItem item = menuItem;
-
-            for (int i = 0; i < item.DropDownItems.Count; i++)
+            for (int j = 0; j < menuItem.Count; j++)
             {
-                ToolStripMenuItem sub = (ToolStripMenuItem)item.DropDownItems[i];
-                if (sub.DropDownItems.Count > 0)
+                ToolStripMenuItem item = menuItem[j];
+
+                for (int i = 0; i < item.DropDownItems.Count; i++)
                 {
-                    this.HabilitarMenu(sub);
-                }
-                if (item.DropDownItems[i].Tag != null)
-                {
-                    int tag = Convert.ToInt32(item.DropDownItems[i].Tag);
-                    if (this.VerificarTag(tag))
+                    if (item.DropDownItems[i].Tag != null)
                     {
-                        item.DropDownItems[i].Visible = true;
-                        item.DropDownItems[i].Enabled = true;
+                        int tag = Convert.ToInt32(item.DropDownItems[i].Tag);
+                        if (this.VerificarTag(tag))
+                        {
+                            item.DropDownItems[i].Visible = true;
+                            item.DropDownItems[i].Enabled = true;
+
+                            ToolStripMenuItem sub = (ToolStripMenuItem)item.DropDownItems[i];
+                            if (sub.DropDownItems.Count > 0)
+                            {
+                                l.Add(sub);
+                            }
+                        }
+                        else
+                        {
+                            item.DropDownItems[i].Visible = false;
+                            item.DropDownItems[i].Enabled = false;
+                        }
                     }
-                    else
-                    {
-                        item.DropDownItems[i].Visible = false;
-                        item.DropDownItems[i].Enabled = false;
-                    }
-                }
+                } 
             }
+            if(l.Count > 0)
+            {
+                this.HabilitarMenu(l);
+            }
+            
         }
     }
 }
