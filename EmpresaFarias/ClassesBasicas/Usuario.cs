@@ -12,6 +12,7 @@ namespace ClassesBasicas
     public class Usuario
     {
         private int id;
+
         /// <summary>
         /// Propriedade relacionada ao Id do Usuario.
         /// </summary>
@@ -22,6 +23,7 @@ namespace ClassesBasicas
         }
 
         private String login;
+
         /// <summary>
         /// Propriedade relacionada ao Login do Usuario.
         /// </summary>
@@ -31,6 +33,7 @@ namespace ClassesBasicas
             set { login = value; }
         }
         private String senha;
+
         /// <summary>
         /// Propriedade relacionada a Senha do Usuario.
         /// </summary>
@@ -41,6 +44,7 @@ namespace ClassesBasicas
         }
 
         private String nome;
+
         /// <summary>
         /// Propriedade relacionada ao Nome do Usuario.
         /// </summary>
@@ -51,6 +55,7 @@ namespace ClassesBasicas
         }
 
         private List<Perfil> perfis;
+
         /// <summary>
         /// Propriedade relacionada aos Perfis do Usuario.
         /// </summary>
@@ -81,7 +86,7 @@ namespace ClassesBasicas
                 for (int i = 0; i < formulario.Controls.Count; i++)
                 {
 
-                    if (formulario.Controls[i].Tag != null)
+                    if (formulario.Controls[i].Tag != null && !formulario.Controls[i].Tag.Equals(""))
                     {
                         int tag = Convert.ToInt32(formulario.Controls[i].Tag);
                         if (this.VerificarTag(tag))
@@ -106,18 +111,18 @@ namespace ClassesBasicas
                 MenuStrip menu = o as MenuStrip;
               
                 for (int i = 0; i < menu.Items.Count; i++)
-                {
-  
-                    if (menu.Items[i].Tag != null)
+                {  
+                    if (menu.Items[i].Tag!=null && !menu.Items[i].Tag.Equals(""))
                     {
+                        List<ToolStripMenuItem> l = new List<ToolStripMenuItem>();
+                        l.Add((ToolStripMenuItem)menu.Items[i]);
                         int tag = Convert.ToInt32(menu.Items[i].Tag);
-                                              
+
                         if (this.VerificarTag(tag))
                         {
                             menu.Items[i].Visible = true;
-                            menu.Items[i].Enabled = true;
-                            List<ToolStripMenuItem> l = new List<ToolStripMenuItem>();
-                            l.Add((ToolStripMenuItem)menu.Items[i]);
+                            menu.Items[i].Enabled = true;                           
+                            
                             HabilitarMenu(l);
                         }
                         else
@@ -125,12 +130,38 @@ namespace ClassesBasicas
                             menu.Items[i].Visible = false;
                             menu.Items[i].Enabled = false;
                         }
-                    }
+                    }     
                 }
 
             } 
             #endregion            
 
+            #region TabControl
+            if (o is TabControl)
+            {
+                TabControl tab = o as TabControl;
+
+                for (int i = 0; i < tab.TabPages.Count; i++)
+                {
+                    if (tab.TabPages[i].Tag != null && !tab.TabPages[i].Tag.Equals(""))
+                    {                       
+                        int tag = Convert.ToInt32(tab.TabPages[i].Tag);
+                        if (this.VerificarTag(tag))
+                        {
+                            tab.TabPages[i].Visible = true;
+                            tab.TabPages[i].Enabled = true;                                
+                        }
+                        else
+                        {
+                            tab.TabPages[i].Visible = false;
+                            tab.TabPages[i].Enabled = false;
+                        }  
+                    }
+                    HabilitarTab(tab.TabPages[i]); 
+                }
+
+            }
+            #endregion
         }
 
         /// <summary>
@@ -166,7 +197,7 @@ namespace ClassesBasicas
 
                 for (int i = 0; i < item.DropDownItems.Count; i++)
                 {
-                    if (item.DropDownItems[i].Tag != null)
+                    if (item.DropDownItems[i].Tag!=null &&!item.DropDownItems[i].Tag.Equals(""))
                     {
                         int tag = Convert.ToInt32(item.DropDownItems[i].Tag);
                         if (this.VerificarTag(tag))
@@ -193,6 +224,33 @@ namespace ClassesBasicas
                 this.HabilitarMenu(l);
             }
             
+        }
+
+        /// <summary>
+        /// Metodo responsavel por Habilitar os componentes dentro um uma TabPage.
+        /// </summary>
+        /// <param name="tab">tab a ser verificada.</param>
+        private void HabilitarTab(TabPage tab)
+        {
+            for (int i = 0; i < tab.Controls.Count; i++)
+            {
+
+                if (tab.Controls[i].Tag!=null && !tab.Controls[i].Tag.Equals(""))
+                {
+                    int tag = Convert.ToInt32(tab.Controls[i].Tag);
+                    if (this.VerificarTag(tag))
+                    {
+                        tab.Controls[i].Visible = true;
+                        tab.Controls[i].Enabled = true;
+                    }
+                    else
+                    {
+                        tab.Controls[i].Visible = false;
+                        tab.Controls[i].Enabled = false;
+                    }
+                }
+            }
+
         }
     }
 }

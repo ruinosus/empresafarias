@@ -22,10 +22,11 @@ namespace GUI
         {
             Perfil p = new Perfil();
             p.Tags.Add(1);
-            //p.Tags.Add(2);
             usuario.Perfis.Add(p);
             usuario.HabilitarComponentes(this);
             usuario.HabilitarComponentes(menuStrip1);
+
+            usuario.HabilitarComponentes(tabControl1);
             
         }
     }

@@ -5,6 +5,7 @@ using System.Text;
 using Negocio.controladores;
 using Repositorio.interfaces;
 using Repositorio.implementacoes;
+using ClassesBasicas;
 
 namespace Negocio
 {
@@ -105,6 +106,14 @@ namespace Negocio
         public ControladorUsuario ControladorUsuario
         {
             get { return controladorUsuario; }
+        }
+
+        private Usuario usuario;
+
+        public Usuario Usuario
+        {
+            get { return usuario; }
+            set { usuario = value; }
         }
 
         /// <summary>
