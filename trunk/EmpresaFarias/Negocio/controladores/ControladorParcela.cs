@@ -50,6 +50,7 @@ namespace Negocio.controladores
             hp.DataAlteracao = DateTime.Now;
             hp.Usuario = usuario;
             hp.Descricao = "Inserido";
+            hp.ParcelaHistorico = p;
             hp.Parcela = p;
 
             this.InserirHistorico(hp, ContratoId);
@@ -62,12 +63,45 @@ namespace Negocio.controladores
         /// <param name="plano">Objeto do tipo Parcela a ser alterado</param>
         /// <param name="ContratoId">Id do Contrato da Parcela.</param>
         /// <exception cref="ExecaoNegocio">Lançara a ExecaoNegocio caso o objeto seja nulo ou a Parcela não seja encontrada.</exception>
-        public void Alterar(Parcela parcela, int ContratoId)
+        public void Alterar(Parcela parcela, int ContratoId,Usuario usuario)
         {
-            if (this.Consultar(parcela.Id) != null && parcela != null)
+            Parcela parcelaAntiga =this.Consultar(parcela.Id);
+            if ( parcelaAntiga!= null && parcela != null)
                 this.repParcela.Alterar(parcela,ContratoId);
             else
                 throw new ExcecaoNegocio("Parcela não existente.");
+
+            HistoricoParcela hp = new HistoricoParcela();
+            hp.DataAlteracao = new DateTime();
+
+            string descricao="Alterado\n";
+            if (parcelaAntiga.Valor != parcela.Valor)
+            {
+                descricao += "Valor\n";
+            }
+            if (parcelaAntiga.Status != parcela.Status)
+            {
+                descricao += "Status\n";
+            }
+            if (parcelaAntiga.NumeroParcela != parcela.NumeroParcela)
+            {
+                descricao += "Numero da Parcela\n";
+            }
+            if (parcelaAntiga.DataVencimento != parcela.DataVencimento)
+            {
+                descricao += "Data de Vencimento\n";
+            }
+            if (parcelaAntiga.DataPagamento != parcela.DataPagamento)
+            {
+                descricao += "Data de Pagamento\n";
+            }
+            hp.DataAlteracao = DateTime.Now;
+            hp.Usuario = usuario;
+            hp.Descricao = descricao;
+            hp.ParcelaHistorico = parcela;
+            hp.Parcela = parcela;
+
+            this.InserirHistorico(hp, ContratoId);
         }
 
         /// <summary>

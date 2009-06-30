@@ -12,7 +12,7 @@ namespace Repositorio.implementacoes
     /// <summary>
     /// Classe responsavel por implementar a IRepositorioHistoricoTitular.
     /// </summary>
-    class RepositorioHistoricoTitular : IRepositorioHistoricoTitular
+    public class RepositorioHistoricoTitular : IRepositorioHistoricoTitular
     {
         #region Sql Tabela HistoricoTitular
 

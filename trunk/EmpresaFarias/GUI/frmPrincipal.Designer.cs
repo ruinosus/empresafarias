@@ -40,15 +40,14 @@
             this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.testeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.akiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aliToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.hahahaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.uhuuuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.oioioiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aaaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.qwqqToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.jjjToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.outroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deNovoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ajudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sobreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cadastroDeUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cadastroDeTitularToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mudarSenhaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removerContaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -95,7 +94,10 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.inicioToolStripMenuItem});
+            this.inicioToolStripMenuItem,
+            this.outroToolStripMenuItem,
+            this.deNovoToolStripMenuItem,
+            this.ajudaToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(284, 24);
@@ -117,8 +119,7 @@
             // logarToolStripMenuItem
             // 
             this.logarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.testeToolStripMenuItem,
-            this.aaaToolStripMenuItem});
+            this.mudarSenhaToolStripMenuItem});
             this.logarToolStripMenuItem.Name = "logarToolStripMenuItem";
             this.logarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.logarToolStripMenuItem.Tag = "1";
@@ -126,9 +127,11 @@
             // 
             // deslogarToolStripMenuItem
             // 
+            this.deslogarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.removerContaToolStripMenuItem});
             this.deslogarToolStripMenuItem.Name = "deslogarToolStripMenuItem";
             this.deslogarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.deslogarToolStripMenuItem.Tag = "1";
+            this.deslogarToolStripMenuItem.Tag = "2";
             this.deslogarToolStripMenuItem.Text = "Deslogar";
             // 
             // sairToolStripMenuItem
@@ -166,77 +169,62 @@
             this.textBox1.TabIndex = 7;
             this.textBox1.Tag = "2";
             // 
-            // testeToolStripMenuItem
+            // outroToolStripMenuItem
             // 
-            this.testeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.akiToolStripMenuItem,
-            this.oioioiToolStripMenuItem});
-            this.testeToolStripMenuItem.Name = "testeToolStripMenuItem";
-            this.testeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.testeToolStripMenuItem.Tag = "";
-            this.testeToolStripMenuItem.Text = "teste";
+            this.outroToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cadastroDeUsuarioToolStripMenuItem,
+            this.cadastroDeTitularToolStripMenuItem});
+            this.outroToolStripMenuItem.Name = "outroToolStripMenuItem";
+            this.outroToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
+            this.outroToolStripMenuItem.Tag = "2";
+            this.outroToolStripMenuItem.Text = "Cadastro";
             // 
-            // akiToolStripMenuItem
+            // deNovoToolStripMenuItem
             // 
-            this.akiToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aliToolStripMenuItem,
-            this.hahahaToolStripMenuItem,
-            this.uhuuuToolStripMenuItem});
-            this.akiToolStripMenuItem.Name = "akiToolStripMenuItem";
-            this.akiToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.akiToolStripMenuItem.Tag = "1";
-            this.akiToolStripMenuItem.Text = "aki";
+            this.deNovoToolStripMenuItem.Name = "deNovoToolStripMenuItem";
+            this.deNovoToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
+            this.deNovoToolStripMenuItem.Text = "Relatorio";
             // 
-            // aliToolStripMenuItem
+            // ajudaToolStripMenuItem
             // 
-            this.aliToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.jjjToolStripMenuItem});
-            this.aliToolStripMenuItem.Name = "aliToolStripMenuItem";
-            this.aliToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.aliToolStripMenuItem.Tag = "3";
-            this.aliToolStripMenuItem.Text = "ali";
+            this.ajudaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sobreToolStripMenuItem});
+            this.ajudaToolStripMenuItem.Name = "ajudaToolStripMenuItem";
+            this.ajudaToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
+            this.ajudaToolStripMenuItem.Tag = "2";
+            this.ajudaToolStripMenuItem.Text = "Ajuda";
             // 
-            // hahahaToolStripMenuItem
+            // sobreToolStripMenuItem
             // 
-            this.hahahaToolStripMenuItem.Name = "hahahaToolStripMenuItem";
-            this.hahahaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.hahahaToolStripMenuItem.Tag = "1";
-            this.hahahaToolStripMenuItem.Text = "hahaha";
+            this.sobreToolStripMenuItem.Name = "sobreToolStripMenuItem";
+            this.sobreToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.sobreToolStripMenuItem.Text = "Sobre";
             // 
-            // uhuuuToolStripMenuItem
+            // cadastroDeUsuarioToolStripMenuItem
             // 
-            this.uhuuuToolStripMenuItem.Name = "uhuuuToolStripMenuItem";
-            this.uhuuuToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.uhuuuToolStripMenuItem.Tag = "2";
-            this.uhuuuToolStripMenuItem.Text = "uhuuu";
+            this.cadastroDeUsuarioToolStripMenuItem.Name = "cadastroDeUsuarioToolStripMenuItem";
+            this.cadastroDeUsuarioToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cadastroDeUsuarioToolStripMenuItem.Text = "Cadastro de Usuario";
             // 
-            // oioioiToolStripMenuItem
+            // cadastroDeTitularToolStripMenuItem
             // 
-            this.oioioiToolStripMenuItem.Name = "oioioiToolStripMenuItem";
-            this.oioioiToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.oioioiToolStripMenuItem.Tag = "1";
-            this.oioioiToolStripMenuItem.Text = "oioioi";
+            this.cadastroDeTitularToolStripMenuItem.Name = "cadastroDeTitularToolStripMenuItem";
+            this.cadastroDeTitularToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cadastroDeTitularToolStripMenuItem.Text = "Cadastro de Titular";
             // 
-            // aaaToolStripMenuItem
+            // mudarSenhaToolStripMenuItem
             // 
-            this.aaaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.qwqqToolStripMenuItem});
-            this.aaaToolStripMenuItem.Name = "aaaToolStripMenuItem";
-            this.aaaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.aaaToolStripMenuItem.Text = "aaa";
+            this.mudarSenhaToolStripMenuItem.Name = "mudarSenhaToolStripMenuItem";
+            this.mudarSenhaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.mudarSenhaToolStripMenuItem.Tag = "1";
+            this.mudarSenhaToolStripMenuItem.Text = "Mudar Senha";
             // 
-            // qwqqToolStripMenuItem
+            // removerContaToolStripMenuItem
             // 
-            this.qwqqToolStripMenuItem.Name = "qwqqToolStripMenuItem";
-            this.qwqqToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.qwqqToolStripMenuItem.Tag = "2";
-            this.qwqqToolStripMenuItem.Text = "qwqq";
-            // 
-            // jjjToolStripMenuItem
-            // 
-            this.jjjToolStripMenuItem.Name = "jjjToolStripMenuItem";
-            this.jjjToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.jjjToolStripMenuItem.Text = "jjj";
+            this.removerContaToolStripMenuItem.Name = "removerContaToolStripMenuItem";
+            this.removerContaToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.removerContaToolStripMenuItem.Tag = "1";
+            this.removerContaToolStripMenuItem.Text = "Remover Conta";
             // 
             // frmPrincipal
             // 
@@ -276,15 +264,14 @@
         private System.Windows.Forms.MaskedTextBox maskedTextBox1;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ToolStripMenuItem testeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem akiToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem aliToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem jjjToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem hahahaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem uhuuuToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem oioioiToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem aaaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem qwqqToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem outroToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deNovoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mudarSenhaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem removerContaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cadastroDeUsuarioToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cadastroDeTitularToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ajudaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sobreToolStripMenuItem;
     }
 }
 
