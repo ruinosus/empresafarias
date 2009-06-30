@@ -8,7 +8,7 @@ namespace ClassesBasicas
     /// <summary>
     /// Classe que representa os Historicos de Mudanças de uma Parcela.
     /// </summary>
-    public class HistoricoParcela : Parcela
+    public class HistoricoParcela 
     {
         private Parcela parcela;
         /// <summary>
@@ -18,6 +18,16 @@ namespace ClassesBasicas
         {
             get { return parcela; }
             set { parcela = value; }
+        }
+
+        private Parcela parcelaHistorico;
+        /// <summary>
+        /// Propriedade relacionada a ParcelaHistorico.
+        /// </summary>
+        public Parcela ParcelaHistorico
+        {
+            get { return parcelaHistorico; }
+            set { parcelaHistorico = value; }
         }
 
          private Usuario usuario;
@@ -55,6 +65,7 @@ namespace ClassesBasicas
         public HistoricoParcela()
         {
             this.parcela = new Parcela();
+            this.parcelaHistorico = new Parcela();
             this.usuario = new Usuario();
         }
     }

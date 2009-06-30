@@ -21,7 +21,8 @@ namespace Repositorio.implementacoes
         private static String QUERY_SELECT_ID = "SELECT Id,DataPagamento,DataVencimento,Valor,NumeroParcela,Status,ContratoId,ParcelaId,DataAltecarao,UsuarioId,Descricao FROM HistoricoParcela WHERE Id = @Id";
         private static String QUERY_SELECT_ALL = "SELECT Id,DataPagamento,DataVencimento,Valor,NumeroParcela,Status,ContratoId,ParcelaId,DataAltecarao,UsuarioId,Descricao FROM HistoricoParcela";
         private static String QUERY_MAX_ID = "SELECT MAX(Id) Id FROM HistoricoParcela";
-
+        private static String QUERY_SELECT_PARCELA = "SELECT Id,DataPagamento,DataVencimento,Valor,NumeroParcela,Status,ContratoId,ParcelaId,DataAltecarao,UsuarioId,Descricao FROM HistoricoParcela WHERE ParcelaId = @ParcelaId";
+        
         #endregion
 
         #region Membros de IRepositorioHistoricoParcela
@@ -40,19 +41,19 @@ namespace Repositorio.implementacoes
             try
             {
                 SqlCommand comando;
-                if (historicoParcela.DataPagamento != null)
+                if (historicoParcela.ParcelaHistorico.DataPagamento != null)
                 {
                     comando = new SqlCommand(QUERY_INSERT_1, conexao);
-                    comando.Parameters.AddWithValue("@DataPagamento", historicoParcela.DataPagamento);
+                    comando.Parameters.AddWithValue("@DataPagamento", historicoParcela.ParcelaHistorico.DataPagamento);
                 }
                 else
                 {
                     comando = new SqlCommand(QUERY_INSERT_2, conexao);
                 }
-                comando.Parameters.AddWithValue("@DataVencimento", historicoParcela.DataVencimento);
-                comando.Parameters.AddWithValue("@Valor", historicoParcela.Valor);
-                comando.Parameters.AddWithValue("@NumeroParcela", historicoParcela.NumeroParcela);
-                comando.Parameters.AddWithValue("@Status", (int)historicoParcela.Status);
+                comando.Parameters.AddWithValue("@DataVencimento", historicoParcela.ParcelaHistorico.DataVencimento);
+                comando.Parameters.AddWithValue("@Valor", historicoParcela.ParcelaHistorico.Valor);
+                comando.Parameters.AddWithValue("@NumeroParcela", historicoParcela.ParcelaHistorico.NumeroParcela);
+                comando.Parameters.AddWithValue("@Status", (int)historicoParcela.ParcelaHistorico.Status);
                 comando.Parameters.AddWithValue("@ContratoId", ContratoId);
                 comando.Parameters.AddWithValue("@ParcelaId", historicoParcela.Parcela.Id);
                 comando.Parameters.AddWithValue("@DataAlteracao", historicoParcela.DataAlteracao);
@@ -60,7 +61,7 @@ namespace Repositorio.implementacoes
                 comando.Parameters.AddWithValue("@Descricao", historicoParcela.Descricao);
                 conexao.Open();
                 int regitrosAfetados = comando.ExecuteNonQuery();
-                historicoParcela.Id = this.ObterMaximoId();
+                historicoParcela.ParcelaHistorico.Id = this.ObterMaximoId();
             }
             catch (SqlException e)
             {
@@ -190,6 +191,47 @@ namespace Repositorio.implementacoes
             return id;
         }
 
+        /// <summary>
+        /// Metodo responsavel por consultar uma lista contendo todos os HistoricosParcela da Parcela Informada.
+        /// </summary>
+        /// <param name="parcela">Objeto do tipo Parcela a ser pesquisada.</param>
+        /// <returns>retorna uma lista contendo todos os HistoricosParcela da Parcela Informada.</returns>
+        public List<HistoricoParcela> Consultar(Parcela parcela)
+        {
+            UtilBD banco = new UtilBD();
+            SqlConnection conexao = banco.ObterConexao();
+            List<HistoricoParcela> historicosParcela = new List<HistoricoParcela>();
+            try
+            {
+                SqlCommand comando = new SqlCommand(QUERY_SELECT_PARCELA, conexao);
+                comando.Parameters.AddWithValue("@ParcelaId",parcela.Id);
+                SqlDataReader resultado;
+                conexao.Open();
+
+                resultado = comando.ExecuteReader();
+
+                if (resultado.HasRows)
+                {
+                    while (resultado.Read())
+                    {
+                        historicosParcela.Add(this.CriarHistoricoParcela(resultado));
+                    }
+                }
+                resultado.Close();
+            }
+
+            catch (SqlException e)
+            {
+                throw new ErroBanco(e.Message);
+            }
+            finally
+            {
+                banco.FecharConexao(conexao);
+            }
+
+            return historicosParcela;
+        }
+
         #endregion
 
         /// <summary>
@@ -203,31 +245,31 @@ namespace Repositorio.implementacoes
 
             if (resultado["Id"] != DBNull.Value)
             {
-                historicoParcela.Id = Convert.ToInt32(resultado["Id"]);
+                historicoParcela.ParcelaHistorico.Id = Convert.ToInt32(resultado["Id"]);
             }
             if (resultado["DataPagamento"] != DBNull.Value)
             {
-                historicoParcela.DataPagamento = Convert.ToDateTime(resultado["DataPagamento"]);
+                historicoParcela.ParcelaHistorico.DataPagamento = Convert.ToDateTime(resultado["DataPagamento"]);
             }
             if (resultado["DataVencimento"] != DBNull.Value)
             {
-                historicoParcela.DataVencimento = Convert.ToDateTime(resultado["DataVencimento"]);
+                historicoParcela.ParcelaHistorico.DataVencimento = Convert.ToDateTime(resultado["DataVencimento"]);
             }
             if (resultado["Valor"] != DBNull.Value)
             {
-                historicoParcela.Valor = Convert.ToDecimal(resultado["Valor"]);
+                historicoParcela.ParcelaHistorico.Valor = Convert.ToDecimal(resultado["Valor"]);
             }
             if (resultado["NumeroParcela"] != DBNull.Value)
             {
-                historicoParcela.NumeroParcela = Convert.ToInt32(resultado["NumeroParcela"]);
+                historicoParcela.ParcelaHistorico.NumeroParcela = Convert.ToInt32(resultado["NumeroParcela"]);
             }
             if (resultado["Status"] != DBNull.Value)
             {
-                historicoParcela.Status = (StatusParcela)Convert.ToInt32(resultado["Status"]);
+                historicoParcela.ParcelaHistorico.Status = (StatusParcela)Convert.ToInt32(resultado["Status"]);
             }
             if (resultado["Status"] != DBNull.Value)
             {
-                historicoParcela.Status = (StatusParcela)Convert.ToInt32(resultado["Status"]);
+                historicoParcela.ParcelaHistorico.Status = (StatusParcela)Convert.ToInt32(resultado["Status"]);
             }
 
             if (resultado["ParcelaId"] != DBNull.Value)

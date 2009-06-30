@@ -14,16 +14,21 @@ namespace Negocio.controladores
     {
         private IRepositorioParcela repParcela;
         private IRepositorioHistoricoParcela repHistoricoParcela;
+        private ControladorUsuario contUsuario;
+
         /// <summary>
         /// Construtor da Classe ControladorParcela
         /// </summary>
         /// <param name="repParcela">Recebe um objeto que implemente IRepositorioParcela.</param>
         /// <param name="repHistoricoParcela">Recebe um objeto que implemente IRepositorioHistoricoParcela.</param>
+        /// <param name="contUsuario">Recebe um objeto do Tipo ControladorUsuario.</param>
         public ControladorParcela(IRepositorioParcela repParcela,
-                                  IRepositorioHistoricoParcela repHistoricoParcela) 
+                                  IRepositorioHistoricoParcela repHistoricoParcela,
+                                  ControladorUsuario contUsuario) 
         {
             this.repParcela = repParcela;
             this.repHistoricoParcela = repHistoricoParcela;
+            this.contUsuario = contUsuario;
         }
 
         /// <summary>
@@ -31,18 +36,26 @@ namespace Negocio.controladores
         /// </summary>
         /// <param name="parcela">Objeto do tipo Parcela a ser inserido</param>
         /// <param name="ContratoId">Id do Contrato da Parcela.</param>
+        /// <param name="usuario">Usuario que inserio a Parcela.</param>
         /// <exception cref="ExecaoNegocio">Lançara a ExecaoNegocio caso o objeto seja nulo.</exception>
         /// <returns>retorna o Parcela inserido.</returns>
-        public Parcela Inserir(Parcela parcela, int ContratoId)
+        public Parcela Inserir(Parcela parcela, int ContratoId, Usuario usuario)
         {
             if (parcela == null)
                 throw new ExcecaoNegocio("Valor Inválido.");
             Parcela p = this.repParcela.Inserir(parcela,ContratoId);
 
-            //this.InserirHistorico(p, ContratoId);
+            HistoricoParcela hp = new HistoricoParcela();
+            hp.DataAlteracao = new DateTime();
+            hp.DataAlteracao = DateTime.Now;
+            hp.Usuario = usuario;
+            hp.Descricao = "Inserido";
+            hp.Parcela = p;
 
+            this.InserirHistorico(hp, ContratoId);
             return p;
         }
+
         /// <summary>
         /// Metodo responsavel por alterar uma Parcela.
         /// </summary>
@@ -56,6 +69,7 @@ namespace Negocio.controladores
             else
                 throw new ExcecaoNegocio("Parcela não existente.");
         }
+
         /// <summary>
         /// Metodo responsavel por remover uma Parcela.
         /// </summary>
@@ -68,6 +82,7 @@ namespace Negocio.controladores
             else
                 throw new ExcecaoNegocio("Parcela não existente.");
         }
+
         /// <summary>
         /// Metodo responsavel por consultar uma Parcela.
         /// </summary>
@@ -81,6 +96,7 @@ namespace Negocio.controladores
                 throw new ExcecaoNegocio("Parcela não existente.");
             return parcela;
         }
+
         /// <summary>
         /// Metodo responsavel por consultar todas as Parcelas cadastradas.
         /// </summary>
@@ -89,6 +105,7 @@ namespace Negocio.controladores
         {
             return this.repParcela.Consultar();
         }
+
         /// <summary>
         /// Metodo responsavel por consultar as Parcelas de um Contrato.
         /// </summary>

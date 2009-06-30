@@ -103,7 +103,7 @@ namespace Negocio
             //Controlador Parcela
             IRepositorioHistoricoParcela repHistoricoParcela = new RepositorioHistoricoParcela();
             IRepositorioParcela repParcela = new RepositorioParcela();
-            this.controladorParcela = new ControladorParcela(repParcela,repHistoricoParcela);
+            //this.controladorParcela = new ControladorParcela(repParcela,repHistoricoParcela);
             //Controlador Contrato
             IRepositorioContrato repContrato = new RepositorioContrato();
             this.controladorContrato = new ControladorContrato(repContrato, controladorParcela, controladorPlano);

@@ -8,7 +8,7 @@ namespace ClassesBasicas
     /// <summary>
     /// Classe que representa os Historicos de Mudanças de um Dependente.
     /// </summary>
-    public class HistoricoDependente : Dependente
+    public class HistoricoDependente 
     {
         private Dependente dependente;
         /// <summary>
@@ -18,6 +18,16 @@ namespace ClassesBasicas
         {
             get { return dependente; }
             set { dependente = value; }
+        }
+
+        private Dependente dependenteHistorico;
+        /// <summary>
+        /// Propriedade relacionada ao DependenteHistorico.
+        /// </summary>
+        public Dependente DependenteHistorico
+        {
+            get { return dependenteHistorico; }
+            set { dependenteHistorico = value; }
         }
 
          private Usuario usuario;
@@ -55,6 +65,7 @@ namespace ClassesBasicas
         public HistoricoDependente()
         {
             this.dependente = new Dependente();
+            this.dependenteHistorico = new Dependente();
             this.usuario = new Usuario();
         }
     }
