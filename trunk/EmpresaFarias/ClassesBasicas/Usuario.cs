@@ -6,6 +6,13 @@ using System.Windows.Forms;
 
 namespace ClassesBasicas
 {
+    public enum Status
+    {
+        Inativo = 1,
+        Inclusao,
+        Alteracao,
+        Navegacao
+    }
     /// <summary>
     /// Classe que representa um Usuario que poderá acessar o Sistema.
     /// </summary>
@@ -158,6 +165,33 @@ namespace ClassesBasicas
                         }  
                     }
                     HabilitarTab(tab.TabPages[i]); 
+                }
+
+            }
+            #endregion
+
+            #region Panel
+            if (o is Panel)
+            {
+                Panel panel = o as Panel;
+
+                for (int i = 0; i < panel.Controls.Count; i++)
+                {
+                    if (panel.Controls[i].Tag != null && !panel.Controls[i].Tag.Equals(""))
+                    {
+                        int tag = Convert.ToInt32(panel.Controls[i].Tag);
+                        if (this.VerificarTag(tag))
+                        {
+                            panel.Controls[i].Visible = true;
+                            panel.Controls[i].Enabled = true;
+                        }
+                        else
+                        {
+                            panel.Controls[i].Visible = false;
+                            panel.Controls[i].Enabled = false;
+                        }
+                    }
+                    //HabilitarTab(panel.TabPages[i]);
                 }
 
             }

@@ -22,6 +22,7 @@ namespace Negocio
         private Fachada()
         {
             InitControladores();
+            this.usuario = new Usuario();
         }
 
         /// <summary>
