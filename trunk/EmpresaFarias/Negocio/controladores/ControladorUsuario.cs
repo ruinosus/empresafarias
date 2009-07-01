@@ -41,8 +41,15 @@ namespace Negocio.controladores
             if ((this.Consultar(usuario.Login)))
                 throw new ExcecaoNegocio("Login já informado, por favor informe outro.");
 
-
-            this.repUsuario.Inserir(usuario);
+           usuario.Status = StatusUsuario.Ativo;
+           Usuario u =  this.repUsuario.Inserir(usuario);
+            if(u.Perfis.Count > 0)
+            {
+                for (int i = 0; i < u.Perfis.Count;i++ )
+                {
+                    this.InserirPerfil(u.Id, u.Perfis[i].Id);
+                }
+            }
 
         }
 
@@ -73,8 +80,8 @@ namespace Negocio.controladores
                 throw new ExcecaoNegocio("Login/Senha incorretos.");
 
             Usuario usuario = this.repUsuario.Consultar(login, senha);
-            // if (usuario == null)
-            //throw new ExcecaoNegocio("Login/Senha incorretos.");
+            if (usuario == null)
+                throw new ExcecaoNegocio("Login/Senha incorretos.");
             return this.MontarUsuario(usuario);
         }
 
@@ -100,6 +107,10 @@ namespace Negocio.controladores
         {
             List<Usuario> usuarios = this.repUsuario.Consultar();
 
+            var resultado = from u in usuarios
+                            where u.Status == StatusUsuario.Ativo
+                            select u;
+            usuarios = resultado.ToList();
             for (int i = 0; i < usuarios.Count; i++)
             {
                 usuarios[i] = this.MontarUsuario(usuarios[i]);
@@ -132,6 +143,20 @@ namespace Negocio.controladores
                 this.repUsuario.Alterar(usuario);
             else
                 throw new ExcecaoNegocio("Usuario não existente.");
+
+            Usuario u = usuario;
+            if (u.Perfis.Count > 0)
+            {
+                this.repPerfil.Remover(u);
+                for (int i = 0; i < u.Perfis.Count; i++)
+                {
+                    this.InserirPerfil(u.Id, u.Perfis[i].Id);
+                }
+            }
+            else
+            {
+                this.repPerfil.Remover(u);
+            }
         }
 
         /// <summary>
@@ -178,6 +203,15 @@ namespace Negocio.controladores
         public void RemoverPerfil(int UsuarioId, int PerfilId)
         {
             this.repPerfil.Remover(UsuarioId, PerfilId);
+        }
+
+        /// <summary>
+        /// Metodo responsavel por remover um Perfil de um Usuario.
+        /// </summary>
+        /// <param name="usuario">Usuario.</param>
+        public void Remover(Usuario usuario)
+        {
+            this.repPerfil.Remover(usuario);
         }
 
         /// <summary>

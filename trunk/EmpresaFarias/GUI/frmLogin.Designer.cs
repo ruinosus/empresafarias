@@ -28,12 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnOk = new System.Windows.Forms.Button();
             this.txtSenha = new System.Windows.Forms.TextBox();
             this.txtLogin = new System.Windows.Forms.TextBox();
             this.lblSenha = new System.Windows.Forms.Label();
             this.lblLogin = new System.Windows.Forms.Label();
+            this.tlMensagem = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // btnCancelar
@@ -116,5 +118,6 @@
         private System.Windows.Forms.TextBox txtLogin;
         private System.Windows.Forms.Label lblSenha;
         private System.Windows.Forms.Label lblLogin;
+        private System.Windows.Forms.ToolTip tlMensagem;
     }
 }

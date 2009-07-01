@@ -75,6 +75,7 @@
   <ItemGroup>
     <None Include="Banco\addCidades.sql" />
     <None Include="Banco\addEstados.sql" />
+    <None Include="Banco\addPerfil.sql" />
     <None Include="Banco\Script.sql" />
   </ItemGroup>
   <ItemGroup>

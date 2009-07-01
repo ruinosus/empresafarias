@@ -26,6 +26,12 @@ namespace Repositorio.interfaces
         void Remover(int UsuarioId, int PerfilId);
 
         /// <summary>
+        /// Metodo responsavel por remover um Perfil de um Usuario.
+        /// </summary>
+        /// <param name="usuario">Usuario.</param>
+        void Remover(Usuario usuario);
+
+        /// <summary>
         /// Metodo responsavel por consultar um Perfil.
         /// </summary>
         /// <param name="id">Id a ser consultado.</param>

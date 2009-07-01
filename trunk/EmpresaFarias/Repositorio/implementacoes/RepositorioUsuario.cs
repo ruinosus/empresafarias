@@ -16,14 +16,14 @@ namespace Repositorio.implementacoes
     {
         #region Sql Tabela Usuario
 
-        private static String QUERY_INSERT = "INSERT INTO Usuario (Nome,Login,Senha) VALUES (@Nome,@Login,@Senha)";
-        private static String QUERY_UPDATE = "UPDATE Usuarios SET Nome = @Nome WHERE Id = @Id";
+        private static String QUERY_INSERT = "INSERT INTO Usuario (Nome,Login,Senha,Status) VALUES (@Nome,@Login,@Senha,@Status)";
+        private static String QUERY_UPDATE = "UPDATE Usuario SET Nome = @Nome, Status= @Status WHERE Id = @Id";
         private static String QUERY_UPDATE_SENHA = "UPDATE Usuario SET Senha = @Senha WHERE Id = @Id";
         private static String QUERY_DELETE = "DELETE FROM Usuario WHERE Id = @Id";
-        private static String QUERY_SELECT_ID = "SELECT Id,Nome,Login,Senha FROM Usuario WHERE Id = @Id";
-        private static String QUERY_SELECT_LOGIN_SENHA = "SELECT Id,Nome,Login,Senha FROM Usuario WHERE Login = @Login AND Senha = @Senha";
-        private static String QUERY_SELECT_LOGIN = "SELECT Id,Nome,Login,Senha FROM UsuariO WHERE Login = @Login";
-        private static String QUERY_SELECT_ALL = "SELECT Id,Nome,Login,Senha FROM Usuario";
+        private static String QUERY_SELECT_ID = "SELECT Id,Nome,Login,Senha,Status FROM Usuario WHERE Id = @Id";
+        private static String QUERY_SELECT_LOGIN_SENHA = "SELECT Id,Nome,Login,Senha,Status FROM Usuario WHERE Login = @Login AND Senha = @Senha";
+        private static String QUERY_SELECT_LOGIN = "SELECT Id,Nome,Login,Senha,Status FROM UsuariO WHERE Login = @Login";
+        private static String QUERY_SELECT_ALL = "SELECT Id,Nome,Login,Senha,Status FROM Usuario";
         private static String QUERY_MAX_ID = "SELECT MAX(Id) Id FROM Usuario";
 
         #endregion
@@ -46,6 +46,7 @@ namespace Repositorio.implementacoes
                 comando.Parameters.AddWithValue("@Nome", usuario.Nome);
                 comando.Parameters.AddWithValue("@Login", usuario.Login);
                 comando.Parameters.AddWithValue("@Senha", usuario.Senha);
+                comando.Parameters.AddWithValue("@Status", (int)usuario.Status);
                 conexao.Open();
                 int regitrosAfetados = comando.ExecuteNonQuery();
                 usuario.Id = this.ObterMaximoId();
@@ -75,6 +76,7 @@ namespace Repositorio.implementacoes
                 SqlCommand comando = new SqlCommand(QUERY_UPDATE, conexao);
                 comando.Parameters.AddWithValue("@Nome", usuario.Nome);
                 comando.Parameters.AddWithValue("@Id", usuario.Id);
+                comando.Parameters.AddWithValue("@Status", (int)usuario.Status);
                 conexao.Open();
                 int regitrosAfetados = comando.ExecuteNonQuery();
             }
@@ -368,6 +370,10 @@ namespace Repositorio.implementacoes
             if (resultado["Senha"] != DBNull.Value)
             {
                 usuario.Senha = Convert.ToString(resultado["Senha"]);
+            }
+            if (resultado["Status"] != DBNull.Value)
+            {
+                usuario.Status = (StatusUsuario)Convert.ToInt32(resultado["Status"]);
             }
             return usuario;
         }
