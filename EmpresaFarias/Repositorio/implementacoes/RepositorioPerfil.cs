@@ -19,7 +19,8 @@ namespace Repositorio.implementacoes
         private static String QUERY_INSERT = "INSERT INTO UsuarioPerfil (UsuarioId,PerfilId) VALUES (@UsuarioId,@PerfilId)";
         private static String QUERY_DELETE = "DELETE FROM UsuarioPerfil WHERE UsuarioId = @UsuarioId AND PerfilId = @PerfilId";
         private static String QUERY_SELECT_USUARIO = "SELECT PerfilId FROM UsuarioPerfil WHERE UsuarioId = @UsuarioId";
-
+        private static String QUERY_DELETE_USUARIO = "DELETE FROM UsuarioPerfil WHERE UsuarioId = @UsuarioId";
+        
         #endregion
 
         #region Sql Tabela Perfil
@@ -91,6 +92,33 @@ namespace Repositorio.implementacoes
             {
                 banco.FecharConexao(conexao);
             }
+        }
+
+        /// <summary>
+        /// Metodo responsavel por remover um Perfil de um Usuario.
+        /// </summary>
+        /// <param name="usuario">Usuario.</param>
+        public void Remover(Usuario usuario)
+        {
+            UtilBD banco = new UtilBD();
+            SqlConnection conexao = banco.ObterConexao();
+
+            try
+            {
+                SqlCommand comando = new SqlCommand(QUERY_DELETE_USUARIO, conexao);
+                comando.Parameters.AddWithValue("@UsuarioID", usuario.Id);
+                conexao.Open();
+                int regitrosAfetados = comando.ExecuteNonQuery();
+            }
+            catch (SqlException e)
+            {
+                throw new ErroBanco(e.Message);
+            }
+            finally
+            {
+                banco.FecharConexao(conexao);
+            }
+
         }
 
         /// <summary>
@@ -195,7 +223,14 @@ namespace Repositorio.implementacoes
                 {
                     while (resultado.Read())
                     {
-                        perfis.Add(this.CriarPerfil(resultado));
+                        if (resultado["PerfilId"] != DBNull.Value)
+                        {
+                            int id = Convert.ToInt32(resultado["PerfilId"]);
+                            //Perfil p = new Perfil();
+                            //p.Id = id;
+                            //perfis.Add(p);
+                            perfis.Add(this.Consultar(id));
+                        }                       
                     }
                 }
                 resultado.Close();

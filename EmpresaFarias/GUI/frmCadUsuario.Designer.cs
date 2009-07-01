@@ -29,20 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.txtNome = new System.Windows.Forms.TextBox();
-            this.lblNome = new System.Windows.Forms.Label();
-            this.txtLogin = new System.Windows.Forms.TextBox();
-            this.lblLogin = new System.Windows.Forms.Label();
-            this.btnVerificarLogin = new System.Windows.Forms.Button();
-            this.lblSenha = new System.Windows.Forms.Label();
-            this.txtSenha = new System.Windows.Forms.TextBox();
-            this.txtConfirmarSenha = new System.Windows.Forms.TextBox();
-            this.lblConfirmarSenha = new System.Windows.Forms.Label();
-            this.tbcUsuario = new System.Windows.Forms.TabControl();
-            this.tabUsuario = new System.Windows.Forms.TabPage();
-            this.tabPerfil = new System.Windows.Forms.TabPage();
-            this.lblPerfilDisponivel = new System.Windows.Forms.Label();
-            this.lstPerfilDisponivel = new System.Windows.Forms.ListBox();
             this.stInformacaoGeral = new System.Windows.Forms.StatusStrip();
             this.lbInformacaoGeral = new System.Windows.Forms.ToolStripStatusLabel();
             this.tlMensagem = new System.Windows.Forms.ToolTip(this.components);
@@ -64,172 +50,41 @@
             this.btnAlterar = new System.Windows.Forms.ToolStripButton();
             this.btnExcluir = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnPrimeiro = new System.Windows.Forms.ToolStripButton();
             this.btnAnterior = new System.Windows.Forms.ToolStripButton();
             this.btnProximo = new System.Windows.Forms.ToolStripButton();
             this.btnUltimo = new System.Windows.Forms.ToolStripButton();
-            this.lstPerfilUsuario = new System.Windows.Forms.ListBox();
-            this.lblPerfilUsuario = new System.Windows.Forms.Label();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.tabUsuario = new System.Windows.Forms.TabPage();
+            this.btnVerificarLogin = new System.Windows.Forms.Button();
+            this.lblSenha = new System.Windows.Forms.Label();
+            this.txtLogin = new System.Windows.Forms.TextBox();
+            this.txtSenha = new System.Windows.Forms.TextBox();
+            this.lblLogin = new System.Windows.Forms.Label();
+            this.lblConfirmarSenha = new System.Windows.Forms.Label();
+            this.lblNome = new System.Windows.Forms.Label();
+            this.txtConfirmarSenha = new System.Windows.Forms.TextBox();
+            this.txtNome = new System.Windows.Forms.TextBox();
+            this.cmbPerfil = new System.Windows.Forms.ComboBox();
+            this.lblPerfilDisponivel = new System.Windows.Forms.Label();
             this.btnAdicionarPerfil = new System.Windows.Forms.Button();
             this.btnRemoverPerfil = new System.Windows.Forms.Button();
-            this.tbcUsuario.SuspendLayout();
-            this.tabUsuario.SuspendLayout();
-            this.tabPerfil.SuspendLayout();
+            this.lstPerfilUsuario = new System.Windows.Forms.ListBox();
+            this.lblPerfilUsuario = new System.Windows.Forms.Label();
+            this.tbcUsuario = new System.Windows.Forms.TabControl();
             this.stInformacaoGeral.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsUsuario)).BeginInit();
             this.tlPrincipal.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            this.tabUsuario.SuspendLayout();
+            this.tbcUsuario.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // txtNome
-            // 
-            this.txtNome.Location = new System.Drawing.Point(44, 6);
-            this.txtNome.Name = "txtNome";
-            this.txtNome.Size = new System.Drawing.Size(323, 20);
-            this.txtNome.TabIndex = 0;
-            this.txtNome.TextChanged += new System.EventHandler(this.txtNome_TextChanged);
-            // 
-            // lblNome
-            // 
-            this.lblNome.AutoSize = true;
-            this.lblNome.Location = new System.Drawing.Point(5, 9);
-            this.lblNome.Name = "lblNome";
-            this.lblNome.Size = new System.Drawing.Size(35, 13);
-            this.lblNome.TabIndex = 2;
-            this.lblNome.Text = "Nome";
-            // 
-            // txtLogin
-            // 
-            this.txtLogin.Location = new System.Drawing.Point(44, 33);
-            this.txtLogin.Name = "txtLogin";
-            this.txtLogin.Size = new System.Drawing.Size(240, 20);
-            this.txtLogin.TabIndex = 1;
-            this.txtLogin.TextChanged += new System.EventHandler(this.txtLogin_TextChanged);
-            // 
-            // lblLogin
-            // 
-            this.lblLogin.AutoSize = true;
-            this.lblLogin.Location = new System.Drawing.Point(5, 35);
-            this.lblLogin.Name = "lblLogin";
-            this.lblLogin.Size = new System.Drawing.Size(33, 13);
-            this.lblLogin.TabIndex = 4;
-            this.lblLogin.Text = "Login";
-            // 
-            // btnVerificarLogin
-            // 
-            this.btnVerificarLogin.Enabled = false;
-            this.btnVerificarLogin.Location = new System.Drawing.Point(289, 32);
-            this.btnVerificarLogin.Name = "btnVerificarLogin";
-            this.btnVerificarLogin.Size = new System.Drawing.Size(77, 20);
-            this.btnVerificarLogin.TabIndex = 2;
-            this.btnVerificarLogin.Text = "Verificar";
-            this.btnVerificarLogin.UseVisualStyleBackColor = true;
-            this.btnVerificarLogin.Click += new System.EventHandler(this.btnVerificarLogin_Click);
-            // 
-            // lblSenha
-            // 
-            this.lblSenha.AutoSize = true;
-            this.lblSenha.Location = new System.Drawing.Point(5, 59);
-            this.lblSenha.Name = "lblSenha";
-            this.lblSenha.Size = new System.Drawing.Size(38, 13);
-            this.lblSenha.TabIndex = 7;
-            this.lblSenha.Text = "Senha";
-            // 
-            // txtSenha
-            // 
-            this.txtSenha.Location = new System.Drawing.Point(44, 59);
-            this.txtSenha.Name = "txtSenha";
-            this.txtSenha.PasswordChar = '*';
-            this.txtSenha.Size = new System.Drawing.Size(122, 20);
-            this.txtSenha.TabIndex = 3;
-            this.txtSenha.TextChanged += new System.EventHandler(this.txtSenha_TextChanged);
-            // 
-            // txtConfirmarSenha
-            // 
-            this.txtConfirmarSenha.Location = new System.Drawing.Point(245, 59);
-            this.txtConfirmarSenha.Name = "txtConfirmarSenha";
-            this.txtConfirmarSenha.PasswordChar = '*';
-            this.txtConfirmarSenha.Size = new System.Drawing.Size(121, 20);
-            this.txtConfirmarSenha.TabIndex = 4;
-            this.txtConfirmarSenha.TextChanged += new System.EventHandler(this.txtConfirmarSenha_TextChanged);
-            // 
-            // lblConfirmarSenha
-            // 
-            this.lblConfirmarSenha.AutoSize = true;
-            this.lblConfirmarSenha.Location = new System.Drawing.Point(181, 59);
-            this.lblConfirmarSenha.Name = "lblConfirmarSenha";
-            this.lblConfirmarSenha.Size = new System.Drawing.Size(48, 13);
-            this.lblConfirmarSenha.TabIndex = 9;
-            this.lblConfirmarSenha.Text = "Confirme";
-            // 
-            // tbcUsuario
-            // 
-            this.tbcUsuario.Controls.Add(this.tabUsuario);
-            this.tbcUsuario.Controls.Add(this.tabPerfil);
-            this.tbcUsuario.Location = new System.Drawing.Point(0, 47);
-            this.tbcUsuario.Name = "tbcUsuario";
-            this.tbcUsuario.SelectedIndex = 0;
-            this.tbcUsuario.Size = new System.Drawing.Size(432, 192);
-            this.tbcUsuario.TabIndex = 11;
-            // 
-            // tabUsuario
-            // 
-            this.tabUsuario.Controls.Add(this.txtNome);
-            this.tabUsuario.Controls.Add(this.txtConfirmarSenha);
-            this.tabUsuario.Controls.Add(this.lblNome);
-            this.tabUsuario.Controls.Add(this.lblConfirmarSenha);
-            this.tabUsuario.Controls.Add(this.lblLogin);
-            this.tabUsuario.Controls.Add(this.txtSenha);
-            this.tabUsuario.Controls.Add(this.txtLogin);
-            this.tabUsuario.Controls.Add(this.lblSenha);
-            this.tabUsuario.Controls.Add(this.btnVerificarLogin);
-            this.tabUsuario.Location = new System.Drawing.Point(4, 22);
-            this.tabUsuario.Name = "tabUsuario";
-            this.tabUsuario.Padding = new System.Windows.Forms.Padding(3);
-            this.tabUsuario.Size = new System.Drawing.Size(424, 166);
-            this.tabUsuario.TabIndex = 0;
-            this.tabUsuario.Text = "Usuario";
-            this.tabUsuario.UseVisualStyleBackColor = true;
-            // 
-            // tabPerfil
-            // 
-            this.tabPerfil.Controls.Add(this.btnRemoverPerfil);
-            this.tabPerfil.Controls.Add(this.btnAdicionarPerfil);
-            this.tabPerfil.Controls.Add(this.lblPerfilUsuario);
-            this.tabPerfil.Controls.Add(this.lblPerfilDisponivel);
-            this.tabPerfil.Controls.Add(this.lstPerfilUsuario);
-            this.tabPerfil.Controls.Add(this.lstPerfilDisponivel);
-            this.tabPerfil.Location = new System.Drawing.Point(4, 22);
-            this.tabPerfil.Name = "tabPerfil";
-            this.tabPerfil.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPerfil.Size = new System.Drawing.Size(424, 166);
-            this.tabPerfil.TabIndex = 1;
-            this.tabPerfil.Text = "Perfil";
-            this.tabPerfil.UseVisualStyleBackColor = true;
-            // 
-            // lblPerfilDisponivel
-            // 
-            this.lblPerfilDisponivel.AutoSize = true;
-            this.lblPerfilDisponivel.Location = new System.Drawing.Point(34, 6);
-            this.lblPerfilDisponivel.Name = "lblPerfilDisponivel";
-            this.lblPerfilDisponivel.Size = new System.Drawing.Size(90, 13);
-            this.lblPerfilDisponivel.TabIndex = 2;
-            this.lblPerfilDisponivel.Text = "Perfis Disponivies";
-            // 
-            // lstPerfilDisponivel
-            // 
-            this.lstPerfilDisponivel.FormattingEnabled = true;
-            this.lstPerfilDisponivel.Location = new System.Drawing.Point(16, 22);
-            this.lstPerfilDisponivel.Name = "lstPerfilDisponivel";
-            this.lstPerfilDisponivel.Size = new System.Drawing.Size(133, 108);
-            this.lstPerfilDisponivel.TabIndex = 0;
             // 
             // stInformacaoGeral
             // 
             this.stInformacaoGeral.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lbInformacaoGeral});
-            this.stInformacaoGeral.Location = new System.Drawing.Point(0, 269);
+            this.stInformacaoGeral.Location = new System.Drawing.Point(0, 321);
             this.stInformacaoGeral.Name = "stInformacaoGeral";
             this.stInformacaoGeral.Size = new System.Drawing.Size(433, 22);
             this.stInformacaoGeral.TabIndex = 140;
@@ -375,21 +230,6 @@
             this.toolStripSeparator6.Name = "toolStripSeparator6";
             this.toolStripSeparator6.Size = new System.Drawing.Size(6, 25);
             // 
-            // toolStrip1
-            // 
-            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
-            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnPrimeiro,
-            this.btnAnterior,
-            this.btnProximo,
-            this.btnUltimo});
-            this.toolStrip1.Location = new System.Drawing.Point(144, 242);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(112, 25);
-            this.toolStrip1.TabIndex = 166;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
             // btnPrimeiro
             // 
             this.btnPrimeiro.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -430,46 +270,198 @@
             this.btnUltimo.ToolTipText = "Vai para o primeiro elemento";
             this.btnUltimo.Click += new System.EventHandler(this.btnUltimo_Click);
             // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnPrimeiro,
+            this.btnAnterior,
+            this.btnProximo,
+            this.btnUltimo});
+            this.toolStrip1.Location = new System.Drawing.Point(145, 273);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(112, 25);
+            this.toolStrip1.TabIndex = 166;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // tabUsuario
+            // 
+            this.tabUsuario.Controls.Add(this.lblPerfilUsuario);
+            this.tabUsuario.Controls.Add(this.lstPerfilUsuario);
+            this.tabUsuario.Controls.Add(this.btnRemoverPerfil);
+            this.tabUsuario.Controls.Add(this.btnAdicionarPerfil);
+            this.tabUsuario.Controls.Add(this.lblPerfilDisponivel);
+            this.tabUsuario.Controls.Add(this.cmbPerfil);
+            this.tabUsuario.Controls.Add(this.txtNome);
+            this.tabUsuario.Controls.Add(this.txtConfirmarSenha);
+            this.tabUsuario.Controls.Add(this.txtSenha);
+            this.tabUsuario.Controls.Add(this.txtLogin);
+            this.tabUsuario.Controls.Add(this.lblNome);
+            this.tabUsuario.Controls.Add(this.lblConfirmarSenha);
+            this.tabUsuario.Controls.Add(this.lblLogin);
+            this.tabUsuario.Controls.Add(this.lblSenha);
+            this.tabUsuario.Controls.Add(this.btnVerificarLogin);
+            this.tabUsuario.Location = new System.Drawing.Point(4, 22);
+            this.tabUsuario.Name = "tabUsuario";
+            this.tabUsuario.Padding = new System.Windows.Forms.Padding(3);
+            this.tabUsuario.Size = new System.Drawing.Size(424, 197);
+            this.tabUsuario.TabIndex = 0;
+            this.tabUsuario.Text = "Usuario";
+            this.tabUsuario.UseVisualStyleBackColor = true;
+            // 
+            // btnVerificarLogin
+            // 
+            this.btnVerificarLogin.Enabled = false;
+            this.btnVerificarLogin.Location = new System.Drawing.Point(289, 32);
+            this.btnVerificarLogin.Name = "btnVerificarLogin";
+            this.btnVerificarLogin.Size = new System.Drawing.Size(77, 20);
+            this.btnVerificarLogin.TabIndex = 2;
+            this.btnVerificarLogin.Text = "Verificar";
+            this.btnVerificarLogin.UseVisualStyleBackColor = true;
+            this.btnVerificarLogin.Click += new System.EventHandler(this.btnVerificarLogin_Click);
+            // 
+            // lblSenha
+            // 
+            this.lblSenha.AutoSize = true;
+            this.lblSenha.Location = new System.Drawing.Point(5, 59);
+            this.lblSenha.Name = "lblSenha";
+            this.lblSenha.Size = new System.Drawing.Size(38, 13);
+            this.lblSenha.TabIndex = 7;
+            this.lblSenha.Text = "Senha";
+            // 
+            // txtLogin
+            // 
+            this.txtLogin.Location = new System.Drawing.Point(44, 33);
+            this.txtLogin.Name = "txtLogin";
+            this.txtLogin.Size = new System.Drawing.Size(240, 20);
+            this.txtLogin.TabIndex = 1;
+            this.txtLogin.TextChanged += new System.EventHandler(this.txtLogin_TextChanged);
+            // 
+            // txtSenha
+            // 
+            this.txtSenha.Location = new System.Drawing.Point(44, 59);
+            this.txtSenha.Name = "txtSenha";
+            this.txtSenha.PasswordChar = '*';
+            this.txtSenha.Size = new System.Drawing.Size(122, 20);
+            this.txtSenha.TabIndex = 3;
+            this.txtSenha.TextChanged += new System.EventHandler(this.txtSenha_TextChanged);
+            // 
+            // lblLogin
+            // 
+            this.lblLogin.AutoSize = true;
+            this.lblLogin.Location = new System.Drawing.Point(5, 35);
+            this.lblLogin.Name = "lblLogin";
+            this.lblLogin.Size = new System.Drawing.Size(33, 13);
+            this.lblLogin.TabIndex = 4;
+            this.lblLogin.Text = "Login";
+            // 
+            // lblConfirmarSenha
+            // 
+            this.lblConfirmarSenha.AutoSize = true;
+            this.lblConfirmarSenha.Location = new System.Drawing.Point(181, 59);
+            this.lblConfirmarSenha.Name = "lblConfirmarSenha";
+            this.lblConfirmarSenha.Size = new System.Drawing.Size(48, 13);
+            this.lblConfirmarSenha.TabIndex = 9;
+            this.lblConfirmarSenha.Text = "Confirme";
+            // 
+            // lblNome
+            // 
+            this.lblNome.AutoSize = true;
+            this.lblNome.Location = new System.Drawing.Point(5, 9);
+            this.lblNome.Name = "lblNome";
+            this.lblNome.Size = new System.Drawing.Size(35, 13);
+            this.lblNome.TabIndex = 2;
+            this.lblNome.Text = "Nome";
+            // 
+            // txtConfirmarSenha
+            // 
+            this.txtConfirmarSenha.Location = new System.Drawing.Point(245, 59);
+            this.txtConfirmarSenha.Name = "txtConfirmarSenha";
+            this.txtConfirmarSenha.PasswordChar = '*';
+            this.txtConfirmarSenha.Size = new System.Drawing.Size(121, 20);
+            this.txtConfirmarSenha.TabIndex = 4;
+            this.txtConfirmarSenha.TextChanged += new System.EventHandler(this.txtConfirmarSenha_TextChanged);
+            // 
+            // txtNome
+            // 
+            this.txtNome.Location = new System.Drawing.Point(44, 6);
+            this.txtNome.Name = "txtNome";
+            this.txtNome.Size = new System.Drawing.Size(323, 20);
+            this.txtNome.TabIndex = 0;
+            this.txtNome.TextChanged += new System.EventHandler(this.txtNome_TextChanged);
+            // 
+            // cmbPerfil
+            // 
+            this.cmbPerfil.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPerfil.FormattingEnabled = true;
+            this.cmbPerfil.Location = new System.Drawing.Point(101, 90);
+            this.cmbPerfil.Name = "cmbPerfil";
+            this.cmbPerfil.Size = new System.Drawing.Size(236, 21);
+            this.cmbPerfil.TabIndex = 10;
+            this.cmbPerfil.SelectedIndexChanged += new System.EventHandler(this.cmbPerfil_SelectedIndexChanged);
+            // 
+            // lblPerfilDisponivel
+            // 
+            this.lblPerfilDisponivel.AutoSize = true;
+            this.lblPerfilDisponivel.Location = new System.Drawing.Point(5, 93);
+            this.lblPerfilDisponivel.Name = "lblPerfilDisponivel";
+            this.lblPerfilDisponivel.Size = new System.Drawing.Size(90, 13);
+            this.lblPerfilDisponivel.TabIndex = 11;
+            this.lblPerfilDisponivel.Text = "Perfis Disponivies";
+            // 
+            // btnAdicionarPerfil
+            // 
+            this.btnAdicionarPerfil.Location = new System.Drawing.Point(342, 88);
+            this.btnAdicionarPerfil.Name = "btnAdicionarPerfil";
+            this.btnAdicionarPerfil.Size = new System.Drawing.Size(24, 23);
+            this.btnAdicionarPerfil.TabIndex = 12;
+            this.btnAdicionarPerfil.Text = "+";
+            this.btnAdicionarPerfil.UseVisualStyleBackColor = true;
+            this.btnAdicionarPerfil.Click += new System.EventHandler(this.btnAdicionarPerfil_Click);
+            // 
+            // btnRemoverPerfil
+            // 
+            this.btnRemoverPerfil.Location = new System.Drawing.Point(343, 112);
+            this.btnRemoverPerfil.Name = "btnRemoverPerfil";
+            this.btnRemoverPerfil.Size = new System.Drawing.Size(24, 23);
+            this.btnRemoverPerfil.TabIndex = 13;
+            this.btnRemoverPerfil.Text = "-";
+            this.btnRemoverPerfil.UseVisualStyleBackColor = true;
+            this.btnRemoverPerfil.Click += new System.EventHandler(this.btnRemoverPerfil_Click);
+            // 
             // lstPerfilUsuario
             // 
             this.lstPerfilUsuario.FormattingEnabled = true;
-            this.lstPerfilUsuario.Location = new System.Drawing.Point(236, 22);
+            this.lstPerfilUsuario.Location = new System.Drawing.Point(101, 114);
             this.lstPerfilUsuario.Name = "lstPerfilUsuario";
-            this.lstPerfilUsuario.Size = new System.Drawing.Size(126, 108);
-            this.lstPerfilUsuario.TabIndex = 1;
+            this.lstPerfilUsuario.Size = new System.Drawing.Size(236, 69);
+            this.lstPerfilUsuario.TabIndex = 14;
+            this.lstPerfilUsuario.SelectedIndexChanged += new System.EventHandler(this.lstPerfilUsuario_SelectedIndexChanged);
             // 
             // lblPerfilUsuario
             // 
             this.lblPerfilUsuario.AutoSize = true;
-            this.lblPerfilUsuario.Location = new System.Drawing.Point(258, 6);
+            this.lblPerfilUsuario.Location = new System.Drawing.Point(5, 114);
             this.lblPerfilUsuario.Name = "lblPerfilUsuario";
             this.lblPerfilUsuario.Size = new System.Drawing.Size(81, 13);
-            this.lblPerfilUsuario.TabIndex = 2;
+            this.lblPerfilUsuario.TabIndex = 15;
             this.lblPerfilUsuario.Text = "Perfis Utilizados";
             // 
-            // btnAdicionarPerfil
+            // tbcUsuario
             // 
-            this.btnAdicionarPerfil.Location = new System.Drawing.Point(155, 51);
-            this.btnAdicionarPerfil.Name = "btnAdicionarPerfil";
-            this.btnAdicionarPerfil.Size = new System.Drawing.Size(75, 23);
-            this.btnAdicionarPerfil.TabIndex = 3;
-            this.btnAdicionarPerfil.Text = ">>";
-            this.btnAdicionarPerfil.UseVisualStyleBackColor = true;
-            // 
-            // btnRemoverPerfil
-            // 
-            this.btnRemoverPerfil.Location = new System.Drawing.Point(155, 80);
-            this.btnRemoverPerfil.Name = "btnRemoverPerfil";
-            this.btnRemoverPerfil.Size = new System.Drawing.Size(75, 23);
-            this.btnRemoverPerfil.TabIndex = 4;
-            this.btnRemoverPerfil.Text = "<<";
-            this.btnRemoverPerfil.UseVisualStyleBackColor = true;
+            this.tbcUsuario.Controls.Add(this.tabUsuario);
+            this.tbcUsuario.Location = new System.Drawing.Point(0, 47);
+            this.tbcUsuario.Name = "tbcUsuario";
+            this.tbcUsuario.SelectedIndex = 0;
+            this.tbcUsuario.Size = new System.Drawing.Size(432, 223);
+            this.tbcUsuario.TabIndex = 11;
             // 
             // frmCadUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(433, 291);
+            this.ClientSize = new System.Drawing.Size(433, 343);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.tlPrincipal);
             this.Controls.Add(this.stInformacaoGeral);
@@ -478,11 +470,6 @@
             this.Name = "frmCadUsuario";
             this.Text = "Formulário de Cadastro de Usuário";
             this.Load += new System.EventHandler(this.frmCadUsuario_Load);
-            this.tbcUsuario.ResumeLayout(false);
-            this.tabUsuario.ResumeLayout(false);
-            this.tabUsuario.PerformLayout();
-            this.tabPerfil.ResumeLayout(false);
-            this.tabPerfil.PerformLayout();
             this.stInformacaoGeral.ResumeLayout(false);
             this.stInformacaoGeral.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsUsuario)).EndInit();
@@ -490,6 +477,9 @@
             this.tlPrincipal.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.tabUsuario.ResumeLayout(false);
+            this.tabUsuario.PerformLayout();
+            this.tbcUsuario.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -497,20 +487,6 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox txtNome;
-        private System.Windows.Forms.Label lblNome;
-        private System.Windows.Forms.TextBox txtLogin;
-        private System.Windows.Forms.Label lblLogin;
-        private System.Windows.Forms.Button btnVerificarLogin;
-        private System.Windows.Forms.Label lblSenha;
-        private System.Windows.Forms.TextBox txtSenha;
-        private System.Windows.Forms.TextBox txtConfirmarSenha;
-        private System.Windows.Forms.Label lblConfirmarSenha;
-        private System.Windows.Forms.TabControl tbcUsuario;
-        private System.Windows.Forms.TabPage tabUsuario;
-        private System.Windows.Forms.TabPage tabPerfil;
-        private System.Windows.Forms.ListBox lstPerfilDisponivel;
-        private System.Windows.Forms.Label lblPerfilDisponivel;
         private System.Windows.Forms.StatusStrip stInformacaoGeral;
         private System.Windows.Forms.ToolStripStatusLabel lbInformacaoGeral;
         private System.Windows.Forms.ToolTip tlMensagem;
@@ -532,14 +508,27 @@
         private System.Windows.Forms.ToolStripButton btnAlterar;
         private System.Windows.Forms.ToolStripButton btnExcluir;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
-        private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton btnPrimeiro;
         private System.Windows.Forms.ToolStripButton btnAnterior;
         private System.Windows.Forms.ToolStripButton btnProximo;
         private System.Windows.Forms.ToolStripButton btnUltimo;
-        private System.Windows.Forms.Button btnRemoverPerfil;
-        private System.Windows.Forms.Button btnAdicionarPerfil;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.TabPage tabUsuario;
         private System.Windows.Forms.Label lblPerfilUsuario;
         private System.Windows.Forms.ListBox lstPerfilUsuario;
+        private System.Windows.Forms.Button btnRemoverPerfil;
+        private System.Windows.Forms.Button btnAdicionarPerfil;
+        private System.Windows.Forms.Label lblPerfilDisponivel;
+        private System.Windows.Forms.ComboBox cmbPerfil;
+        private System.Windows.Forms.TextBox txtNome;
+        private System.Windows.Forms.TextBox txtConfirmarSenha;
+        private System.Windows.Forms.TextBox txtSenha;
+        private System.Windows.Forms.TextBox txtLogin;
+        private System.Windows.Forms.Label lblNome;
+        private System.Windows.Forms.Label lblConfirmarSenha;
+        private System.Windows.Forms.Label lblLogin;
+        private System.Windows.Forms.Label lblSenha;
+        private System.Windows.Forms.Button btnVerificarLogin;
+        private System.Windows.Forms.TabControl tbcUsuario;
     }
 }

@@ -7,33 +7,67 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using ClassesBasicas;
+using Negocio;
 
 namespace GUI
 {
     public partial class frmPrincipal : Form
     {
-        Usuario usuario = new Usuario();
+        Fachada fachada = Fachada.ObterInstancia();
+
         public frmPrincipal()
         {
             InitializeComponent();
         }
 
+        private bool VerificarUsuario()
+        {
+            if (fachada.Usuario.Id > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
-            Perfil p = new Perfil();
-            p.Tags.Add(1);
-            usuario.Perfis.Add(p);
-            usuario.HabilitarComponentes(this);
-            usuario.HabilitarComponentes(menuStrip1);
-
-            usuario.HabilitarComponentes(tabControl1);
-            usuario.HabilitarComponentes(panel1);
+            fachada.Usuario.HabilitarComponentes(this);
+            fachada.Usuario.HabilitarComponentes(menuPrincipal);
         }
 
         private void cadastroDeUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmCadUsuario frm = new frmCadUsuario();
             frm.ShowDialog();
+        }
+
+        private void logarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!VerificarUsuario())
+            {
+                frmLogin frm = new frmLogin();
+                frm.ShowDialog();
+                if (VerificarUsuario())
+                {
+                    logarToolStripMenuItem.Text = "Deslogar";
+                }
+            }
+            else
+            {
+                fachada.Usuario = new Usuario();
+                logarToolStripMenuItem.Text = "Logar";
+            
+            }
+            fachada.Usuario.HabilitarComponentes(this);
+            fachada.Usuario.HabilitarComponentes(menuPrincipal);
+        }
+
+        private void sairToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

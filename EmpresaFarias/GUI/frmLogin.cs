@@ -6,12 +6,14 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using ClassesBasicas;
+using Negocio;
 
 namespace GUI
 {
     public partial class frmLogin : Form
     {
-
+        Fachada fachada = Fachada.ObterInstancia();
         public frmLogin()
         {
             InitializeComponent();
@@ -24,6 +26,21 @@ namespace GUI
 
         private void btnOk_Click(object sender, EventArgs e)
         {
+            try
+            {
+                fachada.Usuario = fachada.ControladorUsuario.Consultar(txtLogin.Text, txtSenha.Text);
+                this.Close();
+            }
+            catch (ExcecaoNegocio ex)
+            {
+                tlMensagem.ToolTipTitle = "Erro!";
+                tlMensagem.Show(ex.Message, txtLogin);
+            }
+            catch (Exception exc)
+            {
+                tlMensagem.ToolTipTitle = "Erro!";
+                tlMensagem.Show(exc.Message, txtLogin);
+            }
 
         }
     }

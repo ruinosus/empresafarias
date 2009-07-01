@@ -14,7 +14,7 @@ namespace GUI
     public partial class frmCadUsuario : Form
     {
         Fachada fachada = Fachada.ObterInstancia();
-        Status status = Status.Navegacao;
+        Status status = Status.Inativo;
         Usuario usuario;
         Usuario usuarioAtual;
         List<Usuario> usuarios;
@@ -26,11 +26,6 @@ namespace GUI
             InitializeComponent();
         }
 
-        private void CarregarPerfis()
-        {
-             
-        }
-
         private void HabilitaSalvar()
         {
             if (status != Status.Alteracao)
@@ -38,6 +33,7 @@ namespace GUI
                 btnSalvar.Enabled = (txtNome.Text.Trim() != "") &&
                                     (txtSenha.Text.Trim() != "") &&
                                     (txtConfirmarSenha.Text.Equals(txtSenha.Text)) &&
+                                    txtLogin.Text != String.Empty &&
                                     !fachada.ControladorUsuario.Consultar(txtLogin.Text);
             }
             else
@@ -46,6 +42,35 @@ namespace GUI
                                     (txtSenha.Text.Trim() != "") &&
                                     (txtConfirmarSenha.Text.Equals(txtSenha.Text));
             }
+
+        }
+
+        private void AdicionarPerfil()
+        {
+            btnAdicionarPerfil.Enabled = cmbPerfil.Items.Count > 0;
+
+        }
+
+        private void RemoverPerfil()
+        {
+            btnRemoverPerfil.Enabled = (lstPerfilUsuario.Items.Count > 0) && lstPerfilUsuario.SelectedIndex > -1;
+
+        }
+
+        private void CarregarPerfilUsuario()
+        {
+            //lstLocalidades.Items.Clear();
+            lstPerfilUsuario.DataSource = perfisUsuario;
+            lstPerfilUsuario.DisplayMember = "Descricao";
+            lstPerfilUsuario.ValueMember = "Id";
+        }
+
+        private void LimparPerfilUsuario()
+        {
+            lstPerfilUsuario.DataSource = null;
+            lstPerfilUsuario.Items.Clear();
+            //lstLocalidades.DisplayMember = "Nome";
+            //lstLocalidades.ValueMember = "Codigo";
 
         }
 
@@ -58,7 +83,7 @@ namespace GUI
                     {
                         btnAnterior.Enabled = false;
                         btnCancelar.Enabled = false;
-                        //btnSalvar.Enabled = false;
+                        btnSalvar.Enabled = false;
                         btnNovo.Enabled = true;
                         btnPrimeiro.Enabled = false;
                         btnProximo.Enabled = false;
@@ -127,8 +152,17 @@ namespace GUI
 
         private void AjustarEdits()
         {
+            //Consultando todos os usuarios cadastrados.
             usuarios = fachada.ControladorUsuario.Consultar();
             bsUsuario.DataSource = usuarios;
+            //Carregando os Perfis disponiveis.
+            perfisExistentes = fachada.ControladorUsuario.ConsultarPerfil();
+            if (perfisExistentes.Count > 0)
+            {
+                cmbPerfil.DataSource = perfisExistentes;
+                cmbPerfil.DisplayMember = "Descricao";
+                cmbPerfil.ValueMember = "Id";
+            }
             switch (status)
             {
                 case Status.Inativo:
@@ -137,6 +171,13 @@ namespace GUI
                         txtLogin.ReadOnly = true;
                         txtNome.ReadOnly = true;
                         txtSenha.ReadOnly = true;
+
+                        lstPerfilUsuario.Enabled = false;
+                        cmbPerfil.Enabled = false;
+                        //cmbPerfil.Items.Clear();
+                        LimparPerfilUsuario();
+                        perfisUsuario = null;
+
                         break;
                     }
                 case Status.Alteracao:
@@ -145,6 +186,14 @@ namespace GUI
                         txtLogin.ReadOnly = true;
                         txtNome.ReadOnly = false;
                         txtSenha.ReadOnly = false;
+
+                        lstPerfilUsuario.Enabled = true;
+                        cmbPerfil.Enabled = true;
+                        if (perfisUsuario.Count > 0)
+                        {
+                            LimparPerfilUsuario();
+                            CarregarPerfilUsuario();
+                        }
                         break;
                     }
                 case Status.Inclusao:
@@ -157,6 +206,13 @@ namespace GUI
                         txtLogin.Clear();
                         txtNome.Clear();
                         txtSenha.Clear();
+
+                        lstPerfilUsuario.Enabled = true;
+                        cmbPerfil.Enabled = true;
+                        //AjustaLista();
+                        perfisUsuario = new List<Perfil>();
+
+                        LimparPerfilUsuario();
                         break;
                     }
                 case Status.Navegacao:
@@ -169,6 +225,9 @@ namespace GUI
                         txtLogin.ReadOnly = true;
                         txtNome.ReadOnly = true;
                         txtSenha.ReadOnly = true;
+
+                        lstPerfilUsuario.Enabled = false;
+                        cmbPerfil.Enabled = false;
                         if (usuarios.Count > 0)
                         {
                             usuarioAtual = (Usuario)usuarios[bsUsuario.Position];
@@ -177,7 +236,19 @@ namespace GUI
                             txtNome.Text = usuarioAtual.Nome;
                             txtSenha.Text = usuarioAtual.Senha;
                             txtConfirmarSenha.Text = usuarioAtual.Senha;
+                            if(usuarioAtual.Perfis.Count > 0)
+                            {
+                                perfisUsuario = usuarioAtual.Perfis;
+                                CarregarPerfilUsuario();
+                            }
+                            else
+                            {
+                                perfisUsuario = new List<Perfil>();
+                                LimparPerfilUsuario();
+                            }
+                            
                         }
+                        
                         
                         break;
                     }
@@ -187,6 +258,14 @@ namespace GUI
 
         private void frmCadUsuario_Load(object sender, EventArgs e)
         {
+            if (fachada.ControladorUsuario.Consultar().Count > 0)
+            {
+                status = Status.Navegacao;
+            }
+            else
+            {
+                status = Status.Inativo;
+            }
             usuario = fachada.Usuario;
             AjustarBotoes();
         }
@@ -206,6 +285,13 @@ namespace GUI
                 u.Nome = txtNome.Text;
                 u.Senha = txtSenha.Text;
                 u.Login = txtLogin.Text;
+                if (lstPerfilUsuario.Items.Count > 0)
+                {
+                    for(int i =0; i<lstPerfilUsuario.Items.Count; i++)
+                    {
+                        u.Perfis.Add((Perfil)lstPerfilUsuario.Items[i]);
+                    }
+                }
                 fachada.ControladorUsuario.Inserir(u);
             }
             catch (ExcecaoNegocio ex)
@@ -242,7 +328,8 @@ namespace GUI
 
             if (d.ToString() == "Yes")
             {
-                //fachada.ControladorUsuario.Remover(usuarioAtual.Id);
+                usuarioAtual.Status = StatusUsuario.Inativo;
+                fachada.ControladorUsuario.Alterar(usuarioAtual);
                 System.Windows.Forms.MessageBox.Show("Usuario Removido com sucesso.");
                 status = Status.Navegacao;
                 AjustarBotoes();
@@ -314,6 +401,55 @@ namespace GUI
         private void txtConfirmarSenha_TextChanged(object sender, EventArgs e)
         {
             HabilitaSalvar();
+        }
+
+        private void btnAdicionarPerfil_Click(object sender, EventArgs e)
+        {
+            bool achou = false;
+
+            for (int i = 0; i < lstPerfilUsuario.Items.Count; i++)
+            {
+                if (((Perfil)lstPerfilUsuario.Items[i]).Id == ((Perfil)cmbPerfil.Items[cmbPerfil.SelectedIndex]).Id)
+                {
+                    achou = true;
+                }
+            }
+
+
+            if (achou == false)
+            {
+                perfisUsuario.Add((Perfil)cmbPerfil.Items[cmbPerfil.SelectedIndex]);
+                LimparPerfilUsuario();
+                CarregarPerfilUsuario();
+                AdicionarPerfil();
+                RemoverPerfil();
+            }
+            else
+            {
+                tlMensagem.ToolTipTitle = "Valor já informado";
+                tlMensagem.Show("Perfil já adicionado a lista", lstPerfilUsuario);
+            }
+        }
+
+        private void btnRemoverPerfil_Click(object sender, EventArgs e)
+        {
+            perfisUsuario.RemoveAt(lstPerfilUsuario.SelectedIndex);
+            LimparPerfilUsuario();
+            CarregarPerfilUsuario();
+            AdicionarPerfil();
+            RemoverPerfil();
+        }
+
+        private void lstPerfilUsuario_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            AdicionarPerfil();
+            RemoverPerfil();
+        }
+
+        private void cmbPerfil_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            AdicionarPerfil();
+            RemoverPerfil();
         }
 
        

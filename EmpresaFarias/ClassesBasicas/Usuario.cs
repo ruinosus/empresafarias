@@ -13,6 +13,11 @@ namespace ClassesBasicas
         Alteracao,
         Navegacao
     }
+    public enum StatusUsuario
+    {
+        Ativo = 1,
+        Inativo
+    }
     /// <summary>
     /// Classe que representa um Usuario que poderá acessar o Sistema.
     /// </summary>
@@ -59,6 +64,17 @@ namespace ClassesBasicas
         {
             get { return nome; }
             set { nome = value; }
+        }
+
+        private StatusUsuario status;
+
+        /// <summary>
+        /// Propriedade relacionada ao Status do Usuario.
+        /// </summary>
+        public StatusUsuario Status
+        {
+            get { return status; }
+            set { status = value; }
         }
 
         private List<Perfil> perfis;
@@ -118,18 +134,19 @@ namespace ClassesBasicas
                 MenuStrip menu = o as MenuStrip;
               
                 for (int i = 0; i < menu.Items.Count; i++)
-                {  
-                    if (menu.Items[i].Tag!=null && !menu.Items[i].Tag.Equals(""))
+                {
+                    List<ToolStripMenuItem> l = new List<ToolStripMenuItem>();
+                    if (menu.Items[i].Tag != null && !menu.Items[i].Tag.Equals(""))
                     {
-                        List<ToolStripMenuItem> l = new List<ToolStripMenuItem>();
+                       
                         l.Add((ToolStripMenuItem)menu.Items[i]);
                         int tag = Convert.ToInt32(menu.Items[i].Tag);
 
                         if (this.VerificarTag(tag))
                         {
                             menu.Items[i].Visible = true;
-                            menu.Items[i].Enabled = true;                           
-                            
+                            menu.Items[i].Enabled = true;
+
                             HabilitarMenu(l);
                         }
                         else
@@ -137,7 +154,13 @@ namespace ClassesBasicas
                             menu.Items[i].Visible = false;
                             menu.Items[i].Enabled = false;
                         }
-                    }     
+                    }
+                    else
+                    {
+                        l.Add((ToolStripMenuItem)menu.Items[i]);
+                        HabilitarMenu(l);
+
+                    }
                 }
 
             } 

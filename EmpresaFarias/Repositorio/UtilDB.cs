@@ -13,7 +13,7 @@ namespace Repositorio
         /// <summary>
         /// String do Conexao.
         /// </summary>
-        private static string conexao = "Data Source=RUINOSUS-PC\\SQLEXPRESS;Initial Catalog=DBEmpresaFarias;Integrated Security=True";
+        private static string conexao = "Data Source=LOCALHOST\\SQLEXPRESS;Initial Catalog=DBEmpresaFarias;Integrated Security=True";
         private SqlConnection ConexaoSQL = new SqlConnection(conexao);
         /// <summary>
         /// Metodo para obter uma conexao.
