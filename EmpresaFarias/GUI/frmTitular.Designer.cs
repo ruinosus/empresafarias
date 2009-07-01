@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.tbcTitular = new System.Windows.Forms.TabControl();
             this.tabTitular = new System.Windows.Forms.TabPage();
+            this.stInformacaoTitular = new System.Windows.Forms.StatusStrip();
+            this.lbInformacaoTitular = new System.Windows.Forms.ToolStripStatusLabel();
             this.gpbContato = new System.Windows.Forms.GroupBox();
             this.mskTelefoneCelular = new System.Windows.Forms.MaskedTextBox();
             this.lblTelefoneCelular = new System.Windows.Forms.Label();
@@ -84,6 +86,8 @@
             this.txtNome = new System.Windows.Forms.TextBox();
             this.lblNome = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.stInformacaoDependente = new System.Windows.Forms.StatusStrip();
+            this.lblInformacaoDependente = new System.Windows.Forms.ToolStripStatusLabel();
             this.gpbDependentesCadastrados = new System.Windows.Forms.GroupBox();
             this.dgvDependentesCadastrados = new System.Windows.Forms.DataGridView();
             this.btnExcluirDependente = new System.Windows.Forms.Button();
@@ -104,6 +108,8 @@
             this.txtNomeDependente = new System.Windows.Forms.TextBox();
             this.lblNomeDependente = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.stInformacaoParcela = new System.Windows.Forms.StatusStrip();
+            this.lbInformacaoParcela = new System.Windows.Forms.ToolStripStatusLabel();
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -123,14 +129,9 @@
             this.tlMensagem = new System.Windows.Forms.ToolTip(this.components);
             this.stInformacaoGeral = new System.Windows.Forms.StatusStrip();
             this.lbInformacaoGeral = new System.Windows.Forms.ToolStripStatusLabel();
-            this.stInformacaoDependente = new System.Windows.Forms.StatusStrip();
-            this.lblInformacaoDependente = new System.Windows.Forms.ToolStripStatusLabel();
-            this.stInformacaoParcela = new System.Windows.Forms.StatusStrip();
-            this.lbInformacaoParcela = new System.Windows.Forms.ToolStripStatusLabel();
-            this.stInformacaoTitular = new System.Windows.Forms.StatusStrip();
-            this.lbInformacaoTitular = new System.Windows.Forms.ToolStripStatusLabel();
             this.tbcTitular.SuspendLayout();
             this.tabTitular.SuspendLayout();
+            this.stInformacaoTitular.SuspendLayout();
             this.gpbContato.SuspendLayout();
             this.gpbContrato.SuspendLayout();
             this.gpbDocumentos.SuspendLayout();
@@ -138,18 +139,17 @@
             this.gpbEstadoCivil.SuspendLayout();
             this.gpbSexo.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.stInformacaoDependente.SuspendLayout();
             this.gpbDependentesCadastrados.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDependentesCadastrados)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.stInformacaoParcela.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.stInformacaoGeral.SuspendLayout();
-            this.stInformacaoDependente.SuspendLayout();
-            this.stInformacaoParcela.SuspendLayout();
-            this.stInformacaoTitular.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbcTitular
@@ -187,6 +187,22 @@
             this.tabTitular.Text = "Titular";
             this.tabTitular.UseVisualStyleBackColor = true;
             // 
+            // stInformacaoTitular
+            // 
+            this.stInformacaoTitular.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lbInformacaoTitular});
+            this.stInformacaoTitular.Location = new System.Drawing.Point(3, 462);
+            this.stInformacaoTitular.Name = "stInformacaoTitular";
+            this.stInformacaoTitular.Size = new System.Drawing.Size(660, 22);
+            this.stInformacaoTitular.TabIndex = 32;
+            this.stInformacaoTitular.Text = "statusStrip1";
+            // 
+            // lbInformacaoTitular
+            // 
+            this.lbInformacaoTitular.Name = "lbInformacaoTitular";
+            this.lbInformacaoTitular.Size = new System.Drawing.Size(68, 17);
+            this.lbInformacaoTitular.Text = "informação";
+            // 
             // gpbContato
             // 
             this.gpbContato.Controls.Add(this.mskTelefoneCelular);
@@ -195,14 +211,14 @@
             this.gpbContato.Controls.Add(this.lblTelefoneResidencial);
             this.gpbContato.Location = new System.Drawing.Point(10, 417);
             this.gpbContato.Name = "gpbContato";
-            this.gpbContato.Size = new System.Drawing.Size(492, 63);
+            this.gpbContato.Size = new System.Drawing.Size(492, 42);
             this.gpbContato.TabIndex = 31;
             this.gpbContato.TabStop = false;
             this.gpbContato.Text = "Contato";
             // 
             // mskTelefoneCelular
             // 
-            this.mskTelefoneCelular.Location = new System.Drawing.Point(351, 22);
+            this.mskTelefoneCelular.Location = new System.Drawing.Point(351, 16);
             this.mskTelefoneCelular.Mask = "(999) 0000-0000";
             this.mskTelefoneCelular.Name = "mskTelefoneCelular";
             this.mskTelefoneCelular.Size = new System.Drawing.Size(136, 20);
@@ -211,7 +227,7 @@
             // lblTelefoneCelular
             // 
             this.lblTelefoneCelular.AutoSize = true;
-            this.lblTelefoneCelular.Location = new System.Drawing.Point(259, 25);
+            this.lblTelefoneCelular.Location = new System.Drawing.Point(259, 19);
             this.lblTelefoneCelular.Name = "lblTelefoneCelular";
             this.lblTelefoneCelular.Size = new System.Drawing.Size(84, 13);
             this.lblTelefoneCelular.TabIndex = 30;
@@ -219,7 +235,7 @@
             // 
             // mskTelefoneResidencial
             // 
-            this.mskTelefoneResidencial.Location = new System.Drawing.Point(116, 22);
+            this.mskTelefoneResidencial.Location = new System.Drawing.Point(116, 16);
             this.mskTelefoneResidencial.Mask = "(999) 0000-0000";
             this.mskTelefoneResidencial.Name = "mskTelefoneResidencial";
             this.mskTelefoneResidencial.Size = new System.Drawing.Size(136, 20);
@@ -228,7 +244,7 @@
             // lblTelefoneResidencial
             // 
             this.lblTelefoneResidencial.AutoSize = true;
-            this.lblTelefoneResidencial.Location = new System.Drawing.Point(8, 25);
+            this.lblTelefoneResidencial.Location = new System.Drawing.Point(8, 19);
             this.lblTelefoneResidencial.Name = "lblTelefoneResidencial";
             this.lblTelefoneResidencial.Size = new System.Drawing.Size(107, 13);
             this.lblTelefoneResidencial.TabIndex = 7;
@@ -421,7 +437,7 @@
             // lblNaturalidade
             // 
             this.lblNaturalidade.AutoSize = true;
-            this.lblNaturalidade.Location = new System.Drawing.Point(233, 75);
+            this.lblNaturalidade.Location = new System.Drawing.Point(225, 74);
             this.lblNaturalidade.Name = "lblNaturalidade";
             this.lblNaturalidade.Size = new System.Drawing.Size(67, 13);
             this.lblNaturalidade.TabIndex = 18;
@@ -700,6 +716,22 @@
             this.tabPage2.Text = "Dependentes";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // stInformacaoDependente
+            // 
+            this.stInformacaoDependente.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lblInformacaoDependente});
+            this.stInformacaoDependente.Location = new System.Drawing.Point(3, 462);
+            this.stInformacaoDependente.Name = "stInformacaoDependente";
+            this.stInformacaoDependente.Size = new System.Drawing.Size(660, 22);
+            this.stInformacaoDependente.TabIndex = 38;
+            this.stInformacaoDependente.Text = "statusStrip1";
+            // 
+            // lblInformacaoDependente
+            // 
+            this.lblInformacaoDependente.Name = "lblInformacaoDependente";
+            this.lblInformacaoDependente.Size = new System.Drawing.Size(68, 17);
+            this.lblInformacaoDependente.Text = "informação";
+            // 
             // gpbDependentesCadastrados
             // 
             this.gpbDependentesCadastrados.Controls.Add(this.dgvDependentesCadastrados);
@@ -914,6 +946,22 @@
             this.tabPage1.Text = "Pagamentos";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // stInformacaoParcela
+            // 
+            this.stInformacaoParcela.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lbInformacaoParcela});
+            this.stInformacaoParcela.Location = new System.Drawing.Point(3, 462);
+            this.stInformacaoParcela.Name = "stInformacaoParcela";
+            this.stInformacaoParcela.Size = new System.Drawing.Size(660, 22);
+            this.stInformacaoParcela.TabIndex = 33;
+            this.stInformacaoParcela.Text = "statusStrip1";
+            // 
+            // lbInformacaoParcela
+            // 
+            this.lbInformacaoParcela.Name = "lbInformacaoParcela";
+            this.lbInformacaoParcela.Size = new System.Drawing.Size(68, 17);
+            this.lbInformacaoParcela.Text = "informação";
+            // 
             // button6
             // 
             this.button6.Location = new System.Drawing.Point(529, 102);
@@ -1074,54 +1122,6 @@
             this.lbInformacaoGeral.Size = new System.Drawing.Size(68, 17);
             this.lbInformacaoGeral.Text = "informação";
             // 
-            // stInformacaoDependente
-            // 
-            this.stInformacaoDependente.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.lblInformacaoDependente});
-            this.stInformacaoDependente.Location = new System.Drawing.Point(3, 462);
-            this.stInformacaoDependente.Name = "stInformacaoDependente";
-            this.stInformacaoDependente.Size = new System.Drawing.Size(660, 22);
-            this.stInformacaoDependente.TabIndex = 38;
-            this.stInformacaoDependente.Text = "statusStrip1";
-            // 
-            // lblInformacaoDependente
-            // 
-            this.lblInformacaoDependente.Name = "lblInformacaoDependente";
-            this.lblInformacaoDependente.Size = new System.Drawing.Size(68, 17);
-            this.lblInformacaoDependente.Text = "informação";
-            // 
-            // stInformacaoParcela
-            // 
-            this.stInformacaoParcela.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.lbInformacaoParcela});
-            this.stInformacaoParcela.Location = new System.Drawing.Point(3, 462);
-            this.stInformacaoParcela.Name = "stInformacaoParcela";
-            this.stInformacaoParcela.Size = new System.Drawing.Size(660, 22);
-            this.stInformacaoParcela.TabIndex = 33;
-            this.stInformacaoParcela.Text = "statusStrip1";
-            // 
-            // lbInformacaoParcela
-            // 
-            this.lbInformacaoParcela.Name = "lbInformacaoParcela";
-            this.lbInformacaoParcela.Size = new System.Drawing.Size(68, 17);
-            this.lbInformacaoParcela.Text = "informação";
-            // 
-            // stInformacaoTitular
-            // 
-            this.stInformacaoTitular.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.lbInformacaoTitular});
-            this.stInformacaoTitular.Location = new System.Drawing.Point(3, 462);
-            this.stInformacaoTitular.Name = "stInformacaoTitular";
-            this.stInformacaoTitular.Size = new System.Drawing.Size(660, 22);
-            this.stInformacaoTitular.TabIndex = 32;
-            this.stInformacaoTitular.Text = "statusStrip1";
-            // 
-            // lbInformacaoTitular
-            // 
-            this.lbInformacaoTitular.Name = "lbInformacaoTitular";
-            this.lbInformacaoTitular.Size = new System.Drawing.Size(68, 17);
-            this.lbInformacaoTitular.Text = "informação";
-            // 
             // frmTitular
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1137,6 +1137,8 @@
             this.tbcTitular.ResumeLayout(false);
             this.tabTitular.ResumeLayout(false);
             this.tabTitular.PerformLayout();
+            this.stInformacaoTitular.ResumeLayout(false);
+            this.stInformacaoTitular.PerformLayout();
             this.gpbContato.ResumeLayout(false);
             this.gpbContato.PerformLayout();
             this.gpbContrato.ResumeLayout(false);
@@ -1150,12 +1152,16 @@
             this.gpbSexo.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.stInformacaoDependente.ResumeLayout(false);
+            this.stInformacaoDependente.PerformLayout();
             this.gpbDependentesCadastrados.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDependentesCadastrados)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.stInformacaoParcela.ResumeLayout(false);
+            this.stInformacaoParcela.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -1163,12 +1169,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.stInformacaoGeral.ResumeLayout(false);
             this.stInformacaoGeral.PerformLayout();
-            this.stInformacaoDependente.ResumeLayout(false);
-            this.stInformacaoDependente.PerformLayout();
-            this.stInformacaoParcela.ResumeLayout(false);
-            this.stInformacaoParcela.PerformLayout();
-            this.stInformacaoTitular.ResumeLayout(false);
-            this.stInformacaoTitular.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

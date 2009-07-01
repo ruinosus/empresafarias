@@ -27,7 +27,13 @@ namespace GUI
             usuario.HabilitarComponentes(menuStrip1);
 
             usuario.HabilitarComponentes(tabControl1);
-            
+            usuario.HabilitarComponentes(panel1);
+        }
+
+        private void cadastroDeUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmCadUsuario frm = new frmCadUsuario();
+            frm.ShowDialog();
         }
     }
 }
