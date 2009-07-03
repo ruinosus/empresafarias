@@ -281,18 +281,45 @@ namespace GUI
         {
             try
             {
-                Usuario u = new Usuario();
-                u.Nome = txtNome.Text;
-                u.Senha = txtSenha.Text;
-                u.Login = txtLogin.Text;
-                if (lstPerfilUsuario.Items.Count > 0)
+
+                switch (status)
                 {
-                    for(int i =0; i<lstPerfilUsuario.Items.Count; i++)
-                    {
-                        u.Perfis.Add((Perfil)lstPerfilUsuario.Items[i]);
-                    }
+                    case Status.Inclusao:
+                        {
+                            Usuario u = new Usuario();
+                            u.Nome = txtNome.Text;
+                            u.Senha = txtSenha.Text;
+                            u.Login = txtLogin.Text;
+                            if (lstPerfilUsuario.Items.Count > 0)
+                            {
+                                for (int i = 0; i < lstPerfilUsuario.Items.Count; i++)
+                                {
+                                    u.Perfis.Add((Perfil)lstPerfilUsuario.Items[i]);
+                                }
+                            }
+                            fachada.ControladorUsuario.Inserir(u);
+                            break;
+                        }
+                    case Status.Alteracao:
+                        {
+                            //Usuario u = new Usuario();
+                            usuarioAtual.Nome = txtNome.Text;
+                            usuarioAtual.Senha = txtSenha.Text;
+                            usuarioAtual.Login = txtLogin.Text;
+                            if (lstPerfilUsuario.Items.Count > 0)
+                            {
+                                for (int i = 0; i < lstPerfilUsuario.Items.Count; i++)
+                                {
+                                    usuarioAtual.Perfis.Add((Perfil)lstPerfilUsuario.Items[i]);
+                                }
+                            }
+                            fachada.ControladorUsuario.Alterar(usuarioAtual);
+                            break;
+                        }
+
+                
                 }
-                fachada.ControladorUsuario.Inserir(u);
+                
             }
             catch (ExcecaoNegocio ex)
             {
