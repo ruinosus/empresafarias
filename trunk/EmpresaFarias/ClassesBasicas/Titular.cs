@@ -40,6 +40,16 @@ namespace ClassesBasicas
             set { nome = value; }
         }
 
+        private string religiao;
+        /// <summary>
+        /// Propriedade relacionada a Religiao do Titular.
+        /// </summary>
+        public string Religiao
+        {
+            get { return religiao; }
+            set { religiao = value; }
+        }
+
         private DateTime dataNascimento;
         /// <summary>
         /// Propriedade relacionada a Data de Nascimento do Titular.

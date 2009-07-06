@@ -16,11 +16,11 @@ namespace Repositorio.implementacoes
     {
         #region Sql Tabela Titular
 
-        private static String QUERY_INSERT = "INSERT INTO Titular (Nome,DataNascimento,Sexo,EstadoCivil,Cpf,Logradouro,Numero,Complemento,Bairro,Cep,CidadeEnderecoId,CidadeNaturalidadeId,TelefoneResidencial,TelefoneCelular,Rg,DataExpedicao,OrgaoExpeditor,Status) VALUES (@Nome,@DataNascimento,@Sexo,@EstadoCivil,@Cpf,@Logradouro,@Numero,@Complemento,@Bairro,@Cep,@CidadeEnderecoId,@CidadeNaturalidadeId,@TelefoneResidencial,@TelefoneCelular,@Rg,@DataExpedicao,@OrgaoExpeditor,@Status)";
-        private static String QUERY_UPDATE = "UPDATE Titular SET Nome = @Nome,DataNascimento = @DataNascimento,Sexo = @Sexo,EstadoCivil = @EstadoCivil,Cpf = @Cpf,Logradouro = @Logradouro,Numero = @Numero,Complemento = @Complemento,Bairro = @Bairro,Cep = @Cep,CidadeEnderecoId = @CidadeEnderecoId,CidadeNaturalidadeId = @CidadeNaturalidadeId,TelefoneResidencial = @TelefoneResidencial,TelefoneCelular = @TelefoneCelular,Rg = @Rg,DataExpedicao = @DataExpedicao,OrgaoExpeditor = @OrgaoExpeditor,Status = @Status WHERE Id = @Id";
+        private static String QUERY_INSERT = "INSERT INTO Titular (Nome,Religiao,DataNascimento,Sexo,EstadoCivil,Cpf,Logradouro,Numero,Complemento,Bairro,Cep,CidadeEnderecoId,CidadeNaturalidadeId,TelefoneResidencial,TelefoneCelular,Rg,DataExpedicao,OrgaoExpeditor,Status) VALUES (@Nome,@Religiao,@DataNascimento,@Sexo,@EstadoCivil,@Cpf,@Logradouro,@Numero,@Complemento,@Bairro,@Cep,@CidadeEnderecoId,@CidadeNaturalidadeId,@TelefoneResidencial,@TelefoneCelular,@Rg,@DataExpedicao,@OrgaoExpeditor,@Status)";
+        private static String QUERY_UPDATE = "UPDATE Titular SET Nome = @Nome,Religiao=@Religiao,DataNascimento = @DataNascimento,Sexo = @Sexo,EstadoCivil = @EstadoCivil,Cpf = @Cpf,Logradouro = @Logradouro,Numero = @Numero,Complemento = @Complemento,Bairro = @Bairro,Cep = @Cep,CidadeEnderecoId = @CidadeEnderecoId,CidadeNaturalidadeId = @CidadeNaturalidadeId,TelefoneResidencial = @TelefoneResidencial,TelefoneCelular = @TelefoneCelular,Rg = @Rg,DataExpedicao = @DataExpedicao,OrgaoExpeditor = @OrgaoExpeditor,Status = @Status WHERE Id = @Id";
         private static String QUERY_DELETE = "DELETE FROM Titular WHERE Id = @Id";
-        private static String QUERY_SELECT_ID = "SELECT Id,Nome,DataNascimento,Sexo,EstadoCivil,Cpf,Logradouro,Numero,Complemento,Bairro,Cep,CidadeEnderecoId,CidadeNaturalidadeId,TelefoneResidencial,TelefoneCelular,Rg,DataExpedicao,OrgaoExpeditor,Status FROM Titular WHERE Id = @Id";
-        private static String QUERY_SELECT_ALL = "SELECT Id,Nome,DataNascimento,Sexo,EstadoCivil,Cpf,Logradouro,Numero,Complemento,Bairro,Cep,CidadeEnderecoId,CidadeNaturalidadeId,TelefoneResidencial,TelefoneCelular,Rg,DataExpedicao,OrgaoExpeditor,Status FROM Titular";
+        private static String QUERY_SELECT_ID = "SELECT Id,Nome,Religiao,DataNascimento,Sexo,EstadoCivil,Cpf,Logradouro,Numero,Complemento,Bairro,Cep,CidadeEnderecoId,CidadeNaturalidadeId,TelefoneResidencial,TelefoneCelular,Rg,DataExpedicao,OrgaoExpeditor,Status FROM Titular WHERE Id = @Id";
+        private static String QUERY_SELECT_ALL = "SELECT Id,Nome,Religiao,DataNascimento,Sexo,EstadoCivil,Cpf,Logradouro,Numero,Complemento,Bairro,Cep,CidadeEnderecoId,CidadeNaturalidadeId,TelefoneResidencial,TelefoneCelular,Rg,DataExpedicao,OrgaoExpeditor,Status FROM Titular";
         private static String QUERY_MAX_ID = "SELECT MAX(Id) Id FROM Titular";
 
         #endregion
@@ -41,6 +41,7 @@ namespace Repositorio.implementacoes
             {
                 SqlCommand comando = new SqlCommand(QUERY_INSERT, conexao);
                 comando.Parameters.AddWithValue("@Nome", titular.Nome);
+                comando.Parameters.AddWithValue("@Religiao", titular.Religiao);
                 comando.Parameters.AddWithValue("@CidadeNaturalidadeId", titular.CidadeNaturalidade.Id);
                 comando.Parameters.AddWithValue("@Cpf", titular.Cpf);
                 comando.Parameters.AddWithValue("@DataNascimento", titular.DataNascimento);
@@ -87,6 +88,7 @@ namespace Repositorio.implementacoes
                 SqlCommand comando = new SqlCommand(QUERY_UPDATE, conexao);
                 comando.Parameters.AddWithValue("@Id", titular.Id);
                 comando.Parameters.AddWithValue("@Nome", titular.Nome);
+                comando.Parameters.AddWithValue("@Religiao", titular.Religiao);
                 comando.Parameters.AddWithValue("@CidadeNaturalidadeId", titular.CidadeNaturalidade.Id);
                 comando.Parameters.AddWithValue("@Cpf", titular.Cpf);
                 comando.Parameters.AddWithValue("@DataNascimento", titular.DataNascimento);
@@ -282,6 +284,10 @@ namespace Repositorio.implementacoes
             if (resultado["Nome"] != DBNull.Value)
             {
                 titular.Nome = Convert.ToString(resultado["Nome"]);
+            }
+            if (resultado["Religiao"] != DBNull.Value)
+            {
+                titular.Religiao = Convert.ToString(resultado["Religiao"]);
             }
             if (resultado["EstadoCivil"] != DBNull.Value)
             {
