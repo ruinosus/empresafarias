@@ -16,11 +16,11 @@ namespace Repositorio.implementacoes
     {
         #region Sql Tabela HistoricoTitular
 
-        private static String QUERY_INSERT = "INSERT INTO HistoricoTitular (Nome,DataNascimento,Sexo,EstadoCivil,Cpf,Logradouro,Numero,Complemento,Bairro,Cep,CidadeEnderecoId,CidadeNaturalidadeId,TelefoneResidencial,TelefoneCelular,Rg,DataExpedicao,OrgaoExpeditor,Status,TitularId,DataAlteracao,UsuarioId,Descricao) VALUES (@Nome,@DataNascimento,@Sexo,@EstadoCivil,@Cpf,@Logradouro,@Numero,@Complemento,@Bairro,@Cep,@CidadeEnderecoId,@CidadeNaturalidadeId,@TelefoneResidencial,@TelefoneCelular,@Rg,@DataExpedicao,@OrgaoExpeditor,@Status,@TitularId,@DataAlteracao,@UsuarioId,@Descricao)";
-        private static String QUERY_SELECT_ID = "SELECT Id,Nome,DataNascimento,Sexo,EstadoCivil,Cpf,Logradouro,Numero,Complemento,Bairro,Cep,CidadeEnderecoId,CidadeNaturalidadeId,TelefoneResidencial,TelefoneCelular,Rg,DataExpedicao,OrgaoExpeditor,Status,TitularId,DataAlteracao,UsuarioId,Descricao FROM HistoricoTitular WHERE Id = @Id";
-        private static String QUERY_SELECT_ALL = "SELECT Id,Nome,DataNascimento,Sexo,EstadoCivil,Cpf,Logradouro,Numero,Complemento,Bairro,Cep,CidadeEnderecoId,CidadeNaturalidadeId,TelefoneResidencial,TelefoneCelular,Rg,DataExpedicao,OrgaoExpeditor,Status,TitularId,DataAlteracao,UsuarioId,Descricao FROM HistoricoTitular";
+        private static String QUERY_INSERT = "INSERT INTO HistoricoTitular (Nome,Religiao,DataNascimento,Sexo,EstadoCivil,Cpf,Logradouro,Numero,Complemento,Bairro,Cep,CidadeEnderecoId,CidadeNaturalidadeId,TelefoneResidencial,TelefoneCelular,Rg,DataExpedicao,OrgaoExpeditor,Status,TitularId,DataAlteracao,UsuarioId,Descricao) VALUES (@Nome,@Religiao,@DataNascimento,@Sexo,@EstadoCivil,@Cpf,@Logradouro,@Numero,@Complemento,@Bairro,@Cep,@CidadeEnderecoId,@CidadeNaturalidadeId,@TelefoneResidencial,@TelefoneCelular,@Rg,@DataExpedicao,@OrgaoExpeditor,@Status,@TitularId,@DataAlteracao,@UsuarioId,@Descricao)";
+        private static String QUERY_SELECT_ID = "SELECT Id,Nome,Religiao,DataNascimento,Sexo,EstadoCivil,Cpf,Logradouro,Numero,Complemento,Bairro,Cep,CidadeEnderecoId,CidadeNaturalidadeId,TelefoneResidencial,TelefoneCelular,Rg,DataExpedicao,OrgaoExpeditor,Status,TitularId,DataAlteracao,UsuarioId,Descricao FROM HistoricoTitular WHERE Id = @Id";
+        private static String QUERY_SELECT_ALL = "SELECT Id,Nome,Religiao,DataNascimento,Sexo,EstadoCivil,Cpf,Logradouro,Numero,Complemento,Bairro,Cep,CidadeEnderecoId,CidadeNaturalidadeId,TelefoneResidencial,TelefoneCelular,Rg,DataExpedicao,OrgaoExpeditor,Status,TitularId,DataAlteracao,UsuarioId,Descricao FROM HistoricoTitular";
         private static String QUERY_MAX_ID = "SELECT MAX(Id) Id FROM HistoricoTitular";
-        private static String QUERY_SELECT_TITULAR = "SELECT Id,Nome,DataNascimento,Sexo,EstadoCivil,Cpf,Logradouro,Numero,Complemento,Bairro,Cep,CidadeEnderecoId,CidadeNaturalidadeId,TelefoneResidencial,TelefoneCelular,Rg,DataExpedicao,OrgaoExpeditor,Status,TitularId,DataAlteracao,UsuarioId,Descricao FROM HistoricoTitular WHERE TitularId=@TitulatId";
+        private static String QUERY_SELECT_TITULAR = "SELECT Id,Nome,Religiao,DataNascimento,Sexo,EstadoCivil,Cpf,Logradouro,Numero,Complemento,Bairro,Cep,CidadeEnderecoId,CidadeNaturalidadeId,TelefoneResidencial,TelefoneCelular,Rg,DataExpedicao,OrgaoExpeditor,Status,TitularId,DataAlteracao,UsuarioId,Descricao FROM HistoricoTitular WHERE TitularId=@TitulatId";
         
         #endregion
 
@@ -40,6 +40,7 @@ namespace Repositorio.implementacoes
             {
                 SqlCommand comando = new SqlCommand(QUERY_INSERT, conexao);
                 comando.Parameters.AddWithValue("@Nome", historicoTitular.TitularHistorico.Nome);
+                comando.Parameters.AddWithValue("@Religiao", historicoTitular.TitularHistorico.Religiao);
                 comando.Parameters.AddWithValue("@CidadeNaturalidadeId", historicoTitular.TitularHistorico.CidadeNaturalidade.Id);
                 comando.Parameters.AddWithValue("@Cpf", historicoTitular.TitularHistorico.Cpf);
                 comando.Parameters.AddWithValue("@DataNascimento", historicoTitular.TitularHistorico.DataNascimento);
@@ -256,6 +257,10 @@ namespace Repositorio.implementacoes
             if (resultado["Nome"] != DBNull.Value)
             {
                 historicoTitular.TitularHistorico.Nome = Convert.ToString(resultado["Nome"]);
+            }
+            if (resultado["Religiao"] != DBNull.Value)
+            {
+                historicoTitular.TitularHistorico.Religiao = Convert.ToString(resultado["Religiao"]);
             }
             if (resultado["EstadoCivil"] != DBNull.Value)
             {
