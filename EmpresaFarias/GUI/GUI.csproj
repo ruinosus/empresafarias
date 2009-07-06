@@ -12,6 +12,7 @@
     <AssemblyName>GUI</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <ApplicationIcon>GFariasGolden.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -96,6 +97,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -116,6 +118,129 @@
       <Project>{BD56CBF9-8C8F-4172-9636-B00488869D45}</Project>
       <Name>Negocio</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Add_Card-1-96x96-32bpp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Add-21-24x24-32bpp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Back___Previous-5-32x32-32bpp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Back_2-5-32x32-32bpp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Delete-6-32x32-32bpp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Delete-21-24x24-32bpp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Forward___Next-5-32x32-32bpp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Forward_2-5-32x32-32bpp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\List-0-128x128-32bpp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\List-1-96x96-32bpp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\List-7-16x16-32bpp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\New_Doc-5-32x32-32bpp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Save-5-32x32-32bpp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Stop-5-32x32-32bpp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Write-5-32x32-32bpp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\block-48x48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete-48x48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pencil-48x48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus-48x48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save-48x48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\statistics-48x48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trash-48x48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user-48x48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\diagram-16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\diagram-48x48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-48x48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wallet-16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wallet-48x48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search-16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete-16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tick-16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logoWeb2.0.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logoWeb2.01.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logoWeb2.02.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logoWeb2.03.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logoWeb2.04.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logoWeb2.05.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logoWeb2.06.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logoWeb2.07.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="GFariasGolden.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
