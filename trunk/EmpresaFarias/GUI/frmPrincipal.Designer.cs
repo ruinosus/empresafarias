@@ -99,6 +99,7 @@
             this.cadastroDeTitularToolStripMenuItem.Name = "cadastroDeTitularToolStripMenuItem";
             this.cadastroDeTitularToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.cadastroDeTitularToolStripMenuItem.Text = "Cadastro de Titular";
+            this.cadastroDeTitularToolStripMenuItem.Click += new System.EventHandler(this.cadastroDeTitularToolStripMenuItem_Click);
             // 
             // deNovoToolStripMenuItem
             // 

@@ -69,5 +69,11 @@ namespace GUI
         {
             Close();
         }
+
+        private void cadastroDeTitularToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmTitular frmT = new frmTitular();
+            frmT.ShowDialog();
+        }
     }
 }
