@@ -61,7 +61,7 @@ namespace Repositorio.implementacoes
                 comando.Parameters.AddWithValue("@Descricao", historicoParcela.Descricao);
                 conexao.Open();
                 int regitrosAfetados = comando.ExecuteNonQuery();
-                historicoParcela.ParcelaHistorico.Id = this.ObterMaximoId();
+                //historicoParcela.ParcelaHistorico.Id = this.ObterMaximoId();
             }
             catch (SqlException e)
             {

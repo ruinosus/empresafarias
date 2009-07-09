@@ -16,3 +16,6 @@ insert into Tag (PerfilId,TagId) values (3,301);
 
 
 insert into Tag (PerfilId,TagId) values (4,001);
+
+insert into Plano(Nome,Descricao,ValorPadrao) values('Golden','',10);
+insert into Plano(Nome,Descricao,ValorPadrao) values('Golden Especial','',15);

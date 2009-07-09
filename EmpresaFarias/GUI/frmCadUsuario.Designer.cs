@@ -56,21 +56,21 @@
             this.btnUltimo = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tabUsuario = new System.Windows.Forms.TabPage();
-            this.btnVerificarLogin = new System.Windows.Forms.Button();
-            this.lblSenha = new System.Windows.Forms.Label();
-            this.txtLogin = new System.Windows.Forms.TextBox();
-            this.txtSenha = new System.Windows.Forms.TextBox();
-            this.lblLogin = new System.Windows.Forms.Label();
-            this.lblConfirmarSenha = new System.Windows.Forms.Label();
-            this.lblNome = new System.Windows.Forms.Label();
-            this.txtConfirmarSenha = new System.Windows.Forms.TextBox();
-            this.txtNome = new System.Windows.Forms.TextBox();
-            this.cmbPerfil = new System.Windows.Forms.ComboBox();
-            this.lblPerfilDisponivel = new System.Windows.Forms.Label();
-            this.btnAdicionarPerfil = new System.Windows.Forms.Button();
-            this.btnRemoverPerfil = new System.Windows.Forms.Button();
-            this.lstPerfilUsuario = new System.Windows.Forms.ListBox();
             this.lblPerfilUsuario = new System.Windows.Forms.Label();
+            this.lstPerfilUsuario = new System.Windows.Forms.ListBox();
+            this.btnRemoverPerfil = new System.Windows.Forms.Button();
+            this.btnAdicionarPerfil = new System.Windows.Forms.Button();
+            this.lblPerfilDisponivel = new System.Windows.Forms.Label();
+            this.cmbPerfil = new System.Windows.Forms.ComboBox();
+            this.txtNome = new System.Windows.Forms.TextBox();
+            this.txtConfirmarSenha = new System.Windows.Forms.TextBox();
+            this.txtSenha = new System.Windows.Forms.TextBox();
+            this.txtLogin = new System.Windows.Forms.TextBox();
+            this.lblNome = new System.Windows.Forms.Label();
+            this.lblConfirmarSenha = new System.Windows.Forms.Label();
+            this.lblLogin = new System.Windows.Forms.Label();
+            this.lblSenha = new System.Windows.Forms.Label();
+            this.btnVerificarLogin = new System.Windows.Forms.Button();
             this.tbcUsuario = new System.Windows.Forms.TabControl();
             this.stInformacaoGeral.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsUsuario)).BeginInit();
@@ -281,7 +281,7 @@
             this.btnUltimo});
             this.toolStrip1.Location = new System.Drawing.Point(145, 273);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(112, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(143, 25);
             this.toolStrip1.TabIndex = 166;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -310,115 +310,23 @@
             this.tabUsuario.Text = "Usuario";
             this.tabUsuario.UseVisualStyleBackColor = true;
             // 
-            // btnVerificarLogin
+            // lblPerfilUsuario
             // 
-            this.btnVerificarLogin.Enabled = false;
-            this.btnVerificarLogin.Location = new System.Drawing.Point(289, 32);
-            this.btnVerificarLogin.Name = "btnVerificarLogin";
-            this.btnVerificarLogin.Size = new System.Drawing.Size(77, 20);
-            this.btnVerificarLogin.TabIndex = 2;
-            this.btnVerificarLogin.Text = "Verificar";
-            this.btnVerificarLogin.UseVisualStyleBackColor = true;
-            this.btnVerificarLogin.Click += new System.EventHandler(this.btnVerificarLogin_Click);
+            this.lblPerfilUsuario.AutoSize = true;
+            this.lblPerfilUsuario.Location = new System.Drawing.Point(5, 114);
+            this.lblPerfilUsuario.Name = "lblPerfilUsuario";
+            this.lblPerfilUsuario.Size = new System.Drawing.Size(81, 13);
+            this.lblPerfilUsuario.TabIndex = 15;
+            this.lblPerfilUsuario.Text = "Perfis Utilizados";
             // 
-            // lblSenha
+            // lstPerfilUsuario
             // 
-            this.lblSenha.AutoSize = true;
-            this.lblSenha.Location = new System.Drawing.Point(5, 59);
-            this.lblSenha.Name = "lblSenha";
-            this.lblSenha.Size = new System.Drawing.Size(38, 13);
-            this.lblSenha.TabIndex = 7;
-            this.lblSenha.Text = "Senha";
-            // 
-            // txtLogin
-            // 
-            this.txtLogin.Location = new System.Drawing.Point(44, 33);
-            this.txtLogin.Name = "txtLogin";
-            this.txtLogin.Size = new System.Drawing.Size(240, 20);
-            this.txtLogin.TabIndex = 1;
-            this.txtLogin.TextChanged += new System.EventHandler(this.txtLogin_TextChanged);
-            // 
-            // txtSenha
-            // 
-            this.txtSenha.Location = new System.Drawing.Point(44, 59);
-            this.txtSenha.Name = "txtSenha";
-            this.txtSenha.PasswordChar = '*';
-            this.txtSenha.Size = new System.Drawing.Size(122, 20);
-            this.txtSenha.TabIndex = 3;
-            this.txtSenha.TextChanged += new System.EventHandler(this.txtSenha_TextChanged);
-            // 
-            // lblLogin
-            // 
-            this.lblLogin.AutoSize = true;
-            this.lblLogin.Location = new System.Drawing.Point(5, 35);
-            this.lblLogin.Name = "lblLogin";
-            this.lblLogin.Size = new System.Drawing.Size(33, 13);
-            this.lblLogin.TabIndex = 4;
-            this.lblLogin.Text = "Login";
-            // 
-            // lblConfirmarSenha
-            // 
-            this.lblConfirmarSenha.AutoSize = true;
-            this.lblConfirmarSenha.Location = new System.Drawing.Point(181, 59);
-            this.lblConfirmarSenha.Name = "lblConfirmarSenha";
-            this.lblConfirmarSenha.Size = new System.Drawing.Size(48, 13);
-            this.lblConfirmarSenha.TabIndex = 9;
-            this.lblConfirmarSenha.Text = "Confirme";
-            // 
-            // lblNome
-            // 
-            this.lblNome.AutoSize = true;
-            this.lblNome.Location = new System.Drawing.Point(5, 9);
-            this.lblNome.Name = "lblNome";
-            this.lblNome.Size = new System.Drawing.Size(35, 13);
-            this.lblNome.TabIndex = 2;
-            this.lblNome.Text = "Nome";
-            // 
-            // txtConfirmarSenha
-            // 
-            this.txtConfirmarSenha.Location = new System.Drawing.Point(245, 59);
-            this.txtConfirmarSenha.Name = "txtConfirmarSenha";
-            this.txtConfirmarSenha.PasswordChar = '*';
-            this.txtConfirmarSenha.Size = new System.Drawing.Size(121, 20);
-            this.txtConfirmarSenha.TabIndex = 4;
-            this.txtConfirmarSenha.TextChanged += new System.EventHandler(this.txtConfirmarSenha_TextChanged);
-            // 
-            // txtNome
-            // 
-            this.txtNome.Location = new System.Drawing.Point(44, 6);
-            this.txtNome.Name = "txtNome";
-            this.txtNome.Size = new System.Drawing.Size(323, 20);
-            this.txtNome.TabIndex = 0;
-            this.txtNome.TextChanged += new System.EventHandler(this.txtNome_TextChanged);
-            // 
-            // cmbPerfil
-            // 
-            this.cmbPerfil.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbPerfil.FormattingEnabled = true;
-            this.cmbPerfil.Location = new System.Drawing.Point(101, 90);
-            this.cmbPerfil.Name = "cmbPerfil";
-            this.cmbPerfil.Size = new System.Drawing.Size(236, 21);
-            this.cmbPerfil.TabIndex = 10;
-            this.cmbPerfil.SelectedIndexChanged += new System.EventHandler(this.cmbPerfil_SelectedIndexChanged);
-            // 
-            // lblPerfilDisponivel
-            // 
-            this.lblPerfilDisponivel.AutoSize = true;
-            this.lblPerfilDisponivel.Location = new System.Drawing.Point(5, 93);
-            this.lblPerfilDisponivel.Name = "lblPerfilDisponivel";
-            this.lblPerfilDisponivel.Size = new System.Drawing.Size(90, 13);
-            this.lblPerfilDisponivel.TabIndex = 11;
-            this.lblPerfilDisponivel.Text = "Perfis Disponivies";
-            // 
-            // btnAdicionarPerfil
-            // 
-            this.btnAdicionarPerfil.Location = new System.Drawing.Point(342, 88);
-            this.btnAdicionarPerfil.Name = "btnAdicionarPerfil";
-            this.btnAdicionarPerfil.Size = new System.Drawing.Size(24, 23);
-            this.btnAdicionarPerfil.TabIndex = 12;
-            this.btnAdicionarPerfil.Text = "+";
-            this.btnAdicionarPerfil.UseVisualStyleBackColor = true;
-            this.btnAdicionarPerfil.Click += new System.EventHandler(this.btnAdicionarPerfil_Click);
+            this.lstPerfilUsuario.FormattingEnabled = true;
+            this.lstPerfilUsuario.Location = new System.Drawing.Point(101, 114);
+            this.lstPerfilUsuario.Name = "lstPerfilUsuario";
+            this.lstPerfilUsuario.Size = new System.Drawing.Size(236, 69);
+            this.lstPerfilUsuario.TabIndex = 14;
+            this.lstPerfilUsuario.SelectedIndexChanged += new System.EventHandler(this.lstPerfilUsuario_SelectedIndexChanged);
             // 
             // btnRemoverPerfil
             // 
@@ -430,23 +338,115 @@
             this.btnRemoverPerfil.UseVisualStyleBackColor = true;
             this.btnRemoverPerfil.Click += new System.EventHandler(this.btnRemoverPerfil_Click);
             // 
-            // lstPerfilUsuario
+            // btnAdicionarPerfil
             // 
-            this.lstPerfilUsuario.FormattingEnabled = true;
-            this.lstPerfilUsuario.Location = new System.Drawing.Point(101, 114);
-            this.lstPerfilUsuario.Name = "lstPerfilUsuario";
-            this.lstPerfilUsuario.Size = new System.Drawing.Size(236, 69);
-            this.lstPerfilUsuario.TabIndex = 14;
-            this.lstPerfilUsuario.SelectedIndexChanged += new System.EventHandler(this.lstPerfilUsuario_SelectedIndexChanged);
+            this.btnAdicionarPerfil.Location = new System.Drawing.Point(342, 88);
+            this.btnAdicionarPerfil.Name = "btnAdicionarPerfil";
+            this.btnAdicionarPerfil.Size = new System.Drawing.Size(24, 23);
+            this.btnAdicionarPerfil.TabIndex = 12;
+            this.btnAdicionarPerfil.Text = "+";
+            this.btnAdicionarPerfil.UseVisualStyleBackColor = true;
+            this.btnAdicionarPerfil.Click += new System.EventHandler(this.btnAdicionarPerfil_Click);
             // 
-            // lblPerfilUsuario
+            // lblPerfilDisponivel
             // 
-            this.lblPerfilUsuario.AutoSize = true;
-            this.lblPerfilUsuario.Location = new System.Drawing.Point(5, 114);
-            this.lblPerfilUsuario.Name = "lblPerfilUsuario";
-            this.lblPerfilUsuario.Size = new System.Drawing.Size(81, 13);
-            this.lblPerfilUsuario.TabIndex = 15;
-            this.lblPerfilUsuario.Text = "Perfis Utilizados";
+            this.lblPerfilDisponivel.AutoSize = true;
+            this.lblPerfilDisponivel.Location = new System.Drawing.Point(5, 93);
+            this.lblPerfilDisponivel.Name = "lblPerfilDisponivel";
+            this.lblPerfilDisponivel.Size = new System.Drawing.Size(90, 13);
+            this.lblPerfilDisponivel.TabIndex = 11;
+            this.lblPerfilDisponivel.Text = "Perfis Disponivies";
+            // 
+            // cmbPerfil
+            // 
+            this.cmbPerfil.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPerfil.FormattingEnabled = true;
+            this.cmbPerfil.Location = new System.Drawing.Point(101, 90);
+            this.cmbPerfil.Name = "cmbPerfil";
+            this.cmbPerfil.Size = new System.Drawing.Size(236, 21);
+            this.cmbPerfil.TabIndex = 10;
+            this.cmbPerfil.SelectedIndexChanged += new System.EventHandler(this.cmbPerfil_SelectedIndexChanged);
+            // 
+            // txtNome
+            // 
+            this.txtNome.Location = new System.Drawing.Point(44, 6);
+            this.txtNome.Name = "txtNome";
+            this.txtNome.Size = new System.Drawing.Size(323, 20);
+            this.txtNome.TabIndex = 0;
+            this.txtNome.TextChanged += new System.EventHandler(this.txtNome_TextChanged);
+            // 
+            // txtConfirmarSenha
+            // 
+            this.txtConfirmarSenha.Location = new System.Drawing.Point(245, 59);
+            this.txtConfirmarSenha.Name = "txtConfirmarSenha";
+            this.txtConfirmarSenha.PasswordChar = '*';
+            this.txtConfirmarSenha.Size = new System.Drawing.Size(121, 20);
+            this.txtConfirmarSenha.TabIndex = 4;
+            this.txtConfirmarSenha.TextChanged += new System.EventHandler(this.txtConfirmarSenha_TextChanged);
+            // 
+            // txtSenha
+            // 
+            this.txtSenha.Location = new System.Drawing.Point(44, 59);
+            this.txtSenha.Name = "txtSenha";
+            this.txtSenha.PasswordChar = '*';
+            this.txtSenha.Size = new System.Drawing.Size(122, 20);
+            this.txtSenha.TabIndex = 3;
+            this.txtSenha.TextChanged += new System.EventHandler(this.txtSenha_TextChanged);
+            // 
+            // txtLogin
+            // 
+            this.txtLogin.Location = new System.Drawing.Point(44, 33);
+            this.txtLogin.Name = "txtLogin";
+            this.txtLogin.Size = new System.Drawing.Size(240, 20);
+            this.txtLogin.TabIndex = 1;
+            this.txtLogin.TextChanged += new System.EventHandler(this.txtLogin_TextChanged);
+            // 
+            // lblNome
+            // 
+            this.lblNome.AutoSize = true;
+            this.lblNome.Location = new System.Drawing.Point(5, 9);
+            this.lblNome.Name = "lblNome";
+            this.lblNome.Size = new System.Drawing.Size(35, 13);
+            this.lblNome.TabIndex = 2;
+            this.lblNome.Text = "Nome";
+            // 
+            // lblConfirmarSenha
+            // 
+            this.lblConfirmarSenha.AutoSize = true;
+            this.lblConfirmarSenha.Location = new System.Drawing.Point(181, 59);
+            this.lblConfirmarSenha.Name = "lblConfirmarSenha";
+            this.lblConfirmarSenha.Size = new System.Drawing.Size(48, 13);
+            this.lblConfirmarSenha.TabIndex = 9;
+            this.lblConfirmarSenha.Text = "Confirme";
+            // 
+            // lblLogin
+            // 
+            this.lblLogin.AutoSize = true;
+            this.lblLogin.Location = new System.Drawing.Point(5, 35);
+            this.lblLogin.Name = "lblLogin";
+            this.lblLogin.Size = new System.Drawing.Size(33, 13);
+            this.lblLogin.TabIndex = 4;
+            this.lblLogin.Text = "Login";
+            // 
+            // lblSenha
+            // 
+            this.lblSenha.AutoSize = true;
+            this.lblSenha.Location = new System.Drawing.Point(5, 59);
+            this.lblSenha.Name = "lblSenha";
+            this.lblSenha.Size = new System.Drawing.Size(38, 13);
+            this.lblSenha.TabIndex = 7;
+            this.lblSenha.Text = "Senha";
+            // 
+            // btnVerificarLogin
+            // 
+            this.btnVerificarLogin.Enabled = false;
+            this.btnVerificarLogin.Location = new System.Drawing.Point(289, 32);
+            this.btnVerificarLogin.Name = "btnVerificarLogin";
+            this.btnVerificarLogin.Size = new System.Drawing.Size(77, 20);
+            this.btnVerificarLogin.TabIndex = 2;
+            this.btnVerificarLogin.Text = "Verificar";
+            this.btnVerificarLogin.UseVisualStyleBackColor = true;
+            this.btnVerificarLogin.Click += new System.EventHandler(this.btnVerificarLogin_Click);
             // 
             // tbcUsuario
             // 

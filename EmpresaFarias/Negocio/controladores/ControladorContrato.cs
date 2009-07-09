@@ -137,9 +137,12 @@ namespace Negocio.controladores
         {
             Contrato contrato = this.repContrato.Consultar(id);    
             
-            if (contrato == null)
-                throw new ExcecaoNegocio("Contrato não existente.");
-            return this.MontarContrato(contrato);
+            //if (contrato == null)
+            //    throw new ExcecaoNegocio("Contrato não existente.");
+            if (contrato != null)
+                return this.MontarContrato(contrato);
+            else
+                return null;
         }
 
         /// <summary>

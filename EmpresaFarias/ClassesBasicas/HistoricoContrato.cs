@@ -26,9 +26,11 @@ namespace ClassesBasicas
         /// </summary>
         public Contrato ContratoHistorico
         {
-            get { return ContratoHistorico; }
-            set { ContratoHistorico = value; }
+            get { return contratoHistorico; }
+            set { contratoHistorico = value; }
         }
+        
+        
 
          private Usuario usuario;
         /// <summary>

@@ -77,5 +77,23 @@ namespace ClassesBasicas
             this.plano = new Plano();
             this.parcelas = new List<Parcela>();           
         }
+        /// <summary>
+        /// Metodo responsável por Gerar parcelas de acordo com a data informada.
+        /// </summary>
+        /// <param name="dataIncicioVencimento">Data inicial do primeiro vencimento.</param>
+        /// <param name="numeroParcelas">Numero de Parcelas a serem feitas.</param>
+        /// <param name="valor">Valor padrao de Cada Parcela.</param>
+        public void GerarParcelas(DateTime dataIncicioVencimento, int numeroParcelas, decimal valor)
+        {
+            for(int i = 1; i<= numeroParcelas; i++)
+            {
+                Parcela p = new Parcela();
+                p.NumeroParcela = i;
+                p.Status = StatusParcela.Atrasada;
+                p.DataVencimento = dataIncicioVencimento.AddMonths(i - 1);
+                this.parcelas.Add(p);
+            }
+
+        }
     }
 }
