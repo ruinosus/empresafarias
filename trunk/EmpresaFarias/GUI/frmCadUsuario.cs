@@ -298,6 +298,8 @@ namespace GUI
                                 }
                             }
                             fachada.ControladorUsuario.Inserir(u);
+                            status = Status.Navegacao;
+                            AjustarBotoes();
                             break;
                         }
                     case Status.Alteracao:
@@ -314,6 +316,8 @@ namespace GUI
                                 }
                             }
                             fachada.ControladorUsuario.Alterar(usuarioAtual);
+                            status = Status.Navegacao;
+                            AjustarBotoes();
                             break;
                         }
 
@@ -332,8 +336,7 @@ namespace GUI
                 tlMensagem.Show(exc.Message, txtNome);
             }
 
-            status = Status.Navegacao;
-            AjustarBotoes();
+            
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

@@ -14,13 +14,26 @@ namespace GUI
     public partial class frmTitular : Form
     {
         Fachada fachada = Fachada.ObterInstancia();
+        Status statusTitular = Status.Inativo;
+        Status statusDependente = Status.Inativo;
+        Status statusParcela = Status.Inativo;
+
+        Usuario usuario;
+
+        Titular titularAtual;
+        List<Titular> titulares;
+
+        //Dependente dependenteAtual;
+        List<Dependente> dependentesAtuais;
+        List<Dependente> dependentesAntigos;
+
+        //Parcela parcelaAtual;
+        List<Parcela> parcelasAtuais;
+        List<Parcela> parcelasAntigas; 
 
         public frmTitular()
         {
-            InitializeComponent();
-            AjustarEstadoEndereco();
-            AjustarEstadoNaturalidade();
-            AjustarPlano();
+            InitializeComponent();              
         }
 
         private void AjustarEstadoEndereco()
@@ -175,10 +188,930 @@ namespace GUI
                     }
             }
         }
-
-        private void btnNovo_Click(object sender, EventArgs e)
+        
+        private void HabilitarDependente()
         {
+            btnAlterarDependente.Enabled = dgvDependentesCadastrados.CurrentRow!= null && dgvDependentesCadastrados.CurrentRow.Index != -1;
+            btnExcluirDependente.Enabled = dgvDependentesCadastrados.CurrentRow != null && dgvDependentesCadastrados.CurrentRow.Index != -1;
+        }
+
+        private void CarregarDependentes()
+        {
+            dgvDependentesCadastrados.DataSource = dependentesAtuais;
+        }
+
+        private void AjustarBotoesTitular()
+        {
+            AjustarEditsTitular();
+            switch (statusTitular)
+            {
+                case Status.Inativo:
+                    {
+                        //Btn do Titular
+                        btnAnterior.Enabled = false;
+                        btnCancelar.Enabled = false;
+                        btnSalvar.Enabled = false;
+                        btnNovo.Enabled = true;
+                        btnPrimeiro.Enabled = false;
+                        btnProximo.Enabled = false;
+                        btnUltimo.Enabled = false;
+                        btnExcluir.Enabled = false;
+                        btnAlterar.Enabled = false;
+                        btnBuscarContrato.Enabled = false;
+                        tbcTitular.Controls.Remove(tabDependente);
+                        tbcTitular.Controls.Remove(tabPagamento);
+                        //tbcTitular.DDisablePage(TabPage6)
+
+                        break;
+                    }
+                case Status.Alteracao:
+                    {
+
+                        //Btn do Titular
+                        btnAnterior.Enabled = false;
+                        btnCancelar.Enabled = true;
+                        btnSalvar.Enabled = true;
+                        btnNovo.Enabled = false;
+                        btnPrimeiro.Enabled = false;
+                        btnProximo.Enabled = false;
+                        btnUltimo.Enabled = false;
+                        btnExcluir.Enabled = false;
+                        btnAlterar.Enabled = false;
+                        btnBuscarContrato.Enabled = false;
+                        tbcTitular.Controls.Remove(tabDependente);
+                        tbcTitular.Controls.Remove(tabPagamento);
+
+                        
+
+                        break;
+                    }
+                case Status.Inclusao:
+                    {
+                        //btnAdicionarPerfil.Enabled = false;
+                        //btnRemoverPerfil.Enabled = false;
+                        btnAnterior.Enabled = false;
+                        btnCancelar.Enabled = true;
+                        btnSalvar.Enabled = true;
+                        btnNovo.Enabled = false;
+                        btnPrimeiro.Enabled = false;
+                        btnProximo.Enabled = false;
+                        btnUltimo.Enabled = false;
+                        btnExcluir.Enabled = false;
+                        btnAlterar.Enabled = false;
+                        btnBuscarContrato.Enabled = false;
+                        tbcTitular.Controls.Remove(tabDependente);
+                        tbcTitular.Controls.Remove(tabPagamento);
+                        //btnVerificarLogin.Enabled = true;
+                        break;
+                    }
+                case Status.Navegacao:
+                    {
+                        tbcTitular.Controls.Remove(tabDependente);
+                        tbcTitular.Controls.Remove(tabPagamento);
+                        tbcTitular.Controls.Add(tabDependente);
+                        tbcTitular.Controls.Add(tabPagamento);
+                        //btnAdicionarPerfil.Enabled = false;
+                        //btnRemoverPerfil.Enabled = false;
+                        btnBuscarContrato.Enabled = true;
+                        btnAnterior.Enabled = bsTitular.Position > 0;
+                        btnCancelar.Enabled = false;
+                        btnSalvar.Enabled = false;
+                        btnNovo.Enabled = true;
+                        btnPrimeiro.Enabled = bsTitular.Position > 0;
+                        btnProximo.Enabled = bsTitular.Position + 1 < bsTitular.Count;
+                        btnUltimo.Enabled = bsTitular.Position + 1 < bsTitular.Count;
+
+                        btnExcluir.Enabled = bsTitular.Count > 0;
+                        btnAlterar.Enabled = bsTitular.Count > 0;
+                        //btnVerificarLogin.Enabled = false;
+                        break;
+                    }
+            }
+
 
         }
+
+        private void AjustarEditsTitular()
+        {
+            //Consultando todos os titulares cadastrados.
+            titulares = fachada.ControladorTitular.Consultar();
+            bsTitular.DataSource = titulares;
+
+            switch (statusTitular)
+            {
+                case Status.Inativo:
+                    {
+                        statusDependente = Status.Inativo;
+                        AjustarBotoesDependente();
+                        statusParcela = Status.Inativo;
+                        AjustarBotoesParcela();
+
+                        dtpExpedicao.Enabled = false;
+                        dtpInicioContrato.Enabled = false;
+                        dtpDataNascimentoTitular.Enabled = false;
+
+                        rdbFeminino.Enabled = false;
+                        rdbMasculino.Enabled = false;
+                        cmbCidade.Enabled = false;
+                        cmbCidadeNaturalidade.Enabled = false;
+                        cmbEstado.Enabled = false;
+                        cmbEstadoNaturalidade.Enabled = false;
+                        cmbEstadoCivil.Enabled = false;
+                        cmbPlano.Enabled = false;
+                        cmbReligiaoTitular.Enabled = false;
+
+                        txtNome.ReadOnly = true;
+                        txtBairro.ReadOnly = true;
+                        txtBuscarContrato.ReadOnly = true;
+                        txtComplemento.ReadOnly = true;
+                        txtLogradouro.ReadOnly = true;
+                        txtNumero.ReadOnly = true;
+                        txtNumeroContrato.ReadOnly = true;
+                        mskOrgaoExpeditor.ReadOnly = true;
+                        mskCep.ReadOnly = true;
+                        mskCpf.ReadOnly = true;
+                        mskRg.ReadOnly = true;
+                        mskTelefoneCelular.ReadOnly = true;
+                        mskTelefoneResidencial.ReadOnly = true;
+
+                        txtNome.Clear();
+                        txtBairro.Clear();
+                        txtBuscarContrato.Clear();
+                        txtComplemento.Clear();
+                        txtLogradouro.Clear();
+                        txtNumero.Clear();
+                        txtNumeroContrato.Clear();
+                        mskOrgaoExpeditor.Clear();
+                        mskCep.Clear();
+                        mskCpf.Clear();
+                        mskRg.Clear();
+                        mskTelefoneCelular.Clear();
+                        mskTelefoneResidencial.Clear();
+
+                        break;
+                    }
+                case Status.Alteracao:
+                    {
+                        statusDependente = Status.Inativo;
+                        AjustarBotoesDependente();
+                        statusParcela = Status.Inativo;
+                        AjustarBotoesParcela();
+
+                        dtpExpedicao.Enabled = true;
+                        dtpInicioContrato.Enabled = true;
+                        dtpDataNascimentoTitular.Enabled = true;
+
+                        rdbFeminino.Enabled = true;
+                        rdbMasculino.Enabled = true;
+                        cmbCidade.Enabled = true;
+                        cmbCidadeNaturalidade.Enabled = true;
+                        cmbEstado.Enabled = true;
+                        cmbEstadoNaturalidade.Enabled = true;
+                        cmbEstadoCivil.Enabled = true;
+                        cmbPlano.Enabled = true;
+                        cmbReligiaoTitular.Enabled = true;
+
+                        txtNome.ReadOnly = false;
+                        txtBairro.ReadOnly = false;
+                        txtBuscarContrato.ReadOnly = false;
+                        txtComplemento.ReadOnly = false;
+                        txtLogradouro.ReadOnly = false;
+                        txtNumero.ReadOnly = false;
+                        txtNumeroContrato.ReadOnly = false;
+                        mskOrgaoExpeditor.ReadOnly = false;
+                        mskCep.ReadOnly = false;
+                        mskCpf.ReadOnly = false;
+                        mskRg.ReadOnly = false;
+                        mskTelefoneCelular.ReadOnly = false;
+                        mskTelefoneResidencial.ReadOnly = false;
+
+                        if (titularAtual.Dependentes.Count > 0)
+                            dependentesAtuais = titularAtual.Dependentes;
+                        else
+                            dependentesAtuais = new List<Dependente>();
+
+                       
+                        break;
+                    }
+                case Status.Inclusao:
+                    {
+                        statusDependente = Status.Inativo;
+                        AjustarBotoesDependente();
+                        statusParcela = Status.Inativo;
+                        AjustarBotoesParcela();
+
+                        dtpExpedicao.Enabled = true;
+                        dtpInicioContrato.Enabled = true;
+                        dtpDataNascimentoTitular.Enabled = true;
+
+                        rdbFeminino.Enabled = true;
+                        rdbMasculino.Enabled = true;
+                        cmbCidade.Enabled = true;
+                        cmbCidadeNaturalidade.Enabled = true;
+                        cmbEstado.Enabled = true;
+                        cmbEstadoNaturalidade.Enabled = true;
+                        cmbEstadoCivil.Enabled = true;
+                        cmbPlano.Enabled = true;
+                        cmbReligiaoTitular.Enabled = true;
+
+                        cmbEstadoCivil.SelectedIndex = 0;
+                        cmbReligiaoTitular.SelectedIndex = 0;
+                        txtNome.ReadOnly = false;
+                        txtBairro.ReadOnly = false;
+                        txtBuscarContrato.ReadOnly = false;
+                        txtComplemento.ReadOnly = false;
+                        txtLogradouro.ReadOnly = false;
+                        txtNumero.ReadOnly = false;
+                        txtNumeroContrato.ReadOnly = false;
+                        mskOrgaoExpeditor.ReadOnly = false;
+                        mskCep.ReadOnly = false;
+                        mskCpf.ReadOnly = false;
+                        mskRg.ReadOnly = false;
+                        mskTelefoneCelular.ReadOnly = false;
+                        mskTelefoneResidencial.ReadOnly = false;
+
+                        txtNome.Clear();
+                        txtBairro.Clear();
+                        txtBuscarContrato.Clear();
+                        txtComplemento.Clear();
+                        txtLogradouro.Clear();
+                        txtNumero.Clear();
+                        txtNumeroContrato.Clear();
+                        mskOrgaoExpeditor.Clear();
+                        mskCep.Clear();
+                        mskCpf.Clear();
+                        mskRg.Clear();
+                        mskTelefoneCelular.Clear();
+                        mskTelefoneResidencial.Clear();
+
+                        dependentesAtuais = new List<Dependente>();
+                        break;
+                    }
+                case Status.Navegacao:
+                    {
+                        statusDependente = Status.Navegacao;
+                        AjustarBotoesDependente();
+                        statusParcela = Status.Navegacao;
+                        AjustarBotoesParcela();
+
+                        dtpExpedicao.Enabled = false;
+                        dtpInicioContrato.Enabled = false;
+                        dtpDataNascimentoTitular.Enabled = false;
+
+                        rdbFeminino.Enabled = false;
+                        rdbMasculino.Enabled = false;
+                        cmbCidade.Enabled = false;
+                        cmbCidadeNaturalidade.Enabled = false;
+                        cmbEstado.Enabled = false;
+                        cmbEstadoNaturalidade.Enabled = false;
+                        cmbEstadoCivil.Enabled = false;
+                        cmbPlano.Enabled = false;
+                        cmbReligiaoTitular.Enabled = false;
+
+                        txtNome.ReadOnly = true;
+                        txtBairro.ReadOnly = true;
+                        txtBuscarContrato.ReadOnly = true;
+                        txtComplemento.ReadOnly = true;
+                        txtLogradouro.ReadOnly = true;
+                        txtNumero.ReadOnly = true;
+                        txtNumeroContrato.ReadOnly = true;
+                        mskOrgaoExpeditor.ReadOnly = true;
+                        mskCep.ReadOnly = true;
+                        mskCpf.ReadOnly = true;
+                        mskRg.ReadOnly = true;
+                        mskTelefoneCelular.ReadOnly = true;
+                        mskTelefoneResidencial.ReadOnly = true;
+
+                        txtNome.Clear();
+                        txtBairro.Clear();
+                        txtBuscarContrato.Clear();
+                        txtComplemento.Clear();
+                        txtLogradouro.Clear();
+                        txtNumero.Clear();
+                        txtNumeroContrato.Clear();
+                        mskOrgaoExpeditor.Clear();
+                        mskCep.Clear();
+                        mskCpf.Clear();
+                        mskRg.Clear();
+                        mskTelefoneCelular.Clear();
+                        mskTelefoneResidencial.Clear();
+                        
+                        if (titulares.Count > 0)
+                        {
+                            titularAtual = (Titular)titulares[bsTitular.Position];
+                            txtNome.Text = titularAtual.Nome;
+                            txtBairro.Text = titularAtual.Endereco.Bairro;
+                            txtComplemento.Text = titularAtual.Endereco.Complemento;
+                            txtLogradouro.Text = titularAtual.Endereco.Logradouro;
+                            txtNome.Text = titularAtual.Nome;
+                            txtNumero.Text = titularAtual.Endereco.Numero;
+                            mskCep.Text = titularAtual.Endereco.Cep;
+                            mskCpf.Text = titularAtual.Cpf;
+                            mskOrgaoExpeditor.Text = titularAtual.Rg.OrgaoExpeditor;
+                            mskRg.Text = titularAtual.Rg.Numero;
+                            mskTelefoneCelular.Text = titularAtual.TelefoneCelular;
+                            mskTelefoneResidencial.Text = titularAtual.TelefoneResidencial;
+                            
+                            if (titularAtual.Dependentes.Count > 0)
+                                dependentesAtuais = titularAtual.Dependentes;
+                            else
+                                dependentesAtuais = new List<Dependente>();
+
+                            //if (titularAtual.Contratos.Count > 0)
+                            //{
+                            //    txtNumeroContrato.Text = titularAtual.Contratos[0].Id.ToString();
+                            //    cmbParcela.SelectedValue = titularAtual.Contratos[0].Plano.Id;
+                            //    dtpInicioContrato.Value = titularAtual.Contratos[0].DataInicio;
+                            //}
+                            dtpDataNascimentoTitular.Value = titularAtual.DataNascimento;
+                        
+                            rdbFeminino.Checked = titularAtual.Sexo.Equals('F');
+                            rdbMasculino.Checked = titularAtual.Sexo.Equals('M');
+                            cmbEstadoCivil.Text = titularAtual.EstadoCivil;
+                            cmbReligiaoTitular.Text = titularAtual.Religiao;
+                            cmbEstado.SelectedValue = titularAtual.Endereco.Cidade.Estado.Id;
+                            cmbCidade.SelectedValue = titularAtual.Endereco.Cidade.Id;
+
+                            dtpExpedicao.Value = titularAtual.Rg.DataExpedicao;
+                            cmbEstadoNaturalidade.SelectedValue = titularAtual.CidadeNaturalidade.Estado.Id;
+                            cmbCidadeNaturalidade.SelectedValue = titularAtual.CidadeNaturalidade.Id;
+
+                            if (titularAtual.Contratos.Count > 0)
+                            {
+                                txtNumeroContrato.Text = titularAtual.Contratos[0].Id.ToString();
+                                cmbPlano.SelectedValue = titularAtual.Contratos[0].Plano.Id;
+                                dtpInicioContrato.Value = titularAtual.Contratos[0].DataInicio;
+                            }
+
+                        }
+                        break;
+                    }
+            }
+
+        }
+
+        private void AjustarBotoesDependente()
+        {
+            AjustarEditsDependente();
+            switch (statusDependente)
+            {
+                case Status.Inativo:
+                    { 
+                        //Btn do Dependente
+                        btnAdicionarDependente.Enabled = false;
+                        btnAlterarDependente.Enabled = false;
+                        btnCancelarDependente.Enabled = false;
+                        btnExcluirDependente.Enabled = false;
+                        btnSalvarDependente.Enabled = false;
+                        dgvDependentesCadastrados.Enabled = false;
+                        break;
+                    }
+                case Status.Alteracao:
+                    {
+                        //Btn do Dependente
+                        btnAdicionarDependente.Enabled = false;
+                        btnAlterarDependente.Enabled = false;
+                        btnCancelarDependente.Enabled = true;
+                        btnExcluirDependente.Enabled = false;
+                        btnSalvarDependente.Enabled = true;
+                        dgvDependentesCadastrados.Enabled = false;
+
+
+                        break;
+                    }
+                case Status.Inclusao:
+                    {
+                        //Btn do Dependente
+                        btnAdicionarDependente.Enabled = false;
+                        btnAlterarDependente.Enabled = false;
+                        btnCancelarDependente.Enabled = true;
+                        btnExcluirDependente.Enabled = false;
+                        btnSalvarDependente.Enabled = true;
+                        dgvDependentesCadastrados.Enabled = false;
+                        break;
+                    }
+                case Status.Navegacao:
+                    {
+                        //Btn do Dependente
+                        dgvDependentesCadastrados.Enabled = true;
+                        btnAdicionarDependente.Enabled = true;
+                        btnAlterarDependente.Enabled = false;
+                        btnCancelarDependente.Enabled = false;
+                        btnExcluirDependente.Enabled = false;
+                        btnSalvarDependente.Enabled = false;
+                        HabilitarDependente();
+                        break;
+                    }
+            }
+
+
+        }
+
+        private void AjustarEditsDependente()
+        {
+            ////Consultando todos os titulares cadastrados.
+            //titulares = fachada.ControladorTitular.Consultar();
+            //bsTitular.DataSource = titulares;
+
+            CarregarDependentes();
+
+            switch (statusDependente)
+            {
+                case Status.Inativo:
+                    {
+                        dtpNascimentoDependente.Enabled = false;
+
+                        cmbParentesco.Enabled = false;
+                        cmbPercentualCobertura.Enabled = false;
+                        cmbReligiaoDependente.Enabled = false;
+
+                        txtNomeDependente.ReadOnly = true;                      
+
+                        txtNomeDependente.Clear();
+                        HabilitarDependente();
+                     
+
+                        break;
+                    }
+                case Status.Alteracao:
+                    {
+                        //Validar dependente
+                        dtpNascimentoDependente.Enabled = true;
+
+                        cmbParentesco.Enabled = true;
+                        cmbPercentualCobertura.Enabled = true;
+                        cmbReligiaoDependente.Enabled = true;
+
+                        txtNomeDependente.ReadOnly = false;
+
+
+                        break;
+                    }
+                case Status.Inclusao:
+                    {
+                        dtpNascimentoDependente.Enabled = true;                      
+
+                        cmbParentesco.Enabled = true;
+                        cmbPercentualCobertura.Enabled = true;
+                        cmbReligiaoDependente.Enabled = true;
+
+                        cmbParentesco.SelectedIndex = 0;
+
+                        cmbReligiaoDependente.SelectedIndex = 0;
+
+                        txtNomeDependente.ReadOnly = false;
+                        txtNomeDependente.Clear();
+                        break;
+                    }
+                case Status.Navegacao:
+                    {
+                        dtpNascimentoDependente.Enabled = false;
+
+                        cmbParentesco.Enabled = false;
+                        cmbPercentualCobertura.Enabled = false;
+                        cmbReligiaoDependente.Enabled = false;
+
+                        txtNomeDependente.ReadOnly = true;
+
+                        txtNomeDependente.Clear();
+
+                        //carregar os dependentes do Titular
+                        break;
+                    }
+            }
+
+        }
+
+        private void AjustarBotoesParcela()
+        {
+            AjustarEditsParcela();
+            switch (statusParcela)
+            {
+                case Status.Inativo:
+                    {
+                        //Btn da Parcela
+                        btnEfetuarPagamento.Enabled = false;
+                        btnAlterarParcela.Enabled = false;
+                        btnGerarParcelas.Enabled = false;
+                        break;
+                    }
+                case Status.Alteracao:
+                    {
+                        //Btn da Parcela
+                        btnEfetuarPagamento.Enabled = false;
+                        btnAlterarParcela.Enabled = false;
+                        btnGerarParcelas.Enabled = false;
+
+                        break;
+                    }
+                case Status.Inclusao:
+                    {
+                        //Btn da Parcela
+                        btnEfetuarPagamento.Enabled = false;
+                        btnAlterarParcela.Enabled = false;
+                        btnGerarParcelas.Enabled = false;
+                        break;
+                    }
+                case Status.Navegacao:
+                    {
+                        //Btn da Parcela
+                        btnEfetuarPagamento.Enabled = false;
+                        btnAlterarParcela.Enabled = false;
+                        btnGerarParcelas.Enabled = true;
+                        break;
+                    }
+            }
+
+
+        }
+
+        private void AjustarEditsParcela()
+        {
+            ////Consultando todos os titulares cadastrados.
+            //titulares = fachada.ControladorTitular.Consultar();
+            //bsTitular.DataSource = titulares;
+
+            switch (statusParcela)
+            {
+                case Status.Inativo:
+                    {
+                        dtpDataPagamento.Enabled = false;
+                        dtpDataVencimento.Enabled = false;
+
+                        dgvParcelas.Enabled = false;
+                      
+                        cmbParcela.Enabled = false;
+
+                        txtValor.ReadOnly = true;                        
+
+                        txtValor.Clear();
+                        
+
+                        break;
+                    }
+                case Status.Alteracao:
+                    {
+                        dtpDataPagamento.Enabled = true;
+                        dtpDataVencimento.Enabled = true;
+
+                        dgvParcelas.Enabled = true;
+
+                        cmbParcela.Enabled = true;
+
+                        txtValor.ReadOnly = false;
+
+
+                        break;
+                    }
+                case Status.Inclusao:
+                    {
+                        dtpDataPagamento.Enabled = true;
+                        dtpDataVencimento.Enabled = true;
+
+                        dgvParcelas.Enabled = true;
+
+                        cmbParcela.Enabled = true;
+
+                        txtValor.ReadOnly = false;
+                        txtValor.Clear();
+                        break;
+                    }
+                case Status.Navegacao:
+                    {
+                        dtpDataPagamento.Enabled = false;
+                        dtpDataVencimento.Enabled = false;
+
+                        dgvParcelas.Enabled = false;
+
+                        cmbParcela.Enabled = false;
+
+                        txtValor.ReadOnly = true;
+
+                        txtValor.Clear();
+                        break;
+                    }
+            }
+
+        }
+
+        private void frmTitular_Load(object sender, EventArgs e)
+        {
+            if (fachada.ControladorTitular.Consultar().Count > 0)
+            {
+                statusTitular = Status.Navegacao;
+            }
+            else
+            {
+                statusTitular = Status.Inativo;
+            }
+            AjustarEstadoEndereco();
+            AjustarEstadoNaturalidade();
+            AjustarPlano(); 
+            usuario = fachada.Usuario;
+            AjustarBotoesTitular();
+        }
+        
+        private void btnNovo_Click(object sender, EventArgs e)
+        {
+            statusTitular = Status.Inclusao;
+
+            AjustarBotoesTitular();
+        }
+
+        private void btnAlterar_Click(object sender, EventArgs e)
+        {
+            statusTitular = Status.Alteracao;
+
+            AjustarBotoesTitular();
+        }
+
+        private void btnSalvar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                switch (statusTitular)
+                {
+                    case Status.Inclusao:
+                        {
+                            Titular t = new Titular();
+                            t.CidadeNaturalidade = (Cidade)cmbCidadeNaturalidade.SelectedItem;
+                            t.Cpf = mskCpf.Text;
+                            t.DataNascimento = dtpDataNascimentoTitular.Value;
+                            t.Endereco.Cidade = (Cidade)cmbCidade.SelectedItem;
+                            t.Endereco.Bairro = txtBairro.Text;
+                            t.Endereco.Cep = mskCep.Text;
+                            t.Endereco.Complemento = txtComplemento.Text;
+                            t.Endereco.Logradouro = txtLogradouro.Text;
+                            t.Endereco.Numero = txtNumero.Text;
+                            t.EstadoCivil = cmbEstadoCivil.Text;
+                            t.Nome = txtNome.Text;
+                            t.Religiao = cmbReligiaoTitular.Text;
+                            t.Rg.Numero = mskRg.Text;
+                            t.Rg.DataExpedicao = dtpExpedicao.Value;
+                            t.Rg.OrgaoExpeditor = mskOrgaoExpeditor.Text;
+                            if (rdbFeminino.Checked)
+                                t.Sexo = 'F';
+                            else
+                                t.Sexo = 'M';
+                            t.Status = StatusTitular.Ativo;
+                            t.TelefoneCelular = mskTelefoneCelular.Text;
+                            t.TelefoneResidencial = mskTelefoneResidencial.Text;
+                            t = fachada.ControladorTitular.Inserir(t, usuario);
+                            //Inserindo o Contrato
+                            Contrato c = new Contrato();
+                            c.Id = Convert.ToInt32(txtNumeroContrato.Text);
+                            c.DataInicio = dtpInicioContrato.Value;
+                            c.Plano = (Plano)cmbPlano.SelectedItem;
+                            //c.GerarParcelas(DateTime.Today, 12, c.Plano.ValorPadrao);
+                            c.Status = StatusContrato.Ativo;
+                            fachada.ControladorContrato.Inserir(c, t.Id, usuario);
+
+                            statusTitular = Status.Navegacao;
+                            AjustarBotoesTitular();
+                            break;
+                        }
+                    case Status.Alteracao:
+                        {
+                            //Alterando o Titular
+                            titularAtual.CidadeNaturalidade = (Cidade)cmbCidadeNaturalidade.SelectedItem;
+                            titularAtual.Cpf = mskCpf.Text;
+                            titularAtual.DataNascimento = dtpDataNascimentoTitular.Value;
+                            titularAtual.Endereco.Cidade = (Cidade)cmbCidade.SelectedItem;
+                            titularAtual.Endereco.Bairro = txtBairro.Text;
+                            titularAtual.Endereco.Cep = mskCep.Text;
+                            titularAtual.Endereco.Complemento = txtComplemento.Text;
+                            titularAtual.Endereco.Logradouro = txtLogradouro.Text;
+                            titularAtual.Endereco.Numero = txtNumero.Text;
+                            titularAtual.EstadoCivil = cmbEstadoCivil.Text;
+                            titularAtual.Nome = txtNome.Text;
+                            titularAtual.Religiao = cmbReligiaoTitular.Text;
+                            titularAtual.Rg.Numero = mskRg.Text;
+                            titularAtual.Rg.DataExpedicao = dtpExpedicao.Value;
+                            titularAtual.Rg.OrgaoExpeditor = mskOrgaoExpeditor.Text;
+                            if (rdbFeminino.Checked)
+                                titularAtual.Sexo = 'F';
+                            else
+                                titularAtual.Sexo = 'M';
+                            titularAtual.Status = StatusTitular.Ativo;
+                            titularAtual.TelefoneCelular = mskTelefoneCelular.Text;
+                            titularAtual.TelefoneResidencial = mskTelefoneResidencial.Text;
+                            fachada.ControladorTitular.Alterar(titularAtual, usuario);
+
+                            //Alterando o Contrato
+                            titularAtual.Contratos[0].Id = Convert.ToInt32(txtNumeroContrato.Text);
+                            titularAtual.Contratos[0].DataInicio = dtpInicioContrato.Value;
+                            titularAtual.Contratos[0].Plano = (Plano)cmbPlano.SelectedItem;
+                            //c.GerarParcelas(DateTime.Today, 12, c.Plano.ValorPadrao);
+                            titularAtual.Contratos[0].Status = StatusContrato.Ativo;
+                            fachada.ControladorContrato.Alterar(titularAtual.Contratos[0], titularAtual.Id, usuario);
+
+                            statusTitular = Status.Navegacao;
+                            AjustarBotoesTitular();
+                            break;
+                        }
+
+
+                }
+
+            }
+            catch (ExcecaoNegocio ex)
+            {
+                tlMensagem.ToolTipTitle = "Erro!";
+                tlMensagem.Show(ex.Message, txtNome);
+            }
+            catch (Exception exc)
+            {
+                tlMensagem.ToolTipTitle = "Erro!";
+                tlMensagem.Show(exc.Message, txtNome);
+            }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            statusTitular = Status.Navegacao;
+
+            AjustarBotoesTitular();
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            statusTitular = Status.Navegacao;
+
+            AjustarBotoesTitular();
+        }
+
+        private void btnAdicionarDependente_Click(object sender, EventArgs e)
+        {
+            statusDependente = Status.Inclusao;
+
+            AjustarBotoesDependente();
+        }
+
+        private void btnAlterarDependente_Click(object sender, EventArgs e)
+        {
+            statusDependente = Status.Alteracao;
+
+            AjustarBotoesDependente();
+        }
+
+        private void btnSalvarDependente_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                switch (statusTitular)
+                {
+                    case Status.Inclusao:
+                        {
+                            Titular t = new Titular();
+                            t.CidadeNaturalidade = (Cidade)cmbCidadeNaturalidade.SelectedItem;
+                            t.Cpf = mskCpf.Text;
+                            t.DataNascimento = dtpDataNascimentoTitular.Value;
+                            t.Endereco.Cidade = (Cidade)cmbCidade.SelectedItem;
+                            t.Endereco.Bairro = txtBairro.Text;
+                            t.Endereco.Cep = mskCep.Text;
+                            t.Endereco.Complemento = txtComplemento.Text;
+                            t.Endereco.Logradouro = txtLogradouro.Text;
+                            t.Endereco.Numero = txtNumero.Text;
+                            t.EstadoCivil = cmbEstadoCivil.Text;
+                            t.Nome = txtNome.Text;
+                            t.Religiao = cmbReligiaoTitular.Text;
+                            t.Rg.Numero = mskRg.Text;
+                            t.Rg.DataExpedicao = dtpExpedicao.Value;
+                            t.Rg.OrgaoExpeditor = mskOrgaoExpeditor.Text;
+                            if (rdbFeminino.Checked)
+                                t.Sexo = 'F';
+                            else
+                                t.Sexo = 'M';
+                            t.Status = StatusTitular.Ativo;
+                            t.TelefoneCelular = mskTelefoneCelular.Text;
+                            t.TelefoneResidencial = mskTelefoneResidencial.Text;
+                            t = fachada.ControladorTitular.Inserir(t, usuario);
+                            //Inserindo o Contrato
+                            Contrato c = new Contrato();
+                            c.Id = Convert.ToInt32(txtNumeroContrato.Text);
+                            c.DataInicio = dtpInicioContrato.Value;
+                            c.Plano = (Plano)cmbPlano.SelectedItem;
+                            //c.GerarParcelas(DateTime.Today, 12, c.Plano.ValorPadrao);
+                            c.Status = StatusContrato.Ativo;
+                            fachada.ControladorContrato.Inserir(c, t.Id, usuario);
+
+                            statusTitular = Status.Navegacao;
+                            AjustarBotoesTitular();
+                            break;
+                        }
+                    case Status.Alteracao:
+                        {
+                            //Alterando o Titular
+                            titularAtual.CidadeNaturalidade = (Cidade)cmbCidadeNaturalidade.SelectedItem;
+                            titularAtual.Cpf = mskCpf.Text;
+                            titularAtual.DataNascimento = dtpDataNascimentoTitular.Value;
+                            titularAtual.Endereco.Cidade = (Cidade)cmbCidade.SelectedItem;
+                            titularAtual.Endereco.Bairro = txtBairro.Text;
+                            titularAtual.Endereco.Cep = mskCep.Text;
+                            titularAtual.Endereco.Complemento = txtComplemento.Text;
+                            titularAtual.Endereco.Logradouro = txtLogradouro.Text;
+                            titularAtual.Endereco.Numero = txtNumero.Text;
+                            titularAtual.EstadoCivil = cmbEstadoCivil.Text;
+                            titularAtual.Nome = txtNome.Text;
+                            titularAtual.Religiao = cmbReligiaoTitular.Text;
+                            titularAtual.Rg.Numero = mskRg.Text;
+                            titularAtual.Rg.DataExpedicao = dtpExpedicao.Value;
+                            titularAtual.Rg.OrgaoExpeditor = mskOrgaoExpeditor.Text;
+                            if (rdbFeminino.Checked)
+                                titularAtual.Sexo = 'F';
+                            else
+                                titularAtual.Sexo = 'M';
+                            titularAtual.Status = StatusTitular.Ativo;
+                            titularAtual.TelefoneCelular = mskTelefoneCelular.Text;
+                            titularAtual.TelefoneResidencial = mskTelefoneResidencial.Text;
+                            fachada.ControladorTitular.Alterar(titularAtual, usuario);
+
+                            //Alterando o Contrato
+                            titularAtual.Contratos[0].Id = Convert.ToInt32(txtNumeroContrato.Text);
+                            titularAtual.Contratos[0].DataInicio = dtpInicioContrato.Value;
+                            titularAtual.Contratos[0].Plano = (Plano)cmbPlano.SelectedItem;
+                            //c.GerarParcelas(DateTime.Today, 12, c.Plano.ValorPadrao);
+                            titularAtual.Contratos[0].Status = StatusContrato.Ativo;
+                            fachada.ControladorContrato.Alterar(titularAtual.Contratos[0], titularAtual.Id, usuario);
+
+                            statusTitular = Status.Navegacao;
+                            AjustarBotoesTitular();
+                            break;
+                        }
+
+
+                }
+
+            }
+            catch (ExcecaoNegocio ex)
+            {
+                tlMensagem.ToolTipTitle = "Erro!";
+                tlMensagem.Show(ex.Message, txtNome);
+            }
+            catch (Exception exc)
+            {
+                tlMensagem.ToolTipTitle = "Erro!";
+                tlMensagem.Show(exc.Message, txtNome);
+            }
+        }
+
+        private void btnCancelarDependente_Click(object sender, EventArgs e)
+        {
+            statusDependente = Status.Navegacao;
+
+            AjustarBotoesDependente();
+        }
+
+        private void btnExcluirDependente_Click(object sender, EventArgs e)
+        {
+            statusDependente = Status.Navegacao;
+
+            AjustarBotoesDependente();
+        }
+
+        private void dgvDependentesCadastrados_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            HabilitarDependente();
+        }
+
+        private void btnPrimeiro_Click(object sender, EventArgs e)
+        {
+            statusTitular = Status.Navegacao;
+            //statusDependente = Status.Inativo;
+            //statusParcela = Status.Inativo;
+            bsTitular.MoveFirst();
+            AjustarBotoesTitular();
+        }
+
+        private void btnAnterior_Click(object sender, EventArgs e)
+        {
+            statusTitular = Status.Navegacao;
+            //statusDependente = Status.Inativo;
+            //statusParcela = Status.Inativo;
+            bsTitular.MovePrevious();
+            AjustarBotoesTitular();
+        }
+
+        private void btnProximo_Click(object sender, EventArgs e)
+        {
+            statusTitular = Status.Navegacao;
+            //statusDependente = Status.Inativo;
+            //statusParcela = Status.Inativo;
+            bsTitular.MoveNext();
+            AjustarBotoesTitular();
+        }
+
+        private void btnUltimo_Click(object sender, EventArgs e)
+        {
+            statusTitular = Status.Navegacao;
+            //statusDependente = Status.Inativo;
+            //statusParcela = Status.Inativo;
+            bsTitular.MoveLast();
+            AjustarBotoesTitular();
+        }
+
+
     }
 }

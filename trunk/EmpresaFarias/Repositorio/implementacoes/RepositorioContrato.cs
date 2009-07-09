@@ -48,7 +48,7 @@ namespace Repositorio.implementacoes
                 comando.Parameters.AddWithValue("@TitularId", TitularId);
                 conexao.Open();
                 int regitrosAfetados = comando.ExecuteNonQuery();
-                //contrato.Id = this.ObterMaximoId();
+                contrato.Id = this.ObterMaximoId();
             }
             catch (SqlException e)
             {

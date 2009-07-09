@@ -53,7 +53,7 @@ namespace Repositorio.implementacoes
                 comando.Parameters.AddWithValue("@Descricao", historicoDependente.Descricao);
                 conexao.Open();
                 int regitrosAfetados = comando.ExecuteNonQuery();
-                historicoDependente.DependenteHistorico.Id = this.ObterMaximoId();
+               // historicoDependente.DependenteHistorico.Id = this.ObterMaximoId();
             }
             catch (SqlException e)
             {
