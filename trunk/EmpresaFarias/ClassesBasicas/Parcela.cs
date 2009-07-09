@@ -79,5 +79,18 @@ namespace ClassesBasicas
             set { status = value; }
         }
 
+        public override bool Equals(object obj)
+        {
+            bool resultado = false;
+
+            if (obj is Parcela)
+            {
+                Parcela d = obj as Parcela;
+                if (d.Id == this.id)
+                    resultado = true;
+            }
+            return resultado;
+        }
+
     }
 }

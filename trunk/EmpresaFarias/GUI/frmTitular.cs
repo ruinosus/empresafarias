@@ -24,16 +24,16 @@ namespace GUI
         List<Titular> titulares;
 
         //Dependente dependenteAtual;
-        List<Dependente> dependentesAtuais;
-        List<Dependente> dependentesAntigos;
+        List<Dependente> dependentes;
+        Dependente dependenteAtual = new Dependente();
 
         //Parcela parcelaAtual;
-        List<Parcela> parcelasAtuais;
-        List<Parcela> parcelasAntigas; 
+        List<Parcela> parcelas;
+        Parcela parcelaAtual = new Parcela();
 
         public frmTitular()
         {
-            InitializeComponent();              
+            InitializeComponent();
         }
 
         private void AjustarEstadoEndereco()
@@ -56,7 +56,7 @@ namespace GUI
                 tlMensagem.ToolTipTitle = "Erro";
                 tlMensagem.Show(ex.Message, cmbEstado);
             }
-        }        
+        }
 
         private void AjustarCidadeEndereco()
         {
@@ -188,16 +188,34 @@ namespace GUI
                     }
             }
         }
-        
+
         private void HabilitarDependente()
         {
-            btnAlterarDependente.Enabled = dgvDependentesCadastrados.CurrentRow!= null && dgvDependentesCadastrados.CurrentRow.Index != -1;
-            btnExcluirDependente.Enabled = dgvDependentesCadastrados.CurrentRow != null && dgvDependentesCadastrados.CurrentRow.Index != -1;
+            btnAlterarDependente.Enabled = dgvDependentesCadastrados.CurrentRow != null && dgvDependentesCadastrados.CurrentRow.Index != -1 && dependentes.Count > 0;
+            btnExcluirDependente.Enabled = dgvDependentesCadastrados.CurrentRow != null && dgvDependentesCadastrados.CurrentRow.Index != -1 && dependentes.Count > 0;
+        }
+
+        private void HabilitarParcela()
+        {
+            btnAlterarParcela.Enabled = dgvParcelas.CurrentRow != null && dgvParcelas.CurrentRow.Index != -1 && parcelas.Count > 0;
+            btnExcluirDependente.Enabled = dgvParcelas.CurrentRow != null && dgvParcelas.CurrentRow.Index != -1 && parcelas.Count > 0;
         }
 
         private void CarregarDependentes()
         {
-            dgvDependentesCadastrados.DataSource = dependentesAtuais;
+            //dgvDependentesCadastrados.ClearSelection();
+
+            //dgvDependentesCadastrados.Enabled = false;
+            dgvDependentesCadastrados.DataSource = null;
+            dgvDependentesCadastrados.DataSource = dependentes;
+            //dgvDependentesCadastrados.Refresh();
+
+        }
+
+        private void CarregarParcelas()
+        {
+            dgvParcelas.DataSource = null;
+            dgvParcelas.DataSource = parcelas;
         }
 
         private void AjustarBotoesTitular()
@@ -241,7 +259,7 @@ namespace GUI
                         tbcTitular.Controls.Remove(tabDependente);
                         tbcTitular.Controls.Remove(tabPagamento);
 
-                        
+
 
                         break;
                     }
@@ -284,6 +302,7 @@ namespace GUI
                         btnExcluir.Enabled = bsTitular.Count > 0;
                         btnAlterar.Enabled = bsTitular.Count > 0;
                         //btnVerificarLogin.Enabled = false;
+                        AjustarBotoesDependente();
                         break;
                     }
             }
@@ -386,11 +405,11 @@ namespace GUI
                         mskTelefoneResidencial.ReadOnly = false;
 
                         if (titularAtual.Dependentes.Count > 0)
-                            dependentesAtuais = titularAtual.Dependentes;
+                            dependentes = titularAtual.Dependentes;
                         else
-                            dependentesAtuais = new List<Dependente>();
+                            dependentes = new List<Dependente>();
 
-                       
+
                         break;
                     }
                 case Status.Inclusao:
@@ -444,7 +463,7 @@ namespace GUI
                         mskTelefoneCelular.Clear();
                         mskTelefoneResidencial.Clear();
 
-                        dependentesAtuais = new List<Dependente>();
+                        dependentes = new List<Dependente>();
                         break;
                     }
                 case Status.Navegacao:
@@ -495,7 +514,7 @@ namespace GUI
                         mskRg.Clear();
                         mskTelefoneCelular.Clear();
                         mskTelefoneResidencial.Clear();
-                        
+
                         if (titulares.Count > 0)
                         {
                             titularAtual = (Titular)titulares[bsTitular.Position];
@@ -511,11 +530,19 @@ namespace GUI
                             mskRg.Text = titularAtual.Rg.Numero;
                             mskTelefoneCelular.Text = titularAtual.TelefoneCelular;
                             mskTelefoneResidencial.Text = titularAtual.TelefoneResidencial;
-                            
+
                             if (titularAtual.Dependentes.Count > 0)
-                                dependentesAtuais = titularAtual.Dependentes;
+                            {
+                                dependentes = titularAtual.Dependentes;
+                                CarregarDependentes();
+
+                            }
                             else
-                                dependentesAtuais = new List<Dependente>();
+                            {
+                                dependentes = new List<Dependente>();
+                                dgvDependentesCadastrados.DataSource = null;
+                            }
+
 
                             //if (titularAtual.Contratos.Count > 0)
                             //{
@@ -524,7 +551,7 @@ namespace GUI
                             //    dtpInicioContrato.Value = titularAtual.Contratos[0].DataInicio;
                             //}
                             dtpDataNascimentoTitular.Value = titularAtual.DataNascimento;
-                        
+
                             rdbFeminino.Checked = titularAtual.Sexo.Equals('F');
                             rdbMasculino.Checked = titularAtual.Sexo.Equals('M');
                             cmbEstadoCivil.Text = titularAtual.EstadoCivil;
@@ -553,10 +580,11 @@ namespace GUI
         private void AjustarBotoesDependente()
         {
             AjustarEditsDependente();
+
             switch (statusDependente)
             {
                 case Status.Inativo:
-                    { 
+                    {
                         //Btn do Dependente
                         btnAdicionarDependente.Enabled = false;
                         btnAlterarDependente.Enabled = false;
@@ -593,13 +621,14 @@ namespace GUI
                 case Status.Navegacao:
                     {
                         //Btn do Dependente
-                        dgvDependentesCadastrados.Enabled = true;
-                        btnAdicionarDependente.Enabled = true;
-                        btnAlterarDependente.Enabled = false;
-                        btnCancelarDependente.Enabled = false;
-                        btnExcluirDependente.Enabled = false;
                         btnSalvarDependente.Enabled = false;
+                        btnAdicionarDependente.Enabled = true;
+                        btnCancelarDependente.Enabled = false;
+                        dgvDependentesCadastrados.Enabled = true;
                         HabilitarDependente();
+
+
+
                         break;
                     }
             }
@@ -608,12 +637,7 @@ namespace GUI
         }
 
         private void AjustarEditsDependente()
-        {
-            ////Consultando todos os titulares cadastrados.
-            //titulares = fachada.ControladorTitular.Consultar();
-            //bsTitular.DataSource = titulares;
-
-            CarregarDependentes();
+        {        
 
             switch (statusDependente)
             {
@@ -625,11 +649,11 @@ namespace GUI
                         cmbPercentualCobertura.Enabled = false;
                         cmbReligiaoDependente.Enabled = false;
 
-                        txtNomeDependente.ReadOnly = true;                      
+                        txtNomeDependente.ReadOnly = true;
 
                         txtNomeDependente.Clear();
                         HabilitarDependente();
-                     
+
 
                         break;
                     }
@@ -649,7 +673,7 @@ namespace GUI
                     }
                 case Status.Inclusao:
                     {
-                        dtpNascimentoDependente.Enabled = true;                      
+                        dtpNascimentoDependente.Enabled = true;
 
                         cmbParentesco.Enabled = true;
                         cmbPercentualCobertura.Enabled = true;
@@ -675,7 +699,8 @@ namespace GUI
 
                         txtNomeDependente.Clear();
 
-                        //carregar os dependentes do Titular
+                        dgvDependentesCadastrados.RefreshEdit();
+
                         break;
                     }
             }
@@ -693,6 +718,7 @@ namespace GUI
                         btnEfetuarPagamento.Enabled = false;
                         btnAlterarParcela.Enabled = false;
                         btnGerarParcelas.Enabled = false;
+                        dgvParcelas.Enabled = false;
                         break;
                     }
                 case Status.Alteracao:
@@ -701,6 +727,7 @@ namespace GUI
                         btnEfetuarPagamento.Enabled = false;
                         btnAlterarParcela.Enabled = false;
                         btnGerarParcelas.Enabled = false;
+                        dgvParcelas.Enabled = false;
 
                         break;
                     }
@@ -710,6 +737,7 @@ namespace GUI
                         btnEfetuarPagamento.Enabled = false;
                         btnAlterarParcela.Enabled = false;
                         btnGerarParcelas.Enabled = false;
+                        dgvParcelas.Enabled = false;
                         break;
                     }
                 case Status.Navegacao:
@@ -718,6 +746,8 @@ namespace GUI
                         btnEfetuarPagamento.Enabled = false;
                         btnAlterarParcela.Enabled = false;
                         btnGerarParcelas.Enabled = true;
+                        dgvParcelas.Enabled = true;
+                        HabilitarParcela();
                         break;
                     }
             }
@@ -727,10 +757,6 @@ namespace GUI
 
         private void AjustarEditsParcela()
         {
-            ////Consultando todos os titulares cadastrados.
-            //titulares = fachada.ControladorTitular.Consultar();
-            //bsTitular.DataSource = titulares;
-
             switch (statusParcela)
             {
                 case Status.Inativo:
@@ -738,14 +764,13 @@ namespace GUI
                         dtpDataPagamento.Enabled = false;
                         dtpDataVencimento.Enabled = false;
 
-                        dgvParcelas.Enabled = false;
-                      
+
                         cmbParcela.Enabled = false;
 
-                        txtValor.ReadOnly = true;                        
+                        txtValor.ReadOnly = true;
 
                         txtValor.Clear();
-                        
+
 
                         break;
                     }
@@ -753,8 +778,6 @@ namespace GUI
                     {
                         dtpDataPagamento.Enabled = true;
                         dtpDataVencimento.Enabled = true;
-
-                        dgvParcelas.Enabled = true;
 
                         cmbParcela.Enabled = true;
 
@@ -768,8 +791,6 @@ namespace GUI
                         dtpDataPagamento.Enabled = true;
                         dtpDataVencimento.Enabled = true;
 
-                        dgvParcelas.Enabled = true;
-
                         cmbParcela.Enabled = true;
 
                         txtValor.ReadOnly = false;
@@ -780,8 +801,6 @@ namespace GUI
                     {
                         dtpDataPagamento.Enabled = false;
                         dtpDataVencimento.Enabled = false;
-
-                        dgvParcelas.Enabled = false;
 
                         cmbParcela.Enabled = false;
 
@@ -806,11 +825,11 @@ namespace GUI
             }
             AjustarEstadoEndereco();
             AjustarEstadoNaturalidade();
-            AjustarPlano(); 
+            AjustarPlano();
             usuario = fachada.Usuario;
             AjustarBotoesTitular();
         }
-        
+
         private void btnNovo_Click(object sender, EventArgs e)
         {
             statusTitular = Status.Inclusao;
@@ -960,84 +979,41 @@ namespace GUI
             try
             {
 
-                switch (statusTitular)
+                switch (statusDependente)
                 {
                     case Status.Inclusao:
                         {
-                            Titular t = new Titular();
-                            t.CidadeNaturalidade = (Cidade)cmbCidadeNaturalidade.SelectedItem;
-                            t.Cpf = mskCpf.Text;
-                            t.DataNascimento = dtpDataNascimentoTitular.Value;
-                            t.Endereco.Cidade = (Cidade)cmbCidade.SelectedItem;
-                            t.Endereco.Bairro = txtBairro.Text;
-                            t.Endereco.Cep = mskCep.Text;
-                            t.Endereco.Complemento = txtComplemento.Text;
-                            t.Endereco.Logradouro = txtLogradouro.Text;
-                            t.Endereco.Numero = txtNumero.Text;
-                            t.EstadoCivil = cmbEstadoCivil.Text;
-                            t.Nome = txtNome.Text;
-                            t.Religiao = cmbReligiaoTitular.Text;
-                            t.Rg.Numero = mskRg.Text;
-                            t.Rg.DataExpedicao = dtpExpedicao.Value;
-                            t.Rg.OrgaoExpeditor = mskOrgaoExpeditor.Text;
-                            if (rdbFeminino.Checked)
-                                t.Sexo = 'F';
-                            else
-                                t.Sexo = 'M';
-                            t.Status = StatusTitular.Ativo;
-                            t.TelefoneCelular = mskTelefoneCelular.Text;
-                            t.TelefoneResidencial = mskTelefoneResidencial.Text;
-                            t = fachada.ControladorTitular.Inserir(t, usuario);
-                            //Inserindo o Contrato
-                            Contrato c = new Contrato();
-                            c.Id = Convert.ToInt32(txtNumeroContrato.Text);
-                            c.DataInicio = dtpInicioContrato.Value;
-                            c.Plano = (Plano)cmbPlano.SelectedItem;
-                            //c.GerarParcelas(DateTime.Today, 12, c.Plano.ValorPadrao);
-                            c.Status = StatusContrato.Ativo;
-                            fachada.ControladorContrato.Inserir(c, t.Id, usuario);
+                            Dependente d = new Dependente();
+                            d.Nome = txtNomeDependente.Text;
+                            d.Parentesco = cmbParentesco.Text;
+                            d.PercentualCobertura = Convert.ToInt32(cmbPercentualCobertura.Text);
+                            d.Religiao = cmbReligiaoDependente.Text;
+                            d.DataNascimento = dtpNascimentoDependente.Value;
+                            d.Status = StatusDependente.Ativo;
+                            d = fachada.ControladorDependente.Inserir(d, titularAtual.Id, usuario);
+                            statusDependente = Status.Navegacao;
+                            dependentes.Add(d);
+                            CarregarDependentes();
 
-                            statusTitular = Status.Navegacao;
-                            AjustarBotoesTitular();
+                            AjustarBotoesDependente();
                             break;
                         }
                     case Status.Alteracao:
                         {
-                            //Alterando o Titular
-                            titularAtual.CidadeNaturalidade = (Cidade)cmbCidadeNaturalidade.SelectedItem;
-                            titularAtual.Cpf = mskCpf.Text;
-                            titularAtual.DataNascimento = dtpDataNascimentoTitular.Value;
-                            titularAtual.Endereco.Cidade = (Cidade)cmbCidade.SelectedItem;
-                            titularAtual.Endereco.Bairro = txtBairro.Text;
-                            titularAtual.Endereco.Cep = mskCep.Text;
-                            titularAtual.Endereco.Complemento = txtComplemento.Text;
-                            titularAtual.Endereco.Logradouro = txtLogradouro.Text;
-                            titularAtual.Endereco.Numero = txtNumero.Text;
-                            titularAtual.EstadoCivil = cmbEstadoCivil.Text;
-                            titularAtual.Nome = txtNome.Text;
-                            titularAtual.Religiao = cmbReligiaoTitular.Text;
-                            titularAtual.Rg.Numero = mskRg.Text;
-                            titularAtual.Rg.DataExpedicao = dtpExpedicao.Value;
-                            titularAtual.Rg.OrgaoExpeditor = mskOrgaoExpeditor.Text;
-                            if (rdbFeminino.Checked)
-                                titularAtual.Sexo = 'F';
-                            else
-                                titularAtual.Sexo = 'M';
-                            titularAtual.Status = StatusTitular.Ativo;
-                            titularAtual.TelefoneCelular = mskTelefoneCelular.Text;
-                            titularAtual.TelefoneResidencial = mskTelefoneResidencial.Text;
-                            fachada.ControladorTitular.Alterar(titularAtual, usuario);
+                            dependenteAtual.Nome = txtNomeDependente.Text;
+                            dependenteAtual.Parentesco = cmbParentesco.Text;
+                            dependenteAtual.PercentualCobertura = Convert.ToInt32(cmbPercentualCobertura.Text);
+                            dependenteAtual.Religiao = cmbReligiaoDependente.Text;
+                            dependenteAtual.DataNascimento = dtpNascimentoDependente.Value;
+                            dependenteAtual.Status = StatusDependente.Ativo;
+                            fachada.ControladorDependente.Alterar(dependenteAtual, titularAtual.Id, usuario);
 
-                            //Alterando o Contrato
-                            titularAtual.Contratos[0].Id = Convert.ToInt32(txtNumeroContrato.Text);
-                            titularAtual.Contratos[0].DataInicio = dtpInicioContrato.Value;
-                            titularAtual.Contratos[0].Plano = (Plano)cmbPlano.SelectedItem;
-                            //c.GerarParcelas(DateTime.Today, 12, c.Plano.ValorPadrao);
-                            titularAtual.Contratos[0].Status = StatusContrato.Ativo;
-                            fachada.ControladorContrato.Alterar(titularAtual.Contratos[0], titularAtual.Id, usuario);
 
-                            statusTitular = Status.Navegacao;
-                            AjustarBotoesTitular();
+                            statusDependente = Status.Navegacao;
+                            dependentes.Remove(dependenteAtual);
+                            dependentes.Add(dependenteAtual);
+                            CarregarDependentes();
+                            AjustarBotoesDependente();
                             break;
                         }
 
@@ -1074,6 +1050,18 @@ namespace GUI
         private void dgvDependentesCadastrados_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             HabilitarDependente();
+            int index = e.RowIndex;
+
+            if (index > -1)
+            {
+                dependenteAtual.Id = Convert.ToInt32(dgvDependentesCadastrados.Rows[index].Cells[0].Value);
+                txtNomeDependente.Text = dgvDependentesCadastrados.Rows[index].Cells[1].Value + "";
+                cmbReligiaoDependente.Text = dgvDependentesCadastrados.Rows[index].Cells[2].Value + "";
+                dtpNascimentoDependente.Value = Convert.ToDateTime(dgvDependentesCadastrados.Rows[index].Cells[3].Value + "");
+                cmbParentesco.Text = dgvDependentesCadastrados.Rows[index].Cells[4].Value + "";
+                cmbPercentualCobertura.Text = dgvDependentesCadastrados.Rows[index].Cells[5].Value + "";
+
+            }
         }
 
         private void btnPrimeiro_Click(object sender, EventArgs e)
