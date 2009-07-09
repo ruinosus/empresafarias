@@ -31,6 +31,11 @@
             this.components = new System.ComponentModel.Container();
             this.tbcTitular = new System.Windows.Forms.TabControl();
             this.tabTitular = new System.Windows.Forms.TabPage();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btnPrimeiro = new System.Windows.Forms.ToolStripButton();
+            this.btnAnterior = new System.Windows.Forms.ToolStripButton();
+            this.btnProximo = new System.Windows.Forms.ToolStripButton();
+            this.btnUltimo = new System.Windows.Forms.ToolStripButton();
             this.lblDataNascimentoTitular = new System.Windows.Forms.Label();
             this.dtpDataNascimentoTitular = new System.Windows.Forms.DateTimePicker();
             this.gpbReligiao = new System.Windows.Forms.GroupBox();
@@ -45,6 +50,7 @@
             this.btnExcluir = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.gpbContrato = new System.Windows.Forms.GroupBox();
+            this.cmbPlano = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.lblInicioContrato = new System.Windows.Forms.Label();
             this.dtpInicioContrato = new System.Windows.Forms.DateTimePicker();
@@ -116,6 +122,7 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.dgvParcelas = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnGerarParcelas = new System.Windows.Forms.Button();
             this.txtValor = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.cmbParcela = new System.Windows.Forms.ComboBox();
@@ -134,15 +141,9 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnBuscarContrato = new System.Windows.Forms.Button();
             this.bsTitular = new System.Windows.Forms.BindingSource(this.components);
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.btnPrimeiro = new System.Windows.Forms.ToolStripButton();
-            this.btnAnterior = new System.Windows.Forms.ToolStripButton();
-            this.btnProximo = new System.Windows.Forms.ToolStripButton();
-            this.btnUltimo = new System.Windows.Forms.ToolStripButton();
-            this.btnGerarParcelas = new System.Windows.Forms.Button();
-            this.cmbPlano = new System.Windows.Forms.ComboBox();
             this.tbcTitular.SuspendLayout();
             this.tabTitular.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.gpbReligiao.SuspendLayout();
             this.stInformacaoTitular.SuspendLayout();
             this.gpbContato.SuspendLayout();
@@ -165,7 +166,6 @@
             this.stInformacaoGeral.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsTitular)).BeginInit();
-            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbcTitular
@@ -207,6 +207,61 @@
             this.tabTitular.TabIndex = 0;
             this.tabTitular.Text = "Titular";
             this.tabTitular.UseVisualStyleBackColor = true;
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnPrimeiro,
+            this.btnAnterior,
+            this.btnProximo,
+            this.btnUltimo});
+            this.toolStrip1.Location = new System.Drawing.Point(262, 465);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(112, 25);
+            this.toolStrip1.TabIndex = 167;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // btnPrimeiro
+            // 
+            this.btnPrimeiro.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnPrimeiro.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnPrimeiro.Name = "btnPrimeiro";
+            this.btnPrimeiro.Size = new System.Drawing.Size(27, 22);
+            this.btnPrimeiro.Text = "<<";
+            this.btnPrimeiro.ToolTipText = "Vai para o proximo elemento";
+            this.btnPrimeiro.Click += new System.EventHandler(this.btnPrimeiro_Click);
+            // 
+            // btnAnterior
+            // 
+            this.btnAnterior.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnAnterior.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAnterior.Name = "btnAnterior";
+            this.btnAnterior.Size = new System.Drawing.Size(23, 22);
+            this.btnAnterior.Text = "<";
+            this.btnAnterior.ToolTipText = "Vai para o último elemento";
+            this.btnAnterior.Click += new System.EventHandler(this.btnAnterior_Click);
+            // 
+            // btnProximo
+            // 
+            this.btnProximo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnProximo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnProximo.Name = "btnProximo";
+            this.btnProximo.Size = new System.Drawing.Size(23, 22);
+            this.btnProximo.Text = ">";
+            this.btnProximo.ToolTipText = "Vai para o elemento anterior";
+            this.btnProximo.Click += new System.EventHandler(this.btnProximo_Click);
+            // 
+            // btnUltimo
+            // 
+            this.btnUltimo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnUltimo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnUltimo.Name = "btnUltimo";
+            this.btnUltimo.Size = new System.Drawing.Size(27, 22);
+            this.btnUltimo.Text = ">>";
+            this.btnUltimo.ToolTipText = "Vai para o primeiro elemento";
+            this.btnUltimo.Click += new System.EventHandler(this.btnUltimo_Click);
             // 
             // lblDataNascimentoTitular
             // 
@@ -356,6 +411,15 @@
             this.gpbContrato.TabIndex = 16;
             this.gpbContrato.TabStop = false;
             this.gpbContrato.Text = "Contrato";
+            // 
+            // cmbPlano
+            // 
+            this.cmbPlano.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPlano.FormattingEnabled = true;
+            this.cmbPlano.Location = new System.Drawing.Point(373, 17);
+            this.cmbPlano.Name = "cmbPlano";
+            this.cmbPlano.Size = new System.Drawing.Size(130, 22);
+            this.cmbPlano.TabIndex = 29;
             // 
             // label10
             // 
@@ -799,7 +863,7 @@
             this.tabDependente.Location = new System.Drawing.Point(4, 23);
             this.tabDependente.Name = "tabDependente";
             this.tabDependente.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDependente.Size = new System.Drawing.Size(666, 350);
+            this.tabDependente.Size = new System.Drawing.Size(666, 486);
             this.tabDependente.TabIndex = 1;
             this.tabDependente.Text = "Dependentes";
             this.tabDependente.UseVisualStyleBackColor = true;
@@ -808,7 +872,7 @@
             // 
             this.stInformacaoDependente.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblInformacaoDependente});
-            this.stInformacaoDependente.Location = new System.Drawing.Point(3, 325);
+            this.stInformacaoDependente.Location = new System.Drawing.Point(3, 461);
             this.stInformacaoDependente.Name = "stInformacaoDependente";
             this.stInformacaoDependente.Size = new System.Drawing.Size(660, 22);
             this.stInformacaoDependente.TabIndex = 38;
@@ -834,12 +898,14 @@
             // 
             this.dgvDependentesCadastrados.AllowUserToAddRows = false;
             this.dgvDependentesCadastrados.AllowUserToDeleteRows = false;
-            this.dgvDependentesCadastrados.AllowUserToOrderColumns = true;
+            this.dgvDependentesCadastrados.AllowUserToResizeColumns = false;
+            this.dgvDependentesCadastrados.AllowUserToResizeRows = false;
             this.dgvDependentesCadastrados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDependentesCadastrados.Location = new System.Drawing.Point(7, 19);
             this.dgvDependentesCadastrados.MultiSelect = false;
             this.dgvDependentesCadastrados.Name = "dgvDependentesCadastrados";
             this.dgvDependentesCadastrados.ReadOnly = true;
+            this.dgvDependentesCadastrados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDependentesCadastrados.Size = new System.Drawing.Size(490, 249);
             this.dgvDependentesCadastrados.TabIndex = 44;
             this.dgvDependentesCadastrados.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDependentesCadastrados_CellClick);
@@ -932,7 +998,7 @@
             // lblParentesco
             // 
             this.lblParentesco.AutoSize = true;
-            this.lblParentesco.Location = new System.Drawing.Point(15, 84);
+            this.lblParentesco.Location = new System.Drawing.Point(9, 87);
             this.lblParentesco.Name = "lblParentesco";
             this.lblParentesco.Size = new System.Drawing.Size(67, 14);
             this.lblParentesco.TabIndex = 37;
@@ -1059,7 +1125,7 @@
             this.tabPagamento.Location = new System.Drawing.Point(4, 23);
             this.tabPagamento.Name = "tabPagamento";
             this.tabPagamento.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPagamento.Size = new System.Drawing.Size(666, 350);
+            this.tabPagamento.Size = new System.Drawing.Size(666, 486);
             this.tabPagamento.TabIndex = 2;
             this.tabPagamento.Text = "Pagamentos";
             this.tabPagamento.UseVisualStyleBackColor = true;
@@ -1068,7 +1134,7 @@
             // 
             this.stInformacaoParcela.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lbInformacaoParcela});
-            this.stInformacaoParcela.Location = new System.Drawing.Point(3, 325);
+            this.stInformacaoParcela.Location = new System.Drawing.Point(3, 461);
             this.stInformacaoParcela.Name = "stInformacaoParcela";
             this.stInformacaoParcela.Size = new System.Drawing.Size(660, 22);
             this.stInformacaoParcela.TabIndex = 33;
@@ -1115,6 +1181,15 @@
             this.groupBox1.TabIndex = 29;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Pagamentos";
+            // 
+            // btnGerarParcelas
+            // 
+            this.btnGerarParcelas.Location = new System.Drawing.Point(3, 100);
+            this.btnGerarParcelas.Name = "btnGerarParcelas";
+            this.btnGerarParcelas.Size = new System.Drawing.Size(111, 23);
+            this.btnGerarParcelas.TabIndex = 37;
+            this.btnGerarParcelas.Text = "Gerar Parcelas";
+            this.btnGerarParcelas.UseVisualStyleBackColor = true;
             // 
             // txtValor
             // 
@@ -1263,79 +1338,6 @@
             this.btnBuscarContrato.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnBuscarContrato.UseVisualStyleBackColor = true;
             // 
-            // toolStrip1
-            // 
-            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
-            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnPrimeiro,
-            this.btnAnterior,
-            this.btnProximo,
-            this.btnUltimo});
-            this.toolStrip1.Location = new System.Drawing.Point(262, 465);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(143, 25);
-            this.toolStrip1.TabIndex = 167;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
-            // btnPrimeiro
-            // 
-            this.btnPrimeiro.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.btnPrimeiro.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnPrimeiro.Name = "btnPrimeiro";
-            this.btnPrimeiro.Size = new System.Drawing.Size(27, 22);
-            this.btnPrimeiro.Text = "<<";
-            this.btnPrimeiro.ToolTipText = "Vai para o proximo elemento";
-            this.btnPrimeiro.Click += new System.EventHandler(this.btnPrimeiro_Click);
-            // 
-            // btnAnterior
-            // 
-            this.btnAnterior.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.btnAnterior.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnAnterior.Name = "btnAnterior";
-            this.btnAnterior.Size = new System.Drawing.Size(23, 22);
-            this.btnAnterior.Text = "<";
-            this.btnAnterior.ToolTipText = "Vai para o último elemento";
-            this.btnAnterior.Click += new System.EventHandler(this.btnAnterior_Click);
-            // 
-            // btnProximo
-            // 
-            this.btnProximo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.btnProximo.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnProximo.Name = "btnProximo";
-            this.btnProximo.Size = new System.Drawing.Size(23, 22);
-            this.btnProximo.Text = ">";
-            this.btnProximo.ToolTipText = "Vai para o elemento anterior";
-            this.btnProximo.Click += new System.EventHandler(this.btnProximo_Click);
-            // 
-            // btnUltimo
-            // 
-            this.btnUltimo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.btnUltimo.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnUltimo.Name = "btnUltimo";
-            this.btnUltimo.Size = new System.Drawing.Size(27, 22);
-            this.btnUltimo.Text = ">>";
-            this.btnUltimo.ToolTipText = "Vai para o primeiro elemento";
-            this.btnUltimo.Click += new System.EventHandler(this.btnUltimo_Click);
-            // 
-            // btnGerarParcelas
-            // 
-            this.btnGerarParcelas.Location = new System.Drawing.Point(3, 100);
-            this.btnGerarParcelas.Name = "btnGerarParcelas";
-            this.btnGerarParcelas.Size = new System.Drawing.Size(111, 23);
-            this.btnGerarParcelas.TabIndex = 37;
-            this.btnGerarParcelas.Text = "Gerar Parcelas";
-            this.btnGerarParcelas.UseVisualStyleBackColor = true;
-            // 
-            // cmbPlano
-            // 
-            this.cmbPlano.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbPlano.FormattingEnabled = true;
-            this.cmbPlano.Location = new System.Drawing.Point(373, 17);
-            this.cmbPlano.Name = "cmbPlano";
-            this.cmbPlano.Size = new System.Drawing.Size(130, 22);
-            this.cmbPlano.TabIndex = 29;
-            // 
             // frmTitular
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1353,6 +1355,8 @@
             this.tbcTitular.ResumeLayout(false);
             this.tabTitular.ResumeLayout(false);
             this.tabTitular.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.gpbReligiao.ResumeLayout(false);
             this.stInformacaoTitular.ResumeLayout(false);
             this.stInformacaoTitular.PerformLayout();
@@ -1388,8 +1392,6 @@
             this.stInformacaoGeral.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsTitular)).EndInit();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -87,6 +87,19 @@ namespace ClassesBasicas
         {
             get { return status; }
             set { status = value; }
-        }       
+        }
+
+        public override bool Equals(object obj)
+        {
+            bool resultado = false;
+
+            if(obj is Dependente)
+            {
+                Dependente d = obj as Dependente;
+                if (d.Id == this.id)
+                    resultado = true;
+            }
+            return resultado;
+        }
      }
 }
