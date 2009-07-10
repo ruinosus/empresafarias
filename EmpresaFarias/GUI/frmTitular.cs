@@ -193,12 +193,22 @@ namespace GUI
         {
             btnAlterarDependente.Enabled = dgvDependentesCadastrados.CurrentRow != null && dgvDependentesCadastrados.CurrentRow.Index != -1 && dependentes.Count > 0;
             btnExcluirDependente.Enabled = dgvDependentesCadastrados.CurrentRow != null && dgvDependentesCadastrados.CurrentRow.Index != -1 && dependentes.Count > 0;
+
+            fachada.Usuario.HabilitarComponentes(this);
+            fachada.Usuario.HabilitarComponentes(tabTitular);
+            fachada.Usuario.HabilitarComponentes(tabDependente);
+            fachada.Usuario.HabilitarComponentes(tabPagamento);
         }
 
         private void HabilitarParcela()
         {
             btnAlterarParcela.Enabled = dgvParcelas.CurrentRow != null && dgvParcelas.CurrentRow.Index != -1 && parcelas.Count > 0;
             btnExcluirDependente.Enabled = dgvParcelas.CurrentRow != null && dgvParcelas.CurrentRow.Index != -1 && parcelas.Count > 0;
+
+            fachada.Usuario.HabilitarComponentes(this);
+            fachada.Usuario.HabilitarComponentes(tabTitular);
+            fachada.Usuario.HabilitarComponentes(tabDependente);
+            fachada.Usuario.HabilitarComponentes(tabPagamento);
         }
 
         private void CarregarDependentes()
@@ -240,6 +250,11 @@ namespace GUI
                         tbcTitular.Controls.Remove(tabPagamento);
                         //tbcTitular.DDisablePage(TabPage6)
 
+                        fachada.Usuario.HabilitarComponentes(this);
+                        fachada.Usuario.HabilitarComponentes(tabTitular);
+                        fachada.Usuario.HabilitarComponentes(tabDependente);
+                        fachada.Usuario.HabilitarComponentes(tabPagamento);
+
                         break;
                     }
                 case Status.Alteracao:
@@ -258,6 +273,7 @@ namespace GUI
                         btnBuscarContrato.Enabled = false;
                         tbcTitular.Controls.Remove(tabDependente);
                         tbcTitular.Controls.Remove(tabPagamento);
+
 
 
 
@@ -303,9 +319,14 @@ namespace GUI
                         btnAlterar.Enabled = bsTitular.Count > 0;
                         //btnVerificarLogin.Enabled = false;
                         AjustarBotoesDependente();
+                        fachada.Usuario.HabilitarComponentes(this);
+                        fachada.Usuario.HabilitarComponentes(tabTitular);
+                        fachada.Usuario.HabilitarComponentes(tabDependente);
+                        fachada.Usuario.HabilitarComponentes(tabPagamento);
                         break;
                     }
             }
+            
 
 
         }
@@ -592,6 +613,10 @@ namespace GUI
                         btnExcluirDependente.Enabled = false;
                         btnSalvarDependente.Enabled = false;
                         dgvDependentesCadastrados.Enabled = false;
+                        fachada.Usuario.HabilitarComponentes(this);
+                        fachada.Usuario.HabilitarComponentes(tabTitular);
+                        fachada.Usuario.HabilitarComponentes(tabDependente);
+                        fachada.Usuario.HabilitarComponentes(tabPagamento);
                         break;
                     }
                 case Status.Alteracao:
@@ -627,12 +652,15 @@ namespace GUI
                         dgvDependentesCadastrados.Enabled = true;
                         HabilitarDependente();
 
-
+                        fachada.Usuario.HabilitarComponentes(this);
+                        fachada.Usuario.HabilitarComponentes(tabTitular);
+                        fachada.Usuario.HabilitarComponentes(tabDependente);
+                        fachada.Usuario.HabilitarComponentes(tabPagamento);
 
                         break;
                     }
             }
-
+            
 
         }
 
@@ -719,6 +747,10 @@ namespace GUI
                         btnAlterarParcela.Enabled = false;
                         btnGerarParcelas.Enabled = false;
                         dgvParcelas.Enabled = false;
+                        fachada.Usuario.HabilitarComponentes(this);
+                        fachada.Usuario.HabilitarComponentes(tabTitular);
+                        fachada.Usuario.HabilitarComponentes(tabDependente);
+                        fachada.Usuario.HabilitarComponentes(tabPagamento);
                         break;
                     }
                 case Status.Alteracao:
@@ -748,6 +780,10 @@ namespace GUI
                         btnGerarParcelas.Enabled = true;
                         dgvParcelas.Enabled = true;
                         HabilitarParcela();
+                        fachada.Usuario.HabilitarComponentes(this);
+                        fachada.Usuario.HabilitarComponentes(tabTitular);
+                        fachada.Usuario.HabilitarComponentes(tabDependente);
+                        fachada.Usuario.HabilitarComponentes(tabPagamento);
                         break;
                     }
             }
@@ -853,41 +889,59 @@ namespace GUI
                 {
                     case Status.Inclusao:
                         {
-                            Titular t = new Titular();
-                            t.CidadeNaturalidade = (Cidade)cmbCidadeNaturalidade.SelectedItem;
-                            t.Cpf = mskCpf.Text;
-                            t.DataNascimento = dtpDataNascimentoTitular.Value;
-                            t.Endereco.Cidade = (Cidade)cmbCidade.SelectedItem;
-                            t.Endereco.Bairro = txtBairro.Text;
-                            t.Endereco.Cep = mskCep.Text;
-                            t.Endereco.Complemento = txtComplemento.Text;
-                            t.Endereco.Logradouro = txtLogradouro.Text;
-                            t.Endereco.Numero = txtNumero.Text;
-                            t.EstadoCivil = cmbEstadoCivil.Text;
-                            t.Nome = txtNome.Text;
-                            t.Religiao = cmbReligiaoTitular.Text;
-                            t.Rg.Numero = mskRg.Text;
-                            t.Rg.DataExpedicao = dtpExpedicao.Value;
-                            t.Rg.OrgaoExpeditor = mskOrgaoExpeditor.Text;
-                            if (rdbFeminino.Checked)
-                                t.Sexo = 'F';
-                            else
-                                t.Sexo = 'M';
-                            t.Status = StatusTitular.Ativo;
-                            t.TelefoneCelular = mskTelefoneCelular.Text;
-                            t.TelefoneResidencial = mskTelefoneResidencial.Text;
-                            t = fachada.ControladorTitular.Inserir(t, usuario);
-                            //Inserindo o Contrato
-                            Contrato c = new Contrato();
-                            c.Id = Convert.ToInt32(txtNumeroContrato.Text);
-                            c.DataInicio = dtpInicioContrato.Value;
-                            c.Plano = (Plano)cmbPlano.SelectedItem;
-                            //c.GerarParcelas(DateTime.Today, 12, c.Plano.ValorPadrao);
-                            c.Status = StatusContrato.Ativo;
-                            fachada.ControladorContrato.Inserir(c, t.Id, usuario);
+                            try
+                            {
+                                Titular t = new Titular();
+                                t.CidadeNaturalidade = (Cidade)cmbCidadeNaturalidade.SelectedItem;
+                                t.Cpf = mskCpf.Text;
+                                t.DataNascimento = dtpDataNascimentoTitular.Value;
+                                t.Endereco.Cidade = (Cidade)cmbCidade.SelectedItem;
+                                t.Endereco.Bairro = txtBairro.Text;
+                                t.Endereco.Cep = mskCep.Text;
+                                t.Endereco.Complemento = txtComplemento.Text;
+                                t.Endereco.Logradouro = txtLogradouro.Text;
+                                t.Endereco.Numero = txtNumero.Text;
+                                t.EstadoCivil = cmbEstadoCivil.Text;
+                                t.Nome = txtNome.Text;
+                                t.Religiao = cmbReligiaoTitular.Text;
+                                t.Rg.Numero = mskRg.Text;
+                                t.Rg.DataExpedicao = dtpExpedicao.Value;
+                                t.Rg.OrgaoExpeditor = mskOrgaoExpeditor.Text;
+                                if (rdbFeminino.Checked)
+                                    t.Sexo = 'F';
+                                else
+                                    t.Sexo = 'M';
+                                t.Status = StatusTitular.Ativo;
+                                t.TelefoneCelular = mskTelefoneCelular.Text;
+                                t.TelefoneResidencial = mskTelefoneResidencial.Text;
+                                t = fachada.ControladorTitular.Inserir(t, usuario);
+                                //Inserindo o Contrato
+                                Contrato c = new Contrato();
+                                c.Id = Convert.ToInt32(txtNumeroContrato.Text);
+                                c.DataInicio = dtpInicioContrato.Value;
+                                c.Plano = (Plano)cmbPlano.SelectedItem;
+                                //c.GerarParcelas(DateTime.Today, 12, c.Plano.ValorPadrao);
+                                c.Status = StatusContrato.Ativo;
+                                fachada.ControladorContrato.Inserir(c, t.Id, usuario);
 
-                            statusTitular = Status.Navegacao;
-                            AjustarBotoesTitular();
+                                statusTitular = Status.Navegacao;
+
+                                AjustarBotoesTitular();
+                                bsTitular.MoveLast();
+                                AjustarBotoesTitular();
+                            }
+                            catch (ExcecaoNegocio en)
+                            {
+                                tlMensagem.ToolTipTitle = "Erro";
+                                tlMensagem.Show(en.Message, this);
+                            }
+
+                            catch (Exception ex)
+                            {
+                                tlMensagem.ToolTipTitle = "Erro";
+                                tlMensagem.Show(ex.Message, this);
+                            }
+
                             break;
                         }
                     case Status.Alteracao:

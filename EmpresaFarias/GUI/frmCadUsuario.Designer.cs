@@ -281,7 +281,7 @@
             this.btnUltimo});
             this.toolStrip1.Location = new System.Drawing.Point(145, 273);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(143, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(112, 25);
             this.toolStrip1.TabIndex = 166;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -470,6 +470,7 @@
             this.Name = "frmCadUsuario";
             this.Text = "Formulário de Cadastro de Usuário";
             this.Load += new System.EventHandler(this.frmCadUsuario_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmCadUsuario_FormClosing);
             this.stInformacaoGeral.ResumeLayout(false);
             this.stInformacaoGeral.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsUsuario)).EndInit();

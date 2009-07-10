@@ -38,7 +38,10 @@
             this.deNovoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ajudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sobreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.stInformacaoGeral = new System.Windows.Forms.StatusStrip();
+            this.lbInformacaoGeral = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuPrincipal.SuspendLayout();
+            this.stInformacaoGeral.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuPrincipal
@@ -66,14 +69,14 @@
             // logarToolStripMenuItem
             // 
             this.logarToolStripMenuItem.Name = "logarToolStripMenuItem";
-            this.logarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.logarToolStripMenuItem.Size = new System.Drawing.Size(104, 22);
             this.logarToolStripMenuItem.Text = "Logar";
             this.logarToolStripMenuItem.Click += new System.EventHandler(this.logarToolStripMenuItem_Click);
             // 
             // sairToolStripMenuItem
             // 
             this.sairToolStripMenuItem.Name = "sairToolStripMenuItem";
-            this.sairToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.sairToolStripMenuItem.Size = new System.Drawing.Size(104, 22);
             this.sairToolStripMenuItem.Text = "Sair";
             this.sairToolStripMenuItem.Click += new System.EventHandler(this.sairToolStripMenuItem_Click);
             // 
@@ -98,6 +101,7 @@
             // 
             this.cadastroDeTitularToolStripMenuItem.Name = "cadastroDeTitularToolStripMenuItem";
             this.cadastroDeTitularToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cadastroDeTitularToolStripMenuItem.Tag = "002";
             this.cadastroDeTitularToolStripMenuItem.Text = "Cadastro de Titular";
             this.cadastroDeTitularToolStripMenuItem.Click += new System.EventHandler(this.cadastroDeTitularToolStripMenuItem_Click);
             // 
@@ -121,17 +125,35 @@
             this.sobreToolStripMenuItem.Size = new System.Drawing.Size(104, 22);
             this.sobreToolStripMenuItem.Text = "Sobre";
             // 
+            // stInformacaoGeral
+            // 
+            this.stInformacaoGeral.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lbInformacaoGeral});
+            this.stInformacaoGeral.Location = new System.Drawing.Point(0, 242);
+            this.stInformacaoGeral.Name = "stInformacaoGeral";
+            this.stInformacaoGeral.Size = new System.Drawing.Size(605, 22);
+            this.stInformacaoGeral.TabIndex = 140;
+            // 
+            // lbInformacaoGeral
+            // 
+            this.lbInformacaoGeral.Name = "lbInformacaoGeral";
+            this.lbInformacaoGeral.Size = new System.Drawing.Size(68, 17);
+            this.lbInformacaoGeral.Text = "informação";
+            // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(605, 264);
+            this.Controls.Add(this.stInformacaoGeral);
             this.Controls.Add(this.menuPrincipal);
             this.Name = "frmPrincipal";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.frmPrincipal_Load);
             this.menuPrincipal.ResumeLayout(false);
             this.menuPrincipal.PerformLayout();
+            this.stInformacaoGeral.ResumeLayout(false);
+            this.stInformacaoGeral.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -149,6 +171,8 @@
         private System.Windows.Forms.ToolStripMenuItem deNovoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ajudaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sobreToolStripMenuItem;
+        private System.Windows.Forms.StatusStrip stInformacaoGeral;
+        private System.Windows.Forms.ToolStripStatusLabel lbInformacaoGeral;
 
     }
 }
