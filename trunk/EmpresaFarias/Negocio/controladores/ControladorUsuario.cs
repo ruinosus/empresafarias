@@ -144,18 +144,18 @@ namespace Negocio.controladores
             else
                 throw new ExcecaoNegocio("Usuario não existente.");
 
-            Usuario u = usuario;
-            if (u.Perfis.Count > 0)
+           // Usuario u = usuario;
+            if (usuario.Perfis.Count > 0)
             {
-                this.repPerfil.Remover(u);
-                for (int i = 0; i < u.Perfis.Count; i++)
+                this.repPerfil.Remover(usuario);
+                for (int i = 0; i < usuario.Perfis.Count; i++)
                 {
-                    this.InserirPerfil(u.Id, u.Perfis[i].Id);
+                    this.InserirPerfil(usuario.Id, usuario.Perfis[i].Id);
                 }
             }
             else
             {
-                this.repPerfil.Remover(u);
+                this.repPerfil.Remover(usuario);
             }
         }
 

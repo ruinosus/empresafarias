@@ -309,5 +309,10 @@ namespace ClassesBasicas
             }
 
         }
+
+        public override string ToString()
+        {
+            return "Nome: " + this.nome;
+        }
     }
 }

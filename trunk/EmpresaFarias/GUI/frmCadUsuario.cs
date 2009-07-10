@@ -308,6 +308,7 @@ namespace GUI
                             usuarioAtual.Nome = txtNome.Text;
                             usuarioAtual.Senha = txtSenha.Text;
                             usuarioAtual.Login = txtLogin.Text;
+                            usuarioAtual.Perfis.Clear();
                             if (lstPerfilUsuario.Items.Count > 0)
                             {
                                 for (int i = 0; i < lstPerfilUsuario.Items.Count; i++)
@@ -480,6 +481,11 @@ namespace GUI
         {
             AdicionarPerfil();
             RemoverPerfil();
+        }
+
+        private void frmCadUsuario_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            fachada.Usuario = usuarioAtual;
         }
 
        

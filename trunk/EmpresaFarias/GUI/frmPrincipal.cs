@@ -36,6 +36,18 @@ namespace GUI
         {
             fachada.Usuario.HabilitarComponentes(this);
             fachada.Usuario.HabilitarComponentes(menuPrincipal);
+
+            MudarMensagem();
+        }
+
+        private void MudarMensagem()
+        {
+            if (fachada.Usuario.Id > 0)
+            {
+                lbInformacaoGeral.Text = "Usuario Logado - " + fachada.Usuario;
+            }
+            else
+                lbInformacaoGeral.Text = "Nenhum Usuário Logado";
         }
 
         private void cadastroDeUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
@@ -59,10 +71,11 @@ namespace GUI
             {
                 fachada.Usuario = new Usuario();
                 logarToolStripMenuItem.Text = "Logar";
-            
+
             }
             fachada.Usuario.HabilitarComponentes(this);
             fachada.Usuario.HabilitarComponentes(menuPrincipal);
+            MudarMensagem();
         }
 
         private void sairToolStripMenuItem_Click(object sender, EventArgs e)

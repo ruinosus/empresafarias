@@ -378,6 +378,7 @@
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(137, 68);
             this.btnExcluir.TabIndex = 22;
+            this.btnExcluir.Tag = "301";
             this.btnExcluir.Text = "Excluir Titular";
             this.btnExcluir.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnExcluir.UseVisualStyleBackColor = true;
@@ -486,6 +487,7 @@
             this.btnAlterar.Name = "btnAlterar";
             this.btnAlterar.Size = new System.Drawing.Size(137, 68);
             this.btnAlterar.TabIndex = 19;
+            this.btnAlterar.Tag = "201";
             this.btnAlterar.Text = "Alterar Dados";
             this.btnAlterar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnAlterar.UseVisualStyleBackColor = true;
@@ -500,6 +502,7 @@
             this.btnNovo.Name = "btnNovo";
             this.btnNovo.Size = new System.Drawing.Size(137, 68);
             this.btnNovo.TabIndex = 18;
+            this.btnNovo.Tag = "101";
             this.btnNovo.Text = "Novo Contrato";
             this.btnNovo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnNovo.UseVisualStyleBackColor = true;
@@ -1055,6 +1058,7 @@
             this.btnAdicionarDependente.Name = "btnAdicionarDependente";
             this.btnAdicionarDependente.Size = new System.Drawing.Size(137, 68);
             this.btnAdicionarDependente.TabIndex = 32;
+            this.btnAdicionarDependente.Tag = "101";
             this.btnAdicionarDependente.Text = "Adicionar Dependente";
             this.btnAdicionarDependente.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnAdicionarDependente.UseVisualStyleBackColor = true;
@@ -1068,6 +1072,7 @@
             this.btnExcluirDependente.Name = "btnExcluirDependente";
             this.btnExcluirDependente.Size = new System.Drawing.Size(137, 68);
             this.btnExcluirDependente.TabIndex = 36;
+            this.btnExcluirDependente.Tag = "301";
             this.btnExcluirDependente.Text = "Excluir Dependente";
             this.btnExcluirDependente.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnExcluirDependente.UseVisualStyleBackColor = true;
@@ -1110,6 +1115,7 @@
             this.btnAlterarDependente.Name = "btnAlterarDependente";
             this.btnAlterarDependente.Size = new System.Drawing.Size(137, 68);
             this.btnAlterarDependente.TabIndex = 33;
+            this.btnAlterarDependente.Tag = "201";
             this.btnAlterarDependente.Text = "Alterar Dados";
             this.btnAlterarDependente.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnAlterarDependente.UseVisualStyleBackColor = true;
