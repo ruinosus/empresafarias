@@ -1,3 +1,4 @@
+--Adicionando Cidades do Brasil
 insert into cidades
 (Id,EstadoId,Nome)
 values

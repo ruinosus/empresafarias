@@ -141,6 +141,10 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnBuscarContrato = new System.Windows.Forms.Button();
             this.bsTitular = new System.Windows.Forms.BindingSource(this.components);
+            this.btnNovaParcela = new System.Windows.Forms.Button();
+            this.btnExcluirParcela = new System.Windows.Forms.Button();
+            this.btnCancelarParcela = new System.Windows.Forms.Button();
+            this.btnSalvarParcela = new System.Windows.Forms.Button();
             this.tbcTitular.SuspendLayout();
             this.tabTitular.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -911,7 +915,7 @@
             this.dgvDependentesCadastrados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDependentesCadastrados.Size = new System.Drawing.Size(490, 249);
             this.dgvDependentesCadastrados.TabIndex = 44;
-            this.dgvDependentesCadastrados.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDependentesCadastrados_CellClick);
+            this.dgvDependentesCadastrados.SelectionChanged += new System.EventHandler(this.dgvDependentesCadastrados_SelectionChanged);
             // 
             // groupBox2
             // 
@@ -1123,6 +1127,10 @@
             // 
             // tabPagamento
             // 
+            this.tabPagamento.Controls.Add(this.btnExcluirParcela);
+            this.tabPagamento.Controls.Add(this.btnCancelarParcela);
+            this.tabPagamento.Controls.Add(this.btnSalvarParcela);
+            this.tabPagamento.Controls.Add(this.btnNovaParcela);
             this.tabPagamento.Controls.Add(this.stInformacaoParcela);
             this.tabPagamento.Controls.Add(this.groupBox4);
             this.tabPagamento.Controls.Add(this.groupBox1);
@@ -1196,6 +1204,7 @@
             this.btnGerarParcelas.TabIndex = 37;
             this.btnGerarParcelas.Text = "Gerar Parcelas";
             this.btnGerarParcelas.UseVisualStyleBackColor = true;
+            this.btnGerarParcelas.Click += new System.EventHandler(this.btnGerarParcelas_Click);
             // 
             // txtValor
             // 
@@ -1270,7 +1279,7 @@
             this.btnAlterarParcela.Font = new System.Drawing.Font("Calibri", 8F);
             this.btnAlterarParcela.Image = global::GUI.Properties.Resources.pencil_48x48;
             this.btnAlterarParcela.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnAlterarParcela.Location = new System.Drawing.Point(525, 97);
+            this.btnAlterarParcela.Location = new System.Drawing.Point(523, 154);
             this.btnAlterarParcela.Name = "btnAlterarParcela";
             this.btnAlterarParcela.Size = new System.Drawing.Size(137, 68);
             this.btnAlterarParcela.TabIndex = 32;
@@ -1283,7 +1292,7 @@
             this.btnEfetuarPagamento.Font = new System.Drawing.Font("Calibri", 8F);
             this.btnEfetuarPagamento.Image = global::GUI.Properties.Resources.wallet_48x48;
             this.btnEfetuarPagamento.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnEfetuarPagamento.Location = new System.Drawing.Point(524, 16);
+            this.btnEfetuarPagamento.Location = new System.Drawing.Point(522, 81);
             this.btnEfetuarPagamento.Name = "btnEfetuarPagamento";
             this.btnEfetuarPagamento.Size = new System.Drawing.Size(137, 68);
             this.btnEfetuarPagamento.TabIndex = 31;
@@ -1343,6 +1352,59 @@
             this.btnBuscarContrato.Text = "Buscar Contrato";
             this.btnBuscarContrato.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnBuscarContrato.UseVisualStyleBackColor = true;
+            // 
+            // btnNovaParcela
+            // 
+            this.btnNovaParcela.Font = new System.Drawing.Font("Calibri", 8.25F);
+            this.btnNovaParcela.Image = global::GUI.Properties.Resources.document_48x48;
+            this.btnNovaParcela.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnNovaParcela.Location = new System.Drawing.Point(522, 9);
+            this.btnNovaParcela.Name = "btnNovaParcela";
+            this.btnNovaParcela.Size = new System.Drawing.Size(137, 68);
+            this.btnNovaParcela.TabIndex = 34;
+            this.btnNovaParcela.Tag = "101";
+            this.btnNovaParcela.Text = "Nova Parcela";
+            this.btnNovaParcela.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnNovaParcela.UseVisualStyleBackColor = true;
+            // 
+            // btnExcluirParcela
+            // 
+            this.btnExcluirParcela.Image = global::GUI.Properties.Resources.trash_48x48;
+            this.btnExcluirParcela.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnExcluirParcela.Location = new System.Drawing.Point(522, 372);
+            this.btnExcluirParcela.Name = "btnExcluirParcela";
+            this.btnExcluirParcela.Size = new System.Drawing.Size(137, 68);
+            this.btnExcluirParcela.TabIndex = 39;
+            this.btnExcluirParcela.Tag = "301";
+            this.btnExcluirParcela.Text = "Excluir Parcela";
+            this.btnExcluirParcela.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnExcluirParcela.UseVisualStyleBackColor = true;
+            // 
+            // btnCancelarParcela
+            // 
+            this.btnCancelarParcela.Font = new System.Drawing.Font("Calibri", 8F);
+            this.btnCancelarParcela.Image = global::GUI.Properties.Resources.block_48x48;
+            this.btnCancelarParcela.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnCancelarParcela.Location = new System.Drawing.Point(522, 298);
+            this.btnCancelarParcela.Name = "btnCancelarParcela";
+            this.btnCancelarParcela.Size = new System.Drawing.Size(137, 68);
+            this.btnCancelarParcela.TabIndex = 38;
+            this.btnCancelarParcela.Text = "Cancelar";
+            this.btnCancelarParcela.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnCancelarParcela.UseVisualStyleBackColor = true;
+            // 
+            // btnSalvarParcela
+            // 
+            this.btnSalvarParcela.Font = new System.Drawing.Font("Calibri", 8F);
+            this.btnSalvarParcela.Image = global::GUI.Properties.Resources.save_48x48;
+            this.btnSalvarParcela.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnSalvarParcela.Location = new System.Drawing.Point(522, 227);
+            this.btnSalvarParcela.Name = "btnSalvarParcela";
+            this.btnSalvarParcela.Size = new System.Drawing.Size(137, 68);
+            this.btnSalvarParcela.TabIndex = 37;
+            this.btnSalvarParcela.Text = "Salvar Alterações";
+            this.btnSalvarParcela.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnSalvarParcela.UseVisualStyleBackColor = true;
             // 
             // frmTitular
             // 
@@ -1517,5 +1579,9 @@
         private System.Windows.Forms.MaskedTextBox mskOrgaoExpeditor;
         private System.Windows.Forms.Button btnGerarParcelas;
         private System.Windows.Forms.ComboBox cmbPlano;
+        private System.Windows.Forms.Button btnNovaParcela;
+        private System.Windows.Forms.Button btnExcluirParcela;
+        private System.Windows.Forms.Button btnCancelarParcela;
+        private System.Windows.Forms.Button btnSalvarParcela;
     }
 }

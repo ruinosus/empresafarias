@@ -1,3 +1,4 @@
+--Adicionando Estados do Brasil
 insert into estados
 (Id,Nome,Sigla)
 values

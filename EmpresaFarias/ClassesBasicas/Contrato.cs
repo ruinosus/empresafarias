@@ -78,7 +78,7 @@ namespace ClassesBasicas
             this.parcelas = new List<Parcela>();           
         }
         /// <summary>
-        /// Metodo responsável por Gerar parcelas de acordo com a data informada.
+        /// Metodo responsável por Gerar parcelas.
         /// </summary>
         /// <param name="dataIncicioVencimento">Data inicial do primeiro vencimento.</param>
         /// <param name="numeroParcelas">Numero de Parcelas a serem feitas.</param>
