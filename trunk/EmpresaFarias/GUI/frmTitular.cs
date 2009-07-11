@@ -25,11 +25,12 @@ namespace GUI
 
         //Dependente dependenteAtual;
         List<Dependente> dependentes;
-        Dependente dependenteAtual = new Dependente();
+        int DependenteAtualId = 0;
 
         //Parcela parcelaAtual;
         List<Parcela> parcelas;
-        Parcela parcelaAtual = new Parcela();
+        int ParcelaAtualId = 0;
+
 
         public frmTitular()
         {
@@ -194,10 +195,18 @@ namespace GUI
             btnAlterarDependente.Enabled = dgvDependentesCadastrados.CurrentRow != null && dgvDependentesCadastrados.CurrentRow.Index != -1 && dependentes.Count > 0;
             btnExcluirDependente.Enabled = dgvDependentesCadastrados.CurrentRow != null && dgvDependentesCadastrados.CurrentRow.Index != -1 && dependentes.Count > 0;
 
-            fachada.Usuario.HabilitarComponentes(this);
-            fachada.Usuario.HabilitarComponentes(tabTitular);
-            fachada.Usuario.HabilitarComponentes(tabDependente);
-            fachada.Usuario.HabilitarComponentes(tabPagamento);
+            if (dgvDependentesCadastrados.CurrentRow != null && dgvDependentesCadastrados.CurrentRow.Index > -1)
+            {
+                DependenteAtualId = Convert.ToInt32(dgvDependentesCadastrados.CurrentRow.Cells[0].Value);
+                txtNomeDependente.Text = dgvDependentesCadastrados.CurrentRow.Cells[1].Value + "";
+                cmbReligiaoDependente.Text = dgvDependentesCadastrados.CurrentRow.Cells[2].Value + "";
+                dtpNascimentoDependente.Value = Convert.ToDateTime(dgvDependentesCadastrados.CurrentRow.Cells[3].Value + "");
+                cmbParentesco.Text = dgvDependentesCadastrados.CurrentRow.Cells[4].Value + "";
+                cmbPercentualCobertura.Text = dgvDependentesCadastrados.CurrentRow.Cells[5].Value + "";
+
+            }
+
+            HabilitarComponentesPorTags();
         }
 
         private void HabilitarParcela()
@@ -205,6 +214,14 @@ namespace GUI
             btnAlterarParcela.Enabled = dgvParcelas.CurrentRow != null && dgvParcelas.CurrentRow.Index != -1 && parcelas.Count > 0;
             btnExcluirDependente.Enabled = dgvParcelas.CurrentRow != null && dgvParcelas.CurrentRow.Index != -1 && parcelas.Count > 0;
 
+            HabilitarComponentesPorTags();
+        }
+
+        /// <summary>
+        /// Metodo responsavel por Habilitar os componentes de Acordo com as Tags do Usuario Logado.
+        /// </summary>
+        private void HabilitarComponentesPorTags()
+        {
             fachada.Usuario.HabilitarComponentes(this);
             fachada.Usuario.HabilitarComponentes(tabTitular);
             fachada.Usuario.HabilitarComponentes(tabDependente);
@@ -217,7 +234,10 @@ namespace GUI
 
             //dgvDependentesCadastrados.Enabled = false;
             dgvDependentesCadastrados.DataSource = null;
-            dgvDependentesCadastrados.DataSource = dependentes;
+            var resultado = from d in dependentes
+                            orderby d.Nome
+                            select d;
+            dgvDependentesCadastrados.DataSource = resultado.ToList(); 
             //dgvDependentesCadastrados.Refresh();
 
         }
@@ -250,10 +270,7 @@ namespace GUI
                         tbcTitular.Controls.Remove(tabPagamento);
                         //tbcTitular.DDisablePage(TabPage6)
 
-                        fachada.Usuario.HabilitarComponentes(this);
-                        fachada.Usuario.HabilitarComponentes(tabTitular);
-                        fachada.Usuario.HabilitarComponentes(tabDependente);
-                        fachada.Usuario.HabilitarComponentes(tabPagamento);
+                        HabilitarComponentesPorTags();
 
                         break;
                     }
@@ -319,10 +336,7 @@ namespace GUI
                         btnAlterar.Enabled = bsTitular.Count > 0;
                         //btnVerificarLogin.Enabled = false;
                         AjustarBotoesDependente();
-                        fachada.Usuario.HabilitarComponentes(this);
-                        fachada.Usuario.HabilitarComponentes(tabTitular);
-                        fachada.Usuario.HabilitarComponentes(tabDependente);
-                        fachada.Usuario.HabilitarComponentes(tabPagamento);
+                        HabilitarComponentesPorTags();
                         break;
                     }
             }
@@ -417,7 +431,7 @@ namespace GUI
                         txtComplemento.ReadOnly = false;
                         txtLogradouro.ReadOnly = false;
                         txtNumero.ReadOnly = false;
-                        txtNumeroContrato.ReadOnly = false;
+                        txtNumeroContrato.ReadOnly = true;
                         mskOrgaoExpeditor.ReadOnly = false;
                         mskCep.ReadOnly = false;
                         mskCpf.ReadOnly = false;
@@ -613,10 +627,7 @@ namespace GUI
                         btnExcluirDependente.Enabled = false;
                         btnSalvarDependente.Enabled = false;
                         dgvDependentesCadastrados.Enabled = false;
-                        fachada.Usuario.HabilitarComponentes(this);
-                        fachada.Usuario.HabilitarComponentes(tabTitular);
-                        fachada.Usuario.HabilitarComponentes(tabDependente);
-                        fachada.Usuario.HabilitarComponentes(tabPagamento);
+                        HabilitarComponentesPorTags();
                         break;
                     }
                 case Status.Alteracao:
@@ -652,10 +663,7 @@ namespace GUI
                         dgvDependentesCadastrados.Enabled = true;
                         HabilitarDependente();
 
-                        fachada.Usuario.HabilitarComponentes(this);
-                        fachada.Usuario.HabilitarComponentes(tabTitular);
-                        fachada.Usuario.HabilitarComponentes(tabDependente);
-                        fachada.Usuario.HabilitarComponentes(tabPagamento);
+                        HabilitarComponentesPorTags();
 
                         break;
                     }
@@ -747,10 +755,7 @@ namespace GUI
                         btnAlterarParcela.Enabled = false;
                         btnGerarParcelas.Enabled = false;
                         dgvParcelas.Enabled = false;
-                        fachada.Usuario.HabilitarComponentes(this);
-                        fachada.Usuario.HabilitarComponentes(tabTitular);
-                        fachada.Usuario.HabilitarComponentes(tabDependente);
-                        fachada.Usuario.HabilitarComponentes(tabPagamento);
+                        HabilitarComponentesPorTags();
                         break;
                     }
                 case Status.Alteracao:
@@ -780,10 +785,7 @@ namespace GUI
                         btnGerarParcelas.Enabled = true;
                         dgvParcelas.Enabled = true;
                         HabilitarParcela();
-                        fachada.Usuario.HabilitarComponentes(this);
-                        fachada.Usuario.HabilitarComponentes(tabTitular);
-                        fachada.Usuario.HabilitarComponentes(tabDependente);
-                        fachada.Usuario.HabilitarComponentes(tabPagamento);
+                        HabilitarComponentesPorTags();
                         break;
                     }
             }
@@ -1054,18 +1056,20 @@ namespace GUI
                         }
                     case Status.Alteracao:
                         {
-                            dependenteAtual.Nome = txtNomeDependente.Text;
-                            dependenteAtual.Parentesco = cmbParentesco.Text;
-                            dependenteAtual.PercentualCobertura = Convert.ToInt32(cmbPercentualCobertura.Text);
-                            dependenteAtual.Religiao = cmbReligiaoDependente.Text;
-                            dependenteAtual.DataNascimento = dtpNascimentoDependente.Value;
-                            dependenteAtual.Status = StatusDependente.Ativo;
-                            fachada.ControladorDependente.Alterar(dependenteAtual, titularAtual.Id, usuario);
+                            Dependente d = new Dependente();
+                            d.Id = DependenteAtualId;
+                            d.Nome = txtNomeDependente.Text;
+                            d.Parentesco = cmbParentesco.Text;
+                            d.PercentualCobertura = Convert.ToInt32(cmbPercentualCobertura.Text);
+                            d.Religiao = cmbReligiaoDependente.Text;
+                            d.DataNascimento = dtpNascimentoDependente.Value;
+                            d.Status = StatusDependente.Ativo;
+                            fachada.ControladorDependente.Alterar(d, titularAtual.Id, usuario);
 
 
                             statusDependente = Status.Navegacao;
-                            dependentes.Remove(dependenteAtual);
-                            dependentes.Add(dependenteAtual);
+                            dependentes.Remove(d);
+                            dependentes.Add(d);
                             CarregarDependentes();
                             AjustarBotoesDependente();
                             break;
@@ -1099,24 +1103,7 @@ namespace GUI
             statusDependente = Status.Navegacao;
 
             AjustarBotoesDependente();
-        }
-
-        private void dgvDependentesCadastrados_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            HabilitarDependente();
-            int index = e.RowIndex;
-
-            if (index > -1)
-            {
-                dependenteAtual.Id = Convert.ToInt32(dgvDependentesCadastrados.Rows[index].Cells[0].Value);
-                txtNomeDependente.Text = dgvDependentesCadastrados.Rows[index].Cells[1].Value + "";
-                cmbReligiaoDependente.Text = dgvDependentesCadastrados.Rows[index].Cells[2].Value + "";
-                dtpNascimentoDependente.Value = Convert.ToDateTime(dgvDependentesCadastrados.Rows[index].Cells[3].Value + "");
-                cmbParentesco.Text = dgvDependentesCadastrados.Rows[index].Cells[4].Value + "";
-                cmbPercentualCobertura.Text = dgvDependentesCadastrados.Rows[index].Cells[5].Value + "";
-
-            }
-        }
+        }        
 
         private void btnPrimeiro_Click(object sender, EventArgs e)
         {
@@ -1152,6 +1139,16 @@ namespace GUI
             //statusParcela = Status.Inativo;
             bsTitular.MoveLast();
             AjustarBotoesTitular();
+        }
+
+        private void dgvDependentesCadastrados_SelectionChanged(object sender, EventArgs e)
+        {
+            HabilitarDependente();
+        }
+
+        private void btnGerarParcelas_Click(object sender, EventArgs e)
+        {
+
         }
 
 

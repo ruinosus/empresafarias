@@ -164,7 +164,7 @@ namespace Negocio.controladores
 
             ht.Descricao = descricao;
             ht.TitularHistorico = titular;
-            ht.TitularHistorico = titular;
+            ht.Titular = titular;
 
             this.InserirHistorico(ht);
         }

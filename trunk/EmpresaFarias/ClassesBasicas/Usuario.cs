@@ -115,12 +115,12 @@ namespace ClassesBasicas
                         if (this.VerificarTag(tag))
                         {
                             formulario.Controls[i].Visible = true;
-                            formulario.Controls[i].Enabled = true;
+                            //formulario.Controls[i].Enabled = true;
                         }
                         else
                         {
                             formulario.Controls[i].Visible = false;
-                            formulario.Controls[i].Enabled = false;
+                            //formulario.Controls[i].Enabled = false;
                         }
                     }
                 }
@@ -145,14 +145,14 @@ namespace ClassesBasicas
                         if (this.VerificarTag(tag))
                         {
                             menu.Items[i].Visible = true;
-                            menu.Items[i].Enabled = true;
+                            //menu.Items[i].Enabled = true;
 
                             HabilitarMenu(l);
                         }
                         else
                         {
                             menu.Items[i].Visible = false;
-                            menu.Items[i].Enabled = false;
+                           // menu.Items[i].Enabled = false;
                         }
                     }
                     else
@@ -179,12 +179,12 @@ namespace ClassesBasicas
                         if (this.VerificarTag(tag))
                         {
                             tab.TabPages[i].Visible = true;
-                            tab.TabPages[i].Enabled = true;                                
+                            //tab.TabPages[i].Enabled = true;                                
                         }
                         else
                         {
                             tab.TabPages[i].Visible = false;
-                            tab.TabPages[i].Enabled = false;
+                           // tab.TabPages[i].Enabled = false;
                         }  
                     }
                     HabilitarTab(tab.TabPages[i]); 
@@ -206,12 +206,12 @@ namespace ClassesBasicas
                         if (this.VerificarTag(tag))
                         {
                             panel.Controls[i].Visible = true;
-                            panel.Controls[i].Enabled = true;
+                           // panel.Controls[i].Enabled = true;
                         }
                         else
                         {
                             panel.Controls[i].Visible = false;
-                            panel.Controls[i].Enabled = false;
+                            //panel.Controls[i].Enabled = false;
                         }
                     }
                     //HabilitarTab(panel.TabPages[i]);
@@ -260,7 +260,7 @@ namespace ClassesBasicas
                         if (this.VerificarTag(tag))
                         {
                             item.DropDownItems[i].Visible = true;
-                            item.DropDownItems[i].Enabled = true;
+                            //item.DropDownItems[i].Enabled = true;
 
                             ToolStripMenuItem sub = (ToolStripMenuItem)item.DropDownItems[i];
                             if (sub.DropDownItems.Count > 0)
@@ -271,7 +271,7 @@ namespace ClassesBasicas
                         else
                         {
                             item.DropDownItems[i].Visible = false;
-                            item.DropDownItems[i].Enabled = false;
+                            //item.DropDownItems[i].Enabled = false;
                         }
                     }
                 } 
@@ -298,12 +298,12 @@ namespace ClassesBasicas
                     if (this.VerificarTag(tag))
                     {
                         tab.Controls[i].Visible = true;
-                        tab.Controls[i].Enabled = true;
+                       // tab.Controls[i].Enabled = true;
                     }
                     else
                     {
                         tab.Controls[i].Visible = false;
-                        tab.Controls[i].Enabled = false;
+                      //  tab.Controls[i].Enabled = false;
                     }
                 }
             }
