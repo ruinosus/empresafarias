@@ -15,15 +15,13 @@ namespace Repositorio.interfaces
         /// Metodo responsavel por inserir um Contrato.
         /// </summary>
         /// <param name="contrato">Objeto do tipo Contrato a ser inserido</param>
-        /// <param name="TitularId">Id do Titular do Contrato.</param>
         /// <returns>retorna o Contrato inserido.</returns>
-        Contrato Inserir(Contrato contrato, int TitularId);
+        Contrato Inserir(Contrato contrato);
         /// <summary>
         /// Metodo responsavel por alterar um Contrato.
         /// </summary>
         /// <param name="contrato">Objeto do tipo Contrato a ser alterado</param>
-        /// <param name="TitularId">Id do Titular do Contrato.</param>
-        void Alterar(Contrato contrato, int TitularId);
+        void Alterar(Contrato contrato);
         /// <summary>
         /// Metodo responsavel por remover um Contrato.
         /// </summary>

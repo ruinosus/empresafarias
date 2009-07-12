@@ -13,7 +13,7 @@ namespace GUI
 {
     public partial class frmCadUsuario : Form
     {
-        Fachada fachada = Fachada.ObterInstancia();
+        Fachada fachada = Fachada.Instance;
         Status status = Status.Inativo;
         Usuario usuario;
         Usuario usuarioAtual;

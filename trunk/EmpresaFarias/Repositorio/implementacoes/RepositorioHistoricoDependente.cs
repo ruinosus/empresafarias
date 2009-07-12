@@ -30,9 +30,8 @@ namespace Repositorio.implementacoes
         /// Metodo responsavel por inserir um HistoricoDependente.
         /// </summary>
         /// <param name="historicoDependente">Objeto do tipo HistoricoDependente a ser inserido</param>
-        /// <param name="TitularId">Id do Titular do HistoricoDependente.</param>
         /// <returns>retorna o HistoricoDependente inserido.</returns>
-        public HistoricoDependente Inserir(HistoricoDependente historicoDependente, int TitularId)
+        public HistoricoDependente Inserir(HistoricoDependente historicoDependente)
         {
             UtilBD banco = new UtilBD();
             SqlConnection conexao = banco.ObterConexao();
@@ -46,7 +45,7 @@ namespace Repositorio.implementacoes
                 comando.Parameters.AddWithValue("@Religiao", historicoDependente.DependenteHistorico.Religiao);
                 comando.Parameters.AddWithValue("@Status", (int)historicoDependente.DependenteHistorico.Status);
                 comando.Parameters.AddWithValue("@PercentualCobertura", historicoDependente.DependenteHistorico.PercentualCobertura);
-                comando.Parameters.AddWithValue("@TitularId", TitularId);
+                comando.Parameters.AddWithValue("@TitularId", historicoDependente.DependenteHistorico.TitularId);
                 comando.Parameters.AddWithValue("@DependenteId", historicoDependente.Dependente.Id);
                 comando.Parameters.AddWithValue("@DataAlteracao", historicoDependente.DataAlteracao);
                 comando.Parameters.AddWithValue("@UsuarioId", historicoDependente.Usuario.Id);
@@ -267,6 +266,10 @@ namespace Repositorio.implementacoes
             if (resultado["DependenteId"] != DBNull.Value)
             {
                 historicoDependente.Dependente.Id = Convert.ToInt32(resultado["DependenteId"]);
+            }
+            if (resultado["TitularId"] != DBNull.Value)
+            {
+                historicoDependente.Dependente.TitularId = Convert.ToInt32(resultado["TitularId"]);
             }
             if (resultado["DataAlteracao"] != DBNull.Value)
             {

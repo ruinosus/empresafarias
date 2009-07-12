@@ -15,16 +15,14 @@ namespace Repositorio.interfaces
         /// Metodo responsavel por inserir um Dependente.
         /// </summary>
         /// <param name="dependente">Objeto do tipo Dependente a ser inserido</param>
-        /// <param name="TitularId">Id do Titular do Dependente.</param>
         /// <returns>retorna o Dependente inserido.</returns>
-        Dependente Inserir(Dependente dependente, int TitularId);
+        Dependente Inserir(Dependente dependente);
 
         /// <summary>
         /// Metodo responsavel por alterar um Dependente.
         /// </summary>
         /// <param name="dependente">Objeto do tipo Dependente a ser alterado</param>
-        /// <param name="TitularId">Id do Titular do Dependente.</param>
-        void Alterar(Dependente dependente, int TitularId);
+        void Alterar(Dependente dependente);
 
         /// <summary>
         /// Metodo responsavel por remover um Dependente.

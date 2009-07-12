@@ -31,9 +31,8 @@ namespace Repositorio.implementacoes
         /// Metodo responsavel por inserir um Dependente.
         /// </summary>
         /// <param name="dependente">Objeto do tipo Dependente a ser inserido</param>
-        /// <param name="TitularId">Id do Titular do Dependente.</param>
         /// <returns>retorna o Dependente inserido.</returns>
-        public Dependente Inserir(Dependente dependente, int TitularId)
+        public Dependente Inserir(Dependente dependente)
         {
             UtilBD banco = new UtilBD();
             SqlConnection conexao = banco.ObterConexao();
@@ -47,7 +46,7 @@ namespace Repositorio.implementacoes
                 comando.Parameters.AddWithValue("@Religiao", dependente.Religiao);
                 comando.Parameters.AddWithValue("@Status", (int)dependente.Status);
                 comando.Parameters.AddWithValue("@PercentualCobertura", dependente.PercentualCobertura);
-                comando.Parameters.AddWithValue("@TitularId", TitularId);
+                comando.Parameters.AddWithValue("@TitularId", dependente.TitularId);
                 conexao.Open();
                 int regitrosAfetados = comando.ExecuteNonQuery();
                 dependente.Id = this.ObterMaximoId();
@@ -67,8 +66,7 @@ namespace Repositorio.implementacoes
         /// Metodo responsavel por alterar um Dependente.
         /// </summary>
         /// <param name="dependente">Objeto do tipo Dependente a ser alterado</param>
-        /// <param name="TitularId">Id do Titular do Dependente.</param>
-        public void Alterar(Dependente dependente, int TitularId)
+        public void Alterar(Dependente dependente)
         {
             UtilBD banco = new UtilBD();
             SqlConnection conexao = banco.ObterConexao();
@@ -82,7 +80,7 @@ namespace Repositorio.implementacoes
                 comando.Parameters.AddWithValue("@Religiao", dependente.Religiao);
                 comando.Parameters.AddWithValue("@Status", (int)dependente.Status);
                 comando.Parameters.AddWithValue("@PercentualCobertura", dependente.PercentualCobertura);
-                comando.Parameters.AddWithValue("@TitularId", TitularId);
+                comando.Parameters.AddWithValue("@TitularId", dependente.TitularId);
                 comando.Parameters.AddWithValue("@Id", dependente.Id);
                 conexao.Open();
                 int regitrosAfetados = comando.ExecuteNonQuery();
@@ -320,6 +318,11 @@ namespace Repositorio.implementacoes
             {
                 dependente.Religiao = Convert.ToString(resultado["Religiao"]);
             }
+            if (resultado["TitularId"] != DBNull.Value)
+            {
+                dependente.TitularId = Convert.ToInt32(resultado["TitularId"]);
+            }
+
 
             return dependente;
         }

@@ -31,9 +31,8 @@ namespace Repositorio.implementacoes
         /// Metodo responsavel por inserir um HistoricoContrato.
         /// </summary>
         /// <param name="historicoContrato">Objeto do tipo HistoricoContrato a ser inserido</param>
-        /// <param name="TitularId">Id do Titular do HistoricoContrato.</param>
         /// <returns>retorna o HistoricoContrato inserido.</returns>        
-        public HistoricoContrato Inserir(HistoricoContrato historicoContrato, int TitularId)
+        public HistoricoContrato Inserir(HistoricoContrato historicoContrato)
         {
             UtilBD banco = new UtilBD();
             SqlConnection conexao = banco.ObterConexao();
@@ -44,7 +43,7 @@ namespace Repositorio.implementacoes
                 comando.Parameters.AddWithValue("@DataInicio", historicoContrato.ContratoHistorico.DataInicio);
                 comando.Parameters.AddWithValue("@PlanoId", historicoContrato.ContratoHistorico.Plano.Id);
                 comando.Parameters.AddWithValue("@Status", (int)historicoContrato.ContratoHistorico.Status);
-                comando.Parameters.AddWithValue("@TitularId", TitularId);
+                comando.Parameters.AddWithValue("@TitularId", historicoContrato.ContratoHistorico.TitularId);
                 comando.Parameters.AddWithValue("@ContratoId", historicoContrato.Contrato.Id);
                 comando.Parameters.AddWithValue("@DataAlteracao", historicoContrato.DataAlteracao);
                 comando.Parameters.AddWithValue("@UsuarioId", historicoContrato.Usuario.Id);
@@ -253,6 +252,10 @@ namespace Repositorio.implementacoes
             if (resultado["ContratoId"] != DBNull.Value)
             {
                 historicoContrato.Contrato.Id = Convert.ToInt32(resultado["ContratoId"]);
+            }
+            if (resultado["TitularId"] != DBNull.Value)
+            {
+                historicoContrato.Contrato.TitularId = Convert.ToInt32(resultado["TitularId"]);
             }
             if (resultado["DataAlteracao"] != DBNull.Value)
             {

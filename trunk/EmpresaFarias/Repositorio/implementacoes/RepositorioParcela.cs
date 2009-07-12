@@ -33,9 +33,8 @@ namespace Repositorio.implementacoes
         /// Metodo responsavel por inserir uma Parcela.
         /// </summary>
         /// <param name="parcela">Objeto do tipo Parcela a ser inserido</param>
-        /// <param name="ContratoId">Id do Contrato da Parcela.</param>
         /// <returns>retorna o Parcela inserido.</returns>
-        public Parcela Inserir(Parcela parcela, int ContratoId)
+        public Parcela Inserir(Parcela parcela)
         {
             UtilBD banco = new UtilBD();
             SqlConnection conexao = banco.ObterConexao();
@@ -55,7 +54,7 @@ namespace Repositorio.implementacoes
                 comando.Parameters.AddWithValue("@Valor", parcela.Valor);
                 comando.Parameters.AddWithValue("@NumeroParcela", parcela.NumeroParcela);
                 comando.Parameters.AddWithValue("@Status",(int) parcela.Status);
-                comando.Parameters.AddWithValue("@ContratoId", ContratoId);
+                comando.Parameters.AddWithValue("@ContratoId", parcela.ContratoId);
                 conexao.Open();
                 int regitrosAfetados = comando.ExecuteNonQuery();
                 parcela.Id = this.ObterMaximoId();
@@ -75,8 +74,7 @@ namespace Repositorio.implementacoes
         /// Metodo responsavel por alterar uma Parcela.
         /// </summary>
         /// <param name="plano">Objeto do tipo Parcela a ser alterado</param>
-        /// <param name="ContratoId">Id do Contrato da Parcela.</param>
-        public void Alterar(Parcela parcela, int ContratoId)
+        public void Alterar(Parcela parcela)
         {
             UtilBD banco = new UtilBD();
             SqlConnection conexao = banco.ObterConexao();
@@ -90,7 +88,7 @@ namespace Repositorio.implementacoes
                 comando.Parameters.AddWithValue("@NumeroParcela", parcela.NumeroParcela);
                 comando.Parameters.AddWithValue("@Status", (int)parcela.Status);
                 comando.Parameters.AddWithValue("@ContratoId", parcela.Id);
-                comando.Parameters.AddWithValue("@Id", ContratoId);
+                comando.Parameters.AddWithValue("@Id", parcela.ContratoId);
                 conexao.Open();
                 int regitrosAfetados = comando.ExecuteNonQuery();
             }
@@ -321,6 +319,10 @@ namespace Repositorio.implementacoes
             if (resultado["Status"] != DBNull.Value)
             {
                 parcela.Status = (StatusParcela)Convert.ToInt32(resultado["Status"]);
+            }
+            if (resultado["ContratoId"] != DBNull.Value)
+            {
+                parcela.ContratoId = Convert.ToInt32(resultado["ContratoId"]);
             }
             return parcela;
         }

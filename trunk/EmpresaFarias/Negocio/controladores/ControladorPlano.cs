@@ -13,6 +13,7 @@ namespace Negocio.controladores
     public class ControladorPlano
     {
         private IRepositorioPlano repPlano;
+
         /// <summary>
         /// Construtor da Classe ControladorPlano
         /// </summary>
@@ -33,6 +34,7 @@ namespace Negocio.controladores
                 throw new ExcecaoNegocio("Valor Inválido.");
             this.repPlano.Inserir(plano);
         }
+
         /// <summary>
         /// Metodo responsavel por alterar um Plano.
         /// </summary>
@@ -45,6 +47,7 @@ namespace Negocio.controladores
             else
                 throw new ExcecaoNegocio("Plano não existente.");
         }
+
         /// <summary>
         /// Metodo responsavel por remover um Plano.
         /// </summary>
@@ -57,6 +60,7 @@ namespace Negocio.controladores
             else
                 throw new ExcecaoNegocio("Plano não existente.");
         }
+
         /// <summary>
         /// Metodo responsavel por consultar um Plano.
         /// </summary>
@@ -70,6 +74,7 @@ namespace Negocio.controladores
                 throw new ExcecaoNegocio("Plano não existente.");
             return plano;
         }
+
         /// <summary>
         /// Metodo responsavel por consultar todos os Planos cadastrados.
         /// </summary>

@@ -39,11 +39,11 @@ namespace Negocio.controladores
         /// <param name="usuario">Usuario que inserio a Parcela.</param>
         /// <exception cref="ExecaoNegocio">Lançara a ExecaoNegocio caso o objeto seja nulo.</exception>
         /// <returns>retorna o Parcela inserido.</returns>
-        public Parcela Inserir(Parcela parcela, int ContratoId, Usuario usuario)
+        public Parcela Inserir(Parcela parcela, Usuario usuario)
         {
             if (parcela == null)
                 throw new ExcecaoNegocio("Valor Inválido.");
-            Parcela p = this.repParcela.Inserir(parcela,ContratoId);
+            Parcela p = this.repParcela.Inserir(parcela);
 
             HistoricoParcela hp = new HistoricoParcela();
             hp.DataAlteracao = new DateTime();
@@ -53,7 +53,7 @@ namespace Negocio.controladores
             hp.ParcelaHistorico = p;
             hp.Parcela = p;
 
-            this.InserirHistorico(hp, ContratoId);
+            this.InserirHistorico(hp);
             return p;
         }
 
@@ -63,11 +63,11 @@ namespace Negocio.controladores
         /// <param name="plano">Objeto do tipo Parcela a ser alterado</param>
         /// <param name="ContratoId">Id do Contrato da Parcela.</param>
         /// <exception cref="ExecaoNegocio">Lançara a ExecaoNegocio caso o objeto seja nulo ou a Parcela não seja encontrada.</exception>
-        public void Alterar(Parcela parcela, int ContratoId,Usuario usuario)
+        public void Alterar(Parcela parcela,Usuario usuario)
         {
             Parcela parcelaAntiga =this.Consultar(parcela.Id);
             if ( parcelaAntiga!= null && parcela != null)
-                this.repParcela.Alterar(parcela,ContratoId);
+                this.repParcela.Alterar(parcela);
             else
                 throw new ExcecaoNegocio("Parcela não existente.");
 
@@ -101,7 +101,7 @@ namespace Negocio.controladores
             hp.ParcelaHistorico = parcela;
             hp.Parcela = parcela;
 
-            this.InserirHistorico(hp, ContratoId);
+            this.InserirHistorico(hp);
         }
 
         /// <summary>
@@ -156,9 +156,9 @@ namespace Negocio.controladores
         /// <param name="historicoParcela">Objeto do tipo HistoricoParcela a ser inserido</param>
         /// <param name="ContratoId">Id do Contrato do Historico da Parcela.</param>
         /// <returns>retorna o HistoricoParcela inserido.</returns>
-        private HistoricoParcela InserirHistorico(HistoricoParcela historicoParcela, int ContratoId)
+        private HistoricoParcela InserirHistorico(HistoricoParcela historicoParcela)
         {
-            return this.repHistoricoParcela.Inserir(historicoParcela, ContratoId);
+            return this.repHistoricoParcela.Inserir(historicoParcela);
         }
 
         /// <summary>

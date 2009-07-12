@@ -15,9 +15,8 @@ namespace Repositorio.interfaces
         /// Metodo responsavel por inserir um HistoricoDependente.
         /// </summary>
         /// <param name="historicoDependente">Objeto do tipo HistoricoDependente a ser inserido</param>
-        /// <param name="TitularId">Id do Titular do HistoricoDependente.</param>
         /// <returns>retorna o HistoricoDependente inserido.</returns>
-        HistoricoDependente Inserir(HistoricoDependente historicoDependente, int TitularId);
+        HistoricoDependente Inserir(HistoricoDependente historicoDependente);
         
         /// <summary>
         /// Metodo responsavel por consultar um HistoricoDependente.
