@@ -15,9 +15,8 @@ namespace Repositorio.interfaces
         /// Metodo responsavel por inserir um HistoricoContrato.
         /// </summary>
         /// <param name="historicoContrato">Objeto do tipo HistoricoContrato a ser inserido</param>
-        /// <param name="TitularId">Id do Titular do HistoricoContrato.</param>
         /// <returns>retorna o HistoricoContrato inserido.</returns>
-        HistoricoContrato Inserir(HistoricoContrato historicoContrato, int TitularId);
+        HistoricoContrato Inserir(HistoricoContrato historicoContrato);
 
         /// <summary>
         /// Metodo responsavel por consultar um HistoricoContrato.

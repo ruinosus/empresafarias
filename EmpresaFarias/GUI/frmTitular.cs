@@ -13,7 +13,7 @@ namespace GUI
 {
     public partial class frmTitular : Form
     {
-        Fachada fachada = Fachada.ObterInstancia();
+        Fachada fachada = Fachada.Instance;
         Status statusTitular = Status.Inativo;
         Status statusDependente = Status.Inativo;
         Status statusParcela = Status.Inativo;
@@ -924,7 +924,8 @@ namespace GUI
                                 c.Plano = (Plano)cmbPlano.SelectedItem;
                                 //c.GerarParcelas(DateTime.Today, 12, c.Plano.ValorPadrao);
                                 c.Status = StatusContrato.Ativo;
-                                fachada.ControladorContrato.Inserir(c, t.Id, usuario);
+                                c.TitularId = t.Id;
+                                fachada.ControladorContrato.Inserir(c, usuario);
 
                                 statusTitular = Status.Navegacao;
 
@@ -979,7 +980,8 @@ namespace GUI
                             titularAtual.Contratos[0].Plano = (Plano)cmbPlano.SelectedItem;
                             //c.GerarParcelas(DateTime.Today, 12, c.Plano.ValorPadrao);
                             titularAtual.Contratos[0].Status = StatusContrato.Ativo;
-                            fachada.ControladorContrato.Alterar(titularAtual.Contratos[0], titularAtual.Id, usuario);
+                            titularAtual.Contratos[0].TitularId = titularAtual.Id;
+                            fachada.ControladorContrato.Alterar(titularAtual.Contratos[0], usuario);
 
                             statusTitular = Status.Navegacao;
                             AjustarBotoesTitular();
@@ -1046,7 +1048,8 @@ namespace GUI
                             d.Religiao = cmbReligiaoDependente.Text;
                             d.DataNascimento = dtpNascimentoDependente.Value;
                             d.Status = StatusDependente.Ativo;
-                            d = fachada.ControladorDependente.Inserir(d, titularAtual.Id, usuario);
+                            d.TitularId = titularAtual.Id;
+                            d = fachada.ControladorDependente.Inserir(d, usuario);
                             statusDependente = Status.Navegacao;
                             dependentes.Add(d);
                             CarregarDependentes();
@@ -1064,7 +1067,8 @@ namespace GUI
                             d.Religiao = cmbReligiaoDependente.Text;
                             d.DataNascimento = dtpNascimentoDependente.Value;
                             d.Status = StatusDependente.Ativo;
-                            fachada.ControladorDependente.Alterar(d, titularAtual.Id, usuario);
+                            d.TitularId = titularAtual.Id;
+                            fachada.ControladorDependente.Alterar(d,  usuario);
 
 
                             statusDependente = Status.Navegacao;

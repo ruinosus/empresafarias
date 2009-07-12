@@ -51,6 +51,15 @@ namespace ClassesBasicas
             set { status = value; }
         }
 
+        private int titularId;
+        /// <summary>
+        /// Propriedade relacionada ao Id do Titular do Contrato.
+        /// </summary>
+        public int TitularId
+        {
+            get { return titularId; }
+            set { titularId = value; }
+        }
         private Plano plano;
         /// <summary>
         /// Propriedade relacionada ao Plano do Contrato.

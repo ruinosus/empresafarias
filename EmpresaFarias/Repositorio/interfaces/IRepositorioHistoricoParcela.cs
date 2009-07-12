@@ -15,9 +15,8 @@ namespace Repositorio.interfaces
         /// Metodo responsavel por inserir um Historico da Parcela.
         /// </summary>
         /// <param name="historicoParcela">Objeto do tipo HistoricoParcela a ser inserido</param>
-        /// <param name="ContratoId">Id do Contrato do Historico da Parcela.</param>
         /// <returns>retorna o HistoricoParcela inserido.</returns>
-        HistoricoParcela Inserir(HistoricoParcela historicoParcela, int ContratoId);
+        HistoricoParcela Inserir(HistoricoParcela historicoParcela);
 
         /// <summary>
         /// Metodo responsavel por consultar uma Parcela.

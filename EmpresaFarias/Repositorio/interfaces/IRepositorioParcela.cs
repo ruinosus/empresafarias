@@ -15,15 +15,13 @@ namespace Repositorio.interfaces
         /// Metodo responsavel por inserir uma Parcela.
         /// </summary>
         /// <param name="parcela">Objeto do tipo Parcela a ser inserido</param>
-        /// <param name="ContratoId">Id do Contrato da Parcela.</param>
         /// <returns>retorna o Parcela inserido.</returns>
-        Parcela Inserir(Parcela parcela, int ContratoId);
+        Parcela Inserir(Parcela parcela);
         /// <summary>
         /// Metodo responsavel por alterar uma Parcela.
         /// </summary>
         /// <param name="plano">Objeto do tipo Parcela a ser alterado</param>
-        /// <param name="ContratoId">Id do Contrato da Parcela.</param>
-        void Alterar(Parcela parcela, int ContratoId);
+        void Alterar(Parcela parcela);
         /// <summary>
         /// Metodo responsavel por remover uma Parcela.
         /// </summary>

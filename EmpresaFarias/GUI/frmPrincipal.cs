@@ -13,7 +13,7 @@ namespace GUI
 {
     public partial class frmPrincipal : Form
     {
-        Fachada fachada = Fachada.ObterInstancia();
+        Fachada fachada = Fachada.Instance;
 
         public frmPrincipal()
         {

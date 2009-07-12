@@ -31,9 +31,8 @@ namespace Repositorio.implementacoes
         /// Metodo responsavel por inserir um Contrato.
         /// </summary>
         /// <param name="contrato">Objeto do tipo Contrato a ser inserido</param>
-        /// <param name="TitularId">Id do Titular do Contrato.</param>
         /// <returns>retorna o Contrato inserido.</returns>        
-        public Contrato Inserir(Contrato contrato, int TitularId)
+        public Contrato Inserir(Contrato contrato)
         {
             UtilBD banco = new UtilBD();
             SqlConnection conexao = banco.ObterConexao();
@@ -45,7 +44,7 @@ namespace Repositorio.implementacoes
                 comando.Parameters.AddWithValue("@DataInicio", contrato.DataInicio);
                 comando.Parameters.AddWithValue("@PlanoId", contrato.Plano.Id);
                 comando.Parameters.AddWithValue("@Status", (int)contrato.Status);
-                comando.Parameters.AddWithValue("@TitularId", TitularId);
+                comando.Parameters.AddWithValue("@TitularId", contrato.TitularId);
                 conexao.Open();
                 int regitrosAfetados = comando.ExecuteNonQuery();
                 contrato.Id = this.ObterMaximoId();
@@ -65,8 +64,7 @@ namespace Repositorio.implementacoes
         /// Metodo responsavel por alterar um Contrato.
         /// </summary>
         /// <param name="contrato">Objeto do tipo Contrato a ser alterado</param>
-        /// <param name="TitularId">Id do Titular do Contrato.</param>
-        public void Alterar(Contrato contrato, int TitularId)
+        public void Alterar(Contrato contrato)
         {
             UtilBD banco = new UtilBD();
             SqlConnection conexao = banco.ObterConexao();
@@ -78,7 +76,7 @@ namespace Repositorio.implementacoes
                 comando.Parameters.AddWithValue("@DataInicio", contrato.DataInicio);
                 comando.Parameters.AddWithValue("@PlanoId", contrato.Plano.Id);
                 comando.Parameters.AddWithValue("@Status", (int)contrato.Status);
-                comando.Parameters.AddWithValue("@TitularId", TitularId);
+                comando.Parameters.AddWithValue("@TitularId", contrato.TitularId);
                 conexao.Open();
                 int regitrosAfetados = comando.ExecuteNonQuery();
             }
@@ -302,7 +300,13 @@ namespace Repositorio.implementacoes
             if (resultado["Status"] != DBNull.Value)
             {
                 contrato.Status = (StatusContrato)Convert.ToInt32(resultado["Status"]);
-            }           
+            }
+            if (resultado["TitularId"] != DBNull.Value)
+            {
+                contrato.TitularId = Convert.ToInt32(resultado["TitularId"]);
+            }
+
+
             return contrato;
         }
     }

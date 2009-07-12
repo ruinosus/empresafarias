@@ -33,7 +33,7 @@ namespace Repositorio.implementacoes
         /// <param name="historicoParcela">Objeto do tipo HistoricoParcela a ser inserido</param>
         /// <param name="ContratoId">Id do Contrato do Historico da Parcela.</param>
         /// <returns>retorna o HistoricoParcela inserido.</returns>
-        public HistoricoParcela Inserir(HistoricoParcela historicoParcela, int ContratoId)
+        public HistoricoParcela Inserir(HistoricoParcela historicoParcela)
         {
             UtilBD banco = new UtilBD();
             SqlConnection conexao = banco.ObterConexao();
@@ -54,7 +54,7 @@ namespace Repositorio.implementacoes
                 comando.Parameters.AddWithValue("@Valor", historicoParcela.ParcelaHistorico.Valor);
                 comando.Parameters.AddWithValue("@NumeroParcela", historicoParcela.ParcelaHistorico.NumeroParcela);
                 comando.Parameters.AddWithValue("@Status", (int)historicoParcela.ParcelaHistorico.Status);
-                comando.Parameters.AddWithValue("@ContratoId", ContratoId);
+                comando.Parameters.AddWithValue("@ContratoId", historicoParcela.ParcelaHistorico.ContratoId);
                 comando.Parameters.AddWithValue("@ParcelaId", historicoParcela.Parcela.Id);
                 comando.Parameters.AddWithValue("@DataAlteracao", historicoParcela.DataAlteracao);
                 comando.Parameters.AddWithValue("@UsuarioId", historicoParcela.Usuario.Id);
@@ -287,6 +287,10 @@ namespace Repositorio.implementacoes
             if (resultado["Descricao"] != DBNull.Value)
             {
                 historicoParcela.Descricao = Convert.ToString(resultado["Descricao"]);
+            }
+            if (resultado["ContratoId"] != DBNull.Value)
+            {
+                historicoParcela.Parcela.ContratoId = Convert.ToInt32(resultado["ContratoId"]);
             }
 
 

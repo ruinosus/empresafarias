@@ -38,11 +38,11 @@ namespace Negocio.controladores
         /// <param name="TitularId">Id do Titular do Dependente.</param>
         /// <exception cref="ExecaoNegocio">Lançara a ExecaoNegocio caso o objeto seja nulo.</exception>
         /// <returns>retorna o Dependente inserido.</returns>  
-        public Dependente Inserir(Dependente dependente, int TitularId, Usuario usuario)
+        public Dependente Inserir(Dependente dependente, Usuario usuario)
         {
             if (dependente == null)
                 throw new ExcecaoNegocio("Valor Inválido.");
-            Dependente d = this.repDependente.Inserir(dependente, TitularId);
+            Dependente d = this.repDependente.Inserir(dependente);
 
             HistoricoDependente hd = new HistoricoDependente();
             hd.DataAlteracao = new DateTime();
@@ -52,7 +52,7 @@ namespace Negocio.controladores
             hd.DependenteHistorico = d;
             hd.Dependente = d;
 
-            this.InserirHistorico(hd, TitularId);
+            this.InserirHistorico(hd);
 
             return d;
         }
@@ -63,11 +63,11 @@ namespace Negocio.controladores
         /// <param name="dependente">Objeto do tipo Dependente a ser alterado</param>
         /// <param name="TitularId">Id do Titular do Dependente.</param>
         /// <exception cref="ExecaoNegocio">Lançara a ExecaoNegocio caso o objeto seja nulo ou o Dependente não seja encontrado.</exception>
-        public void Alterar(Dependente dependente, int TitularId, Usuario usuario)
+        public void Alterar(Dependente dependente, Usuario usuario)
         {
             Dependente dependenteAntigo = this.Consultar(dependente.Id);
             if (dependenteAntigo != null && dependente != null)
-                this.repDependente.Alterar(dependente, TitularId);
+                this.repDependente.Alterar(dependente);
             else
                 throw new ExcecaoNegocio("Dependente não existente.");
 
@@ -108,7 +108,7 @@ namespace Negocio.controladores
             hd.DependenteHistorico = dependente;
             hd.Dependente = dependente;
 
-            this.InserirHistorico(hd, TitularId);
+            this.InserirHistorico(hd);
         }
 
         /// <summary>
@@ -163,9 +163,9 @@ namespace Negocio.controladores
         /// <param name="historicoDependente">Objeto do tipo HistoricoDependente a ser inserido</param>
         /// <param name="TitularId">Id do Titular do HistoricoDependente.</param>
         /// <returns>retorna o HistoricoDependente inserido.</returns>
-        public HistoricoDependente InserirHistorico(HistoricoDependente historicoDependente, int TitularId)
+        public HistoricoDependente InserirHistorico(HistoricoDependente historicoDependente)
         {
-            return this.repHistoricoDependente.Inserir(historicoDependente, TitularId);
+            return this.repHistoricoDependente.Inserir(historicoDependente);
         }
 
         /// <summary>

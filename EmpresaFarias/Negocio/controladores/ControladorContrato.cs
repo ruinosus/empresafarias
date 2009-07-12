@@ -45,10 +45,9 @@ namespace Negocio.controladores
         /// Metodo responsavel por inserir um Contrato.
         /// </summary>
         /// <param name="contrato">Objeto do tipo Contrato a ser inserido</param>
-        /// <param name="TitularId">Id do Titular do Contrato.</param>
         /// <exception cref="ExecaoNegocio">Lançara a ExecaoNegocio caso o objeto seja nulo.</exception>
         /// <returns>retorna o Contrato inserido.</returns>  
-        public Contrato Inserir(Contrato contrato, int TitularId, Usuario usuario)
+        public Contrato Inserir(Contrato contrato, Usuario usuario)
         {
             if (contrato == null)
                 throw new ExcecaoNegocio("Valor Inválido.");
@@ -56,7 +55,7 @@ namespace Negocio.controladores
             if(this.Consultar(contrato.Id)!=null)
                 throw new ExcecaoNegocio("Número de Contrato já Informado.");
 
-             Contrato c = this.repContrato.Inserir(contrato, TitularId);
+             Contrato c = this.repContrato.Inserir(contrato);
 
              HistoricoContrato hc = new HistoricoContrato();
              hc.DataAlteracao = new DateTime();
@@ -66,7 +65,7 @@ namespace Negocio.controladores
              hc.ContratoHistorico = c;
              hc.Contrato = c;
 
-             this.InserirHistorico(hc, TitularId);
+             this.InserirHistorico(hc);
             return c;
         }
 
@@ -76,11 +75,11 @@ namespace Negocio.controladores
         /// <param name="contrato">Objeto do tipo Contrato a ser alterado</param>
         /// <param name="TitularId">Id do Titular do Contrato.</param>
         /// <exception cref="ExecaoNegocio">Lançara a ExecaoNegocio caso o objeto seja nulo ou o Contrato não seja encontrado.</exception>
-        public void Alterar(Contrato contrato, int TitularId, Usuario usuario)
+        public void Alterar(Contrato contrato, Usuario usuario)
         {
             Contrato contratoAntigo = this.Consultar(contrato.Id);
             if (contratoAntigo != null && contrato != null)
-                this.repContrato.Alterar(contrato, TitularId);
+                this.repContrato.Alterar(contrato);
             else
                 throw new ExcecaoNegocio("Contrato não existente.");
             HistoricoContrato hc = new HistoricoContrato();
@@ -110,7 +109,7 @@ namespace Negocio.controladores
             hc.ContratoHistorico = contrato;
             hc.Contrato = contrato;
 
-            this.InserirHistorico(hc, TitularId);
+            this.InserirHistorico(hc);
 
         }
 
@@ -196,9 +195,9 @@ namespace Negocio.controladores
         /// <param name="historicoContrato">Objeto do tipo HistoricoContrato a ser inserido</param>
         /// <param name="TitularId">Id do Titular do HistoricoContrato.</param>
         /// <returns>retorna o HistoricoContrato inserido.</returns>
-        public HistoricoContrato InserirHistorico(HistoricoContrato historicoContrato, int TitularId)
+        public HistoricoContrato InserirHistorico(HistoricoContrato historicoContrato)
         {
-            return this.repHistoricoContrato.Inserir(historicoContrato, TitularId);
+            return this.repHistoricoContrato.Inserir(historicoContrato);
         }
 
         /// <summary>

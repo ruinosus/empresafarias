@@ -29,6 +29,17 @@ namespace ClassesBasicas
             set { id = value; }
         }
 
+        private int contratoId;
+        /// <summary>
+        /// Propriedade relacionada ao Id do Contrato.
+        /// </summary>
+        public int ContratoId
+        {
+            get { return contratoId; }
+            set { contratoId = value; }
+        }
+
+
         private DateTime dataPagamento;
         /// <summary>
         /// Propriedade relacionada a Data de Pagamento da Parcela.
