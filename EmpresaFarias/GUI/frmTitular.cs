@@ -237,7 +237,7 @@ namespace GUI
             var resultado = from d in dependentes
                             orderby d.Nome
                             select d;
-            dgvDependentesCadastrados.DataSource = resultado.ToList(); 
+            dgvDependentesCadastrados.DataSource = resultado.ToList();
             //dgvDependentesCadastrados.Refresh();
 
         }
@@ -340,7 +340,7 @@ namespace GUI
                         break;
                     }
             }
-            
+
 
 
         }
@@ -668,12 +668,12 @@ namespace GUI
                         break;
                     }
             }
-            
+
 
         }
 
         private void AjustarEditsDependente()
-        {        
+        {
 
             switch (statusDependente)
             {
@@ -736,6 +736,9 @@ namespace GUI
                         txtNomeDependente.Clear();
 
                         dgvDependentesCadastrados.RefreshEdit();
+
+                        if (dependentes != null)
+                            lblInformacaoDependente.Text = "Quantidade de Dependentes cadastrados: " + dependentes.Count;
 
                         break;
                     }
@@ -1041,6 +1044,10 @@ namespace GUI
                 {
                     case Status.Inclusao:
                         {
+                            if (!titularAtual.ValidarDependente(cmbParentesco.Text))
+                                throw new ExcecaoNegocio("Grau de Parentesco Invalido");
+
+
                             Dependente d = new Dependente();
                             d.Nome = txtNomeDependente.Text;
                             d.Parentesco = cmbParentesco.Text;
@@ -1052,6 +1059,7 @@ namespace GUI
                             d = fachada.ControladorDependente.Inserir(d, usuario);
                             statusDependente = Status.Navegacao;
                             dependentes.Add(d);
+                            titularAtual.Dependentes.Add(d);
                             CarregarDependentes();
 
                             AjustarBotoesDependente();
@@ -1059,6 +1067,9 @@ namespace GUI
                         }
                     case Status.Alteracao:
                         {
+                            if (!titularAtual.ValidarDependente(cmbParentesco.Text))
+                                throw new ExcecaoNegocio("Grau de Parentesco Invalido");
+
                             Dependente d = new Dependente();
                             d.Id = DependenteAtualId;
                             d.Nome = txtNomeDependente.Text;
@@ -1068,12 +1079,15 @@ namespace GUI
                             d.DataNascimento = dtpNascimentoDependente.Value;
                             d.Status = StatusDependente.Ativo;
                             d.TitularId = titularAtual.Id;
-                            fachada.ControladorDependente.Alterar(d,  usuario);
+                            fachada.ControladorDependente.Alterar(d, usuario);
 
 
                             statusDependente = Status.Navegacao;
                             dependentes.Remove(d);
                             dependentes.Add(d);
+
+                            titularAtual.Dependentes.Remove(d);
+                            titularAtual.Dependentes.Add(d);
                             CarregarDependentes();
                             AjustarBotoesDependente();
                             break;
@@ -1107,7 +1121,7 @@ namespace GUI
             statusDependente = Status.Navegacao;
 
             AjustarBotoesDependente();
-        }        
+        }
 
         private void btnPrimeiro_Click(object sender, EventArgs e)
         {

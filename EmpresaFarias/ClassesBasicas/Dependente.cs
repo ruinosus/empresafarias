@@ -50,15 +50,7 @@ namespace ClassesBasicas
             set { religiao = value; }
         }
 
-        private int titularId;
-        /// <summary>
-        /// Propriedade relacionada ao Id do Titular do Contrato.
-        /// </summary>
-        public int TitularId
-        {
-            get { return titularId; }
-            set { titularId = value; }
-        }
+        
         private DateTime dataNascimento;
         /// <summary>
         /// Propriedade relacionada a Data de Nascimento do Dependente.
@@ -96,6 +88,16 @@ namespace ClassesBasicas
         {
             get { return status; }
             set { status = value; }
+        }
+
+        private int titularId;
+        /// <summary>
+        /// Propriedade relacionada ao Id do Titular do Contrato.
+        /// </summary>
+        public int TitularId
+        {
+            get { return titularId; }
+            set { titularId = value; }
         }
 
         public override bool Equals(object obj)
