@@ -57,6 +57,7 @@
     <Compile Include="Contrato.cs" />
     <Compile Include="Dependente.cs" />
     <Compile Include="Endereco.cs" />
+    <Compile Include="Enumeradores.cs" />
     <Compile Include="ErroBanco.cs" />
     <Compile Include="Estado.cs" />
     <Compile Include="ExcecaoNegocio.cs" />

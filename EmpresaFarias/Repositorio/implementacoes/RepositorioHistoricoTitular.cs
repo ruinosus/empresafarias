@@ -268,7 +268,7 @@ namespace Repositorio.implementacoes
             }
             if (resultado["Status"] != DBNull.Value)
             {
-                historicoTitular.TitularHistorico.Status = (StatusTitular)Convert.ToInt32(resultado["Status"]);
+                historicoTitular.TitularHistorico.Status = (StatusControle)Convert.ToInt32(resultado["Status"]);
             }
             if (resultado["Cpf"] != DBNull.Value)
             {

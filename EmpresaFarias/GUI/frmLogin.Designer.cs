@@ -109,6 +109,7 @@
             this.Controls.Add(this.lblLogin);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmLogin";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Login";
             this.ResumeLayout(false);
             this.PerformLayout();

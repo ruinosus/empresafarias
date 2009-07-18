@@ -6,18 +6,7 @@ using System.Windows.Forms;
 
 namespace ClassesBasicas
 {
-    public enum Status
-    {
-        Inativo = 1,
-        Inclusao,
-        Alteracao,
-        Navegacao
-    }
-    public enum StatusUsuario
-    {
-        Ativo = 1,
-        Inativo
-    }
+    
     /// <summary>
     /// Classe que representa um Usuario que poderá acessar o Sistema.
     /// </summary>

@@ -5,15 +5,7 @@ using System.Text;
 
 namespace ClassesBasicas
 {
-    /// <summary>
-    /// Enum que representa os Status referente a um Parcela.
-    /// </summary>
-    public enum StatusParcela
-    {
-        EmDia = 1,
-        Atrasada,
-        Alterada
-    }
+    
     /// <summary>
     /// Classe que representa uma Parcela de um Contrato.
     /// </summary>

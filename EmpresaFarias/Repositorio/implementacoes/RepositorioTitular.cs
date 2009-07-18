@@ -295,7 +295,7 @@ namespace Repositorio.implementacoes
             }
             if (resultado["Status"] != DBNull.Value)
             {
-                titular.Status = (StatusTitular)Convert.ToInt32(resultado["Status"]);
+                titular.Status = (StatusControle)Convert.ToInt32(resultado["Status"]);
             }
             if (resultado["Cpf"] != DBNull.Value)
             {

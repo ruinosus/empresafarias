@@ -14,7 +14,7 @@ namespace GUI
     public partial class frmCadUsuario : Form
     {
         Fachada fachada = Fachada.Instance;
-        Status status = Status.Inativo;
+        StatusBanco status = StatusBanco.Inativo;
         Usuario usuario;
         Usuario usuarioAtual;
         List<Usuario> usuarios;
@@ -28,7 +28,7 @@ namespace GUI
 
         private void HabilitaSalvar()
         {
-            if (status != Status.Alteracao)
+            if (status != StatusBanco.Alteracao)
             {
                 btnSalvar.Enabled = (txtNome.Text.Trim() != "") &&
                                     (txtSenha.Text.Trim() != "") &&
@@ -79,7 +79,7 @@ namespace GUI
             AjustarEdits();
             switch (status)
             {
-                case Status.Inativo:
+                case StatusBanco.Inativo:
                     {
                         btnAnterior.Enabled = false;
                         btnCancelar.Enabled = false;
@@ -96,7 +96,7 @@ namespace GUI
 
                         break;
                     }
-                case Status.Alteracao:
+                case StatusBanco.Alteracao:
                     {
                         //btnAdicionarPerfil.Enabled = false;
                         //btnRemoverPerfil.Enabled = false;
@@ -112,7 +112,7 @@ namespace GUI
                        // btnVerificarLogin.Enabled = true;
                         break;
                     }
-                case Status.Inclusao:
+                case StatusBanco.Inclusao:
                     {
                         //btnAdicionarPerfil.Enabled = false;
                         //btnRemoverPerfil.Enabled = false;
@@ -128,7 +128,7 @@ namespace GUI
                         //btnVerificarLogin.Enabled = true;
                         break;
                     }
-                case Status.Navegacao:
+                case StatusBanco.Navegacao:
                     {
                         btnAdicionarPerfil.Enabled = false;
                         btnRemoverPerfil.Enabled = false;
@@ -165,7 +165,7 @@ namespace GUI
             }
             switch (status)
             {
-                case Status.Inativo:
+                case StatusBanco.Inativo:
                     {
                         txtConfirmarSenha.ReadOnly = true;
                         txtLogin.ReadOnly = true;
@@ -180,7 +180,7 @@ namespace GUI
 
                         break;
                     }
-                case Status.Alteracao:
+                case StatusBanco.Alteracao:
                     {
                         txtConfirmarSenha.ReadOnly = false;
                         txtLogin.ReadOnly = true;
@@ -196,7 +196,7 @@ namespace GUI
                         }
                         break;
                     }
-                case Status.Inclusao:
+                case StatusBanco.Inclusao:
                     {
                         txtConfirmarSenha.ReadOnly = false;
                         txtLogin.ReadOnly = false;
@@ -215,7 +215,7 @@ namespace GUI
                         LimparPerfilUsuario();
                         break;
                     }
-                case Status.Navegacao:
+                case StatusBanco.Navegacao:
                     {
                         txtConfirmarSenha.Clear();
                         txtLogin.Clear();
@@ -260,11 +260,11 @@ namespace GUI
         {
             if (fachada.ControladorUsuario.Consultar().Count > 0)
             {
-                status = Status.Navegacao;
+                status = StatusBanco.Navegacao;
             }
             else
             {
-                status = Status.Inativo;
+                status = StatusBanco.Inativo;
             }
             usuario = fachada.Usuario;
             AjustarBotoes();
@@ -272,7 +272,7 @@ namespace GUI
 
         private void btnNovo_Click(object sender, EventArgs e)
         {
-            status = Status.Inclusao;
+            status = StatusBanco.Inclusao;
 
             AjustarBotoes();
         }
@@ -284,7 +284,7 @@ namespace GUI
 
                 switch (status)
                 {
-                    case Status.Inclusao:
+                    case StatusBanco.Inclusao:
                         {
                             Usuario u = new Usuario();
                             u.Nome = txtNome.Text;
@@ -298,11 +298,11 @@ namespace GUI
                                 }
                             }
                             fachada.ControladorUsuario.Inserir(u);
-                            status = Status.Navegacao;
+                            status = StatusBanco.Navegacao;
                             AjustarBotoes();
                             break;
                         }
-                    case Status.Alteracao:
+                    case StatusBanco.Alteracao:
                         {
                             //Usuario u = new Usuario();
                             usuarioAtual.Nome = txtNome.Text;
@@ -317,7 +317,7 @@ namespace GUI
                                 }
                             }
                             fachada.ControladorUsuario.Alterar(usuarioAtual);
-                            status = Status.Navegacao;
+                            status = StatusBanco.Navegacao;
                             AjustarBotoes();
                             break;
                         }
@@ -342,13 +342,13 @@ namespace GUI
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            status = Status.Navegacao;
+            status = StatusBanco.Navegacao;
             AjustarBotoes();
         }
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
-            status = Status.Alteracao;
+            status = StatusBanco.Alteracao;
             AjustarBotoes();
             HabilitaSalvar();
         }
@@ -362,7 +362,7 @@ namespace GUI
                 usuarioAtual.Status = StatusUsuario.Inativo;
                 fachada.ControladorUsuario.Alterar(usuarioAtual);
                 System.Windows.Forms.MessageBox.Show("Usuario Removido com sucesso.");
-                status = Status.Navegacao;
+                status = StatusBanco.Navegacao;
                 AjustarBotoes();
             } 
             
@@ -370,28 +370,28 @@ namespace GUI
 
         private void btnPrimeiro_Click(object sender, EventArgs e)
         {
-            status = Status.Navegacao;
+            status = StatusBanco.Navegacao;
             bsUsuario.MoveFirst();
             AjustarBotoes();
         }
 
         private void btnAnterior_Click(object sender, EventArgs e)
         {
-            status = Status.Navegacao;
+            status = StatusBanco.Navegacao;
             bsUsuario.MovePrevious();
             AjustarBotoes();
         }
 
         private void btnProximo_Click(object sender, EventArgs e)
         {
-            status = Status.Navegacao;
+            status = StatusBanco.Navegacao;
             bsUsuario.MoveNext();
             AjustarBotoes();
         }
 
         private void btnUltimo_Click(object sender, EventArgs e)
         {
-            status = Status.Navegacao;
+            status = StatusBanco.Navegacao;
             bsUsuario.MoveLast();
             AjustarBotoes();
         }

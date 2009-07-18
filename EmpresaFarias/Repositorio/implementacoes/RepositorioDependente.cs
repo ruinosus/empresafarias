@@ -304,7 +304,7 @@ namespace Repositorio.implementacoes
             }
             if (resultado["Status"] != DBNull.Value)
             {
-                dependente.Status =(StatusDependente)Convert.ToInt32(resultado["Status"]);
+                dependente.Status =(StatusControle)Convert.ToInt32(resultado["Status"]);
             }
             if (resultado["Parentesco"] != DBNull.Value)
             {
