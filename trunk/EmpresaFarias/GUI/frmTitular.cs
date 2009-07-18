@@ -14,9 +14,9 @@ namespace GUI
     public partial class frmTitular : Form
     {
         Fachada fachada = Fachada.Instance;
-        Status statusTitular = Status.Inativo;
-        Status statusDependente = Status.Inativo;
-        Status statusParcela = Status.Inativo;
+        StatusBanco statusTitular = StatusBanco.Inativo;
+        StatusBanco statusDependente = StatusBanco.Inativo;
+        StatusBanco statusParcela = StatusBanco.Inativo;
 
         Usuario usuario;
 
@@ -253,7 +253,7 @@ namespace GUI
             AjustarEditsTitular();
             switch (statusTitular)
             {
-                case Status.Inativo:
+                case StatusBanco.Inativo:
                     {
                         //Btn do Titular
                         btnAnterior.Enabled = false;
@@ -274,7 +274,7 @@ namespace GUI
 
                         break;
                     }
-                case Status.Alteracao:
+                case StatusBanco.Alteracao:
                     {
 
                         //Btn do Titular
@@ -296,7 +296,7 @@ namespace GUI
 
                         break;
                     }
-                case Status.Inclusao:
+                case StatusBanco.Inclusao:
                     {
                         //btnAdicionarPerfil.Enabled = false;
                         //btnRemoverPerfil.Enabled = false;
@@ -315,7 +315,7 @@ namespace GUI
                         //btnVerificarLogin.Enabled = true;
                         break;
                     }
-                case Status.Navegacao:
+                case StatusBanco.Navegacao:
                     {
                         tbcTitular.Controls.Remove(tabDependente);
                         tbcTitular.Controls.Remove(tabPagamento);
@@ -353,11 +353,11 @@ namespace GUI
 
             switch (statusTitular)
             {
-                case Status.Inativo:
+                case StatusBanco.Inativo:
                     {
-                        statusDependente = Status.Inativo;
+                        statusDependente = StatusBanco.Inativo;
                         AjustarBotoesDependente();
-                        statusParcela = Status.Inativo;
+                        statusParcela = StatusBanco.Inativo;
                         AjustarBotoesParcela();
 
                         dtpExpedicao.Enabled = false;
@@ -404,11 +404,11 @@ namespace GUI
 
                         break;
                     }
-                case Status.Alteracao:
+                case StatusBanco.Alteracao:
                     {
-                        statusDependente = Status.Inativo;
+                        statusDependente = StatusBanco.Inativo;
                         AjustarBotoesDependente();
-                        statusParcela = Status.Inativo;
+                        statusParcela = StatusBanco.Inativo;
                         AjustarBotoesParcela();
 
                         dtpExpedicao.Enabled = true;
@@ -447,11 +447,11 @@ namespace GUI
 
                         break;
                     }
-                case Status.Inclusao:
+                case StatusBanco.Inclusao:
                     {
-                        statusDependente = Status.Inativo;
+                        statusDependente = StatusBanco.Inativo;
                         AjustarBotoesDependente();
-                        statusParcela = Status.Inativo;
+                        statusParcela = StatusBanco.Inativo;
                         AjustarBotoesParcela();
 
                         dtpExpedicao.Enabled = true;
@@ -501,11 +501,11 @@ namespace GUI
                         dependentes = new List<Dependente>();
                         break;
                     }
-                case Status.Navegacao:
+                case StatusBanco.Navegacao:
                     {
-                        statusDependente = Status.Navegacao;
+                        statusDependente = StatusBanco.Navegacao;
                         AjustarBotoesDependente();
-                        statusParcela = Status.Navegacao;
+                        statusParcela = StatusBanco.Navegacao;
                         AjustarBotoesParcela();
 
                         dtpExpedicao.Enabled = false;
@@ -618,7 +618,7 @@ namespace GUI
 
             switch (statusDependente)
             {
-                case Status.Inativo:
+                case StatusBanco.Inativo:
                     {
                         //Btn do Dependente
                         btnAdicionarDependente.Enabled = false;
@@ -630,7 +630,7 @@ namespace GUI
                         HabilitarComponentesPorTags();
                         break;
                     }
-                case Status.Alteracao:
+                case StatusBanco.Alteracao:
                     {
                         //Btn do Dependente
                         btnAdicionarDependente.Enabled = false;
@@ -643,7 +643,7 @@ namespace GUI
 
                         break;
                     }
-                case Status.Inclusao:
+                case StatusBanco.Inclusao:
                     {
                         //Btn do Dependente
                         btnAdicionarDependente.Enabled = false;
@@ -654,7 +654,7 @@ namespace GUI
                         dgvDependentesCadastrados.Enabled = false;
                         break;
                     }
-                case Status.Navegacao:
+                case StatusBanco.Navegacao:
                     {
                         //Btn do Dependente
                         btnSalvarDependente.Enabled = false;
@@ -677,7 +677,7 @@ namespace GUI
 
             switch (statusDependente)
             {
-                case Status.Inativo:
+                case StatusBanco.Inativo:
                     {
                         dtpNascimentoDependente.Enabled = false;
 
@@ -693,7 +693,7 @@ namespace GUI
 
                         break;
                     }
-                case Status.Alteracao:
+                case StatusBanco.Alteracao:
                     {
                         //Validar dependente
                         dtpNascimentoDependente.Enabled = true;
@@ -707,7 +707,7 @@ namespace GUI
 
                         break;
                     }
-                case Status.Inclusao:
+                case StatusBanco.Inclusao:
                     {
                         dtpNascimentoDependente.Enabled = true;
 
@@ -723,7 +723,7 @@ namespace GUI
                         txtNomeDependente.Clear();
                         break;
                     }
-                case Status.Navegacao:
+                case StatusBanco.Navegacao:
                     {
                         dtpNascimentoDependente.Enabled = false;
 
@@ -738,7 +738,15 @@ namespace GUI
                         dgvDependentesCadastrados.RefreshEdit();
 
                         if (dependentes != null)
+                        {
                             lblInformacaoDependente.Text = "Quantidade de Dependentes cadastrados: " + dependentes.Count;
+                            if (dependentes.Count > 12)
+                                lblInformacaoDependente.ForeColor = System.Drawing.Color.Red;
+                            else
+                                lblInformacaoDependente.ForeColor = System.Drawing.Color.Black;
+                        }
+
+
 
                         break;
                     }
@@ -751,42 +759,55 @@ namespace GUI
             AjustarEditsParcela();
             switch (statusParcela)
             {
-                case Status.Inativo:
+                case StatusBanco.Inativo:
                     {
                         //Btn da Parcela
                         btnEfetuarPagamento.Enabled = false;
                         btnAlterarParcela.Enabled = false;
                         btnGerarParcelas.Enabled = false;
                         dgvParcelas.Enabled = false;
+                        btnSalvarParcela.Enabled = false;
+                        btnExcluirParcela.Enabled = false;
+                        btnCancelarParcela.Enabled = false;
+
                         HabilitarComponentesPorTags();
                         break;
                     }
-                case Status.Alteracao:
+                case StatusBanco.Alteracao:
                     {
                         //Btn da Parcela
                         btnEfetuarPagamento.Enabled = false;
                         btnAlterarParcela.Enabled = false;
                         btnGerarParcelas.Enabled = false;
                         dgvParcelas.Enabled = false;
+                        btnSalvarParcela.Enabled = true;
+                        btnExcluirParcela.Enabled = false;
+                        btnCancelarParcela.Enabled = true;
+                        break;
+                    }
+                case StatusBanco.Inclusao:
+                    {
+                        //Btn da Parcela
+                        btnEfetuarPagamento.Enabled = false;
+                        btnAlterarParcela.Enabled = false;
+                        btnGerarParcelas.Enabled = false;
+                        dgvParcelas.Enabled = false;
+                        btnSalvarParcela.Enabled = true;
+                        btnExcluirParcela.Enabled = false;
+                        btnCancelarParcela.Enabled = true;
 
                         break;
                     }
-                case Status.Inclusao:
-                    {
-                        //Btn da Parcela
-                        btnEfetuarPagamento.Enabled = false;
-                        btnAlterarParcela.Enabled = false;
-                        btnGerarParcelas.Enabled = false;
-                        dgvParcelas.Enabled = false;
-                        break;
-                    }
-                case Status.Navegacao:
+                case StatusBanco.Navegacao:
                     {
                         //Btn da Parcela
                         btnEfetuarPagamento.Enabled = false;
                         btnAlterarParcela.Enabled = false;
                         btnGerarParcelas.Enabled = true;
                         dgvParcelas.Enabled = true;
+                        btnSalvarParcela.Enabled = false;
+                        btnExcluirParcela.Enabled = false;
+                        btnCancelarParcela.Enabled = false;
                         HabilitarParcela();
                         HabilitarComponentesPorTags();
                         break;
@@ -800,11 +821,11 @@ namespace GUI
         {
             switch (statusParcela)
             {
-                case Status.Inativo:
+                case StatusBanco.Inativo:
                     {
                         dtpDataPagamento.Enabled = false;
                         dtpDataVencimento.Enabled = false;
-
+                        
 
                         cmbParcela.Enabled = false;
 
@@ -815,7 +836,7 @@ namespace GUI
 
                         break;
                     }
-                case Status.Alteracao:
+                case StatusBanco.Alteracao:
                     {
                         dtpDataPagamento.Enabled = true;
                         dtpDataVencimento.Enabled = true;
@@ -827,7 +848,7 @@ namespace GUI
 
                         break;
                     }
-                case Status.Inclusao:
+                case StatusBanco.Inclusao:
                     {
                         dtpDataPagamento.Enabled = true;
                         dtpDataVencimento.Enabled = true;
@@ -838,7 +859,7 @@ namespace GUI
                         txtValor.Clear();
                         break;
                     }
-                case Status.Navegacao:
+                case StatusBanco.Navegacao:
                     {
                         dtpDataPagamento.Enabled = false;
                         dtpDataVencimento.Enabled = false;
@@ -858,11 +879,11 @@ namespace GUI
         {
             if (fachada.ControladorTitular.Consultar().Count > 0)
             {
-                statusTitular = Status.Navegacao;
+                statusTitular = StatusBanco.Navegacao;
             }
             else
             {
-                statusTitular = Status.Inativo;
+                statusTitular = StatusBanco.Inativo;
             }
             AjustarEstadoEndereco();
             AjustarEstadoNaturalidade();
@@ -873,14 +894,14 @@ namespace GUI
 
         private void btnNovo_Click(object sender, EventArgs e)
         {
-            statusTitular = Status.Inclusao;
+            statusTitular = StatusBanco.Inclusao;
 
             AjustarBotoesTitular();
         }
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
-            statusTitular = Status.Alteracao;
+            statusTitular = StatusBanco.Alteracao;
 
             AjustarBotoesTitular();
         }
@@ -892,7 +913,7 @@ namespace GUI
 
                 switch (statusTitular)
                 {
-                    case Status.Inclusao:
+                    case StatusBanco.Inclusao:
                         {
                             try
                             {
@@ -916,7 +937,7 @@ namespace GUI
                                     t.Sexo = 'F';
                                 else
                                     t.Sexo = 'M';
-                                t.Status = StatusTitular.Ativo;
+                                t.Status = StatusControle.Ativo;
                                 t.TelefoneCelular = mskTelefoneCelular.Text;
                                 t.TelefoneResidencial = mskTelefoneResidencial.Text;
                                 t = fachada.ControladorTitular.Inserir(t, usuario);
@@ -926,11 +947,11 @@ namespace GUI
                                 c.DataInicio = dtpInicioContrato.Value;
                                 c.Plano = (Plano)cmbPlano.SelectedItem;
                                 //c.GerarParcelas(DateTime.Today, 12, c.Plano.ValorPadrao);
-                                c.Status = StatusContrato.Ativo;
+                                c.Status = StatusControle.Ativo;
                                 c.TitularId = t.Id;
                                 fachada.ControladorContrato.Inserir(c, usuario);
 
-                                statusTitular = Status.Navegacao;
+                                statusTitular = StatusBanco.Navegacao;
 
                                 AjustarBotoesTitular();
                                 bsTitular.MoveLast();
@@ -950,7 +971,7 @@ namespace GUI
 
                             break;
                         }
-                    case Status.Alteracao:
+                    case StatusBanco.Alteracao:
                         {
                             //Alterando o Titular
                             titularAtual.CidadeNaturalidade = (Cidade)cmbCidadeNaturalidade.SelectedItem;
@@ -972,7 +993,7 @@ namespace GUI
                                 titularAtual.Sexo = 'F';
                             else
                                 titularAtual.Sexo = 'M';
-                            titularAtual.Status = StatusTitular.Ativo;
+                            titularAtual.Status = StatusControle.Ativo;
                             titularAtual.TelefoneCelular = mskTelefoneCelular.Text;
                             titularAtual.TelefoneResidencial = mskTelefoneResidencial.Text;
                             fachada.ControladorTitular.Alterar(titularAtual, usuario);
@@ -982,11 +1003,11 @@ namespace GUI
                             titularAtual.Contratos[0].DataInicio = dtpInicioContrato.Value;
                             titularAtual.Contratos[0].Plano = (Plano)cmbPlano.SelectedItem;
                             //c.GerarParcelas(DateTime.Today, 12, c.Plano.ValorPadrao);
-                            titularAtual.Contratos[0].Status = StatusContrato.Ativo;
+                            titularAtual.Contratos[0].Status = StatusControle.Ativo;
                             titularAtual.Contratos[0].TitularId = titularAtual.Id;
                             fachada.ControladorContrato.Alterar(titularAtual.Contratos[0], usuario);
 
-                            statusTitular = Status.Navegacao;
+                            statusTitular = StatusBanco.Navegacao;
                             AjustarBotoesTitular();
                             break;
                         }
@@ -1009,28 +1030,28 @@ namespace GUI
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            statusTitular = Status.Navegacao;
+            statusTitular = StatusBanco.Navegacao;
 
             AjustarBotoesTitular();
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
-            statusTitular = Status.Navegacao;
+            statusTitular = StatusBanco.Navegacao;
 
             AjustarBotoesTitular();
         }
 
         private void btnAdicionarDependente_Click(object sender, EventArgs e)
         {
-            statusDependente = Status.Inclusao;
+            statusDependente = StatusBanco.Inclusao;
 
             AjustarBotoesDependente();
         }
 
         private void btnAlterarDependente_Click(object sender, EventArgs e)
         {
-            statusDependente = Status.Alteracao;
+            statusDependente = StatusBanco.Alteracao;
 
             AjustarBotoesDependente();
         }
@@ -1042,7 +1063,7 @@ namespace GUI
 
                 switch (statusDependente)
                 {
-                    case Status.Inclusao:
+                    case StatusBanco.Inclusao:
                         {
                             if (!titularAtual.ValidarDependente(cmbParentesco.Text))
                                 throw new ExcecaoNegocio("Grau de Parentesco Invalido");
@@ -1054,10 +1075,10 @@ namespace GUI
                             d.PercentualCobertura = Convert.ToInt32(cmbPercentualCobertura.Text);
                             d.Religiao = cmbReligiaoDependente.Text;
                             d.DataNascimento = dtpNascimentoDependente.Value;
-                            d.Status = StatusDependente.Ativo;
+                            d.Status = StatusControle.Ativo;
                             d.TitularId = titularAtual.Id;
                             d = fachada.ControladorDependente.Inserir(d, usuario);
-                            statusDependente = Status.Navegacao;
+                            statusDependente = StatusBanco.Navegacao;
                             dependentes.Add(d);
                             titularAtual.Dependentes.Add(d);
                             CarregarDependentes();
@@ -1065,7 +1086,7 @@ namespace GUI
                             AjustarBotoesDependente();
                             break;
                         }
-                    case Status.Alteracao:
+                    case StatusBanco.Alteracao:
                         {
                             if (!titularAtual.ValidarDependente(cmbParentesco.Text))
                                 throw new ExcecaoNegocio("Grau de Parentesco Invalido");
@@ -1077,12 +1098,12 @@ namespace GUI
                             d.PercentualCobertura = Convert.ToInt32(cmbPercentualCobertura.Text);
                             d.Religiao = cmbReligiaoDependente.Text;
                             d.DataNascimento = dtpNascimentoDependente.Value;
-                            d.Status = StatusDependente.Ativo;
+                            d.Status = StatusControle.Ativo;
                             d.TitularId = titularAtual.Id;
                             fachada.ControladorDependente.Alterar(d, usuario);
 
 
-                            statusDependente = Status.Navegacao;
+                            statusDependente = StatusBanco.Navegacao;
                             dependentes.Remove(d);
                             dependentes.Add(d);
 
@@ -1111,21 +1132,21 @@ namespace GUI
 
         private void btnCancelarDependente_Click(object sender, EventArgs e)
         {
-            statusDependente = Status.Navegacao;
+            statusDependente = StatusBanco.Navegacao;
 
             AjustarBotoesDependente();
         }
 
         private void btnExcluirDependente_Click(object sender, EventArgs e)
         {
-            statusDependente = Status.Navegacao;
+            statusDependente = StatusBanco.Navegacao;
 
             AjustarBotoesDependente();
         }
 
         private void btnPrimeiro_Click(object sender, EventArgs e)
         {
-            statusTitular = Status.Navegacao;
+            statusTitular = StatusBanco.Navegacao;
             //statusDependente = Status.Inativo;
             //statusParcela = Status.Inativo;
             bsTitular.MoveFirst();
@@ -1134,7 +1155,7 @@ namespace GUI
 
         private void btnAnterior_Click(object sender, EventArgs e)
         {
-            statusTitular = Status.Navegacao;
+            statusTitular = StatusBanco.Navegacao;
             //statusDependente = Status.Inativo;
             //statusParcela = Status.Inativo;
             bsTitular.MovePrevious();
@@ -1143,7 +1164,7 @@ namespace GUI
 
         private void btnProximo_Click(object sender, EventArgs e)
         {
-            statusTitular = Status.Navegacao;
+            statusTitular = StatusBanco.Navegacao;
             //statusDependente = Status.Inativo;
             //statusParcela = Status.Inativo;
             bsTitular.MoveNext();
@@ -1152,7 +1173,7 @@ namespace GUI
 
         private void btnUltimo_Click(object sender, EventArgs e)
         {
-            statusTitular = Status.Navegacao;
+            statusTitular = StatusBanco.Navegacao;
             //statusDependente = Status.Inativo;
             //statusParcela = Status.Inativo;
             bsTitular.MoveLast();

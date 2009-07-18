@@ -248,7 +248,7 @@ namespace Repositorio.implementacoes
             }
             if (resultado["Status"] != DBNull.Value)
             {
-                historicoDependente.DependenteHistorico.Status = (StatusDependente)Convert.ToInt32(resultado["Status"]);
+                historicoDependente.DependenteHistorico.Status = (StatusControle)Convert.ToInt32(resultado["Status"]);
             }
             if (resultado["Parentesco"] != DBNull.Value)
             {

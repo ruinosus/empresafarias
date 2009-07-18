@@ -299,7 +299,7 @@ namespace Repositorio.implementacoes
             }
             if (resultado["Status"] != DBNull.Value)
             {
-                contrato.Status = (StatusContrato)Convert.ToInt32(resultado["Status"]);
+                contrato.Status = (StatusControle)Convert.ToInt32(resultado["Status"]);
             }
             if (resultado["TitularId"] != DBNull.Value)
             {

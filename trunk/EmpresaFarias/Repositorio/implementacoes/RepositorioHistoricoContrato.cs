@@ -246,7 +246,7 @@ namespace Repositorio.implementacoes
             }
             if (resultado["Status"] != DBNull.Value)
             {
-                historicoContrato.ContratoHistorico.Status = (StatusContrato)Convert.ToInt32(resultado["Status"]);
+                historicoContrato.ContratoHistorico.Status = (StatusControle)Convert.ToInt32(resultado["Status"]);
             }
 
             if (resultado["ContratoId"] != DBNull.Value)

@@ -12,13 +12,15 @@ namespace Negocio.controladores
     /// </summary>
     public class ControladorContrato
     {
+        #region Atributos
+        private ControladorParcela contParcela;
+        private ControladorPlano contPlano;
+        private IRepositorioContrato repContrato;
+        private IRepositorioHistoricoContrato repHistoricoContrato;
+        private ControladorUsuario contUsuario; 
+        #endregion
 
-         private ControladorParcela contParcela;
-         private ControladorPlano contPlano;
-         private IRepositorioContrato repContrato;
-         private IRepositorioHistoricoContrato repHistoricoContrato;
-         private ControladorUsuario contUsuario;
-
+        #region Construtores
         /// <summary>
         /// Construtor da Classe ControladorContrato
         /// </summary>
@@ -39,7 +41,10 @@ namespace Negocio.controladores
             this.repHistoricoContrato = repHistoricoContrato;
             this.contUsuario = contUsuario;
 
-        }
+        } 
+        #endregion
+
+        #region Metodos do Contrato
 
         /// <summary>
         /// Metodo responsavel por inserir um Contrato.
@@ -52,20 +57,20 @@ namespace Negocio.controladores
             if (contrato == null)
                 throw new ExcecaoNegocio("Valor Inválido.");
 
-            if(this.Consultar(contrato.Id)!=null)
+            if (this.Consultar(contrato.Id) != null)
                 throw new ExcecaoNegocio("Número de Contrato já Informado.");
 
-             Contrato c = this.repContrato.Inserir(contrato);
+            Contrato c = this.repContrato.Inserir(contrato);
 
-             HistoricoContrato hc = new HistoricoContrato();
-             hc.DataAlteracao = new DateTime();
-             hc.DataAlteracao = DateTime.Now;
-             hc.Usuario = usuario;
-             hc.Descricao = "Inserido";
-             hc.ContratoHistorico = c;
-             hc.Contrato = c;
+            HistoricoContrato hc = new HistoricoContrato();
+            hc.DataAlteracao = new DateTime();
+            hc.DataAlteracao = DateTime.Now;
+            hc.Usuario = usuario;
+            hc.Descricao = "Inserido";
+            hc.ContratoHistorico = c;
+            hc.Contrato = c;
 
-             this.InserirHistorico(hc);
+            this.InserirHistorico(hc);
             return c;
         }
 
@@ -134,8 +139,8 @@ namespace Negocio.controladores
         /// <returns>retorna um Contrato com o Id informado.</returns>
         public Contrato Consultar(int id)
         {
-            Contrato contrato = this.repContrato.Consultar(id);    
-            
+            Contrato contrato = this.repContrato.Consultar(id);
+
             //if (contrato == null)
             //    throw new ExcecaoNegocio("Contrato não existente.");
             if (contrato != null)
@@ -152,7 +157,7 @@ namespace Negocio.controladores
         {
             List<Contrato> contratos = this.repContrato.Consultar();
 
-            for (int i = 0; i < contratos.Count; i++ )
+            for (int i = 0; i < contratos.Count; i++)
             {
                 contratos[i] = this.MontarContrato(contratos[i]);
             }
@@ -177,6 +182,9 @@ namespace Negocio.controladores
             return contratos;
         }
 
+        #endregion
+
+        #region Metodos privados
         /// <summary>
         /// Metodo responsavel por montar um Contrato juntamente com suas Parcelas e o seu Plano.
         /// </summary>
@@ -188,7 +196,9 @@ namespace Negocio.controladores
             contrato.Plano = this.contPlano.Consultar(contrato.Plano.Id);
             return contrato;
         }
+        #endregion
 
+        #region Metodos do Historico do Contrato
         /// <summary>
         /// Metodo responsavel por inserir um HistoricoContrato.
         /// </summary>
@@ -227,7 +237,8 @@ namespace Negocio.controladores
         public List<HistoricoContrato> ConsultarHistorico(Contrato contrato)
         {
             return this.repHistoricoContrato.Consultar(contrato);
-        }
+        } 
+        #endregion
 
     }
 }

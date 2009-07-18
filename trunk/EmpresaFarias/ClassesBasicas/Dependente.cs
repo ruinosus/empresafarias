@@ -5,17 +5,7 @@ using System.Text;
 
 namespace ClassesBasicas
 {
-    /// <summary>
-    /// Enum que representa os Status referente a um Dependente.
-    /// </summary>
-    public enum StatusDependente
-    {
-        Ativo = 1,
-        InativoFaltaPagamento,
-        InativoObito,
-        InativoCancelamentoContrato,
-        InativoExlusao
-    }
+    
     /// <summary>
     /// Classe que representa os Dependentes que um Titular poderá ter.
     /// </summary>
@@ -80,11 +70,11 @@ namespace ClassesBasicas
             set { percentualCobertura = value; }
         }
 
-        private StatusDependente status;
+        private StatusControle status;
         /// <summary>
         /// Propriedade relacionada ao Status do Dependente.
         /// </summary>
-        public StatusDependente Status
+        public StatusControle Status
         {
             get { return status; }
             set { status = value; }

@@ -117,6 +117,10 @@
             this.btnSalvarDependente = new System.Windows.Forms.Button();
             this.btnAlterarDependente = new System.Windows.Forms.Button();
             this.tabPagamento = new System.Windows.Forms.TabPage();
+            this.btnExcluirParcela = new System.Windows.Forms.Button();
+            this.btnCancelarParcela = new System.Windows.Forms.Button();
+            this.btnSalvarParcela = new System.Windows.Forms.Button();
+            this.btnNovaParcela = new System.Windows.Forms.Button();
             this.stInformacaoParcela = new System.Windows.Forms.StatusStrip();
             this.lbInformacaoParcela = new System.Windows.Forms.ToolStripStatusLabel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -141,10 +145,6 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnBuscarContrato = new System.Windows.Forms.Button();
             this.bsTitular = new System.Windows.Forms.BindingSource(this.components);
-            this.btnNovaParcela = new System.Windows.Forms.Button();
-            this.btnExcluirParcela = new System.Windows.Forms.Button();
-            this.btnCancelarParcela = new System.Windows.Forms.Button();
-            this.btnSalvarParcela = new System.Windows.Forms.Button();
             this.tbcTitular.SuspendLayout();
             this.tabTitular.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -234,7 +234,7 @@
             this.btnPrimeiro.Name = "btnPrimeiro";
             this.btnPrimeiro.Size = new System.Drawing.Size(27, 22);
             this.btnPrimeiro.Text = "<<";
-            this.btnPrimeiro.ToolTipText = "Vai para o proximo elemento";
+            this.btnPrimeiro.ToolTipText = "Vai para o primeiro elemento";
             this.btnPrimeiro.Click += new System.EventHandler(this.btnPrimeiro_Click);
             // 
             // btnAnterior
@@ -244,7 +244,7 @@
             this.btnAnterior.Name = "btnAnterior";
             this.btnAnterior.Size = new System.Drawing.Size(23, 22);
             this.btnAnterior.Text = "<";
-            this.btnAnterior.ToolTipText = "Vai para o último elemento";
+            this.btnAnterior.ToolTipText = "Vai para o elemento anterior";
             this.btnAnterior.Click += new System.EventHandler(this.btnAnterior_Click);
             // 
             // btnProximo
@@ -254,7 +254,7 @@
             this.btnProximo.Name = "btnProximo";
             this.btnProximo.Size = new System.Drawing.Size(23, 22);
             this.btnProximo.Text = ">";
-            this.btnProximo.ToolTipText = "Vai para o elemento anterior";
+            this.btnProximo.ToolTipText = "Vai para o proximo elemento";
             this.btnProximo.Click += new System.EventHandler(this.btnProximo_Click);
             // 
             // btnUltimo
@@ -264,7 +264,7 @@
             this.btnUltimo.Name = "btnUltimo";
             this.btnUltimo.Size = new System.Drawing.Size(27, 22);
             this.btnUltimo.Text = ">>";
-            this.btnUltimo.ToolTipText = "Vai para o primeiro elemento";
+            this.btnUltimo.ToolTipText = "Vai para o ultimo elemento";
             this.btnUltimo.Click += new System.EventHandler(this.btnUltimo_Click);
             // 
             // lblDataNascimentoTitular
@@ -887,6 +887,7 @@
             // 
             // lblInformacaoDependente
             // 
+            this.lblInformacaoDependente.ForeColor = System.Drawing.Color.Black;
             this.lblInformacaoDependente.Name = "lblInformacaoDependente";
             this.lblInformacaoDependente.Size = new System.Drawing.Size(68, 17);
             this.lblInformacaoDependente.Text = "informação";
@@ -1144,6 +1145,59 @@
             this.tabPagamento.Text = "Pagamentos";
             this.tabPagamento.UseVisualStyleBackColor = true;
             // 
+            // btnExcluirParcela
+            // 
+            this.btnExcluirParcela.Image = global::GUI.Properties.Resources.trash_48x48;
+            this.btnExcluirParcela.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnExcluirParcela.Location = new System.Drawing.Point(522, 372);
+            this.btnExcluirParcela.Name = "btnExcluirParcela";
+            this.btnExcluirParcela.Size = new System.Drawing.Size(137, 68);
+            this.btnExcluirParcela.TabIndex = 39;
+            this.btnExcluirParcela.Tag = "301";
+            this.btnExcluirParcela.Text = "Excluir Parcela";
+            this.btnExcluirParcela.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnExcluirParcela.UseVisualStyleBackColor = true;
+            // 
+            // btnCancelarParcela
+            // 
+            this.btnCancelarParcela.Font = new System.Drawing.Font("Calibri", 8F);
+            this.btnCancelarParcela.Image = global::GUI.Properties.Resources.block_48x48;
+            this.btnCancelarParcela.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnCancelarParcela.Location = new System.Drawing.Point(522, 298);
+            this.btnCancelarParcela.Name = "btnCancelarParcela";
+            this.btnCancelarParcela.Size = new System.Drawing.Size(137, 68);
+            this.btnCancelarParcela.TabIndex = 38;
+            this.btnCancelarParcela.Text = "Cancelar";
+            this.btnCancelarParcela.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnCancelarParcela.UseVisualStyleBackColor = true;
+            // 
+            // btnSalvarParcela
+            // 
+            this.btnSalvarParcela.Font = new System.Drawing.Font("Calibri", 8F);
+            this.btnSalvarParcela.Image = global::GUI.Properties.Resources.save_48x48;
+            this.btnSalvarParcela.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnSalvarParcela.Location = new System.Drawing.Point(522, 227);
+            this.btnSalvarParcela.Name = "btnSalvarParcela";
+            this.btnSalvarParcela.Size = new System.Drawing.Size(137, 68);
+            this.btnSalvarParcela.TabIndex = 37;
+            this.btnSalvarParcela.Text = "Salvar Alterações";
+            this.btnSalvarParcela.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnSalvarParcela.UseVisualStyleBackColor = true;
+            // 
+            // btnNovaParcela
+            // 
+            this.btnNovaParcela.Font = new System.Drawing.Font("Calibri", 8.25F);
+            this.btnNovaParcela.Image = global::GUI.Properties.Resources.document_48x48;
+            this.btnNovaParcela.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnNovaParcela.Location = new System.Drawing.Point(522, 9);
+            this.btnNovaParcela.Name = "btnNovaParcela";
+            this.btnNovaParcela.Size = new System.Drawing.Size(137, 68);
+            this.btnNovaParcela.TabIndex = 34;
+            this.btnNovaParcela.Tag = "101";
+            this.btnNovaParcela.Text = "Nova Parcela";
+            this.btnNovaParcela.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnNovaParcela.UseVisualStyleBackColor = true;
+            // 
             // stInformacaoParcela
             // 
             this.stInformacaoParcela.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1353,59 +1407,6 @@
             this.btnBuscarContrato.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnBuscarContrato.UseVisualStyleBackColor = true;
             // 
-            // btnNovaParcela
-            // 
-            this.btnNovaParcela.Font = new System.Drawing.Font("Calibri", 8.25F);
-            this.btnNovaParcela.Image = global::GUI.Properties.Resources.document_48x48;
-            this.btnNovaParcela.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnNovaParcela.Location = new System.Drawing.Point(522, 9);
-            this.btnNovaParcela.Name = "btnNovaParcela";
-            this.btnNovaParcela.Size = new System.Drawing.Size(137, 68);
-            this.btnNovaParcela.TabIndex = 34;
-            this.btnNovaParcela.Tag = "101";
-            this.btnNovaParcela.Text = "Nova Parcela";
-            this.btnNovaParcela.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnNovaParcela.UseVisualStyleBackColor = true;
-            // 
-            // btnExcluirParcela
-            // 
-            this.btnExcluirParcela.Image = global::GUI.Properties.Resources.trash_48x48;
-            this.btnExcluirParcela.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnExcluirParcela.Location = new System.Drawing.Point(522, 372);
-            this.btnExcluirParcela.Name = "btnExcluirParcela";
-            this.btnExcluirParcela.Size = new System.Drawing.Size(137, 68);
-            this.btnExcluirParcela.TabIndex = 39;
-            this.btnExcluirParcela.Tag = "301";
-            this.btnExcluirParcela.Text = "Excluir Parcela";
-            this.btnExcluirParcela.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnExcluirParcela.UseVisualStyleBackColor = true;
-            // 
-            // btnCancelarParcela
-            // 
-            this.btnCancelarParcela.Font = new System.Drawing.Font("Calibri", 8F);
-            this.btnCancelarParcela.Image = global::GUI.Properties.Resources.block_48x48;
-            this.btnCancelarParcela.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnCancelarParcela.Location = new System.Drawing.Point(522, 298);
-            this.btnCancelarParcela.Name = "btnCancelarParcela";
-            this.btnCancelarParcela.Size = new System.Drawing.Size(137, 68);
-            this.btnCancelarParcela.TabIndex = 38;
-            this.btnCancelarParcela.Text = "Cancelar";
-            this.btnCancelarParcela.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnCancelarParcela.UseVisualStyleBackColor = true;
-            // 
-            // btnSalvarParcela
-            // 
-            this.btnSalvarParcela.Font = new System.Drawing.Font("Calibri", 8F);
-            this.btnSalvarParcela.Image = global::GUI.Properties.Resources.save_48x48;
-            this.btnSalvarParcela.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnSalvarParcela.Location = new System.Drawing.Point(522, 227);
-            this.btnSalvarParcela.Name = "btnSalvarParcela";
-            this.btnSalvarParcela.Size = new System.Drawing.Size(137, 68);
-            this.btnSalvarParcela.TabIndex = 37;
-            this.btnSalvarParcela.Text = "Salvar Alterações";
-            this.btnSalvarParcela.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnSalvarParcela.UseVisualStyleBackColor = true;
-            // 
             // frmTitular
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1416,8 +1417,9 @@
             this.Controls.Add(this.txtBuscarContrato);
             this.Controls.Add(this.btnBuscarContrato);
             this.Controls.Add(this.tbcTitular);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmTitular";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Titular";
             this.Load += new System.EventHandler(this.frmTitular_Load);
             this.tbcTitular.ResumeLayout(false);

@@ -468,6 +468,7 @@
             this.Controls.Add(this.tbcUsuario);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmCadUsuario";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Formulário de Cadastro de Usuário";
             this.Load += new System.EventHandler(this.frmCadUsuario_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmCadUsuario_FormClosing);
