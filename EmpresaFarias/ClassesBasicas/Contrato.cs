@@ -88,7 +88,7 @@ namespace ClassesBasicas
             {
                 Parcela p = new Parcela();
                 p.NumeroParcela = i;
-                p.Status = StatusParcela.Atrasada;
+                p.Status = StatusControle.Atrasada;
                 p.DataVencimento = dataIncicioVencimento.AddMonths(i - 1);
                 this.parcelas.Add(p);
             }

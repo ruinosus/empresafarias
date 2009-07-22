@@ -72,11 +72,11 @@ namespace ClassesBasicas
             set { numeroParcela = value; }
         }
 
-        private StatusParcela status;
+        private StatusControle status;
         /// <summary>
         /// Propriedade relacionada ao Status da Parcela.
         /// </summary>
-        public StatusParcela Status
+        public StatusControle Status
         {
             get { return status; }
             set { status = value; }

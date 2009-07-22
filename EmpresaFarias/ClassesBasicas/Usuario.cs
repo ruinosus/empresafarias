@@ -55,12 +55,12 @@ namespace ClassesBasicas
             set { nome = value; }
         }
 
-        private StatusUsuario status;
+        private StatusControle status;
 
         /// <summary>
         /// Propriedade relacionada ao Status do Usuario.
         /// </summary>
-        public StatusUsuario Status
+        public StatusControle Status
         {
             get { return status; }
             set { status = value; }
@@ -204,6 +204,33 @@ namespace ClassesBasicas
                         }
                     }
                     //HabilitarTab(panel.TabPages[i]);
+                }
+
+            }
+            #endregion
+
+            #region ToolStrip
+            if (o is ToolStrip)
+            {
+                ToolStrip toolStrip = o as ToolStrip;
+ 
+                for (int i = 0; i < toolStrip.Items.Count; i++)
+                {
+
+                    if (toolStrip.Items[i].Tag != null && !toolStrip.Items[i].Tag.Equals(""))
+                    {
+                        int tag = Convert.ToInt32(toolStrip.Items[i].Tag);
+                        if (this.VerificarTag(tag))
+                        {
+                            toolStrip.Items[i].Visible = true;
+                            //formulario.Controls[i].Enabled = true;
+                        }
+                        else
+                        {
+                            toolStrip.Items[i].Visible = false;
+                            //formulario.Controls[i].Enabled = false;
+                        }
+                    }
                 }
 
             }

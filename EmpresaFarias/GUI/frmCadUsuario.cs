@@ -93,6 +93,7 @@ namespace GUI
                         btnVerificarLogin.Enabled = false;
                         btnAdicionarPerfil.Enabled = false;
                         btnRemoverPerfil.Enabled = false;
+                        HabilitarComponentesPorTags();
 
                         break;
                     }
@@ -143,6 +144,7 @@ namespace GUI
                         btnExcluir.Enabled = bsUsuario.Count > 0;
                         btnAlterar.Enabled = bsUsuario.Count > 0;
                         btnVerificarLogin.Enabled = false;
+                        HabilitarComponentesPorTags();
                         break;
                     }                    
             }
@@ -256,6 +258,17 @@ namespace GUI
 
         }
 
+        /// <summary>
+        /// Metodo responsavel por Habilitar os componentes de Acordo com as Tags do Usuario Logado.
+        /// </summary>
+        private void HabilitarComponentesPorTags()
+        {
+            fachada.Usuario.HabilitarComponentes(this);
+            fachada.Usuario.HabilitarComponentes(tabUsuario);
+            fachada.Usuario.HabilitarComponentes(tbcUsuario);
+            fachada.Usuario.HabilitarComponentes(tlPrincipal);
+        }
+
         private void frmCadUsuario_Load(object sender, EventArgs e)
         {
             if (fachada.ControladorUsuario.Consultar().Count > 0)
@@ -359,7 +372,7 @@ namespace GUI
 
             if (d.ToString() == "Yes")
             {
-                usuarioAtual.Status = StatusUsuario.Inativo;
+                usuarioAtual.Status = StatusControle.InativoExlusao;
                 fachada.ControladorUsuario.Alterar(usuarioAtual);
                 System.Windows.Forms.MessageBox.Show("Usuario Removido com sucesso.");
                 status = StatusBanco.Navegacao;

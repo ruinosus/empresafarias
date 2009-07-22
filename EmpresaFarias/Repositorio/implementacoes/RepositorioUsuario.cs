@@ -373,7 +373,7 @@ namespace Repositorio.implementacoes
             }
             if (resultado["Status"] != DBNull.Value)
             {
-                usuario.Status = (StatusUsuario)Convert.ToInt32(resultado["Status"]);
+                usuario.Status = (StatusControle)Convert.ToInt32(resultado["Status"]);
             }
             return usuario;
         }

@@ -14,18 +14,10 @@ namespace ClassesBasicas
         Inclusao,
         Alteracao,
         Navegacao
-    }
-    /// <summary>
-    /// Enum que representa o status de um Usuario.
-    /// </summary>
-    public enum StatusUsuario
-    {
-        Ativo = 1,
-        Inativo
-    }
+    }   
 
     /// <summary>
-    /// Enum que representa os Status referente a um Titular/Dependente/Contrato.
+    /// Enum que representa os Status referente a um Titular/Dependente/Contrato/Parcela/Usuario.
     /// </summary>
     public enum StatusControle
     {
@@ -33,17 +25,11 @@ namespace ClassesBasicas
         InativoFaltaPagamento,
         InativoObito,
         InativoCancelamentoContrato,
-        InativoExlusao
+        InativoExlusao,
+        EmDia,
+        Atrasada,
+
     }
 
-    /// <summary>
-    /// Enum que representa os Status referente a um Parcela.
-    /// </summary>
-    public enum StatusParcela
-    {
-        EmDia = 1,
-        Atrasada,
-        Alterada,
-        Excluida
-    }
+    
 }

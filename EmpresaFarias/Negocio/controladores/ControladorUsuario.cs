@@ -41,7 +41,7 @@ namespace Negocio.controladores
             if ((this.Consultar(usuario.Login)))
                 throw new ExcecaoNegocio("Login já informado, por favor informe outro.");
 
-           usuario.Status = StatusUsuario.Ativo;
+            usuario.Status = StatusControle.Ativo;
            Usuario u =  this.repUsuario.Inserir(usuario);
             if(u.Perfis.Count > 0)
             {
@@ -108,7 +108,7 @@ namespace Negocio.controladores
             List<Usuario> usuarios = this.repUsuario.Consultar();
 
             var resultado = from u in usuarios
-                            where u.Status == StatusUsuario.Ativo
+                            where u.Status == StatusControle.Ativo
                             select u;
             usuarios = resultado.ToList();
             for (int i = 0; i < usuarios.Count; i++)
