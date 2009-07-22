@@ -161,7 +161,7 @@
             this.toolStripSeparator6});
             this.tlPrincipal.Location = new System.Drawing.Point(4, 9);
             this.tlPrincipal.Name = "tlPrincipal";
-            this.tlPrincipal.Size = new System.Drawing.Size(273, 25);
+            this.tlPrincipal.Size = new System.Drawing.Size(304, 25);
             this.tlPrincipal.TabIndex = 141;
             this.tlPrincipal.Text = "toolStrip1";
             // 
@@ -171,6 +171,7 @@
             this.btnNovo.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnNovo.Name = "btnNovo";
             this.btnNovo.Size = new System.Drawing.Size(40, 22);
+            this.btnNovo.Tag = "101";
             this.btnNovo.Text = "Novo";
             this.btnNovo.ToolTipText = "Clique aqui para incluir um novo empregado";
             this.btnNovo.Click += new System.EventHandler(this.btnNovo_Click);
@@ -211,6 +212,7 @@
             this.btnAlterar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnAlterar.Name = "btnAlterar";
             this.btnAlterar.Size = new System.Drawing.Size(46, 22);
+            this.btnAlterar.Tag = "201";
             this.btnAlterar.Text = "Alterar";
             this.btnAlterar.ToolTipText = "Clique aqui para alterar";
             this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
@@ -221,6 +223,7 @@
             this.btnExcluir.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(58, 22);
+            this.btnExcluir.Tag = "301";
             this.btnExcluir.Text = "Remover";
             this.btnExcluir.ToolTipText = "Clique aqui para remover";
             this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);

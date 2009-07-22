@@ -198,7 +198,7 @@ namespace Negocio
         /// <returns>Uma Lista com todos os Objetos encontrados daquele tipo.</returns>
         /// <example>
         /// List<Plano> list = new List<Plano>();
-        /// Fachada fachada = Fachada.GetInstancia();
+        /// Fachada fachada = Fachada.Instance;
         /// list = fachada.Consultar<Plano>();
         /// </example>
         private List<T> Consultar<T>()
@@ -353,6 +353,65 @@ namespace Negocio
                 this.controladorUsuario.Alterar(objeto as Usuario);
             }
             throw new Exception("Alteração não realizada.");
+        }
+
+        /// <summary>
+        /// Metodo responsavel por filtrar uma lista de um objeto pelo status informado.
+        /// </summary>
+        /// <typeparam name="T">Objeto para ser trabalhado.</typeparam>
+        /// <param name="status">status a ser filtrado.</param>
+        /// <param name="lista">Lista para filtragem.</param>
+        /// <returns>Lista contendo todos os objetos com o status informado.</returns>
+        public List<T> FiltrarConsulta<T>(StatusControle status, List<T> lista)
+        {
+            Type type = typeof(T);
+
+            //Verifica se é do Usuario
+            if (type == typeof(Usuario))
+            {
+                var resultado = from u in lista as List<Usuario>
+                                where u.Status == status
+                                select u;
+                return resultado.ToList() as List<T> ;
+            }
+
+            //Verifica se é do Contrato
+            if (type == typeof(Contrato))
+            {
+                var resultado = from c in lista as List<Contrato>
+                                where c.Status == status
+                                select c;
+                return resultado.ToList() as List<T>;
+            }
+
+            //Verifica se é do Titular
+            if (type == typeof(Titular))
+            {
+                var resultado = from t in lista as List<Titular>
+                                where t.Status == status
+                                select t;
+                return resultado.ToList() as List<T>;
+            }
+
+            //Verifica se é do Dependente
+            if (type == typeof(Dependente))
+            {
+                var resultado = from d in lista as List<Dependente>
+                                where d.Status == status
+                                select d;
+                return resultado.ToList() as List<T>;
+            }
+
+            //Verifica se é do Parcela
+            if (type == typeof(Parcela))
+            {
+                var resultado = from p in lista as List<Parcela>
+                                where p.Status == status
+                                select p;
+                return resultado.ToList() as List<T>;
+            }
+
+            return new List<T>();
         }
     }
 }

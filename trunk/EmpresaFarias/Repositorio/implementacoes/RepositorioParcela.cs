@@ -318,7 +318,7 @@ namespace Repositorio.implementacoes
             }
             if (resultado["Status"] != DBNull.Value)
             {
-                parcela.Status = (StatusParcela)Convert.ToInt32(resultado["Status"]);
+                parcela.Status = (StatusControle)Convert.ToInt32(resultado["Status"]);
             }
             if (resultado["ContratoId"] != DBNull.Value)
             {

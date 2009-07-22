@@ -265,11 +265,11 @@ namespace Repositorio.implementacoes
             }
             if (resultado["Status"] != DBNull.Value)
             {
-                historicoParcela.ParcelaHistorico.Status = (StatusParcela)Convert.ToInt32(resultado["Status"]);
+                historicoParcela.ParcelaHistorico.Status = (StatusControle)Convert.ToInt32(resultado["Status"]);
             }
             if (resultado["Status"] != DBNull.Value)
             {
-                historicoParcela.ParcelaHistorico.Status = (StatusParcela)Convert.ToInt32(resultado["Status"]);
+                historicoParcela.ParcelaHistorico.Status = (StatusControle)Convert.ToInt32(resultado["Status"]);
             }
 
             if (resultado["ParcelaId"] != DBNull.Value)
