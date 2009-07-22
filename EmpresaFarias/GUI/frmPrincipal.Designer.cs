@@ -40,6 +40,7 @@
             this.sobreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stInformacaoGeral = new System.Windows.Forms.StatusStrip();
             this.lbInformacaoGeral = new System.Windows.Forms.ToolStripStatusLabel();
+            this.contratoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuPrincipal.SuspendLayout();
             this.stInformacaoGeral.SuspendLayout();
             this.SuspendLayout();
@@ -107,6 +108,8 @@
             // 
             // deNovoToolStripMenuItem
             // 
+            this.deNovoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.contratoToolStripMenuItem});
             this.deNovoToolStripMenuItem.Name = "deNovoToolStripMenuItem";
             this.deNovoToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
             this.deNovoToolStripMenuItem.Text = "Relatorio";
@@ -139,6 +142,13 @@
             this.lbInformacaoGeral.Name = "lbInformacaoGeral";
             this.lbInformacaoGeral.Size = new System.Drawing.Size(68, 17);
             this.lbInformacaoGeral.Text = "informação";
+            // 
+            // contratoToolStripMenuItem
+            // 
+            this.contratoToolStripMenuItem.Name = "contratoToolStripMenuItem";
+            this.contratoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.contratoToolStripMenuItem.Text = "Contrato";
+            this.contratoToolStripMenuItem.Click += new System.EventHandler(this.contratoToolStripMenuItem_Click);
             // 
             // frmPrincipal
             // 
@@ -175,6 +185,7 @@
         private System.Windows.Forms.ToolStripMenuItem sobreToolStripMenuItem;
         private System.Windows.Forms.StatusStrip stInformacaoGeral;
         private System.Windows.Forms.ToolStripStatusLabel lbInformacaoGeral;
+        private System.Windows.Forms.ToolStripMenuItem contratoToolStripMenuItem;
 
     }
 }

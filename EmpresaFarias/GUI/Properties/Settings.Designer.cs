@@ -32,5 +32,16 @@ namespace GUI.Properties {
                 return ((string)(this["DBEmpresaFariasConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=OBSCURUS-PC\\SQLEXPRESS;Initial Catalog=DBEmpresaFarias;Integrated Sec" +
+            "urity=True")]
+        public string StringDBEmpresaFarias {
+            get {
+                return ((string)(this["StringDBEmpresaFarias"]));
+            }
+        }
     }
 }
