@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using ClassesBasicas;
 using Negocio;
+using GUI.Relatorios;
 
 namespace GUI
 {
@@ -88,5 +89,13 @@ namespace GUI
             frmTitular frmT = new frmTitular();
             frmT.ShowDialog();
         }
+
+        private void contratoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmInputContrato f = new frmInputContrato();
+            f.Show();            
+        }
+
+
     }
 }

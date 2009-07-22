@@ -109,6 +109,13 @@ namespace GUI.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap invoice_48x48 {
+            get {
+                object obj = ResourceManager.GetObject("invoice-48x48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap logoWeb24 {
             get {
                 object obj = ResourceManager.GetObject("logoWeb24", resourceCulture);
