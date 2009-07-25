@@ -1080,7 +1080,7 @@ namespace GUI
                             d = fachada.ControladorDependente.Inserir(d, usuario);
                             statusDependente = StatusBanco.Navegacao;
                             dependentes.Add(d);
-                            titularAtual.Dependentes.Add(d);
+                            //titularAtual.Dependentes.Add(d);
                             CarregarDependentes();
 
                             AjustarBotoesDependente();
@@ -1088,6 +1088,7 @@ namespace GUI
                         }
                     case StatusBanco.Alteracao:
                         {
+                            //titularAtual.Dependentes.Remove(
                             if (!titularAtual.ValidarDependente(cmbParentesco.Text))
                                 throw new ExcecaoNegocio("Grau de Parentesco Invalido");
 
